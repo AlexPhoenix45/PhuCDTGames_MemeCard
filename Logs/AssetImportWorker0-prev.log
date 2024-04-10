@@ -1,0 +1,1269 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.41f1 (7c19dc9acfda) revision 8133084'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'en' Physical Memory: 16281 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.41f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/Alex/Documents/PhuCDTGames_Ludopoly/PhuCDTGames_MemeCard
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+53131
+Successfully changed project path to: C:/Users/Alex/Documents/PhuCDTGames_Ludopoly/PhuCDTGames_MemeCard
+C:/Users/Alex/Documents/PhuCDTGames_Ludopoly/PhuCDTGames_MemeCard
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 63.91 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.41f1 (7c19dc9acfda)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.41f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Alex/Documents/PhuCDTGames_Ludopoly/PhuCDTGames_MemeCard/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1050 (ID=0x1c81)
+    Vendor:   
+    VRAM:     1962 MB
+    Driver:   31.0.15.5123
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.41f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.41f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.41f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56360
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.41f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001952 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 69.69 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.589 seconds
+Domain Reload Profiling:
+	ReloadAssembly (589ms)
+		BeginReloadAssembly (68ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (442ms)
+			LoadAssemblies (66ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (137ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (183ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (70ms)
+				BeforeProcessingInitializeOnLoad (12ms)
+				ProcessInitializeOnLoadAttributes (72ms)
+				ProcessInitializeOnLoadMethodAttributes (25ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.003601 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 66.45 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.172 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1173ms)
+		BeginReloadAssembly (134ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (17ms)
+		EndReloadAssembly (978ms)
+			LoadAssemblies (101ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (302ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (54ms)
+			SetupLoadedEditorAssemblies (422ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (67ms)
+				BeforeProcessingInitializeOnLoad (104ms)
+				ProcessInitializeOnLoadAttributes (228ms)
+				ProcessInitializeOnLoadMethodAttributes (12ms)
+				AfterProcessingInitializeOnLoad (7ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (1ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.10 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3517 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 149.8 MB.
+System memory in use after: 150.0 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 3956.
+Total: 5.806700 ms (FindLiveObjects: 0.517200 ms CreateObjectMapping: 0.285800 ms MarkObjects: 4.867600 ms  DeleteObjects: 0.134800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/EventController.cs
+  artifactKey: Guid(0643e3002295e3f44863335dc1396a5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/EventController.cs using Guid(0643e3002295e3f44863335dc1396a5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '682f7836bb19e93965efead924ae10a0') in 0.031435 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003265 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.64 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.034 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1034ms)
+		BeginReloadAssembly (116ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (33ms)
+		EndReloadAssembly (860ms)
+			LoadAssemblies (93ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (308ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (42ms)
+			SetupLoadedEditorAssemblies (338ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (89ms)
+				ProcessInitializeOnLoadAttributes (224ms)
+				ProcessInitializeOnLoadMethodAttributes (12ms)
+				AfterProcessingInitializeOnLoad (8ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (2ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.69 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3451 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 143.9 MB.
+System memory in use after: 144.2 MB.
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 3959.
+Total: 3.277800 ms (FindLiveObjects: 0.289700 ms CreateObjectMapping: 0.162400 ms MarkObjects: 2.805200 ms  DeleteObjects: 0.019400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 203.948853 seconds.
+  path: Assets/UniversalRenderPipelineAsset.asset
+  artifactKey: Guid(a5340527a66f5a943a8dff1a23243100) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UniversalRenderPipelineAsset.asset using Guid(a5340527a66f5a943a8dff1a23243100) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3390916672fc8274ba2fd0fd5a268365') in 0.052112 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000128 seconds.
+  path: Assets/UniversalRenderPipelineAsset_Renderer.asset
+  artifactKey: Guid(95e50fa70c84ad44089839c5b79c8dc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UniversalRenderPipelineAsset_Renderer.asset using Guid(95e50fa70c84ad44089839c5b79c8dc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e57dc1692e82a396faac2eb09df6e548') in 0.023148 seconds 
+========================================================================
+Received Prepare
+Switching render pipeline 00000000000000000000000000000000 -> a5340527a66f5a943a8dff1a23243100
+Refreshing native plugins compatible for Editor in 3.58 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 59 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 80.2 MB.
+System memory in use after: 80.4 MB.
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 4008.
+Total: 3.827300 ms (FindLiveObjects: 0.250200 ms CreateObjectMapping: 0.153800 ms MarkObjects: 3.406300 ms  DeleteObjects: 0.016200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 43.779625 seconds.
+  path: Assets/UniversalRenderPipelineAsset.asset
+  artifactKey: Guid(a5340527a66f5a943a8dff1a23243100) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UniversalRenderPipelineAsset.asset using Guid(a5340527a66f5a943a8dff1a23243100) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad50c37bfdd72309e5984d4e72e11c7d') in 0.006287 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000146 seconds.
+  path: Assets/UniversalRenderPipelineAsset_Renderer.asset
+  artifactKey: Guid(95e50fa70c84ad44089839c5b79c8dc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UniversalRenderPipelineAsset_Renderer.asset using Guid(95e50fa70c84ad44089839c5b79c8dc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a145f014474084d741fa95632563b714') in 0.003223 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 83.827790 seconds.
+  path: Assets/MemeCardAsset/Prefabs/Card.prefab
+  artifactKey: Guid(4c5e0c33c42c1924d9d60ca9b5608cb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Prefabs/Card.prefab using Guid(4c5e0c33c42c1924d9d60ca9b5608cb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2bbae0f3cd81241ce4a3bc5d08ac65d7') in 0.024706 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.396931 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/New Shader Graph.shadergraph
+  artifactKey: Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/New Shader Graph.shadergraph using Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aceb909fdc58c5f22c941a1ff48b9cc1') in 0.011678 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.263579 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph
+  artifactKey: Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph using Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '568a6f70a32c0708f0a141ba49b07a85') in 0.007665 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1987.761268 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph
+  artifactKey: Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph using Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b80a5ab769f50b1affcf7ad1cfeb1560') in 0.007764 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 48.695240 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph
+  artifactKey: Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph using Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7b6933b96c9f731880e09be94b53179') in 0.007128 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 19.239557 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph
+  artifactKey: Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph using Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb8faf4bb38b1191791f873e78dd89a0') in 0.003143 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 168.602509 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/New Shader Graph.shadergraph
+  artifactKey: Guid(c89327986d81f1e4f9500c0cd2453e2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/New Shader Graph.shadergraph using Guid(c89327986d81f1e4f9500c0cd2453e2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64c2a670ff6be53766e8d29c3bfd596d') in 0.007460 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 335.971039 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/NewSurfaceShader.shader
+  artifactKey: Guid(b0dd4c71d63119441add2a2b190439ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/NewSurfaceShader.shader using Guid(b0dd4c71d63119441add2a2b190439ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9d9f9902257704ecbb105f0a40def69') in 0.014279 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 39.902235 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Back1.fbx
+  artifactKey: Guid(f1d93c91c08266244a1f8d62970a7614) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Back1.fbx using Guid(f1d93c91c08266244a1f8d62970a7614) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77d18f5c446a28a1e183359b7ca07ae6') in 0.225679 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Back5.fbx
+  artifactKey: Guid(67b845cab66cf7449b8de80ac6892a79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Back5.fbx using Guid(67b845cab66cf7449b8de80ac6892a79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51e7e718b68276a3a3031bb3313a9776') in 0.021889 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Bookstand1.fbx
+  artifactKey: Guid(ccc369919adadb042b0de5515f4e2b09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Bookstand1.fbx using Guid(ccc369919adadb042b0de5515f4e2b09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79866ffaa150d08a18311bc2273a043e') in 0.019048 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Back2.fbx
+  artifactKey: Guid(18fbd6e632be1ce4d9e4a37cf34a24d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Back2.fbx using Guid(18fbd6e632be1ce4d9e4a37cf34a24d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79cbecf1e7b5998500032e5849972609') in 0.020295 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Book.fbx
+  artifactKey: Guid(bfa53bdcf755ec540b1f8af46b423ace) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Book.fbx using Guid(bfa53bdcf755ec540b1f8af46b423ace) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15f15d78f232cef4d9b36a704ce77cf6') in 0.019253 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000187 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/BG4.fbx
+  artifactKey: Guid(9fa37dd9fe1e04040a18f68a2b77f073) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/BG4.fbx using Guid(9fa37dd9fe1e04040a18f68a2b77f073) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96df807fd6e3794a55f3d894cec9b840') in 0.020486 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000161 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/BG2.fbx
+  artifactKey: Guid(2607b927d338ecf44bc109267e03bb62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/BG2.fbx using Guid(2607b927d338ecf44bc109267e03bb62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d6ce11670392f5029f2f4c9dcacabe8') in 0.019431 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/BG3.fbx
+  artifactKey: Guid(8edbf4c6271dec34aa881d4eef9e314b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/BG3.fbx using Guid(8edbf4c6271dec34aa881d4eef9e314b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '010cc8672ccd0f182521460906057155') in 0.019463 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000202 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Back3.fbx
+  artifactKey: Guid(0310faca565ef9a4bacff340832c4ed9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Back3.fbx using Guid(0310faca565ef9a4bacff340832c4ed9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d1801d550a4a00b10ae5653afc77eb4') in 0.019969 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/BG1.fbx
+  artifactKey: Guid(ca5bf22a88083a04494ead4e9c128059) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/BG1.fbx using Guid(ca5bf22a88083a04494ead4e9c128059) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1800fe5a793795c328d0321ade9a00de') in 0.017866 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000157 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Back4.fbx
+  artifactKey: Guid(2512055a23412104eb3e2c3fdd4068a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Back4.fbx using Guid(2512055a23412104eb3e2c3fdd4068a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72c1f5a95dbd6b3bd49d262a4ab34198') in 0.018450 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/BG5.fbx
+  artifactKey: Guid(36a2e6f9ea2e52f4d922a9bb9e308435) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/BG5.fbx using Guid(36a2e6f9ea2e52f4d922a9bb9e308435) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c862d3de0e2eb7be129af3f9d2641968') in 0.019588 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 13.167115 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Bookstand2.fbx
+  artifactKey: Guid(514d2424f624d77439783f9cbbd30f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Bookstand2.fbx using Guid(514d2424f624d77439783f9cbbd30f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c881ddc36491d54ac09f6ca6237e7df') in 0.022275 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000166 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Bookstand3.fbx
+  artifactKey: Guid(995dea69c20a0c041849c65e5b945f56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Bookstand3.fbx using Guid(995dea69c20a0c041849c65e5b945f56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef887df396ca7d65073256be53fb692d') in 0.020356 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.009385 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Bookstand4.fbx
+  artifactKey: Guid(14e4beb3e2fab3143b5efdef9c07ae4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Bookstand4.fbx using Guid(14e4beb3e2fab3143b5efdef9c07ae4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '316742adc9c2621d6f148b968fd70b48') in 0.018273 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Bookstand5.fbx
+  artifactKey: Guid(91cda39faf1b14142b99ca0b7ef92cd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Bookstand5.fbx using Guid(91cda39faf1b14142b99ca0b7ef92cd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0979593ab8040c2ff8e1908385de38fa') in 0.020550 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000148 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Chair2.fbx
+  artifactKey: Guid(3f8c917963d3bb6458b8fb5d04311784) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Chair2.fbx using Guid(3f8c917963d3bb6458b8fb5d04311784) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '169fc784d1a118dd02356d1d2773fd0b') in 0.018094 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Chair1.fbx
+  artifactKey: Guid(bf198a8bf9bf8e24a8ffa5f946335983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Chair1.fbx using Guid(bf198a8bf9bf8e24a8ffa5f946335983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48e765086104f079fb94097f2f818193') in 0.020165 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.296662 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Chair3.fbx
+  artifactKey: Guid(008279c89cfed8d439604e0123b7d8eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Chair3.fbx using Guid(008279c89cfed8d439604e0123b7d8eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a3012072d5f482cff6678a4e4b2eabf') in 0.019558 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Chair5.fbx
+  artifactKey: Guid(b3bf002ce699b4847bb6180b6c35a05d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Chair5.fbx using Guid(b3bf002ce699b4847bb6180b6c35a05d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c31f65f371598361953a17fe7af4ed7') in 0.018125 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Chair4.fbx
+  artifactKey: Guid(f291ccc5d0940a14a9ad2783af27ab97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Chair4.fbx using Guid(f291ccc5d0940a14a9ad2783af27ab97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7cd89e87e281005999c5e4675d5645d') in 0.018616 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Right3.fbx
+  artifactKey: Guid(881787d0603530642a0e52803a1fb71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Right3.fbx using Guid(881787d0603530642a0e52803a1fb71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5bd22086d798fb2269853ad208a5fc9') in 0.018667 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000177 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Right2.fbx
+  artifactKey: Guid(d9b33f90aee98bf4caa420107a1535c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Right2.fbx using Guid(d9b33f90aee98bf4caa420107a1535c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf109279c3943b5d702955f3916823c3') in 0.019969 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Right1.fbx
+  artifactKey: Guid(cbe05f8d6bc248742bca05702ab75dab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Right1.fbx using Guid(cbe05f8d6bc248742bca05702ab75dab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79d344aa0d5dd0868d896b63bfd692f9') in 0.020289 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.642694 seconds.
+  path: Assets/MemeCardAsset/Model/phu/Victory (2).fbx
+  artifactKey: Guid(0930fd0415f678c45804d6c15eb9cee2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/Victory (2).fbx using Guid(0930fd0415f678c45804d6c15eb9cee2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a1951d3353437e81601d022dd7c98ab') in 0.041310 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.661324 seconds.
+  path: Assets/MemeCardAsset/Model/phu/Material
+  artifactKey: Guid(3241ac32bdb956e45aabff0f635a8f54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/Material using Guid(3241ac32bdb956e45aabff0f635a8f54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ed5f4148eaeca603a80fa44585dc7dd') in 0.006714 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.723626 seconds.
+  path: Assets/MemeCardAsset/Model/phu/Victory (2).fbx
+  artifactKey: Guid(0930fd0415f678c45804d6c15eb9cee2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/Victory (2).fbx using Guid(0930fd0415f678c45804d6c15eb9cee2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2116aff678361d54fed78bf2bd93baa8') in 0.019630 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.081809 seconds.
+  path: Assets/MemeCardAsset/Model/phu/Victory (2).fbx
+  artifactKey: Guid(0930fd0415f678c45804d6c15eb9cee2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/Victory (2).fbx using Guid(0930fd0415f678c45804d6c15eb9cee2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5582c16e22b90e6ce0b5bd9d4e1e4322') in 0.018233 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.877042 seconds.
+  path: Assets/MemeCardAsset/Model/phu/Material/Material.001.mat
+  artifactKey: Guid(2884b359e4667ab4d87d05bb37b504dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/Material/Material.001.mat using Guid(2884b359e4667ab4d87d05bb37b504dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de86bf9d974ea434e9cad4d44781ae92') in 0.017021 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 97.935926 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph
+  artifactKey: Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph using Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc94278384bde6e5a5d7d974a26d7984') in 0.003451 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 119.187021 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph
+  artifactKey: Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/Toon Shader.shadergraph using Guid(ecd6869f8de2f2740b154fbe4cee1c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30484c7c6029fa48b557b541bda72224') in 0.003313 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 32.000548 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/MainLightScripts.cs
+  artifactKey: Guid(6c88178dd3951744ab9dfc26d54367c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/MainLightScripts.cs using Guid(6c88178dd3951744ab9dfc26d54367c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fab71b13b54882006ff58a902b3f60e4') in 0.007171 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003582 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.22 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.256 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1257ms)
+		BeginReloadAssembly (198ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (13ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (89ms)
+		EndReloadAssembly (997ms)
+			LoadAssemblies (100ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (338ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (55ms)
+			SetupLoadedEditorAssemblies (368ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (99ms)
+				ProcessInitializeOnLoadAttributes (242ms)
+				ProcessInitializeOnLoadMethodAttributes (13ms)
+				AfterProcessingInitializeOnLoad (7ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (10ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.74 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3454 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 166.5 MB.
+System memory in use after: 166.8 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 4097.
+Total: 3.510800 ms (FindLiveObjects: 0.267600 ms CreateObjectMapping: 0.152700 ms MarkObjects: 3.055700 ms  DeleteObjects: 0.034000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 13.185321 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/MainLightScripts.cs
+  artifactKey: Guid(6c88178dd3951744ab9dfc26d54367c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/MainLightScripts.cs using Guid(6c88178dd3951744ab9dfc26d54367c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21123566e2719b95fdf8eeba6bc416e1') in 0.010202 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.785183 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/MainLightScripts.cs
+  artifactKey: Guid(6c88178dd3951744ab9dfc26d54367c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/MainLightScripts.cs using Guid(6c88178dd3951744ab9dfc26d54367c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74bacca138c067db7199150eafd0faa4') in 0.002786 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003452 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.13 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.264 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1264ms)
+		BeginReloadAssembly (127ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (38ms)
+		EndReloadAssembly (1073ms)
+			LoadAssemblies (184ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (368ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (48ms)
+			SetupLoadedEditorAssemblies (359ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (96ms)
+				ProcessInitializeOnLoadAttributes (237ms)
+				ProcessInitializeOnLoadMethodAttributes (13ms)
+				AfterProcessingInitializeOnLoad (7ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (10ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.75 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3451 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 166.5 MB.
+System memory in use after: 166.7 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 4099.
+Total: 3.847000 ms (FindLiveObjects: 0.321700 ms CreateObjectMapping: 0.260000 ms MarkObjects: 3.240100 ms  DeleteObjects: 0.024100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 239.752921 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/script.hlsl
+  artifactKey: Guid(af0b506213f58d74ab6bac18ba787025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/script.hlsl using Guid(af0b506213f58d74ab6bac18ba787025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb22e21dfcf620ae8dae42d79f8f63e6') in 0.042557 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 54.888222 seconds.
+  path: Assets/MemeCardAsset/Model/Shader/script.hlsl
+  artifactKey: Guid(af0b506213f58d74ab6bac18ba787025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Shader/script.hlsl using Guid(af0b506213f58d74ab6bac18ba787025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '265b438b4bea723175192ffb2469d417') in 0.002370 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 54.971225 seconds.
+  path: Assets/MemeCardAsset/Model/phu/Victory (2).fbx
+  artifactKey: Guid(0930fd0415f678c45804d6c15eb9cee2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/Victory (2).fbx using Guid(0930fd0415f678c45804d6c15eb9cee2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f45c1f6b2a7415958fba381df4a11853') in 0.164598 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.821310 seconds.
+  path: Assets/MemeCardAsset/Model/phu/Material/Material.001.mat
+  artifactKey: Guid(2884b359e4667ab4d87d05bb37b504dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/Material/Material.001.mat using Guid(2884b359e4667ab4d87d05bb37b504dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a887b544d2c74e07de912ecf1b44a0d') in 0.020308 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 218.997638 seconds.
+  path: Assets/MemeCardAsset/Model/phu/zoom
+  artifactKey: Guid(859c8a80af0a3194cad36830544ec31d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/zoom using Guid(859c8a80af0a3194cad36830544ec31d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d96c4381c21e36e18a4de941668ad07') in 0.006872 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.122048 seconds.
+  path: Assets/MemeCardAsset/Model/phu/zoom/zom.fbx
+  artifactKey: Guid(675e5c1b2c1b7424a814e06e9f10634e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/zoom/zom.fbx using Guid(675e5c1b2c1b7424a814e06e9f10634e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee159a24a588420e7be8c7cddd3d27d9') in 0.153499 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 83.831206 seconds.
+  path: Assets/MemeCardAsset/Model/phu/zoom/texture
+  artifactKey: Guid(e83059413e3e5a34980c521b23574b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/zoom/texture using Guid(e83059413e3e5a34980c521b23574b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81800a20c1fe629271cf3d2c981687b0') in 0.011287 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.047147 seconds.
+  path: Assets/MemeCardAsset/Model/phu/zoom/texture/Color_Map.tga.png
+  artifactKey: Guid(867531c2a42a057488ada320f7e0d396) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/phu/zoom/texture/Color_Map.tga.png using Guid(867531c2a42a057488ada320f7e0d396) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2777ab8f9aaad85a8a22093c7986aa1a') in 0.059790 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 64.492232 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Right4.fbx
+  artifactKey: Guid(6af8af7f72b7eb0449af839635d24e4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Right4.fbx using Guid(6af8af7f72b7eb0449af839635d24e4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '627924aee3d6e9c01cd99c97e341f7fb') in 0.020909 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Table2.fbx
+  artifactKey: Guid(117a9569359e78742b21b9c5808cad03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Table2.fbx using Guid(117a9569359e78742b21b9c5808cad03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4f76ee29b6956c37476599566b0733b') in 0.047538 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000145 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Right5.fbx
+  artifactKey: Guid(6b2595db2b9f8f54e83135bceb2bb5b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Right5.fbx using Guid(6b2595db2b9f8f54e83135bceb2bb5b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a9ca281d7a9b28e2d39e55d11d44f6f') in 0.017413 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000241 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Table1.fbx
+  artifactKey: Guid(10edd60572753ef419f77043c5c1e088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Table1.fbx using Guid(10edd60572753ef419f77043c5c1e088) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a857a95b51e53da222cd576d90a6a75a') in 0.018863 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Table3.fbx
+  artifactKey: Guid(420b729983f1f5e4686f49c04909e6cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Table3.fbx using Guid(420b729983f1f5e4686f49c04909e6cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0cd567a385afa080bde8bbca1db9ed9') in 0.017985 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Table4.fbx
+  artifactKey: Guid(fdc6c83aa60864d4c946b2a7cc5bc131) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Table4.fbx using Guid(fdc6c83aa60864d4c946b2a7cc5bc131) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9221e00e519cd786c5faa565c978bb42') in 0.018072 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.593422 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Table5.fbx
+  artifactKey: Guid(11d19becc39dca041ba01bcb3fdd5fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Table5.fbx using Guid(11d19becc39dca041ba01bcb3fdd5fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5a5939adf5b3ac6cdc8aceb13807964') in 0.021931 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 24.928606 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Table5.fbx
+  artifactKey: Guid(11d19becc39dca041ba01bcb3fdd5fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Table5.fbx using Guid(11d19becc39dca041ba01bcb3fdd5fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5a545421a46114ee0c5849fb7a4d4df') in 0.017557 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.099218 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Table5.fbx
+  artifactKey: Guid(11d19becc39dca041ba01bcb3fdd5fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Table5.fbx using Guid(11d19becc39dca041ba01bcb3fdd5fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9af24af788c8cefb702a3b8bb8973c34') in 0.021703 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.800446 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Material
+  artifactKey: Guid(0adeb37102c178c44a8ebc1ad7e02c34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Material using Guid(0adeb37102c178c44a8ebc1ad7e02c34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0eddc99389a85960c32ff250c3336fe1') in 0.001936 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.940602 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Material/map1.mat
+  artifactKey: Guid(26ad943c30fa724469948eb8da809a2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Material/map1.mat using Guid(26ad943c30fa724469948eb8da809a2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14317d38d86c3b0f670d3d400778504b') in 0.015931 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.098524 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0000_Card-Packs.png
+  artifactKey: Guid(ef2115a9f4e717f4397f695d86284712) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0000_Card-Packs.png using Guid(ef2115a9f4e717f4397f695d86284712) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'adf2c7f0b728b67fe3476812f14e0d19') in 0.020048 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000131 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0027_Layer-0.png
+  artifactKey: Guid(f982fa1e927777a4faaf4dd80946de6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0027_Layer-0.png using Guid(f982fa1e927777a4faaf4dd80946de6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57453aae95e2e094966cf474d92608e3') in 0.053769 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000185 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0024_Shape-9.png
+  artifactKey: Guid(b48c2ab1290abd941b1a6229d2444b31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0024_Shape-9.png using Guid(b48c2ab1290abd941b1a6229d2444b31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '270c5ad45b30f827fbf1d43a44cecd6a') in 0.015167 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000136 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0010_Layer-0.png
+  artifactKey: Guid(dbbd553e9006e1d439ee1752c559bb9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0010_Layer-0.png using Guid(dbbd553e9006e1d439ee1752c559bb9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0203a6240df27117c15c3fa7de1f7bb1') in 0.028774 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0005_Fl1.png
+  artifactKey: Guid(508aa010919ad424ba958c886afcbbcb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0005_Fl1.png using Guid(508aa010919ad424ba958c886afcbbcb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9dda35976e13f6fc702df7660c553bbc') in 0.022058 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0008_Doge_Coin-copy-6.png
+  artifactKey: Guid(f32eba10e4df96b40b1f7503469d93e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0008_Doge_Coin-copy-6.png using Guid(f32eba10e4df96b40b1f7503469d93e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '282f48682c2a0904aba573c367ec2e13') in 0.014902 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0014_Shape-13-copy.png
+  artifactKey: Guid(d6b7fb0bee1624a43a8e604ae2d7efcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0014_Shape-13-copy.png using Guid(d6b7fb0bee1624a43a8e604ae2d7efcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efc584f2160333a1d084be1205e93735') in 0.014751 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0021_Shape-12.png
+  artifactKey: Guid(091933fbed94d8e48acd2a6d9e087ff4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0021_Shape-12.png using Guid(091933fbed94d8e48acd2a6d9e087ff4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92c8517da23868595c62a60d8d2e8f52') in 0.015928 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0025_Shape-6-copy-2.png
+  artifactKey: Guid(de3b2edadd559c944873fec6ae6c089a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0025_Shape-6-copy-2.png using Guid(de3b2edadd559c944873fec6ae6c089a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3470af26f2bba438e60f085a8308f77') in 0.016757 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0002_Group-1.png
+  artifactKey: Guid(0c4a21de3c4cef64bbedb3a746e66ae8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0002_Group-1.png using Guid(0c4a21de3c4cef64bbedb3a746e66ae8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a081cd834162a7482e03343ba67ed899') in 0.020078 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0020_Shape-13.png
+  artifactKey: Guid(2d3451a846603974bafbe14883c39617) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0020_Shape-13.png using Guid(2d3451a846603974bafbe14883c39617) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efc014e575d2c85240da6f84f631812b') in 0.014521 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0007_Fl3.png
+  artifactKey: Guid(75a3b63d37ba0d449b581166d0d52a38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0007_Fl3.png using Guid(75a3b63d37ba0d449b581166d0d52a38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7630e474b32c96804d21ab18f680b1c5') in 0.022571 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000178 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0000_CARD_Scratch-copy.png
+  artifactKey: Guid(2e775dedbe60ad34db074fea55e04280) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0000_CARD_Scratch-copy.png using Guid(2e775dedbe60ad34db074fea55e04280) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e13f7387d1c45a2cd4c2cc0079c9011') in 0.014716 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_Daily.jpg
+  artifactKey: Guid(d2eb322cee176664490fab6876ed9bbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_Daily.jpg using Guid(d2eb322cee176664490fab6876ed9bbe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e76920a49ae9b6640c05c082bea7a345') in 0.018351 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0017_Shape-10-copy.png
+  artifactKey: Guid(69228fa9def523a4795fb29e4e7270e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0017_Shape-10-copy.png using Guid(69228fa9def523a4795fb29e4e7270e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '562df84cd4c598fe2b537976554b7fc8') in 0.014746 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000159 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0000_Group-11-copy.png
+  artifactKey: Guid(82c3831b99dd03c40ac502b2b318d045) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0000_Group-11-copy.png using Guid(82c3831b99dd03c40ac502b2b318d045) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aaafcad7fe245c60f450896ddcfb72fb') in 0.014950 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000342 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0002_PLAY.png
+  artifactKey: Guid(c793be230e5a3e1479410a832c037c9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0002_PLAY.png using Guid(c793be230e5a3e1479410a832c037c9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26679915f787e268326e22714fe141be') in 0.015862 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0026_Shape-6-copy.png
+  artifactKey: Guid(15ca3f60359a7b14a8e09ac77e482b0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0026_Shape-6-copy.png using Guid(15ca3f60359a7b14a8e09ac77e482b0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08f5698637a41c228768f8eaa75cb135') in 0.015422 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000247 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0003_Group-1.png
+  artifactKey: Guid(58a87f04ad2aaa1478f2c2bc9792e2ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0003_Group-1.png using Guid(58a87f04ad2aaa1478f2c2bc9792e2ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c4fb32078b729f85b1c31a57c8b5d52') in 0.014411 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0016_Shape-11-copy.png
+  artifactKey: Guid(91d38108631d0584790cdb366447c694) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0016_Shape-11-copy.png using Guid(91d38108631d0584790cdb366447c694) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ccdd9daeef83e2b33f8c1b7e3a39c20') in 0.014681 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0004_Group-1.png
+  artifactKey: Guid(f97385fe663a83d498607289cae45f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0004_Group-1.png using Guid(f97385fe663a83d498607289cae45f94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a825b477ac18214c7183ffef751ae71') in 0.015395 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000206 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0012_Group-3.png
+  artifactKey: Guid(cf9b649d870f21b4783aac7a8e87dffb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0012_Group-3.png using Guid(cf9b649d870f21b4783aac7a8e87dffb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '760a0c1747f928e6b751aaafcc4402dc') in 0.024399 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000265 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0013_Shape-14-copy.png
+  artifactKey: Guid(1a52c3a26844e6f4eba4d159a84d4c69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0013_Shape-14-copy.png using Guid(1a52c3a26844e6f4eba4d159a84d4c69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12a2db141c21d91c502134a52779bba4') in 0.013626 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0000_Base_Purple-copy-10.png
+  artifactKey: Guid(80821d53add85f444b234f8b5e2d9c8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0000_Base_Purple-copy-10.png using Guid(80821d53add85f444b234f8b5e2d9c8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09ef4e8073cf2af103236118a222a5f7') in 0.013766 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0003_PLAY.png
+  artifactKey: Guid(d789e057e70a268439ec52c37fdc1864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0003_PLAY.png using Guid(d789e057e70a268439ec52c37fdc1864) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a48d2136b2862e858766c8b4111a1df9') in 0.017283 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0000_Shape-1.png
+  artifactKey: Guid(8801941cbc476ca47b645af59a1951bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0000_Shape-1.png using Guid(8801941cbc476ca47b645af59a1951bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '452f9e61a9ad98aed0adc15bbd0ed16b') in 0.015228 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000141 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0001_PLAY.png
+  artifactKey: Guid(37bf0444032f11e4db1eeabd04c32485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0001_PLAY.png using Guid(37bf0444032f11e4db1eeabd04c32485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '442bceb3a5a546fbd4924391b14fe778') in 0.015166 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0007_ADs.png
+  artifactKey: Guid(417f648cfa25da14d9d23839c4a48a7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0007_ADs.png using Guid(417f648cfa25da14d9d23839c4a48a7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '314383563ac47a73e20c80772677e31e') in 0.014074 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000161 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0006_CARD_Normal-copy-4.png
+  artifactKey: Guid(f6455bc2ded0986409686da4a5851314) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0006_CARD_Normal-copy-4.png using Guid(f6455bc2ded0986409686da4a5851314) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66b5d2a40c36134be36f9126a8b60f45') in 0.015135 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000196 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0001_CARD_Normal-copy-5.png
+  artifactKey: Guid(6fe23555a63761146ac369fe0ff9f53c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0001_CARD_Normal-copy-5.png using Guid(6fe23555a63761146ac369fe0ff9f53c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f8ee9436beb0b34977259bafdc32655') in 0.016206 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000157 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0009_BUTTON.png
+  artifactKey: Guid(a5c569819be17e64e99e99986d71bc52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0009_BUTTON.png using Guid(a5c569819be17e64e99e99986d71bc52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7682fc09218f1b36b7d0576bab2f714') in 0.014133 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000181 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0015_Shape-12-copy.png
+  artifactKey: Guid(7a0a58200dc42c04e9774bb5d13453ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0015_Shape-12-copy.png using Guid(7a0a58200dc42c04e9774bb5d13453ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94404a9a6e56d364d2df46aff4a8272a') in 0.013702 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0019_Shape-14.png
+  artifactKey: Guid(c75def05bcffb1643a0506c9c3b5a5b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0019_Shape-14.png using Guid(c75def05bcffb1643a0506c9c3b5a5b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b2cecb76f94a985fdb8b2afa865cc7c') in 0.013729 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0008_Fl4.png
+  artifactKey: Guid(769e1736430b21a48ad53f24d97f7d32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0008_Fl4.png using Guid(769e1736430b21a48ad53f24d97f7d32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b9ca6bf91a2ee683ab876a871b175fe') in 0.014593 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000181 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0000_Doge_Coin.png
+  artifactKey: Guid(17657ffe387712f4a89f3bd642519a65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0000_Doge_Coin.png using Guid(17657ffe387712f4a89f3bd642519a65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f55d433f757a8c8b6ccc8d4f2d07b39') in 0.015144 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0013_Card.png
+  artifactKey: Guid(87d40690ef9cab64dab460de8aa814e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0013_Card.png using Guid(87d40690ef9cab64dab460de8aa814e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c7dbcd3cc7c6769f51aa093724b0a7f') in 0.017759 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0014_Shop.png
+  artifactKey: Guid(9455d0712a851aa4c8a2c4578aa9c6b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0014_Shop.png using Guid(9455d0712a851aa4c8a2c4578aa9c6b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1237d5aa3a501705b67426c83cbbc01') in 0.015550 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0008_Shape-5.png
+  artifactKey: Guid(410108922108f6a41bae53a76ba088a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0008_Shape-5.png using Guid(410108922108f6a41bae53a76ba088a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54985e178c935952710f23397d67092f') in 0.017669 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0004_Shop.png
+  artifactKey: Guid(73459c9d38fc5cb46989e4bd5bb688ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0004_Shop.png using Guid(73459c9d38fc5cb46989e4bd5bb688ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77f0b314dcb98d54fa96bc82cb6ee73c') in 0.014231 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000204 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play1/1_PLAY_123_0001_Shape-21.png
+  artifactKey: Guid(77aa6e2d884c24945b187521472075a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play1/1_PLAY_123_0001_Shape-21.png using Guid(77aa6e2d884c24945b187521472075a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10bd70c835d4aa6ac1fd7c6eea03cfb9') in 0.015084 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Endgame/1_PLAY_123_0001_Layer-10.png
+  artifactKey: Guid(e81ced29f0c0df944ab6d77fadd72137) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Endgame/1_PLAY_123_0001_Layer-10.png using Guid(e81ced29f0c0df944ab6d77fadd72137) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '084b0d574358a80624ea103a766d37c2') in 0.015130 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000186 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_2.1.jpg
+  artifactKey: Guid(88df778be0e79b0418381258b45713ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_2.1.jpg using Guid(88df778be0e79b0418381258b45713ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f74209bc81ac6d820bdb5a35aada0a2c') in 0.015968 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_2.jpg
+  artifactKey: Guid(d21b96e3c72609f46b9a83322bf311b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_2.jpg using Guid(d21b96e3c72609f46b9a83322bf311b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd20c1ff3869db0e5b178d34935dc4b54') in 0.014626 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000317 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_1.1.jpg
+  artifactKey: Guid(a335121ffe901d94eaa83223ba2bafb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_1.1.jpg using Guid(a335121ffe901d94eaa83223ba2bafb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e11a16cf694164e1378e0e4cfb674862') in 0.015221 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_3.jpg
+  artifactKey: Guid(ab368251e43a272458ecd5d0e362dff8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_3.jpg using Guid(ab368251e43a272458ecd5d0e362dff8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2077fd8b90cf454ae4b349e369cd2aa') in 0.015516 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0012_Play.png
+  artifactKey: Guid(b88246bd83fdbd340a43cb5865866fb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0012_Play.png using Guid(b88246bd83fdbd340a43cb5865866fb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb8936449559bee7b4354652c3a0e775') in 0.014761 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000185 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play3/1_PLAY_123_0001_flat,750x,075,f-pad,750x1000,f8f8f8.png
+  artifactKey: Guid(e5cdb65a7185a474d94b54551272843a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play3/1_PLAY_123_0001_flat,750x,075,f-pad,750x1000,f8f8f8.png using Guid(e5cdb65a7185a474d94b54551272843a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8600f6526955a5f751a6400e510eed16') in 0.015013 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000161 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play2/1_PLAY_123_0000_PLAY.png
+  artifactKey: Guid(5935bbf79ec86e240b8ed392e053e1d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play2/1_PLAY_123_0000_PLAY.png using Guid(5935bbf79ec86e240b8ed392e053e1d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13d6911779f5ba5cbddbff6473f3fc19') in 0.015377 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000201 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Level/1_PLAY_123_0000_2.png
+  artifactKey: Guid(ccb48a36ce229054a9090aca23dc5c6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Level/1_PLAY_123_0000_2.png using Guid(ccb48a36ce229054a9090aca23dc5c6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '794719669d773d3c84a44f2113301701') in 0.015414 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000195 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play1/1_PLAY_123_0001_Ellipse-1.png
+  artifactKey: Guid(9f9490ae5eea870478b8765536879de7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play1/1_PLAY_123_0001_Ellipse-1.png using Guid(9f9490ae5eea870478b8765536879de7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fabf8be9faa340c4b4e168b6db79ab89') in 0.016457 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0006_Shape-9.png
+  artifactKey: Guid(0fcf60576a232f545a57de859d66fc0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0006_Shape-9.png using Guid(0fcf60576a232f545a57de859d66fc0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7969399d653689a5b15ae7190d8af905') in 0.015309 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0016_Menubase.png
+  artifactKey: Guid(a5081b251447cf245b673333c2d629f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0016_Menubase.png using Guid(a5081b251447cf245b673333c2d629f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b3c52bdf63612d29abbae853be02a59') in 0.017849 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000144 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play3/1_PLAY_123_0000_Choosing.png
+  artifactKey: Guid(24801ef87c1ae7c4c9c32f17b64edf33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play3/1_PLAY_123_0000_Choosing.png using Guid(24801ef87c1ae7c4c9c32f17b64edf33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '06629f0ffd7fb20ebe889d10acb71a2b') in 0.014903 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000171 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0003_2-copy-2.png
+  artifactKey: Guid(110e4e5f129866e4094b4887a0a6c3d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0003_2-copy-2.png using Guid(110e4e5f129866e4094b4887a0a6c3d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fda7e37c60d682c0a79cb31c5dd07e63') in 0.015918 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0004_0.png
+  artifactKey: Guid(c3c19da0a90596a488747b8e8029596b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0004_0.png using Guid(c3c19da0a90596a488747b8e8029596b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44afc9ff7b4d2d216740feef73256828') in 0.014501 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Level/1_PLAY_123_0001_Base0.png
+  artifactKey: Guid(e4fb5dd87cebfc74697ecb222abe9888) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Level/1_PLAY_123_0001_Base0.png using Guid(e4fb5dd87cebfc74697ecb222abe9888) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65b0cc2d7040f17c725ee22bc3a5ee3b') in 0.014685 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Endgame/1_PLAY_123_0000_ADs.png
+  artifactKey: Guid(89776bd4fd7ee204e9bbc8df9df3bd17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Endgame/1_PLAY_123_0000_ADs.png using Guid(89776bd4fd7ee204e9bbc8df9df3bd17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08aecb352b190b7ba7fd2e71b6b0e2aa') in 0.017796 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0010_Rectangle-2-copy.png
+  artifactKey: Guid(c53059485c0e9b745bd475212eea67b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0010_Rectangle-2-copy.png using Guid(c53059485c0e9b745bd475212eea67b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a0a29314f96ef545dd7228286f00ea3') in 0.015679 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0009_Pop-up-copy.png
+  artifactKey: Guid(66a2e894cfbf7fa4183d25b72cc8aa29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0009_Pop-up-copy.png using Guid(66a2e894cfbf7fa4183d25b72cc8aa29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3764604a6b9e2039a9b57ac068d2acfb') in 0.018408 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000206 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0010_Shape-8.png
+  artifactKey: Guid(43428dcc004077b4ab244d70ccdcc2ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0010_Shape-8.png using Guid(43428dcc004077b4ab244d70ccdcc2ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '711e5da97729747a941302fe08d07e5a') in 0.013686 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0002_Base-copy-3.png
+  artifactKey: Guid(be8f5ee41ac49c84c91492a94702819c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0002_Base-copy-3.png using Guid(be8f5ee41ac49c84c91492a94702819c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '158eb139f43db08b0041a0831c5a9388') in 0.022115 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play1/1_PLAY_123_0000_Shape-9.png
+  artifactKey: Guid(635a174dab553f24da8a36fabc6ff98d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play1/1_PLAY_123_0000_Shape-9.png using Guid(635a174dab553f24da8a36fabc6ff98d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d367d38a7b2f76b94e84d064fc819ca') in 0.015906 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000177 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0006_Fl2.png
+  artifactKey: Guid(0ae710d7b74a4ff4aa25b0b2cb679c58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0006_Fl2.png using Guid(0ae710d7b74a4ff4aa25b0b2cb679c58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c09ab65e9fdd3c7d7b59dc9f49b2541e') in 0.015637 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0001_Rounded-Rectangle-1.png
+  artifactKey: Guid(03eff81a25e94534b999dc379ad37ba7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0001_Rounded-Rectangle-1.png using Guid(03eff81a25e94534b999dc379ad37ba7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b14fd221b507da9c393a858cb70019d5') in 0.015978 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000177 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0002_Base_Yellow-copy-12.png
+  artifactKey: Guid(88ab03e3b434df340890cbfc2c96b294) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0002_Base_Yellow-copy-12.png using Guid(88ab03e3b434df340890cbfc2c96b294) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58175c8c103b65f27fae480dcd469f9c') in 0.013290 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_Collection.jpg
+  artifactKey: Guid(5d2e0297d205fa84fbeb0786acb7932a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_Collection.jpg using Guid(5d2e0297d205fa84fbeb0786acb7932a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7583d4e1474dca1fb3b07b93246379f2') in 0.015346 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000232 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0001_Layer-32.png
+  artifactKey: Guid(e2398c63abdeea54ba8b71fbbaab46da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0001_Layer-32.png using Guid(e2398c63abdeea54ba8b71fbbaab46da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fe609de398b646b03df1bce875d5033') in 0.014232 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0001_Group-1.png
+  artifactKey: Guid(c968ba36b2c32c746866eec356191dd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Daily/1_Daily_0001_Group-1.png using Guid(c968ba36b2c32c746866eec356191dd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf015200824c965daac44aad2713c67c') in 0.014604 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0002_Layer-31.png
+  artifactKey: Guid(468f45f6f090e004dbf39d1ceac4ef57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0002_Layer-31.png using Guid(468f45f6f090e004dbf39d1ceac4ef57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '850f1edca35f25641706cc76b362da8d') in 0.017716 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0005_Card.png
+  artifactKey: Guid(45cf59b5c6790844982305e57565e00f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0005_Card.png using Guid(45cf59b5c6790844982305e57565e00f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0325b1b2991a5421882aa538225ff42') in 0.014141 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0000_Layer-30.png
+  artifactKey: Guid(d838c42ba01aba2429f99bf000ac085b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Loading bar/1_Loading_Home-PLAY_0000_Layer-30.png using Guid(d838c42ba01aba2429f99bf000ac085b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85a1a6943d27099c830a5f4dfa9cb181') in 0.016248 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0015_Setting.png
+  artifactKey: Guid(6e99067c9a359d3408b961fe7886ea33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0015_Setting.png using Guid(6e99067c9a359d3408b961fe7886ea33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2269375911993b6da8c91daa25fe0ec') in 0.014628 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000166 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0005_CARD_Inner.png
+  artifactKey: Guid(51edb4330706c684bb99687cce3383f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0005_CARD_Inner.png using Guid(51edb4330706c684bb99687cce3383f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83a95d9ff7f41bb1c4dcd0f2e38477a8') in 0.015938 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000144 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0011_Daily.png
+  artifactKey: Guid(6f0ac4da09c5ef841a58ad0aece56980) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0011_Daily.png using Guid(6f0ac4da09c5ef841a58ad0aece56980) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a998bc1eb63e182bc672b97e17d562fd') in 0.014201 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000171 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0007_Daily.png
+  artifactKey: Guid(0e0dc22840b333a4d9766acd42c91c53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0007_Daily.png using Guid(0e0dc22840b333a4d9766acd42c91c53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32a283e7acc167657d0f85a017c16c11') in 0.014364 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0022_Shape-11.png
+  artifactKey: Guid(aa28a56986614204aa23834f8e6467a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0022_Shape-11.png using Guid(aa28a56986614204aa23834f8e6467a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08f188a75a851b010bebe1fddabc19f3') in 0.013672 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0023_Shape-10.png
+  artifactKey: Guid(42fa2a0f74c0a0d44bd71af8d7eaceef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0023_Shape-10.png using Guid(42fa2a0f74c0a0d44bd71af8d7eaceef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c4455cc29e04d2598db0975f3fe8b85') in 0.013948 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000158 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0000_PLAY.png
+  artifactKey: Guid(ef4652e4c1cbc574b85a57603b5ebe9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/Chả biết gọi là gì/0_Tong-hop_0000_PLAY.png using Guid(ef4652e4c1cbc574b85a57603b5ebe9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3abbd551d329a65bc1165823b17bfc31') in 0.016233 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_Loading_Home-PLAY.jpg
+  artifactKey: Guid(19e6b177eaeeaae48b14c71f7c9b5e67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_Loading_Home-PLAY.jpg using Guid(19e6b177eaeeaae48b14c71f7c9b5e67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e3dd9b37ea92e9b7e33c607c6f8e32b') in 0.017858 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_Loading_Home-PLAY1.jpg
+  artifactKey: Guid(7ac8518937fc207438e957702d057c04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_Loading_Home-PLAY1.jpg using Guid(7ac8518937fc207438e957702d057c04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04edc34cc85f63a8d9e5f6938524a3f8') in 0.014908 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000201 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0011_Rounded-Rectangle-2.png
+  artifactKey: Guid(774fdd8f05e2d5a4898061519e4a19ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0011_Rounded-Rectangle-2.png using Guid(774fdd8f05e2d5a4898061519e4a19ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68700cb13ea62503e22cbce7fb8c0020') in 0.014274 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000143 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0003_Shadow-copy.png
+  artifactKey: Guid(89234c5f85b311b4da09732a4bc5b191) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0003_Shadow-copy.png using Guid(89234c5f85b311b4da09732a4bc5b191) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3554782d829207fc50bd5d2757360ef4') in 0.010428 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_1.jpg
+  artifactKey: Guid(d36b0e6f93fd4e74da7f10e9c6db5851) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/DEMO_UI/1_PLAY_1.jpg using Guid(d36b0e6f93fd4e74da7f10e9c6db5851) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a7d68bfc037ebac6b46464bc6ecb962') in 0.015732 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0009_Base.png
+  artifactKey: Guid(4e96be2be1a850d4788db2dfdd1214e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Home/Home screen/1_Loading_Home-PLAY_0009_Base.png using Guid(4e96be2be1a850d4788db2dfdd1214e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '334c9095a779187167dcc9748508e2b5') in 0.016352 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000194 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0003_CARD_Rare-copy-4.png
+  artifactKey: Guid(825cc4f3db379c84eabb19618d7b6ecc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0003_CARD_Rare-copy-4.png using Guid(825cc4f3db379c84eabb19618d7b6ecc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '479d93f1eb61de0aa2d4d5eadbe821d9') in 0.015316 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play1/1_PLAY_123_0000_Ellipse-1-copy.png
+  artifactKey: Guid(90dbdec790365bd46a937d45e9b560c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Play123/Play1/1_PLAY_123_0000_Ellipse-1-copy.png using Guid(90dbdec790365bd46a937d45e9b560c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1488ba6ffce916842242aa79bf08f3e') in 0.014728 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0004_Base_Green-copy-16.png
+  artifactKey: Guid(3a7cb535c7ca286489691a9c55b56d50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0004_Base_Green-copy-16.png using Guid(3a7cb535c7ca286489691a9c55b56d50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '232c7844047e0a1f0a0661d20d5d6f0a') in 0.012637 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0018_Shape-9.png
+  artifactKey: Guid(cdc4a5d64bdad554188eb601cba4119e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Artwork/MEME_Card game/1_Collection/1_Collection_0018_Shape-9.png using Guid(cdc4a5d64bdad554188eb601cba4119e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0434e55c2366433c2e4d88e39412fb1') in 0.014107 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 13.552450 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Texture/BG.png
+  artifactKey: Guid(e682d74c80312b84ab10dccacd2d0fcb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Texture/BG.png using Guid(e682d74c80312b84ab10dccacd2d0fcb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fca4ae11a57ebf3ae5b98677a6a10171') in 0.011435 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000193 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Texture/map1.png
+  artifactKey: Guid(7f9d6004e8beb574ba2b80c90a844143) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Texture/map1.png using Guid(7f9d6004e8beb574ba2b80c90a844143) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc9264352b6f2c66088cbe80579c0af6') in 0.009897 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 79.936275 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Material/map1.mat
+  artifactKey: Guid(26ad943c30fa724469948eb8da809a2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Material/map1.mat using Guid(26ad943c30fa724469948eb8da809a2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c947e997afc223d2bce78ef3787067dc') in 0.020553 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 33.534616 seconds.
+  path: Assets/MemeCardAsset/Model/Fbx/Table5.fbx
+  artifactKey: Guid(11d19becc39dca041ba01bcb3fdd5fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MemeCardAsset/Model/Fbx/Table5.fbx using Guid(11d19becc39dca041ba01bcb3fdd5fde) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79b8a5146793ca9d2cd210b4207d44fd') in 0.013471 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

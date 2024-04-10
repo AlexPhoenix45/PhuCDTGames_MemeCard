@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Test", "NaughtyAttributes.Test.csproj", "{0BB6924A-EA25-4160-647A-A277A03E3080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{97C07C90-EC63-4540-2BF7-3BFC7AF93257}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Core", "NaughtyAttributes.Core.csproj", "{61537C6F-B2AF-0588-CF89-9C14BE55FC89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nobi.UiRoundedCorners", "Nobi.UiRoundedCorners.csproj", "{A2A4C780-2240-3E0B-5C12-A8F09F5C4824}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Editor", "NaughtyAttributes.Editor.csproj", "{503F5766-08D1-4D2A-A02A-48E8E66352D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{C6C51F2F-7A95-4E6B-2D8C-0DCF090A31DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.litefeel.BitmapFontImporter.Editor", "com.litefeel.BitmapFontImporter.Editor.csproj", "{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BB6924A-EA25-4160-647A-A277A03E3080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB6924A-EA25-4160-647A-A277A03E3080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB6924A-EA25-4160-647A-A277A03E3080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB6924A-EA25-4160-647A-A277A03E3080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C07C90-EC63-4540-2BF7-3BFC7AF93257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C07C90-EC63-4540-2BF7-3BFC7AF93257}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C07C90-EC63-4540-2BF7-3BFC7AF93257}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C07C90-EC63-4540-2BF7-3BFC7AF93257}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61537C6F-B2AF-0588-CF89-9C14BE55FC89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61537C6F-B2AF-0588-CF89-9C14BE55FC89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61537C6F-B2AF-0588-CF89-9C14BE55FC89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61537C6F-B2AF-0588-CF89-9C14BE55FC89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A4C780-2240-3E0B-5C12-A8F09F5C4824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A4C780-2240-3E0B-5C12-A8F09F5C4824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A4C780-2240-3E0B-5C12-A8F09F5C4824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A4C780-2240-3E0B-5C12-A8F09F5C4824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{503F5766-08D1-4D2A-A02A-48E8E66352D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{503F5766-08D1-4D2A-A02A-48E8E66352D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{503F5766-08D1-4D2A-A02A-48E8E66352D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{503F5766-08D1-4D2A-A02A-48E8E66352D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C51F2F-7A95-4E6B-2D8C-0DCF090A31DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C51F2F-7A95-4E6B-2D8C-0DCF090A31DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C51F2F-7A95-4E6B-2D8C-0DCF090A31DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C51F2F-7A95-4E6B-2D8C-0DCF090A31DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
