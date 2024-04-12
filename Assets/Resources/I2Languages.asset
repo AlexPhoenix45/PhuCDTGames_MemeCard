@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0b0c553be8edd4682e9180fdd13e37, type: 3}
+  m_Name: I2Languages
+  m_EditorClassIdentifier: 
+  mSource:
+    UserAgreesToHaveItOnTheScene: 0
+    UserAgreesToHaveItInsideThePluginsFolder: 0
+    GoogleLiveSyncIsUptoDate: 1
+    mTerms:
+    - Term: settings
+      TermType: 0
+      Description: 
+      Languages:
+      - SETTINGS
+      - "C\xC0I \u0110\u1EB6T"
+      - "\u8BBE\u7F6E"
+      - "\uC124\uC815"
+      - "\u8A2D\u5B9A"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: sound
+      TermType: 0
+      Description: 
+      Languages:
+      - Sound
+      - "\xC2m Thanh"
+      - "\u58F0\u97F3"
+      - "\uC18C\uB9AC"
+      - "\u97F3"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: vibration
+      TermType: 0
+      Description: 
+      Languages:
+      - Vibration
+      - "Rung \u0110\u1ED9ng"
+      - "\u632F\u52A8"
+      - "\uC9C4\uB3D9"
+      - "\u632F\u52D5"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: language
+      TermType: 0
+      Description: 
+      Languages:
+      - Language
+      - "Ng\xF4n Ng\u1EEF"
+      - "\u8BED\u8A00"
+      - "\uC5B8\uC5B4"
+      - "\u8A00\u8A9E"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: english
+      TermType: 0
+      Description: 
+      Languages:
+      - English
+      - "Ti\u1EBFng Anh"
+      - "\u82F1\u8BED"
+      - "\uC601\uC5B4"
+      - "\u82F1\u8A9E"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: vietnamese
+      TermType: 0
+      Description: 
+      Languages:
+      - Vietnamese
+      - "Ti\u1EBFng Vi\u1EC7t"
+      - "\u8D8A\u5357\u8BED"
+      - "\uBCA0\uD2B8\uB0A8\uC5B4"
+      - "\u30D9\u30C8\u30CA\u30E0\u8A9E"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: chinese
+      TermType: 0
+      Description: 
+      Languages:
+      - Chinese
+      - "Ti\u1EBFng Trung"
+      - "\u4E2D\u56FD\u4EBA"
+      - "\uC911\uAD6D\uC778"
+      - "\u4E2D\u56FD\u4EBA"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: korean
+      TermType: 0
+      Description: 
+      Languages:
+      - Korean
+      - "Ti\u1EBFng H\xE0n"
+      - "\u97E9\u56FD\u4EBA"
+      - "\uD55C\uAD6D\uC778"
+      - "\u97D3\u56FD\u8A9E"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: japanese
+      TermType: 0
+      Description: 
+      Languages:
+      - Japanese
+      - "Ti\u1EBFng Nh\u1EADt"
+      - "\u65E5\u672C\u4EBA"
+      - "\uC77C\uBCF8\uC5B4"
+      - "\u65E5\u672C\u8A9E"
+      Flags: 0000000000
+      Languages_Touch: []
+    CaseInsensitiveTerms: 0
+    OnMissingTranslation: 1
+    mTerm_AppName: 
+    mLanguages:
+    - Name: English
+      Code: en
+      Flags: 0
+    - Name: Vietnamese
+      Code: vi
+      Flags: 0
+    - Name: Chinese
+      Code: zh
+      Flags: 0
+    - Name: Korean
+      Code: ko
+      Flags: 0
+    - Name: Japanese
+      Code: ja
+      Flags: 0
+    IgnoreDeviceLanguage: 1
+    _AllowUnloadingLanguages: 0
+    Google_WebServiceURL: https://script.google.com/macros/s/AKfycbw9l_KImc53fSYe0SmjvDdYObR0daMIIfGbtqIUnNcwpqNoYnJAnvaNJlGehHtG9UtP/exec
+    Google_SpreadsheetKey: 
+    Google_SpreadsheetName: 
+    Google_LastUpdatedVersion: 
+    Google_Password: change_this
+    GoogleUpdateFrequency: 3
+    GoogleInEditorCheckFrequency: 2
+    GoogleUpdateSynchronization: 1
+    GoogleUpdateDelay: 0
+    Assets: []
+    Spreadsheet_LocalFileName: 
+    Spreadsheet_LocalCSVSeparator: ','
+    Spreadsheet_LocalCSVEncoding: utf-8
+    Spreadsheet_SpecializationAsRows: 1
+    Spreadsheet_SortRows: 1
