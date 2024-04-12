@@ -17,71 +17,45 @@ MonoBehaviour:
     UserAgreesToHaveItInsideThePluginsFolder: 0
     GoogleLiveSyncIsUptoDate: 1
     mTerms:
-    - Term: settings
-      TermType: 0
+    - Term: LocalFont
+      TermType: 9
       Description: 
       Languages:
-      - SETTINGS
-      - "C\xC0I \u0110\u1EB6T"
-      - "\u8BBE\u7F6E"
-      - "\uC124\uC815"
-      - "\u8A2D\u5B9A"
-      Flags: 0000000000
+      - en_font
+      - vi_font
+      - ch_ja_font
+      - ko_font
+      - ch_ja_font
+      - vi_font
+      - vi_font
+      - ru_font
+      - vi_font
+      - vi_font
+      - vi_font
+      - ru_font
+      - hi_font
+      - vi_font
+      Flags: 0000000000000000000000000000
       Languages_Touch: []
-    - Term: sound
-      TermType: 0
+    - Term: LocalFontTitle
+      TermType: 9
       Description: 
       Languages:
-      - Sound
-      - "\xC2m Thanh"
-      - "\u58F0\u97F3"
-      - "\uC18C\uB9AC"
-      - "\u97F3"
-      Flags: 0000000000
-      Languages_Touch: []
-    - Term: vibration
-      TermType: 0
-      Description: 
-      Languages:
-      - Vibration
-      - "Rung \u0110\u1ED9ng"
-      - "\u632F\u52A8"
-      - "\uC9C4\uB3D9"
-      - "\u632F\u52D5"
-      Flags: 0000000000
-      Languages_Touch: []
-    - Term: language
-      TermType: 0
-      Description: 
-      Languages:
-      - Language
-      - "Ng\xF4n Ng\u1EEF"
-      - "\u8BED\u8A00"
-      - "\uC5B8\uC5B4"
-      - "\u8A00\u8A9E"
-      Flags: 0000000000
-      Languages_Touch: []
-    - Term: english
-      TermType: 0
-      Description: 
-      Languages:
-      - English
-      - "Ti\u1EBFng Anh"
-      - "\u82F1\u8BED"
-      - "\uC601\uC5B4"
-      - "\u82F1\u8A9E"
-      Flags: 0000000000
-      Languages_Touch: []
-    - Term: vietnamese
-      TermType: 0
-      Description: 
-      Languages:
-      - Vietnamese
-      - "Ti\u1EBFng Vi\u1EC7t"
-      - "\u8D8A\u5357\u8BED"
-      - "\uBCA0\uD2B8\uB0A8\uC5B4"
-      - "\u30D9\u30C8\u30CA\u30E0\u8A9E"
-      Flags: 0000000000
+      - en_font_title
+      - vi_font_title
+      - ch_ja_font_title
+      - ko_font_title
+      - ch_ja_font_title
+      - vi_font_title
+      - vi_font_title
+      - ru_font_title
+      - vi_font_title
+      - vi_font_title
+      - vi_font_title
+      - ru_font_title
+      - hi_font_title
+      - vi_font_title
+      Flags: 0000000000000000000000000000
       Languages_Touch: []
     - Term: chinese
       TermType: 0
@@ -92,18 +66,196 @@ MonoBehaviour:
       - "\u4E2D\u56FD\u4EBA"
       - "\uC911\uAD6D\uC778"
       - "\u4E2D\u56FD\u4EBA"
-      Flags: 0000000000
+      - Txinera
+      - "Chin\xEAs"
+      - "\u041A\u0438\u0442\u0430\u0439\u0441\u043A\u0438\u0439"
+      - Chinesisch
+      - Cinese
+      - Chinois
+      - "\u05E1\u05B4\u05D9\u05E0\u05B4\u05D9\u05EA"
+      - "\u091A\u0940\u0928\u0940"
+      - "\xC7ince"
+      Flags: 0000000000000000000000000000
       Languages_Touch: []
-    - Term: korean
+    - Term: daily_rewards
       TermType: 0
       Description: 
       Languages:
-      - Korean
-      - "Ti\u1EBFng H\xE0n"
-      - "\u97E9\u56FD\u4EBA"
-      - "\uD55C\uAD6D\uC778"
-      - "\u97D3\u56FD\u8A9E"
-      Flags: 0000000000
+      - DAILY REWARDS
+      - "Ph\u1EA7n Th\u01B0\u1EDFng"
+      - "\u5956\u52B1"
+      - "\uBCF4\uC0C1"
+      - "\u5831\u916C"
+      - Sariak
+      - Recompensas
+      - "\u041D\u0430\u0433\u0440\u0430\u0434\u044B"
+      - Belohnung
+      - Ricompense
+      - "R\xE9compenses"
+      - "\u05EA\u05D2\u05DE\u05D5\u05DC\u05D9\u05DD"
+      - "\u092A\u0941\u0930\u0938\u094D\u0915\u093E\u0930"
+      - "\xD6d\xFCller"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: day_1
+      TermType: 0
+      Description: 
+      Languages:
+      - Day 1
+      - "Ng\xE0y 1"
+      - "\u7B2C\u4E00\u5929"
+      - "1\uC77C\uCC28"
+      - "1\u65E5\u76EE"
+      - Eguna 1
+      - Dia 1
+      - "1 \u0414\u0435\u043D\u044C"
+      - Tag 1
+      - Giorno 1
+      - Jour 1
+      - "\u05D9\u05D5\u05DD 1"
+      - "\u0926\u093F\u0928 1"
+      - "1.G\xFCn"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: day_2
+      TermType: 0
+      Description: 
+      Languages:
+      - Day 2
+      - "Ng\xE0y 2"
+      - "\u7B2C\u4E8C\u5929"
+      - "2\uC77C\uCC28"
+      - "2\u65E5\u76EE"
+      - Eguna 2
+      - Dia 2
+      - "\u0414\u0435\u043D\u044C 2"
+      - Tag 2
+      - Giorno 2
+      - Jour 2
+      - "\u05D9\u05D5\u05DD 2"
+      - "\u0926\u0942\u0938\u0930\u093E \u0926\u093F\u0928"
+      - "2. G\xFCn"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: day_3
+      TermType: 0
+      Description: 
+      Languages:
+      - Day 3
+      - "Ng\xE0y 3"
+      - "\u7B2C\u4E09\u5929"
+      - "3\uC77C\uCC28"
+      - "3\u65E5\u76EE"
+      - 3. Eguna
+      - Dia 3
+      - "\u0414\u0435\u043D\u044C 3"
+      - Tag 3
+      - Giorno 3
+      - Jour 3
+      - "\u05D9\u05D5\u05DD 3"
+      - "\u0924\u0940\u0938\u0930\u093E \u0926\u093F\u0928"
+      - "3 G\xFCn"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: day_4
+      TermType: 0
+      Description: 
+      Languages:
+      - Day 4
+      - "Ng\xE0y 4"
+      - "\u7B2C 4 \u5929"
+      - "4\uC77C\uCC28"
+      - "4\u65E5\u76EE"
+      - Eguna 4
+      - Dia 4
+      - "\u0414\u0435\u043D\u044C 4"
+      - Tag 4
+      - Giorno 4
+      - Jour 4
+      - "\u05D9\u05D5\u05DD 4"
+      - "\u0926\u093F\u0928 4"
+      - "4. G\xFCn"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: day_5
+      TermType: 0
+      Description: 
+      Languages:
+      - Day 5
+      - "Ng\xE0y 5"
+      - "\u7B2C\u4E94\u5929"
+      - "5\uC77C\uCC28"
+      - "5\u65E5\u76EE"
+      - Eguna 5
+      - Dia 5
+      - "\u0414\u0435\u043D\u044C 5"
+      - Tag 5
+      - Giorno 5
+      - Jour 5
+      - "\u05D9\u05D5\u05DD 5"
+      - "\u0926\u093F\u0928 5"
+      - "5. G\xFCn"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: day_6
+      TermType: 0
+      Description: 
+      Languages:
+      - Day 6
+      - "Ng\xE0y 6"
+      - "\u7B2C\u516D\u5929"
+      - "6\uC77C\uCC28"
+      - "6\u65E5\u76EE"
+      - Eguna 6
+      - Dia 6
+      - "\u0414\u0435\u043D\u044C 6"
+      - Tag 6
+      - Giorno 6
+      - Jour 6
+      - "\u05D9\u05D5\u05DD 6"
+      - "\u0926\u093F\u0928 6"
+      - "6. G\xFCn"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: day_7
+      TermType: 0
+      Description: 
+      Languages:
+      - Day 7
+      - "Ng\xE0y 7"
+      - "\u7B2C 7 \u5929"
+      - "7\uC77C\uCC28"
+      - "7\u65E5\u76EE"
+      - Eguna 7
+      - Dia 7
+      - "\u0414\u0435\u043D\u044C 7"
+      - Tag 7
+      - Giorno 7
+      - Jour 7
+      - "\u05D9\u05D5\u05DD 7"
+      - "\u0926\u093F\u0928 7"
+      - "7. G\xFCn"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: english
+      TermType: 0
+      Description: 
+      Languages:
+      - English
+      - "Ti\u1EBFng Anh"
+      - "\u82F1\u8BED"
+      - "\uC601\uC5B4"
+      - "\u82F1\u8A9E"
+      - Ingelesa
+      - "Ingl\xEAs"
+      - "\u0410\u043D\u0433\u043B\u0438\u0439\u0441\u043A\u0438\u0439"
+      - Englisch
+      - Inglese
+      - Anglais
+      - "\u05D0\u05E0\u05D2\u05DC\u05D9\u05EA"
+      - "\u0905\u0902\u0917\u094D\u0930\u0947\u091C\u093C\u0940"
+      - "\u0130ngilizce"
+      Flags: 0000000000000000000000000000
       Languages_Touch: []
     - Term: japanese
       TermType: 0
@@ -114,7 +266,136 @@ MonoBehaviour:
       - "\u65E5\u672C\u4EBA"
       - "\uC77C\uBCF8\uC5B4"
       - "\u65E5\u672C\u8A9E"
-      Flags: 0000000000
+      - Japoniarra
+      - "Japon\xEAs"
+      - "\u042F\u043F\u043E\u043D\u0441\u043A\u0438\u0439"
+      - Japanisch
+      - Giapponese
+      - Japonais
+      - "\u05D9\u05B7\u05E4\u05BC\u05B8\u05E0\u05B4\u05D9\u05EA"
+      - "\u091C\u093E\u092A\u093E\u0928\u0940"
+      - Japonca
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: korean
+      TermType: 0
+      Description: 
+      Languages:
+      - Korean
+      - "Ti\u1EBFng H\xE0n"
+      - "\u97E9\u56FD\u4EBA"
+      - "\uD55C\uAD6D\uC5B4"
+      - "\u97D3\u56FD\u8A9E"
+      - Koreera
+      - Coreano
+      - "\u041A\u043E\u0440\u0435\u0439\u0441\u043A\u0438\u0439"
+      - Koreanisch
+      - Coreano
+      - "Cor\xE9en"
+      - "\u05E7\u05D5\u05E8\u05D9\u05D0\u05E0\u05D9\u05EA"
+      - "\u0915\u094B\u0930\u093F\u092F\u093E\u0908"
+      - Koreli
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: language
+      TermType: 0
+      Description: 
+      Languages:
+      - Language
+      - "Ng\xF4n ng\u1EEF"
+      - "\u8BED\u8A00"
+      - "\uC5B8\uC5B4"
+      - "\u8A00\u8A9E"
+      - Hizkuntza
+      - Linguagem
+      - "\u042F\u0437\u044B\u043A"
+      - Sprache
+      - Lingua
+      - Langue
+      - "\u05E9\u05E4\u05D4"
+      - "\u092D\u093E\u0937\u093E"
+      - Dil
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: settings
+      TermType: 0
+      Description: 
+      Languages:
+      - SETTINGS
+      - "C\xE0i \u0111\u1EB7t"
+      - "\u8BBE\u7F6E"
+      - "\uC124\uC815"
+      - "\u8A2D\u5B9A"
+      - Ezarpenak
+      - "Configura\xE7\xF5es"
+      - "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
+      - Einstellungen
+      - Impostazioni
+      - "Param\xE8tres"
+      - "\u05D4\u05D2\u05D3\u05E8\u05D5\u05EA"
+      - "\u0938\u092E\u093E\u092F\u094B\u091C\u0928"
+      - Ayarlar
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: sound
+      TermType: 0
+      Description: 
+      Languages:
+      - Sound
+      - "\xC2m thanh"
+      - "\u58F0\u97F3"
+      - "\uC18C\uB9AC"
+      - "\u97F3"
+      - Soinua
+      - Som
+      - "\u0417\u0432\u0443\u043A"
+      - Klang
+      - Suono
+      - Son
+      - "\u05E0\u05E9\u05DE\u05E2"
+      - "\u0906\u0935\u093E\u091C\u093C"
+      - Ses
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: vibration
+      TermType: 0
+      Description: 
+      Languages:
+      - Vibration
+      - Rung
+      - "\u632F\u52A8"
+      - "\uC9C4\uB3D9"
+      - "\u632F\u52D5"
+      - Bibrazioa
+      - "Vibra\xE7\xE3o"
+      - "\u0412\u0438\u0431\u0440\u0430\u0446\u0438\u044F"
+      - Vibration
+      - Vibrazione
+      - Vibration
+      - "\u05E8\u05B6\u05D8\u05B6\u05D8"
+      - "\u0915\u0902\u092A\u0928"
+      - "Titre\u015Fim"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: vietnamese
+      TermType: 0
+      Description: 
+      Languages:
+      - Vietnamese
+      - "Ti\u1EBFng Vi\u1EC7t"
+      - "\u8D8A\u5357\u8BED"
+      - "\uBCA0\uD2B8\uB0A8\uC5B4"
+      - "\u30D9\u30C8\u30CA\u30E0\u8A9E"
+      - Vietnamita
+      - Vietnamita
+      - "\u0412\u044C\u0435\u0442\u043D\u0430\u043C\u0441\u043A\u0438\u0439"
+      - Vietnamesisch
+      - Vietnamita
+      - Vietnamien
+      - "\u05D5\u05D9\u05D0\u05D8\u05E0\u05DE\u05D9\u05EA"
+      - "\u0935\u093F\u092F\u0924\u0928\u093E\u092E\u0940"
+      - Vietnam
+      Flags: 0000000000000000000000000000
       Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
@@ -135,18 +416,62 @@ MonoBehaviour:
     - Name: Japanese
       Code: ja
       Flags: 0
+    - Name: Basque (Spain)
+      Code: eu-ES
+      Flags: 0
+    - Name: Portuguese
+      Code: pt
+      Flags: 0
+    - Name: Russian
+      Code: ru
+      Flags: 0
+    - Name: German
+      Code: de
+      Flags: 0
+    - Name: Italian
+      Code: it
+      Flags: 0
+    - Name: French (France)
+      Code: fr-FR
+      Flags: 0
+    - Name: Hebrew
+      Code: he
+      Flags: 0
+    - Name: Hindi
+      Code: hi
+      Flags: 0
+    - Name: Turkish
+      Code: tr
+      Flags: 0
     IgnoreDeviceLanguage: 1
     _AllowUnloadingLanguages: 0
     Google_WebServiceURL: https://script.google.com/macros/s/AKfycbw9l_KImc53fSYe0SmjvDdYObR0daMIIfGbtqIUnNcwpqNoYnJAnvaNJlGehHtG9UtP/exec
-    Google_SpreadsheetKey: 
-    Google_SpreadsheetName: 
-    Google_LastUpdatedVersion: 
+    Google_SpreadsheetKey: 1sUNHyaGDdbWKh8A7YdyevSSsAuWUOkzeUrFprAsKp9E
+    Google_SpreadsheetName: I2Loc PhuCDTGames_MemeCard Localization
+    Google_LastUpdatedVersion: 1712905186695
     Google_Password: change_this
     GoogleUpdateFrequency: 3
     GoogleInEditorCheckFrequency: 2
     GoogleUpdateSynchronization: 1
     GoogleUpdateDelay: 0
-    Assets: []
+    Assets:
+    - {fileID: 12800000, guid: 003a42ab08b51b04487b08a59d81246d, type: 3}
+    - {fileID: 12800000, guid: c4771f0a455808643aebc90232ecff1b, type: 3}
+    - {fileID: 12800000, guid: e3fe7fde4f8c6b1488b287aa42958678, type: 3}
+    - {fileID: 12800000, guid: 62e240014e124e04892c3fa7af24e200, type: 3}
+    - {fileID: 12800000, guid: 479874119efefc04c8226f2c4c0717a7, type: 3}
+    - {fileID: 11400000, guid: c24cec8897699f44e8290128cda5f7b3, type: 2}
+    - {fileID: 11400000, guid: fc1bebc38328cbc45923eb82865a8e62, type: 2}
+    - {fileID: 11400000, guid: ee5aedd44e5563c49a891b21db6f5911, type: 2}
+    - {fileID: 11400000, guid: a8205c312a71b63409b5a8be8418611a, type: 2}
+    - {fileID: 11400000, guid: 99d6b0064202d544393e2abd39d295aa, type: 2}
+    - {fileID: 11400000, guid: 5e3b0bf9a2ffbcf478c654743eb64629, type: 2}
+    - {fileID: 11400000, guid: 4a6fee01f7648694b88d6f840b9e9f71, type: 2}
+    - {fileID: 11400000, guid: cab254ccf1fcbda49a61c376aefda846, type: 2}
+    - {fileID: 11400000, guid: f0aa691837b798143974b8e4d5a287ee, type: 2}
+    - {fileID: 11400000, guid: 1e3c311fc27694a419baca451fc975d1, type: 2}
+    - {fileID: 11400000, guid: 6d27cebe987c47347a78e75173279826, type: 2}
+    - {fileID: 11400000, guid: d693e2c886fbd134083b5cc40ee1a3d9, type: 2}
     Spreadsheet_LocalFileName: 
     Spreadsheet_LocalCSVSeparator: ','
     Spreadsheet_LocalCSVEncoding: utf-8

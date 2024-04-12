@@ -282,8 +282,15 @@ public class UIManager : MonoBehaviour
                 c.a = val;
                 r.color = c;
             });
-            selectedPanel.SetActive(false);
         });
+
+        IEnumerator panelWait()
+        {
+            selectedPanel.transform.LeanScale(Vector3.zero, .25f).setEaseOutElastic();
+            yield return new WaitForSeconds(.25f);
+            selectedPanel.SetActive(false);
+        }
+        StartCoroutine(panelWait());
     }
 
     /// <summary>
@@ -313,11 +320,16 @@ public class UIManager : MonoBehaviour
             settingBtn.interactable = false;
         }).setOnComplete(() => 
         {
-            shopBtn.interactable = true;
-            cardBtn.interactable = true;
-            playBtn.interactable = true;
-            missionBtn.interactable = true;
-            settingBtn.interactable = true;
+            IEnumerator wait()
+            {
+                yield return new WaitForSeconds(.5f); //0.75 second delay, avoid spamming buttons
+                shopBtn.interactable = true;
+                cardBtn.interactable = true;
+                playBtn.interactable = true;
+                missionBtn.interactable = true;
+                settingBtn.interactable = true;
+            }
+            StartCoroutine(wait());
         });
 
         unSelectedPanel.SetActive(true);
