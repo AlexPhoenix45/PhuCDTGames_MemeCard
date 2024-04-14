@@ -303,13 +303,16 @@ public class UIManager : MonoBehaviour
     {
         unSelectedBackground.SetActive(true);
 
-        Image r = unSelectedBackground.GetComponent<Image>();
-        LeanTween.value(gameObject, 0, 1, .25f).setOnUpdate((float val) =>
+        if (unSelectedBackground != playBtn_Selected_Background)
         {
-            Color c = r.color;
-            c.a = val;
-            r.color = c;
-        });
+            Image r = unSelectedBackground.GetComponent<Image>();
+            LeanTween.value(gameObject, 0, 1, .25f).setOnUpdate((float val) =>
+            {
+                Color c = r.color;
+                c.a = val;
+                r.color = c;
+            });
+        }
 
         unSelectedIcon.GetComponent<RectTransform>().LeanMoveY(60f, .25f).setEaseInOutCubic().setOnStart(() => 
         { 

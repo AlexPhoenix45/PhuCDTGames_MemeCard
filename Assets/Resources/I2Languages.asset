@@ -15,7 +15,7 @@ MonoBehaviour:
   mSource:
     UserAgreesToHaveItOnTheScene: 0
     UserAgreesToHaveItInsideThePluginsFolder: 0
-    GoogleLiveSyncIsUptoDate: 1
+    GoogleLiveSyncIsUptoDate: 0
     mTerms:
     - Term: LocalFont
       TermType: 9
@@ -397,6 +397,66 @@ MonoBehaviour:
       - Vietnam
       Flags: 0000000000000000000000000000
       Languages_Touch: []
+    - Term: LocalFontTitleBrown
+      TermType: 9
+      Description: 
+      Languages:
+      - en_title_brown
+      - vi_title_brown
+      - ja_title_brown
+      - ko_title_brown
+      - ja_title_brown
+      - vi_title_brown
+      - vi_title_brown
+      - ru_title_brown
+      - vi_title_brown
+      - vi_title_brown
+      - vi_title_brown
+      - ru_title_brown
+      - hi_title_brown
+      - vi_title_brown
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: LocalFontBrown
+      TermType: 9
+      Description: 
+      Languages:
+      - en_brown
+      - vi_brown
+      - ja_brown
+      - ko_brown
+      - ja_brown
+      - vi_brown
+      - vi_brown
+      - ru_brown
+      - vi_brown
+      - vi_brown
+      - vi_brown
+      - ru_brown
+      - hi_brown
+      - vi_brown
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: play
+      TermType: 0
+      Description: 
+      Languages:
+      - Play
+      - "Ch\u01A1i"
+      - "\u73A9"
+      - "\uB180\uB2E4"
+      - "\u904A\u3076"
+      - Jolastu
+      - Jogar
+      - "\u0418\u0433\u0440\u0430\u0442\u044C"
+      - Spielen
+      - Giocare
+      - Jouer
+      - "\u05DC\u05B0\u05E9\u05C2\u05B7\u05D7\u05B5\u05E7"
+      - "\u0916\u0947\u0932"
+      - Oynamak
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 
@@ -472,6 +532,18 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1e3c311fc27694a419baca451fc975d1, type: 2}
     - {fileID: 11400000, guid: 6d27cebe987c47347a78e75173279826, type: 2}
     - {fileID: 11400000, guid: d693e2c886fbd134083b5cc40ee1a3d9, type: 2}
+    - {fileID: 11400000, guid: 9ae2aed6203927d429db1b7d1e39b8f8, type: 2}
+    - {fileID: 11400000, guid: 426358f0d87db5c428af4622be4e089d, type: 2}
+    - {fileID: 11400000, guid: 4e071c26c6792e941bcbbba6f8baa0e0, type: 2}
+    - {fileID: 11400000, guid: 4689f216409d2a34ab1867ae01de06c9, type: 2}
+    - {fileID: 11400000, guid: 6e70a190f4567994591e15452190d11d, type: 2}
+    - {fileID: 11400000, guid: 92d053d9c5a538a49b72a36a5984e54d, type: 2}
+    - {fileID: 11400000, guid: 2be180aaca9112d4ab08328421fe6b09, type: 2}
+    - {fileID: 11400000, guid: 7baec2855584b3b4fb6fad47af6cef73, type: 2}
+    - {fileID: 11400000, guid: 294b6c7071a76804fb58b8dbb6c75303, type: 2}
+    - {fileID: 11400000, guid: 6b430d1c6516dce4dadcf1b916ca8792, type: 2}
+    - {fileID: 11400000, guid: cd740ef179514424a9da5f2c1dc4635a, type: 2}
+    - {fileID: 11400000, guid: d14743a91490a8444b28ca82ecfa542b, type: 2}
     Spreadsheet_LocalFileName: 
     Spreadsheet_LocalCSVSeparator: ','
     Spreadsheet_LocalCSVEncoding: utf-8
