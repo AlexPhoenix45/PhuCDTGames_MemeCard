@@ -17,46 +17,6 @@ MonoBehaviour:
     UserAgreesToHaveItInsideThePluginsFolder: 0
     GoogleLiveSyncIsUptoDate: 0
     mTerms:
-    - Term: LocalFont
-      TermType: 9
-      Description: 
-      Languages:
-      - en_font
-      - vi_font
-      - ch_ja_font
-      - ko_font
-      - ch_ja_font
-      - vi_font
-      - vi_font
-      - ru_font
-      - vi_font
-      - vi_font
-      - vi_font
-      - ru_font
-      - hi_font
-      - vi_font
-      Flags: 0000000000000000000000000000
-      Languages_Touch: []
-    - Term: LocalFontTitle
-      TermType: 9
-      Description: 
-      Languages:
-      - en_font_title
-      - vi_font_title
-      - ch_ja_font_title
-      - ko_font_title
-      - ch_ja_font_title
-      - vi_font_title
-      - vi_font_title
-      - ru_font_title
-      - vi_font_title
-      - vi_font_title
-      - vi_font_title
-      - ru_font_title
-      - hi_font_title
-      - vi_font_title
-      Flags: 0000000000000000000000000000
-      Languages_Touch: []
     - Term: chinese
       TermType: 0
       Description: 
@@ -403,7 +363,7 @@ MonoBehaviour:
       Languages:
       - en_title_brown
       - vi_title_brown
-      - ja_title_brown
+      - ch_title_brown
       - ko_title_brown
       - ja_title_brown
       - vi_title_brown
@@ -423,7 +383,7 @@ MonoBehaviour:
       Languages:
       - en_brown
       - vi_brown
-      - ja_brown
+      - ch_brown
       - ko_brown
       - ja_brown
       - vi_brown
@@ -455,6 +415,106 @@ MonoBehaviour:
       - "\u05DC\u05B0\u05E9\u05C2\u05B7\u05D7\u05B5\u05E7"
       - "\u0916\u0947\u0932"
       - Oynamak
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: upgrade
+      TermType: 0
+      Description: 
+      Languages:
+      - Upgrade
+      - "N\xE2ng C\u1EA5p"
+      - "\u5347\u7EA7"
+      - "\uC5C5\uADF8\uB808\uC774\uB4DC"
+      - "\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
+      - Berritzea
+      - Atualizar
+      - "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435"
+      - Aktualisierung
+      - Aggiornamento
+      - "Mise \xC0 Niveau"
+      - "\u05E9\u05D3\u05E8\u05D5\u05D2"
+      - "\u0909\u0928\u094D\u0928\u0924 \u0915\u0930\u0928\u093E"
+      - "G\xFCncelleme"
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: LocalFontBlue
+      TermType: 9
+      Description: 
+      Languages:
+      - en_blue
+      - vi_blue
+      - ch_blue
+      - ko_blue
+      - ja_blue
+      - vi_blue
+      - vi_blue
+      - ru_blue
+      - vi_blue
+      - vi_blue
+      - vi_blue
+      - ru_blue
+      - hi_blue
+      - vi_blue
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: LocalFontTitleBlue
+      TermType: 9
+      Description: 
+      Languages:
+      - en_title_blue
+      - vi_title_blue
+      - ch_title_blue
+      - vi_title_blue
+      - ja_title_blue
+      - vi_title_blue
+      - vi_title_blue
+      - ru_title_blue
+      - vi_title_blue
+      - vi_title_blue
+      - vi_title_blue
+      - ru_title_blue
+      - hi_title_blue
+      - vi_title_blue
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: LocalFontWhite
+      TermType: 9
+      Description: 
+      Languages:
+      - en_white
+      - vi_white
+      - ch_white
+      - ko_white
+      - ja_white
+      - vi_white
+      - vi_white
+      - ru_white
+      - vi_white
+      - vi_white
+      - vi_white
+      - ru_white
+      - vi_white
+      - vi_white
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: LocalFontWhiteNoOutline
+      TermType: 9
+      Description: 
+      Languages:
+      - en_white_noOutline
+      - vi_white_noOutline
+      - ch_white_noOutline
+      - ko_white_noOutline
+      - ja_white_noOutline
+      - vi_white_noOutline
+      - vi_white_noOutline
+      - ru_white_noOutline
+      - vi_white_noOutline
+      - vi_white_noOutline
+      - vi_white_noOutline
+      - ru_white_noOutline
+      - hi_white_noOutline
+      - vi_white_noOutline
       Flags: 0000000000000000000000000000
       Languages_Touch: []
     CaseInsensitiveTerms: 0
@@ -544,6 +604,23 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6b430d1c6516dce4dadcf1b916ca8792, type: 2}
     - {fileID: 11400000, guid: cd740ef179514424a9da5f2c1dc4635a, type: 2}
     - {fileID: 11400000, guid: d14743a91490a8444b28ca82ecfa542b, type: 2}
+    - {fileID: 11400000, guid: 55daf19c26daa8148b0862ad6ba2d825, type: 2}
+    - {fileID: 11400000, guid: f4e375a2888f9c04ba43052ae46dd665, type: 2}
+    - {fileID: 11400000, guid: 8fb402d6aaf93c147a97c5ccea2e054b, type: 2}
+    - {fileID: 11400000, guid: 46ead4f4370f01440ac77038f38633c5, type: 2}
+    - {fileID: 11400000, guid: d436b70a7657bcf47803c33cc0efc347, type: 2}
+    - {fileID: 11400000, guid: 05c5eac82e172d24f9999e4b2cef8578, type: 2}
+    - {fileID: 11400000, guid: 25c3b25f18cf6784aa57622d2b6f6c21, type: 2}
+    - {fileID: 11400000, guid: cb8cddb949bb8c742b89387f420c9cf1, type: 2}
+    - {fileID: 11400000, guid: 231fb0242c6a7eb4890f5e9d2426febd, type: 2}
+    - {fileID: 11400000, guid: 788787fbae3c1fa46ad1a0edc8b1a896, type: 2}
+    - {fileID: 11400000, guid: ee2a72b54c1be3248a2a6a4ad82cb47f, type: 2}
+    - {fileID: 11400000, guid: bc7715349e41aaf4eb265ccdfadb22b1, type: 2}
+    - {fileID: 11400000, guid: 6c06cb686e4cb2040b9f90508b616b62, type: 2}
+    - {fileID: 11400000, guid: a59ad0bbb7ef91c4385b2fe5622ec4a3, type: 2}
+    - {fileID: 11400000, guid: 7c04694b82f1b6d4ba54e21f2b376ce4, type: 2}
+    - {fileID: 11400000, guid: 1796c92b9550dbf46a5069d02817c387, type: 2}
+    - {fileID: 11400000, guid: c7caadf774c105745b593a2ffb14d0d7, type: 2}
     Spreadsheet_LocalFileName: 
     Spreadsheet_LocalCSVSeparator: ','
     Spreadsheet_LocalCSVEncoding: utf-8

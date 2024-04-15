@@ -9,32 +9,32 @@ public class UIManager : MonoBehaviour
     [Header("Button")]
     [Header("Navigation")]
     public Button shopBtn;
-    public Button cardBtn;
+    public Button collectionBtn;
     public Button playBtn;
     public Button missionBtn;
     public Button settingBtn;
 
     public GameObject shopBtn_Selected_Background; 
-    public GameObject cardBtn_Selected_Background;
+    public GameObject collectionBtn_Selected_Background;
     public GameObject playBtn_Selected_Background;
     public GameObject missionBtn_Selected_Background;
     public GameObject settingBtn_Selected_Background;
 
     public GameObject shopBtn_Selected_Icon;
-    public GameObject cardBtn_Selected_Icon;
+    public GameObject collectionBtn_Selected_Icon;
     public GameObject playBtn_Selected_Icon;
     public GameObject missionBtn_Selected_Icon;
     public GameObject settingBtn_Selected_Icon;
 
     private bool shopBtnSelected_Toggle = false;
-    private bool cardBtnSelected_Toggle = false;
+    private bool collectionBtnSelected_Toggle = false;
     private bool playBtnSelected_Toggle = true;
     private bool missionBtnSelected_Toggle = false;
     private bool settingBtnSelected_Toggle = false;
 
     [Header("Panel")]
     public GameObject shopPnl;
-    public GameObject cardPnl;
+    public GameObject collectionPnl;
     public GameObject playPnl;
     public GameObject missionPnl;
     public GameObject settingPnl;
@@ -58,9 +58,9 @@ public class UIManager : MonoBehaviour
         {
             ShowShopPanel();
         }
-        else if (cardBtnSelected_Toggle)
+        else if (collectionBtnSelected_Toggle)
         {
-            ShowCardPanel();
+            ShowCollectionPanel();
         }
         else if (playBtnSelected_Toggle)
         {
@@ -87,10 +87,10 @@ public class UIManager : MonoBehaviour
         }
         shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
 
-        if (cardBtnSelected_Toggle)
+        if (collectionBtnSelected_Toggle)
         {
-            cardBtnSelected_Toggle = !cardBtnSelected_Toggle;
-            UnSelectedButton(cardBtn_Selected_Background, cardBtn_Selected_Icon, cardPnl);
+            collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
+            UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
         }
         else if (playBtnSelected_Toggle)
         {
@@ -110,13 +110,13 @@ public class UIManager : MonoBehaviour
         ShowNavigation();
     }
 
-    public void OnClick_Card()
+    public void OnClick_Collection()
     {
-        if (cardBtnSelected_Toggle)
+        if (collectionBtnSelected_Toggle)
         {
             return;
         }
-        cardBtnSelected_Toggle = !cardBtnSelected_Toggle;
+        collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
 
         if (shopBtnSelected_Toggle)
         {
@@ -149,10 +149,10 @@ public class UIManager : MonoBehaviour
         }
         playBtnSelected_Toggle = !playBtnSelected_Toggle;
 
-        if (cardBtnSelected_Toggle)
+        if (collectionBtnSelected_Toggle)
         {
-            cardBtnSelected_Toggle = !cardBtnSelected_Toggle;
-            UnSelectedButton(cardBtn_Selected_Background, cardBtn_Selected_Icon, cardPnl);
+            collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
+            UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
         }
         else if (shopBtnSelected_Toggle)
         {
@@ -180,10 +180,10 @@ public class UIManager : MonoBehaviour
         }
         missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
 
-        if (cardBtnSelected_Toggle)
+        if (collectionBtnSelected_Toggle)
         {
-            cardBtnSelected_Toggle = !cardBtnSelected_Toggle;
-            UnSelectedButton(cardBtn_Selected_Background, cardBtn_Selected_Icon, cardPnl);
+            collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
+            UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
         }
         else if (playBtnSelected_Toggle)
         {
@@ -211,10 +211,10 @@ public class UIManager : MonoBehaviour
         }
         settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
 
-        if (cardBtnSelected_Toggle)
+        if (collectionBtnSelected_Toggle)
         {
-            cardBtnSelected_Toggle = !cardBtnSelected_Toggle;
-            UnSelectedButton(cardBtn_Selected_Background, cardBtn_Selected_Icon, cardPnl);
+            collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
+            UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
         }
         else if (playBtnSelected_Toggle)
         {
@@ -241,9 +241,9 @@ public class UIManager : MonoBehaviour
         SelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
     }
 
-    public void ShowCardPanel()
+    public void ShowCollectionPanel()
     {
-        SelectedButton(cardBtn_Selected_Background, cardBtn_Selected_Icon, cardPnl);
+        SelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
     }
 
     public void ShowPlayPanel()
@@ -303,21 +303,18 @@ public class UIManager : MonoBehaviour
     {
         unSelectedBackground.SetActive(true);
 
-        if (unSelectedBackground != playBtn_Selected_Background)
+        Image r = unSelectedBackground.GetComponent<Image>();
+        LeanTween.value(gameObject, 0, 1, .25f).setOnUpdate((float val) =>
         {
-            Image r = unSelectedBackground.GetComponent<Image>();
-            LeanTween.value(gameObject, 0, 1, .25f).setOnUpdate((float val) =>
-            {
-                Color c = r.color;
-                c.a = val;
-                r.color = c;
-            });
-        }
+            Color c = r.color;
+            c.a = val;
+            r.color = c;
+        });
 
         unSelectedIcon.GetComponent<RectTransform>().LeanMoveY(60f, .25f).setEaseInOutCubic().setOnStart(() => 
         { 
             shopBtn.interactable = false; 
-            cardBtn.interactable = false;
+            collectionBtn.interactable = false;
             playBtn.interactable = false;
             missionBtn.interactable = false;
             settingBtn.interactable = false;
@@ -327,7 +324,7 @@ public class UIManager : MonoBehaviour
             {
                 yield return new WaitForSeconds(.5f); //0.75 second delay, avoid spamming buttons
                 shopBtn.interactable = true;
-                cardBtn.interactable = true;
+                collectionBtn.interactable = true;
                 playBtn.interactable = true;
                 missionBtn.interactable = true;
                 settingBtn.interactable = true;
