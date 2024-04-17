@@ -12,5 +12,6 @@ public class PlayerCard : MonoBehaviour
     {
         transform.LeanMove(placePos.position, .5f);
         transform.LeanRotate(placePos.transform.eulerAngles, .5f);
+        transform.LeanScale(new Vector3(0.6f, 0.05f, 0.6f), .5f);
     }
 }

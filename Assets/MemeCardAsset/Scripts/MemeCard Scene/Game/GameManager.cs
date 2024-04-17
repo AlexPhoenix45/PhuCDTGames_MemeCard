@@ -52,34 +52,34 @@ public class GameManager : MonoBehaviour
             opponentCardMid = Instantiate(card3D, opponentCardHolder, opponentCardStack.transform);
 
             playerCardMid.transform.position = playerCardStack.transform.position;
-            playerCardMid.transform.rotation = playerCardStack.transform.rotation;
+            playerCardMid.transform.rotation = Quaternion.Euler(Vector3.zero);
             playerCardMid.transform.LeanMove(playerCardMidPos.position, .75f);
             playerCardMid.transform.LeanRotate(playerCardMidPos.transform.eulerAngles, .75f);
 
             opponentCardMid.transform.position = opponentCardStack.transform.position;
             opponentCardMid.transform.rotation = opponentCardStack.transform.rotation;
             opponentCardMid.transform.LeanMove(opponentCardMidPos.position, .75f);
-            opponentCardMid.transform.LeanRotate(opponentCardMidPos.transform.eulerAngles, .75f);
+            opponentCardMid.transform.LeanRotate(opponentCardMidPos.transform.eulerAngles, 0f);
             yield return new WaitForSeconds(.75f);
 
             playerCardLeft = Instantiate(card3D, playerCardHolder, playerCardStack.transform);
             opponentCardLeft = Instantiate(card3D, opponentCardHolder, opponentCardStack.transform);
 
             playerCardLeft.transform.position = playerCardStack.transform.position;
-            playerCardLeft.transform.rotation = playerCardStack.transform.rotation;
+            playerCardLeft.transform.rotation = Quaternion.Euler(Vector3.zero);
             playerCardLeft.transform.LeanMove(playerCardLeftPos.position, .75f);
             playerCardLeft.transform.LeanRotate(playerCardLeftPos.transform.eulerAngles, .75f);
 
             opponentCardLeft.transform.position = opponentCardStack.transform.position;
             opponentCardLeft.transform.rotation = opponentCardStack.transform.rotation;
             opponentCardLeft.transform.LeanMove(opponentCardLeftPos.position, .75f);
-            opponentCardLeft.transform.LeanRotate(opponentCardLeftPos.transform.eulerAngles, .75f);
+            opponentCardLeft.transform.LeanRotate(opponentCardLeftPos.transform.eulerAngles, 0f);
             yield return new WaitForSeconds(.75f);
 
             playerCardRight = Instantiate(card3D, playerCardHolder, playerCardStack.transform);
             opponentCardRight = Instantiate(card3D, opponentCardHolder, opponentCardStack.transform);
 
-            playerCardRight.transform.rotation = playerCardStack.transform.rotation;
+            playerCardRight.transform.rotation = Quaternion.Euler(Vector3.zero);
             playerCardRight.transform.position = playerCardStack.transform.position;
             playerCardRight.transform.LeanMove(playerCardRightPos.position, .75f);
             playerCardRight.transform.LeanRotate(playerCardRightPos.transform.eulerAngles, .75f);
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
             opponentCardRight.transform.rotation = opponentCardStack.transform.rotation;
             opponentCardRight.transform.position = opponentCardStack.transform.position;
             opponentCardRight.transform.LeanMove(opponentCardRightPos.position, .75f);
-            opponentCardRight.transform.LeanRotate(opponentCardRightPos.transform.eulerAngles, .75f);
+            opponentCardRight.transform.LeanRotate(opponentCardRightPos.transform.eulerAngles, 0f);
             yield return new WaitForSeconds(.75f);
 
             playerCardMid.GetComponent<PlayerCard>().placePos = playerPlacingPos;
@@ -99,6 +99,11 @@ public class GameManager : MonoBehaviour
             opponentCardRight.GetComponent<PlayerCard>().placePos = opponentPlacingPos;
         }
         StartCoroutine(MoveCardToHand());
+    }
+
+    public void HideCard()
+    {
+
     }
 
     public void DrawQuestion()

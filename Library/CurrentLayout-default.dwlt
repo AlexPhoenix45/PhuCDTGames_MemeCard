@@ -43,9 +43,9 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Project
   m_RootView: {fileID: 5}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &3
@@ -67,8 +67,8 @@ MonoBehaviour:
     y: 0
     width: 482
     height: 1077
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 200, y: 221}
+  m_MaxSize: {x: 4000, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 221}
   m_MaxSize: {x: 4000, y: 4021}
   vertical: 0
-  controlID: 26
+  controlID: 144
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 132
+  controlID: 16
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_MinSize: {x: 231, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 56
+  controlID: 69
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -475,10 +475,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 399}
-      m_SelectedIDs: 4cfbffff3aeaffffe8eeffff
-      m_LastClickedID: -4376
-      m_ExpandedIDs: 50c2fffffac2ffff98c4ffff4cfbffff66fbffff80530000205400004a550000da550000825600009a560000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 9ebaffffb0ecffff946a0000346b0000626c0000f26c0000066d0000b26d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -540,36 +540,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/MemeCardAsset/Model/Card/cardtexture
+    - Assets/MemeCardAsset/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 67
   m_LastFolders:
-  - Assets/MemeCardAsset/Model/Card/cardtexture
+  - Assets/MemeCardAsset/Prefabs
   m_LastFoldersGridSize: 67
-  m_LastProjectPath: C:\Users\Alex\Documents\PhuCDTGames_MemeCard
+  m_LastProjectPath: E:\GitHub\PhuCDTGames_MemeCard
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 60}
-    m_SelectedIDs: de5e0000
-    m_LastClickedID: 24286
-    m_ExpandedIDs: 00000000a05e0000a25e0000a45e0000a65e0000a85e0000aa5e0000ac5e0000ae5e0000b05e0000b25e0000b45e0000b65e0000b85e0000ba5e0000bc5e0000be5e000000ca9a3b
+    scrollPos: {x: 0, y: 120}
+    m_SelectedIDs: d8720000
+    m_LastClickedID: 29400
+    m_ExpandedIDs: 00000000a2720000a4720000a6720000a8720000aa720000ac720000ae720000b0720000b2720000b4720000b6720000b8720000ba720000bc720000be720000c072000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: UI
+      m_OriginalName: UI
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 29350
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
@@ -583,7 +583,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a05e0000a25e0000a45e0000a65e0000a85e0000aa5e0000ac5e0000ae5e0000b05e0000b25e0000b45e0000b65e0000b85e0000ba5e0000bc5e0000be5e0000
+    m_ExpandedIDs: 00000000a2720000a4720000a6720000a8720000aa720000ac720000ae720000b0720000b2720000b4720000b6720000b8720000ba720000bc720000be720000c0720000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 624c00002a5c00008c520000784500009a440000925400009c4e01005e5b0000645b0000f85200000cd202009a080300485b00004e54000062540000e2530000081efcff025f00002e5a0000d65c000000000000da5d000018180200
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -700,9 +700,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 106.5, y: -31.964516, z: -3.1271849}
+    m_Target: {x: 106.56994, y: -37.98079, z: 5.9498057}
     speed: 2
-    m_Value: {x: 106.5, y: -31.964516, z: -3.1271849}
+    m_Value: {x: 106.56994, y: -37.98079, z: 5.9498057}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -749,13 +749,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.3530777, y: 0.017419545, z: -0.0066221813, w: 0.9354861}
+    m_Target: {x: 0.4834901, y: -0.027572151, z: 0.0152143845, w: 0.8748064}
     speed: 2
-    m_Value: {x: 0.3516485, y: 0.017428195, z: -0.0065955576, w: 0.9359466}
+    m_Value: {x: 0.4834803, y: -0.027571592, z: 0.015214076, w: 0.8747887}
   m_Size:
-    m_Target: 3.5289907
+    m_Target: 11.67189
     speed: 2
-    m_Value: 3.5289907
+    m_Value: 11.67189
   m_Ortho:
     m_Target: 0
     speed: 2
