@@ -9,6 +9,7 @@ public class PlayPanel : MonoBehaviour
     public GameObject playButton;
     private void OnEnable()
     {
+        playButton.SetActive(true);
         gameObject.transform.localScale = Vector3.one;
         playButton.transform.localScale = Vector3.zero;
         Image r = background.GetComponent<Image>();
@@ -20,5 +21,24 @@ public class PlayPanel : MonoBehaviour
         });
 
         playButton.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic();
+    }
+
+    public void OnClick_Play()
+    {
+        //Playing a Game
+        EventController.OnTurnTableCam();
+        EventController.OnHideNavButtons();
+
+        playButton.SetActive(false);
+        IEnumerator wait()
+        {
+            yield return new WaitForSeconds(.5f);
+            while (FindObjectOfType<CameraMovement>().isBlending == true)
+            {
+                yield return null;
+            }
+            EventController.OnStartGame();
+        }
+        StartCoroutine(wait());
     }
 }

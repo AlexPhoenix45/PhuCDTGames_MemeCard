@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour
 {
+    #region Navigation Attributes
     [Header("Button")]
     [Header("Navigation")]
+    public RectTransform navShowPos;
+    public RectTransform navHidePos;
+    public GameObject navigationButtons;
+
     public Button shopBtn;
     public Button collectionBtn;
     public Button playBtn;
@@ -38,21 +45,43 @@ public class UIManager : MonoBehaviour
     public GameObject playPnl;
     public GameObject missionPnl;
     public GameObject settingPnl;
+    #endregion
 
-    [Header("VCam")]
-    public GameObject roomCam;
-    public GameObject tableCam;
+    #region Question Attributes
+    [Header("Question Attributes")]
+    public GameObject questionHolder;
+    public TextMeshProUGUI questionText;
+    public RectTransform questionPos;
+    public RectTransform questionHiddenPos;
+    #endregion
+
+    #region Point Slider Attributes
+    public Slider pointSlider;
+    public TextMeshProUGUI playerPoint;
+    public TextMeshProUGUI opponentPoint;
+    #endregion
 
     private void Start()
     {
-        ShowNavigation(); //Show Navigation Tab which is active
+        ShowNavigationButton(); //Show Navigation Buttons and Tabs which is active
+    }
+
+    private void OnEnable()
+    {
+        //Event Subscribe
+        EventController.ShowQuestion += ShowQuestion;
+        EventController.HideQuestion += HideQuestion;
+        EventController.SetQuestion += SetQuestion;
+
+        EventController.ShowNavButtons += ShowNavigationButton;
+        EventController.HideNavButtons += HideNavigationButton;
     }
 
     #region Navigation
     //Call this for showing which Tab is active in Navigation Tab
     //
     [Button]
-    public void ShowNavigation()
+    public void ShowNavigationItemPanel()
     {
         if (shopBtnSelected_Toggle)
         {
@@ -76,9 +105,23 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowNavigationButton()
+    {
+        navigationButtons.GetComponent<RectTransform>().position = navHidePos.position;
+        navigationButtons.GetComponent<RectTransform>().transform.LeanMove(navShowPos.position, .75f);
+        ShowNavigationItemPanel();
+    }
+
+    public void HideNavigationButton()
+    {
+        navigationButtons.GetComponent<RectTransform>().position = navShowPos.position;
+        navigationButtons.GetComponent<RectTransform>().transform.LeanMove(navHidePos.position, .75f);
+        ShowNavigationItemPanel();
+    }
+
     //Button Call
     //
-    public void OnClick_Shop()
+    public void OnClick_ShopNav()
     {
         print("aaa");
         if (shopBtnSelected_Toggle)
@@ -107,10 +150,10 @@ public class UIManager : MonoBehaviour
             settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
             UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
         }
-        ShowNavigation();
+        ShowNavigationItemPanel();
     }
 
-    public void OnClick_Collection()
+    public void OnClick_CollectionNav()
     {
         if (collectionBtnSelected_Toggle)
         {
@@ -138,11 +181,12 @@ public class UIManager : MonoBehaviour
             settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
             UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
         }
-        ShowNavigation();
+        ShowNavigationItemPanel();
     }
 
-    public void OnClick_Play()
+    public void OnClick_PlayNav()
     {
+        //Navigationing
         if (playBtnSelected_Toggle)
         {
             return;
@@ -169,10 +213,10 @@ public class UIManager : MonoBehaviour
             settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
             UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
         }
-        ShowNavigation();
+        ShowNavigationItemPanel();
     }
 
-    public void OnClick_Mission()
+    public void OnClick_MissionNav()
     {
         if (missionBtnSelected_Toggle)
         {
@@ -200,10 +244,10 @@ public class UIManager : MonoBehaviour
             settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
             UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
         }
-        ShowNavigation();
+        ShowNavigationItemPanel();
     }
 
-    public void OnClick_Setting()
+    public void OnClick_SettingNav()
     {
         if (settingBtnSelected_Toggle)
         {
@@ -231,7 +275,7 @@ public class UIManager : MonoBehaviour
             shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
             UnSelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
         }
-        ShowNavigation();
+        ShowNavigationItemPanel();
     }
 
     //Show UI Panel of Nav Button
@@ -335,4 +379,40 @@ public class UIManager : MonoBehaviour
         unSelectedPanel.SetActive(true);
     }
     #endregion
+
+    #region Question
+    public void ShowQuestion()
+    {
+        questionHolder.SetActive(true);
+        questionHolder.GetComponent<RectTransform>().position = questionHiddenPos.position;
+        questionHolder.GetComponent<RectTransform>().transform.LeanMove(questionPos.position, .5f).setOnComplete(() =>
+        {
+            EventController.OnCardReadyToPlay();
+        });
+    }
+
+    public void HideQuestion()
+    {
+        questionHolder.GetComponent<RectTransform>().transform.LeanMove(questionHiddenPos.position, .5f);
+    }
+
+    private void SetQuestion(QuestionData questDat)
+    {
+        questionText.text = questDat.question;
+    }
+
+    #endregion
+
+    #region Point Slider
+
+    #endregion
+    private void OnDisable()
+    {
+        EventController.ShowQuestion -= ShowQuestion;
+        EventController.SetQuestion -= SetQuestion;
+        EventController.HideQuestion -= HideQuestion;
+
+        EventController.ShowNavButtons += ShowNavigationButton;
+        EventController.HideNavButtons += HideNavigationButton;
+    }
 }
