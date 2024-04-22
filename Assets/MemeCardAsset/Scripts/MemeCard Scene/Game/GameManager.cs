@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour
     //Private Attributes
     private GameObject playerCardMid, playerCardLeft, playerCardRight, opponentCardMid, opponentCardLeft, opponentCardRight;
 
-    private GameObject playedCard;
+    private GameObject playerPlacedCard;
+    private GameObject opponentPlacedCard;
     #endregion
 
     #region Questing Attributes
@@ -71,6 +72,9 @@ public class GameManager : MonoBehaviour
         EventController.ExecutingPoint += ExecutingPoint;
         EventController.CardBattleTurnTwo += CardBattleTurnTwo;
         EventController.CardReadyToPlay += ShowCard;
+        EventController.CardBattleTurnTwo += RenewCard; //This is called for second turn
+
+        //doi cardbattleturntwo thanh` turntwoafter drawing question
 
         //Spawn a Game (need a random after testing)
         StartSpawn_CardBattle();
@@ -103,11 +107,11 @@ public class GameManager : MonoBehaviour
         {
             //Mid Card
             playerCardMid = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
-            playerCardMid.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
+            playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardMid.GetComponent<PlayingCard>().isPlayerCard = true;
 
             opponentCardMid = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
-            opponentCardMid.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
+            opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardMid.GetComponent<PlayingCard>().isPlayerCard = false;
 
             playerCardMid.transform.position = playerCardStack.transform.position;
@@ -124,8 +128,8 @@ public class GameManager : MonoBehaviour
             //Left Card
             playerCardLeft = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
             opponentCardLeft = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
-            playerCardLeft.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
-            opponentCardLeft.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
+            playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+            opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardLeft.GetComponent<PlayingCard>().isPlayerCard = true;
             opponentCardLeft.GetComponent<PlayingCard>().isPlayerCard = false;
 
@@ -143,8 +147,8 @@ public class GameManager : MonoBehaviour
             //Right Card
             playerCardRight = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
             opponentCardRight = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
-            playerCardRight.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
-            opponentCardRight.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
+            playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+            opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardRight.GetComponent<PlayingCard>().isPlayerCard = true;
             opponentCardRight.GetComponent<PlayingCard>().isPlayerCard = false;
 
@@ -173,14 +177,19 @@ public class GameManager : MonoBehaviour
         StartCoroutine(MoveCardToHand());
     }
 
+    /// <summary>
+    /// Draw missing card when played a card
+    /// </summary>
+    /// <param name="cardObj">This is the card that has played</param>
     public void DrawMissingCard(GameObject cardObj)
     {
         if (cardObj == playerCardMid)
         {
-            playedCard = playerCardMid;
+            playerPlacedCard = playerCardMid;
 
             playerCardMid = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
-            playerCardMid.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]); 
+            playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+            playerCardMid.GetComponent<PlayingCard>().isPlayerCard = true; 
             playerCardMid.transform.position = playerCardStack.transform.position;
             playerCardMid.transform.rotation = playerCardStack.transform.rotation;
             playerCardMid.transform.LeanMove(playerCardHidePos.position, .75f);
@@ -188,10 +197,11 @@ public class GameManager : MonoBehaviour
         }
         else if (cardObj == playerCardLeft)
         {
-            playedCard = playerCardLeft;
+            playerPlacedCard = playerCardLeft;
 
             playerCardLeft = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
-            playerCardLeft.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
+            playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+            playerCardLeft.GetComponent<PlayingCard>().isPlayerCard = true; 
             playerCardLeft.transform.position = playerCardStack.transform.position;
             playerCardLeft.transform.rotation = playerCardStack.transform.rotation;
             playerCardLeft.transform.LeanMove(playerCardHidePos.position, .75f);
@@ -199,10 +209,11 @@ public class GameManager : MonoBehaviour
         }
         else if (cardObj == playerCardRight)
         {
-            playedCard = playerCardRight;
+            playerPlacedCard = playerCardRight;
 
             playerCardRight = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
-            playerCardRight.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
+            playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+            playerCardRight.GetComponent<PlayingCard>().isPlayerCard = true; 
             playerCardRight.transform.position = playerCardStack.transform.position;
             playerCardRight.transform.rotation = playerCardStack.transform.rotation;
             playerCardRight.transform.LeanMove(playerCardHidePos.position, .75f);
@@ -210,10 +221,11 @@ public class GameManager : MonoBehaviour
         }
         else if (cardObj == opponentCardMid)
         {
-            playedCard = opponentCardMid;
+            opponentPlacedCard = opponentCardMid;
 
             opponentCardMid = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
-            opponentCardMid.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
+            opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+            opponentCardMid.GetComponent<PlayingCard>().isPlayerCard = false; 
             opponentCardMid.transform.position = opponentCardStack.transform.position;
             opponentCardMid.transform.rotation = opponentCardStack.transform.rotation;
             opponentCardMid.transform.LeanMove(opponentCardMidPos.position, .75f);
@@ -221,10 +233,11 @@ public class GameManager : MonoBehaviour
         }
         else if (cardObj == opponentCardLeft)
         {
-            playedCard = opponentCardLeft;
+            opponentPlacedCard = opponentCardLeft;
 
             opponentCardLeft = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
-            opponentCardLeft.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
+            opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+            opponentCardLeft.GetComponent<PlayingCard>().isPlayerCard = false; 
             opponentCardLeft.transform.position = opponentCardStack.transform.position;
             opponentCardLeft.transform.rotation = opponentCardStack.transform.rotation;
             opponentCardLeft.transform.LeanMove(opponentCardLeftPos.position, .75f);
@@ -232,10 +245,11 @@ public class GameManager : MonoBehaviour
         }
         else if (cardObj == opponentCardRight)
         {
-            playedCard = opponentCardRight;
+            opponentPlacedCard = opponentCardRight;
 
             opponentCardRight = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
-            opponentCardRight.GetComponent<PlayingCard>().SetCard(cardDatas[Random.Range(0, cardDatas.Length)]);
+            opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+            opponentCardRight.GetComponent<PlayingCard>().isPlayerCard = false; 
             opponentCardRight.transform.position = opponentCardStack.transform.position;
             opponentCardRight.transform.rotation = opponentCardStack.transform.rotation;
             opponentCardRight.transform.LeanMove(opponentCardRightPos.position, .75f);
@@ -275,8 +289,13 @@ public class GameManager : MonoBehaviour
         DrawMissingCard(cardObj);
     }
 
-    public void ShowCard()
+    /// <summary>
+    /// This is called to show player's card every turn
+    /// </summary>
+    public void ShowCard() 
     {
+        Destroy(playerPlacedCard);
+        Destroy(opponentPlacedCard);
         playerCardMid.transform.LeanMove(playerCardMidPos.position, .75f);
         playerCardMid.transform.LeanRotate(playerCardMidPos.transform.eulerAngles, .75f);
         playerCardLeft.transform.LeanMove(playerCardLeftPos.position, .75f);
@@ -284,6 +303,29 @@ public class GameManager : MonoBehaviour
         playerCardRight.transform.LeanMove(playerCardRightPos.position, .75f);
         playerCardRight.transform.LeanRotate(playerCardRightPos.transform.eulerAngles, .75f);
     }
+
+    /// <summary>
+    /// Renew card data for second turn
+    /// </summary>
+    public void RenewCard()
+    {
+        playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+        playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+        playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+        opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+        opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+        opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+    }
+
+    /// <summary>
+    /// Generate Card Data
+    /// </summary>
+    /// <returns></returns>
+    public CardData GenerateCardData()
+    {
+        return cardDatas[Random.Range(0, cardDatas.Length)];
+    }
+
     //--------Card-----------
 
     //--------Question-----------
