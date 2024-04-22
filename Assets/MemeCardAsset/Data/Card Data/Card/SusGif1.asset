@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d91be7c0b93b014cb19fcc680b8239e, type: 3}
+  m_Name: SusGif1
+  m_EditorClassIdentifier: 
+  memeImage: {fileID: 0}
+  memeGif: {fileID: 32900000, guid: a475a5ae7cfd1bc4eb8c738a4b8fdfb8, type: 3}
+  cardType: 2
+  playingCardEmotionalType: 5

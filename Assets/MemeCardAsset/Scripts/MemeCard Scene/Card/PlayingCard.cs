@@ -62,6 +62,11 @@ public class PlayingCard : MonoBehaviour
         StartCoroutine(wait());
     }
 
+    [Button]
+    public void ShowCard()
+    {
+        SetCard(this.cardData);
+    }
     public void SetCard (CardData cardData)
     {
         this.cardData = cardData;

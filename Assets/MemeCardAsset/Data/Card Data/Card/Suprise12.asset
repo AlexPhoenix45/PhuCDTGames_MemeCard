@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d91be7c0b93b014cb19fcc680b8239e, type: 3}
+  m_Name: Suprise12
+  m_EditorClassIdentifier: 
+  memeImage: {fileID: 2100000, guid: 1c2f2360b7c710647ae564a967986f73, type: 2}
+  memeGif: {fileID: 0}
+  cardType: 1
+  playingCardEmotionalType: 2

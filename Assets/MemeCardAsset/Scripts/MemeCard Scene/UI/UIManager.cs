@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using NaughtyAttributes;
 using TMPro;
 using System;
+using UnityEngine.Rendering;
 
 public class UIManager : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class UIManager : MonoBehaviour
     public GameObject settingPnl;
     #endregion
 
-    #region Question Attributes
+    #region Question Attributes (Card Battle)
     [Header("Question Attributes")]
     public GameObject questionHolder;
     public TextMeshProUGUI questionText;
@@ -55,10 +56,19 @@ public class UIManager : MonoBehaviour
     public RectTransform questionHiddenPos;
     #endregion
 
-    #region Point Slider Attributes
+    #region Point Slider Attributes (Card Battle)
     public Slider pointSlider;
-    public TextMeshProUGUI playerPoint;
-    public TextMeshProUGUI opponentPoint;
+    public TextMeshProUGUI playerPointText;
+    public TextMeshProUGUI opponentPointText;
+
+    public CanvasGroup pointSliderAlpha;
+    #endregion
+
+    #region End Game Attributes (Card Battle)
+    public GameObject endGamePanel;
+    public GameObject loseImage;
+    public GameObject winImage;
+    public Button homeButton;
     #endregion
 
     private void Start()
@@ -75,12 +85,18 @@ public class UIManager : MonoBehaviour
 
         EventController.ShowNavButtons += ShowNavigationButton;
         EventController.HideNavButtons += HideNavigationButton;
+
+        EventController.ExecutingPointToUI += PointExecuterUI;
+        EventController.ShowPointSlider += ShowPointSlider;
+        EventController.HidePointSlider += HidePointSlider;
+
+        EventController.CardBattleGameOver += CardBattle_GameOver;
     }
 
     #region Navigation
-    //Call this for showing which Tab is active in Navigation Tab
-    //
-    [Button]
+    /// <summary>
+    /// Call this for showing which Tab is active in Navigation Tab
+    /// </summary>
     public void ShowNavigationItemPanel()
     {
         if (shopBtnSelected_Toggle)
@@ -105,6 +121,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Show Nav Footer
+    /// </summary>
     public void ShowNavigationButton()
     {
         navigationButtons.GetComponent<RectTransform>().position = navHidePos.position;
@@ -112,6 +131,9 @@ public class UIManager : MonoBehaviour
         ShowNavigationItemPanel();
     }
 
+    /// <summary>
+    /// Hide Nav Footer
+    /// </summary>
     public void HideNavigationButton()
     {
         navigationButtons.GetComponent<RectTransform>().position = navShowPos.position;
@@ -380,22 +402,38 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    #region Question
-    public void ShowQuestion()
+    #region Question (Card Battle)
+    /// <summary>
+    /// Show UI question card
+    /// </summary>
+    public void ShowQuestion(int roundCount)
     {
         questionHolder.SetActive(true);
         questionHolder.GetComponent<RectTransform>().position = questionHiddenPos.position;
         questionHolder.GetComponent<RectTransform>().transform.LeanMove(questionPos.position, .5f).setOnComplete(() =>
         {
             EventController.OnCardReadyToPlay();
+            if (roundCount >= 2)
+            {
+                EventController.OnCardBattleNextTurn();
+            }
+            EventController.OnShowPointSlider();
         });
     }
 
+    /// <summary>
+    /// Hide UI question card
+    /// </summary>
     public void HideQuestion()
     {
         questionHolder.GetComponent<RectTransform>().transform.LeanMove(questionHiddenPos.position, .5f);
+        EventController.OnHidePointSlider();
     }
 
+    /// <summary>
+    /// Set question UI card
+    /// </summary>
+    /// <param name="questDat">Pass question data here</param>
     private void SetQuestion(QuestionData questDat)
     {
         questionText.text = questDat.question;
@@ -403,8 +441,171 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    #region Point Slider
+    #region Point Slider (Card Battle)
+    /// <summary>
+    /// Point slider UI update
+    /// </summary>
+    /// <param name="arg0"></param>
+    private void PointExecuterUI(int playerPoint, int opponentPoint)
+    {
+        playerPointText.text = playerPoint.ToString();
+        opponentPointText.text = opponentPoint.ToString();
 
+        if (playerPoint == 0)
+        {
+            if (opponentPoint == 0)
+            {
+                SliderPointUpdate(pointSlider.value, 50);
+            }
+            else if (opponentPoint != 0)
+            {
+                SliderPointUpdate(pointSlider.value, 20);
+            }
+        }
+        else if (playerPoint != 0)
+        {
+            if (opponentPoint == 0)
+            {
+                SliderPointUpdate(pointSlider.value, 80);
+            }
+            else if (opponentPoint != 0)
+            {
+                if (playerPoint < opponentPoint)
+                {
+                    SliderPointUpdate(pointSlider.value, 35);
+                }
+                else if (playerPoint > opponentPoint)
+                {
+                    SliderPointUpdate(pointSlider.value, 65);
+                }
+                else
+                {
+                    SliderPointUpdate(pointSlider.value, 50);
+                }
+            }
+        }
+
+        void SliderPointUpdate(float valueStart, int valueEnd)
+        {
+            float duration = 1f;
+            IEnumerator ChangeSpeed()
+            {
+                float elapsed = 0.0f;
+                while (elapsed < duration)
+                {
+                    pointSlider.value = (int)Mathf.Lerp(valueStart, valueEnd, elapsed / duration);
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+                pointSlider.value = valueEnd;
+            }
+            StartCoroutine(ChangeSpeed());
+        }
+    }
+
+    /// <summary>
+    /// Show point slider for some games
+    /// </summary>
+    private void ShowPointSlider()
+    {
+        pointSliderAlpha.gameObject.SetActive(true);
+        LeanTween.value(0, 1, 1f).setOnUpdate((float value) =>
+        {
+            pointSliderAlpha.alpha = value;
+        });
+    }
+
+    /// <summary>
+    /// Hide point slider
+    /// </summary>
+    private void HidePointSlider()
+    {
+        LeanTween.value(1, 0, 1f).setOnUpdate((float value) => {
+            pointSliderAlpha.alpha = value;
+        }).setOnComplete(() =>
+        {
+            pointSliderAlpha.gameObject.SetActive(false);
+        });
+    }
+    #endregion
+
+    #region Game Over (Card Battle)
+    /// <summary>
+    /// Call this when game is over
+    /// </summary>
+    /// <param name="isPlayerWin"></param>
+    private void CardBattle_GameOver(bool isPlayerWin)
+    {
+        HideQuestion();
+        HidePointSlider();
+        ShowGameOver_CardBattle(isPlayerWin);
+    }
+
+    private void ShowGameOver_CardBattle(bool isPlayerWin)
+    {
+        endGamePanel.SetActive(true);
+        winImage.SetActive(false);
+        loseImage.SetActive(false);
+        homeButton.gameObject.SetActive(false);
+        homeButton.interactable = false;
+
+        LeanTween.value(0, 1, .5f).setOnUpdate((float value) =>
+        {
+            endGamePanel.GetComponent<Image>().color = new Vector4(1, 1, 1, value);
+        }).setOnComplete(() =>
+        {
+            if (isPlayerWin)
+            {
+                loseImage.SetActive(false);
+                winImage.SetActive(true);
+                winImage.transform.localScale = Vector3.zero;
+                winImage.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic().setOnComplete(() =>
+                {
+                    homeButton.gameObject.SetActive(true);
+                    LeanTween.value(0, 1, .5f).setOnUpdate((float value) =>
+                    {
+                        homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, value);
+                        homeButton.interactable = true;
+                    });
+                });
+            }
+            else
+            {
+                loseImage.SetActive(true);
+                winImage.SetActive(false);
+                loseImage.transform.localScale = Vector3.zero;
+                loseImage.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic().setOnComplete(() =>
+                {
+                    homeButton.gameObject.SetActive(true);
+                    LeanTween.value(0, 1, .5f).setOnUpdate((float value) =>
+                    {
+                        homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, value);
+                        homeButton.interactable = true;
+                    });
+                }); ;
+            }
+        });
+    }
+
+    /// <summary>
+    /// Method for home button in End Game panel
+    /// </summary>
+    public void OnClick_HomeButton_CardBattle()
+    {
+        endGamePanel.SetActive(false);
+        EventController.OnTurnRoomCam();
+
+        IEnumerator wait()
+        {
+            yield return new WaitForSeconds(.5f);
+            while (FindObjectOfType<CameraMovement>().isBlending)
+            {
+                yield return null;
+            }
+            ShowNavigationButton();
+        }
+        StartCoroutine(wait());
+    }
     #endregion
     private void OnDisable()
     {
@@ -412,7 +613,10 @@ public class UIManager : MonoBehaviour
         EventController.SetQuestion -= SetQuestion;
         EventController.HideQuestion -= HideQuestion;
 
-        EventController.ShowNavButtons += ShowNavigationButton;
-        EventController.HideNavButtons += HideNavigationButton;
+        EventController.ShowNavButtons -= ShowNavigationButton;
+        EventController.HideNavButtons -= HideNavigationButton;
+
+        EventController.ExecutingPointToUI -= PointExecuterUI;
+        EventController.ShowPointSlider -= ShowPointSlider;
     }
 }

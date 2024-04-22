@@ -21,9 +21,10 @@ public enum CardType
 
 public enum EmotionalType
 {
-    Embarrassment, 
-    Amusement, 
-    Surprise, 
-    Frustration, 
-    Fear
+    Laugh,
+    Cool,
+    Suprise,
+    Angry,
+    Cry,
+    Sus,
 }

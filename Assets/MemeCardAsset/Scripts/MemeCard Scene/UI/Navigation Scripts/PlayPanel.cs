@@ -13,12 +13,15 @@ public class PlayPanel : MonoBehaviour
         gameObject.transform.localScale = Vector3.one;
         playButton.transform.localScale = Vector3.zero;
         Image r = background.GetComponent<Image>();
-        LeanTween.value(gameObject, 1, 0, .25f).setOnUpdate((float val) =>
+        if (r.color.a != 0)
         {
-            Color c = r.color;
-            c.a = val;
-            r.color = c;
-        });
+            LeanTween.value(gameObject, 1, 0, .25f).setOnUpdate((float val) =>
+            {
+                Color c = r.color;
+                c.a = val;
+                r.color = c;
+            });
+        }
 
         playButton.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic();
     }
@@ -38,6 +41,7 @@ public class PlayPanel : MonoBehaviour
                 yield return null;
             }
             EventController.OnStartGame();
+            gameObject.SetActive(false);
         }
         StartCoroutine(wait());
     }

@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    #region Card Battle Attributes
     #region Card Attributes
     [Header("Card Prefabs")]
     [Header("Attribute for Meme Card Battle")]
     public GameObject playingCardPrefabs;
 
     [Header("Card Stack (Drawing Card Position)")]
-    public Transform playerCardStack;
-    public Transform opponentCardStack;
+    public Transform playerCardDeck;
+    public Transform opponentCardDeck;
 
     [Header("On-hand Card Position")]
     public Transform playerCardMidPos;
@@ -43,10 +44,10 @@ public class GameManager : MonoBehaviour
     private GameObject opponentPlacedCard;
     #endregion
 
-    #region Questing Attributes
+    #region Question Attributes
     public GameObject questionCardPrefab;
 
-    public Transform questionCardStack;
+    public Transform questionCardDeck;
 
     public Transform questionPos;
 
@@ -64,6 +65,12 @@ public class GameManager : MonoBehaviour
     public int opponentPoint;
     #endregion
 
+    #endregion
+
+    #region Game Attributes
+    public int CardBattle_RoundCount = 0;
+    #endregion
+
     private void OnEnable()
     {
         //Subscribe to Events
@@ -71,15 +78,14 @@ public class GameManager : MonoBehaviour
         EventController.StartGame += StartGame;
         EventController.ExecutingPoint += ExecutingPoint;
         EventController.CardBattleTurnTwo += CardBattleTurnTwo;
-        EventController.CardReadyToPlay += ShowCard;
-        EventController.CardBattleTurnTwo += RenewCard; //This is called for second turn
+        EventController.CardBattleNextTurn += ShowCard;
+        EventController.CardBattleNextTurn += RenewCard; //This is called for second turn
 
         //doi cardbattleturntwo thanh` turntwoafter drawing question
 
         //Spawn a Game (need a random after testing)
         StartSpawn_CardBattle();
     }
-
 
     private void StartGame()
     {
@@ -90,75 +96,80 @@ public class GameManager : MonoBehaviour
     #region Meme Card Battle
     public void StartSpawn_CardBattle()
     {
-        questionCardStack.gameObject.SetActive(true);
-        playerCardStack.gameObject.SetActive(true);
-        opponentCardStack.gameObject.SetActive(true);
+        questionCardDeck.gameObject.SetActive(true);
+        playerCardDeck.gameObject.SetActive(true);
+        opponentCardDeck.gameObject.SetActive(true);
     }
 
     public void StartGame_CardBattle()
     {
         DrawCard();
+        CardBattle_RoundCount++;
     }
 
+    #region Card
     //--------Card-----------
+    /// <summary>
+    /// First round card drawing
+    /// </summary>
     public void DrawCard()
     {
         IEnumerator MoveCardToHand()
         {
             //Mid Card
-            playerCardMid = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
+            playerCardMid = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
             playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardMid.GetComponent<PlayingCard>().isPlayerCard = true;
 
-            opponentCardMid = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
+            opponentCardMid = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
             opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardMid.GetComponent<PlayingCard>().isPlayerCard = false;
 
-            playerCardMid.transform.position = playerCardStack.transform.position;
-            playerCardMid.transform.rotation = playerCardStack.transform.rotation;
+            playerCardMid.transform.position = playerCardDeck.transform.position;
+            playerCardMid.transform.rotation = playerCardDeck.transform.rotation;
             playerCardMid.transform.LeanMove(playerCardMidPos.position, .75f);
             playerCardMid.transform.LeanRotate(playerCardMidPos.transform.eulerAngles, .75f);
 
-            opponentCardMid.transform.position = opponentCardStack.transform.position;
-            opponentCardMid.transform.rotation = opponentCardStack.transform.rotation;
+            opponentCardMid.transform.position = opponentCardDeck.transform.position;
+            opponentCardMid.transform.rotation = opponentCardDeck.transform.rotation;
             opponentCardMid.transform.LeanMove(opponentCardMidPos.position, .75f);
             opponentCardMid.transform.LeanRotate(opponentCardMidPos.transform.eulerAngles, 0f);
             yield return new WaitForSeconds(.75f);
 
             //Left Card
-            playerCardLeft = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
-            opponentCardLeft = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
+            playerCardLeft = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
+            opponentCardLeft = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
             playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardLeft.GetComponent<PlayingCard>().isPlayerCard = true;
             opponentCardLeft.GetComponent<PlayingCard>().isPlayerCard = false;
 
-            playerCardLeft.transform.position = playerCardStack.transform.position;
-            playerCardLeft.transform.rotation = playerCardStack.transform.rotation;
+            playerCardLeft.transform.position = playerCardDeck.transform.position;
+            playerCardLeft.transform.rotation = playerCardDeck.transform.rotation;
             playerCardLeft.transform.LeanMove(playerCardLeftPos.position, .75f);
             playerCardLeft.transform.LeanRotate(playerCardLeftPos.transform.eulerAngles, .75f);
 
-            opponentCardLeft.transform.position = opponentCardStack.transform.position;
-            opponentCardLeft.transform.rotation = opponentCardStack.transform.rotation;
+            opponentCardLeft.transform.position = opponentCardDeck.transform.position;
+            opponentCardLeft.transform.rotation = opponentCardDeck.transform.rotation;
             opponentCardLeft.transform.LeanMove(opponentCardLeftPos.position, .75f);
             opponentCardLeft.transform.LeanRotate(opponentCardLeftPos.transform.eulerAngles, 0f);
             yield return new WaitForSeconds(.75f);
 
             //Right Card
-            playerCardRight = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
-            opponentCardRight = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
+            playerCardRight = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
+            opponentCardRight = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
             playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardRight.GetComponent<PlayingCard>().isPlayerCard = true;
             opponentCardRight.GetComponent<PlayingCard>().isPlayerCard = false;
 
-            playerCardRight.transform.rotation = playerCardStack.transform.rotation;
-            playerCardRight.transform.position = playerCardStack.transform.position;
+            playerCardRight.transform.rotation = playerCardDeck.transform.rotation;
+            playerCardRight.transform.position = playerCardDeck.transform.position;
             playerCardRight.transform.LeanMove(playerCardRightPos.position, .75f);
             playerCardRight.transform.LeanRotate(playerCardRightPos.transform.eulerAngles, .75f);
 
-            opponentCardRight.transform.rotation = opponentCardStack.transform.rotation;
-            opponentCardRight.transform.position = opponentCardStack.transform.position;
+            opponentCardRight.transform.rotation = opponentCardDeck.transform.rotation;
+            opponentCardRight.transform.position = opponentCardDeck.transform.position;
             opponentCardRight.transform.LeanMove(opponentCardRightPos.position, .75f);
             opponentCardRight.transform.LeanRotate(opponentCardRightPos.transform.eulerAngles, 0f);
             yield return new WaitForSeconds(.75f);
@@ -173,6 +184,7 @@ public class GameManager : MonoBehaviour
             opponentCardRight.GetComponent<PlayingCard>().placePos = opponentPlacingPos;
             yield return new WaitForSeconds(.75f);
             DrawQuestion();
+            EventController.OnBotSetCard(opponentCardMid, opponentCardLeft, opponentCardRight);
         }
         StartCoroutine(MoveCardToHand());
     }
@@ -187,47 +199,53 @@ public class GameManager : MonoBehaviour
         {
             playerPlacedCard = playerCardMid;
 
-            playerCardMid = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
+            playerCardMid = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
             playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardMid.GetComponent<PlayingCard>().isPlayerCard = true; 
-            playerCardMid.transform.position = playerCardStack.transform.position;
-            playerCardMid.transform.rotation = playerCardStack.transform.rotation;
+            playerCardMid.transform.position = playerCardDeck.transform.position;
+            playerCardMid.transform.rotation = playerCardDeck.transform.rotation;
             playerCardMid.transform.LeanMove(playerCardHidePos.position, .75f);
             playerCardMid.transform.LeanRotate(playerCardHidePos.transform.eulerAngles, .75f);
+
+            EventController.OnBotPlay();
         }
         else if (cardObj == playerCardLeft)
         {
             playerPlacedCard = playerCardLeft;
 
-            playerCardLeft = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
+            playerCardLeft = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
             playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardLeft.GetComponent<PlayingCard>().isPlayerCard = true; 
-            playerCardLeft.transform.position = playerCardStack.transform.position;
-            playerCardLeft.transform.rotation = playerCardStack.transform.rotation;
+            playerCardLeft.transform.position = playerCardDeck.transform.position;
+            playerCardLeft.transform.rotation = playerCardDeck.transform.rotation;
             playerCardLeft.transform.LeanMove(playerCardHidePos.position, .75f);
             playerCardLeft.transform.LeanRotate(playerCardHidePos.transform.eulerAngles, .75f);
+
+            EventController.OnBotPlay();
         }
         else if (cardObj == playerCardRight)
         {
             playerPlacedCard = playerCardRight;
 
-            playerCardRight = Instantiate(playingCardPrefabs, playerCardHolder, playerCardStack.transform);
+            playerCardRight = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
             playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardRight.GetComponent<PlayingCard>().isPlayerCard = true; 
-            playerCardRight.transform.position = playerCardStack.transform.position;
-            playerCardRight.transform.rotation = playerCardStack.transform.rotation;
+            playerCardRight.transform.position = playerCardDeck.transform.position;
+            playerCardRight.transform.rotation = playerCardDeck.transform.rotation;
             playerCardRight.transform.LeanMove(playerCardHidePos.position, .75f);
             playerCardRight.transform.LeanRotate(playerCardHidePos.transform.eulerAngles, .75f);
+
+            EventController.OnBotPlay();
         }
         else if (cardObj == opponentCardMid)
         {
             opponentPlacedCard = opponentCardMid;
 
-            opponentCardMid = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
+            opponentCardMid = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
             opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardMid.GetComponent<PlayingCard>().isPlayerCard = false; 
-            opponentCardMid.transform.position = opponentCardStack.transform.position;
-            opponentCardMid.transform.rotation = opponentCardStack.transform.rotation;
+            opponentCardMid.transform.position = opponentCardDeck.transform.position;
+            opponentCardMid.transform.rotation = opponentCardDeck.transform.rotation;
             opponentCardMid.transform.LeanMove(opponentCardMidPos.position, .75f);
             opponentCardMid.transform.LeanRotate(opponentCardMidPos.transform.eulerAngles, .75f);
         }
@@ -235,11 +253,11 @@ public class GameManager : MonoBehaviour
         {
             opponentPlacedCard = opponentCardLeft;
 
-            opponentCardLeft = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
+            opponentCardLeft = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
             opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardLeft.GetComponent<PlayingCard>().isPlayerCard = false; 
-            opponentCardLeft.transform.position = opponentCardStack.transform.position;
-            opponentCardLeft.transform.rotation = opponentCardStack.transform.rotation;
+            opponentCardLeft.transform.position = opponentCardDeck.transform.position;
+            opponentCardLeft.transform.rotation = opponentCardDeck.transform.rotation;
             opponentCardLeft.transform.LeanMove(opponentCardLeftPos.position, .75f);
             opponentCardLeft.transform.LeanRotate(opponentCardLeftPos.transform.eulerAngles, .75f);
         }
@@ -247,11 +265,11 @@ public class GameManager : MonoBehaviour
         {
             opponentPlacedCard = opponentCardRight;
 
-            opponentCardRight = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardStack.transform);
+            opponentCardRight = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
             opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardRight.GetComponent<PlayingCard>().isPlayerCard = false; 
-            opponentCardRight.transform.position = opponentCardStack.transform.position;
-            opponentCardRight.transform.rotation = opponentCardStack.transform.rotation;
+            opponentCardRight.transform.position = opponentCardDeck.transform.position;
+            opponentCardRight.transform.rotation = opponentCardDeck.transform.rotation;
             opponentCardRight.transform.LeanMove(opponentCardRightPos.position, .75f);
             opponentCardRight.transform.LeanRotate(opponentCardRightPos.transform.eulerAngles, .75f);
         }
@@ -315,6 +333,8 @@ public class GameManager : MonoBehaviour
         opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
         opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
         opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
+
+        EventController.OnBotSetCard(opponentCardMid, opponentCardLeft, opponentCardRight);
     }
 
     /// <summary>
@@ -327,11 +347,16 @@ public class GameManager : MonoBehaviour
     }
 
     //--------Card-----------
+    #endregion
 
+    #region Question
     //--------Question-----------
+    /// <summary>
+    /// Draw new question, but this is just 3d animation
+    /// </summary>
     public void DrawQuestion()
     {
-        GameObject question = Instantiate(questionCardPrefab, questionCardStack.transform);
+        GameObject question = Instantiate(questionCardPrefab, questionCardDeck.transform);
 
         question.transform.LeanMove(questionPos.position, 1f);
         question.transform.LeanRotate(questionPos.transform.eulerAngles, 1f)
@@ -342,7 +367,7 @@ public class GameManager : MonoBehaviour
             })
             .setOnComplete(() =>
             {
-                EventController.OnShowQuestion();
+                EventController.OnShowQuestion(CardBattle_RoundCount);
                 Destroy(question);
             }
         );
@@ -350,7 +375,49 @@ public class GameManager : MonoBehaviour
     //--------Question-----------
     #endregion
 
+    #region Next Turn and Game Over Handler
+    //-------Next Turn Handler-------------
+    /// <summary>
+    /// This is judger to call second turn or not
+    /// </summary>
+    private void CardBattleTurnTwo()
+    {
+        if (playerPoint == opponentPoint)
+        {
+            DrawQuestion();
+            CardBattle_RoundCount++;
+        }
+        else
+        {
+            if (CardBattle_RoundCount <= 1)
+            {
+                DrawQuestion();
+                CardBattle_RoundCount++;
+            }
+            else
+            {
+                if (playerPoint > opponentPoint)
+                {
+                    EventController.OnCardBattleGameOver(true);
+                }
+                else
+                {
+                    EventController.OnCardBattleGameOver(false);
+                }
+                CardBattle_GameOver();
+            }
+        }
+    }
+
+    //-------Next Turn Handler-------------
+    #endregion
+
     #region Point Executer
+    //----------Point Executer------------------
+    /// <summary>
+    /// Calculating point
+    /// </summary>
+    /// <param name="card"></param>
     public void ExecutingPoint(PlayingCard card)
     {
         if (card.cardData.playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
@@ -373,6 +440,8 @@ public class GameManager : MonoBehaviour
             AddPoint(5);
         }
 
+        EventController.OnExecutingPointToUI(playerPoint, opponentPoint);
+
         void AddPoint(int addedPoint)
         {
             if (card.isPlayerCard)
@@ -385,11 +454,29 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    //----------Point Executer------------------
+    #endregion
 
-    private void CardBattleTurnTwo()
+    /// <summary>
+    /// This help cleaning cards, card decks, and card on players hand
+    /// </summary>
+    private void CardBattle_GameOver()
     {
-        DrawQuestion();
+        Destroy(playerCardMid);
+        Destroy(playerCardLeft);
+        Destroy(playerCardRight);
+        Destroy(opponentCardMid);
+        Destroy(opponentCardLeft);
+        Destroy(opponentCardRight);
+
+        Destroy(playerPlacedCard);
+        Destroy(opponentPlacedCard);
+
+        playerCardDeck.gameObject.SetActive(false);
+        opponentCardDeck.gameObject.SetActive(false);
+        questionCardDeck.gameObject.SetActive(false);
     }
+
     #endregion
 
     private void OnDisable()
