@@ -58,10 +58,37 @@ public class UIManager : MonoBehaviour
 
     #region Point Slider Attributes (Card Battle)
     public Slider pointSlider;
+
     public TextMeshProUGUI playerPointText;
     public TextMeshProUGUI opponentPointText;
+    public TextMeshProUGUI opponentNameText;
+
+    public GameObject playerFxs;
+    public GameObject opponentFxs;
 
     public CanvasGroup pointSliderAlpha;
+    #endregion
+
+    #region Choosing Opponent (Card Battle)
+    public GameObject choosingOpponent_Main;
+
+    public GameObject choosingOpponent_Text;
+    //public Animator choosingOpponent_Text_Anim;
+
+    //Mid
+    public GameObject choosingOpponent_MidOpponent;
+    public Image choosingOpponent_MidOpponent_Image;
+    public TextMeshProUGUI choosingOpponent_MidOpponent_Text;
+    //Left
+    public GameObject choosingOpponent_LeftOpponent;
+    public Image choosingOpponent_LeftOpponent_Image;
+    public TextMeshProUGUI choosingOpponent_LeftOpponent_Text;
+    //Right
+    public GameObject choosingOpponent_RightOpponent;
+    public Image choosingOpponent_RightOpponent_Image;
+    public TextMeshProUGUI choosingOpponent_RightOpponent_Text;
+
+    public OpponentData[] opponentDatas;
     #endregion
 
     #region End Game Attributes (Card Battle)
@@ -91,6 +118,8 @@ public class UIManager : MonoBehaviour
         EventController.HidePointSlider += HidePointSlider;
 
         EventController.CardBattleGameOver += CardBattle_GameOver;
+
+        EventController.ChooseOpponent += ChoosingOpponent;
     }
 
     #region Navigation
@@ -315,6 +344,7 @@ public class UIManager : MonoBehaviour
     public void ShowPlayPanel()
     {
         SelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
+        EventController.OnSpawnOnTable();
     }
 
     public void ShowMissionPanel()
@@ -433,10 +463,13 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Set question UI card
     /// </summary>
-    /// <param name="questDat">Pass question data here</param>
-    private void SetQuestion(QuestionData questDat)
+    /// <param name="questData">Pass question data here</param>
+    private void SetQuestion(QuestionData questData)
     {
-        questionText.text = questDat.question;
+        questionText.GetComponent<I2.Loc.Localize>().SetTerm(questData.question);
+        //questionText.text = I2.Loc.LocalizationManager.GetTranslation(questData.question);
+        print(questData.question);
+        print(I2.Loc.LocalizationManager.GetTranslation(questData.question));
     }
 
     #endregion
@@ -448,6 +481,17 @@ public class UIManager : MonoBehaviour
     /// <param name="arg0"></param>
     private void PointExecuterUI(int playerPoint, int opponentPoint)
     {
+        if (playerPointText.text != playerPoint.ToString())
+        {
+            playerFxs.SetActive(true);
+            opponentFxs.SetActive(false);
+        }
+        else if (opponentPointText.text != opponentPoint.ToString()) 
+        {
+            playerFxs.SetActive(false);
+            opponentFxs.SetActive(true);
+        }
+
         playerPointText.text = playerPoint.ToString();
         opponentPointText.text = opponentPoint.ToString();
 
@@ -529,6 +573,105 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    #region Choosing Opponent (Card Battle)
+    private void ChoosingOpponent()
+    {
+        choosingOpponent_Main.SetActive(true);
+        choosingOpponent_Text.gameObject.SetActive(true);
+        choosingOpponent_MidOpponent.SetActive(true);
+        choosingOpponent_MidOpponent.SetActive(true);
+        choosingOpponent_LeftOpponent.SetActive(true);
+        choosingOpponent_RightOpponent.SetActive(true);
+
+        float time = 4;
+        float timeElapsed = 0;
+        IEnumerator chooseOpponent()
+        {
+            OpponentData tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+            choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
+            choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
+
+            tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+            choosingOpponent_MidOpponent_Image.sprite = tempOpponent.opponentImage;
+            choosingOpponent_MidOpponent_Text.text = tempOpponent.opponentName;
+
+            tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+            choosingOpponent_LeftOpponent_Image.sprite = tempOpponent.opponentImage;
+            choosingOpponent_LeftOpponent_Text.text = tempOpponent.opponentName;
+
+            while (timeElapsed < time)
+            {
+                if (timeElapsed < 1.8f)
+                {
+                    choosingOpponent_LeftOpponent_Image.sprite = choosingOpponent_MidOpponent_Image.sprite;
+                    choosingOpponent_LeftOpponent_Text.text = choosingOpponent_MidOpponent_Text.text;
+
+                    choosingOpponent_MidOpponent_Image.sprite = choosingOpponent_RightOpponent_Image.sprite;
+                    choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
+
+                    tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+                    choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
+                    choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
+                    yield return new WaitForSeconds(.1f);
+                    timeElapsed += .1f;
+                }
+                else if (timeElapsed < 2.5f)
+                {
+                    choosingOpponent_LeftOpponent_Image.sprite = choosingOpponent_MidOpponent_Image.sprite;
+                    choosingOpponent_LeftOpponent_Text.text = choosingOpponent_MidOpponent_Text.text;
+
+                    choosingOpponent_MidOpponent_Image.sprite = choosingOpponent_RightOpponent_Image.sprite;
+                    choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
+
+                    tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+                    choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
+                    choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
+                    yield return new WaitForSeconds(.2f);
+                    timeElapsed += .2f;
+                }
+                else
+                {
+                    choosingOpponent_LeftOpponent_Image.sprite = choosingOpponent_MidOpponent_Image.sprite;
+                    choosingOpponent_LeftOpponent_Text.text = choosingOpponent_MidOpponent_Text.text;
+
+                    choosingOpponent_MidOpponent_Image.sprite = choosingOpponent_RightOpponent_Image.sprite;
+                    choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
+
+                    tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+                    choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
+                    choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
+                    yield return new WaitForSeconds(.3f);
+                    timeElapsed += .3f;
+                }
+            }
+
+            LeanTween.value(1, 1.5f, 1f).setOnUpdate((float value) =>
+            {
+                choosingOpponent_MidOpponent.transform.localScale = new Vector3(value, value, value);
+                opponentNameText.text = choosingOpponent_MidOpponent_Text.text;
+            });
+
+            LeanTween.value(1, 0, 1f).setOnUpdate((float value) =>
+            {
+                choosingOpponent_LeftOpponent.transform.localScale = new Vector3(value, value, value);
+                choosingOpponent_LeftOpponent.GetComponent<CanvasGroup>().alpha = value;
+
+                choosingOpponent_RightOpponent.transform.localScale = new Vector3(value, value, value);
+                choosingOpponent_RightOpponent.GetComponent<CanvasGroup>().alpha = value;
+            }).setOnComplete(() =>
+            {
+                choosingOpponent_LeftOpponent.SetActive(false);
+                choosingOpponent_RightOpponent.SetActive(false);
+            }); 
+
+            yield return new WaitForSeconds(3f);
+            choosingOpponent_Main.SetActive(false);
+            EventController.OnDrawStartingCard();
+        }
+        StartCoroutine(chooseOpponent());
+    }
+    #endregion
+
     #region Game Over (Card Battle)
     /// <summary>
     /// Call this when game is over
@@ -539,6 +682,11 @@ public class UIManager : MonoBehaviour
         HideQuestion();
         HidePointSlider();
         ShowGameOver_CardBattle(isPlayerWin);
+
+        playerPointText.text = "0";
+        opponentPointText.text = "0";
+
+        pointSlider.value = 50;
     }
 
     private void ShowGameOver_CardBattle(bool isPlayerWin)

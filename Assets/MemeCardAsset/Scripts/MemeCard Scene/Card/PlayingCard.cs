@@ -74,16 +74,19 @@ public class PlayingCard : MonoBehaviour
         {
             memeBorder.material = commonMat;
             memeImage.material = cardData.memeImage;
+            videoPlayer.enabled = false;
         }
         else if (cardData.cardType == CardType.Rare)
         {
             memeBorder.material = rareMat;
             memeImage.material = cardData.memeImage;
+            videoPlayer.enabled = false;
         }
         else if (cardData.cardType == CardType.Epic)
         {
             memeBorder.material = epicMat;
             videoPlayer.clip = cardData.memeGif;
+            videoPlayer.enabled = true;
             videoPlayer.isLooping = true;
             videoPlayer.Play();
         }

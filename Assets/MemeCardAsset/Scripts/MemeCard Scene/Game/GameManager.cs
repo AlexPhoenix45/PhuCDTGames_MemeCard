@@ -68,7 +68,9 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Game Attributes
+
     public int CardBattle_RoundCount = 0;
+
     #endregion
 
     private void OnEnable()
@@ -80,6 +82,9 @@ public class GameManager : MonoBehaviour
         EventController.CardBattleTurnTwo += CardBattleTurnTwo;
         EventController.CardBattleNextTurn += ShowCard;
         EventController.CardBattleNextTurn += RenewCard; //This is called for second turn
+        EventController.SpawnGameOnTable += StartSpawn_CardBattle; //need to make it random
+
+        EventController.DrawStartingCard += DrawCard; //Draw Starting card, called by ChoosingOpponent in UI Controller
 
         //doi cardbattleturntwo thanh` turntwoafter drawing question
 
@@ -103,7 +108,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame_CardBattle()
     {
-        DrawCard();
+        EventController.OnChooseOpponent();
+        //Call choose opponent in UI Controller, then it will call DrawCard and RoundCount
         CardBattle_RoundCount++;
     }
 
@@ -475,6 +481,10 @@ public class GameManager : MonoBehaviour
         playerCardDeck.gameObject.SetActive(false);
         opponentCardDeck.gameObject.SetActive(false);
         questionCardDeck.gameObject.SetActive(false);
+
+        playerPoint = 0;
+        opponentPoint = 0;
+        CardBattle_RoundCount = 0;
     }
 
     #endregion

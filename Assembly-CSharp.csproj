@@ -106,6 +106,7 @@
     <Compile Include="Assets\I2\Localization\Scripts\Targets\LocalizeTarget_NGUI_Texture.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Manager\LocalizationManager_Sources.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
+    <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\Bot\BotBrain.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Targets\LocalizeTarget_2DToolKit_Sprite.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Targets\LocalizeTarget_UnityUI_Text.cs" />
@@ -182,7 +183,7 @@
     <Compile Include="Assets\Package\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\Following.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Configurables\PersistentStorage.cs" />
-    <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\Bot\BotBrain.cs" />
+    <Compile Include="Assets\MemeCardAsset\Scripts\SO_Script\OpponentData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -891,6 +892,10 @@
       <Project>{0BB6924A-EA25-4160-647A-A277A03E3080}</Project>
       <Name>NaughtyAttributes.Test</Name>
     </ProjectReference>
+    <ProjectReference Include="RBG.Mulligan.csproj">
+      <Project>{7A018623-74EB-6F66-235A-34D2DD49AB07}</Project>
+      <Name>RBG.Mulligan</Name>
+    </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Editor.csproj">
       <Project>{503F5766-08D1-4D2A-A02A-48E8E66352D5}</Project>
       <Name>NaughtyAttributes.Editor</Name>
@@ -906,10 +911,6 @@
     <ProjectReference Include="Nobi.UiRoundedCorners.csproj">
       <Project>{A2A4C780-2240-3E0B-5C12-A8F09F5C4824}</Project>
       <Name>Nobi.UiRoundedCorners</Name>
-    </ProjectReference>
-    <ProjectReference Include="RBG.Mulligan.csproj">
-      <Project>{7A018623-74EB-6F66-235A-34D2DD49AB07}</Project>
-      <Name>RBG.Mulligan</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

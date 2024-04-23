@@ -7,8 +7,14 @@ public class EventController
     /// <summary>
     /// Draw Card
     /// </summary>
-    public static event UnityAction <GameObject> HideAndDrawCard;
+    public static event UnityAction<GameObject> HideAndDrawCard;
     public static void OnHideAndDrawCard(GameObject cardObj) => HideAndDrawCard?.Invoke(cardObj);
+
+    /// <summary>
+    /// Draw Starting Card for Card Battle Game, call by choosing opponent in UI controller
+    /// </summary>
+    public static event UnityAction DrawStartingCard;
+    public static void OnDrawStartingCard() => DrawStartingCard?.Invoke();
 
     /// <summary>
     /// Start Game - Card Battle
@@ -39,6 +45,9 @@ public class EventController
     /// </summary>
     public static event UnityAction <bool> CardBattleGameOver;
     public static void OnCardBattleGameOver(bool isPlayerWin) => CardBattleGameOver?.Invoke(isPlayerWin);
+
+    public static event UnityAction ChooseOpponent;
+    public static void OnChooseOpponent() => ChooseOpponent?.Invoke();
     #endregion
 
     #region Question
@@ -138,5 +147,10 @@ public class EventController
 
     public static event UnityAction BotPlay;
     public static void OnBotPlay() => BotPlay?.Invoke();
+    #endregion
+
+    #region Spawn Game on Table
+    public static event UnityAction SpawnGameOnTable;
+    public static void OnSpawnOnTable() => SpawnGameOnTable?.Invoke();
     #endregion
 }
