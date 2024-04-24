@@ -76,7 +76,7 @@ public class EventController
     /// Set Question data
     /// </summary>
     public static event UnityAction <QuestionData> SetQuestion;
-    public static void OnSetQuestion(QuestionData questDat) => SetQuestion?.Invoke(questDat);
+    public static void OnSetQuestion(QuestionData questData) => SetQuestion?.Invoke(questData);
     #endregion
 
     #region Camera

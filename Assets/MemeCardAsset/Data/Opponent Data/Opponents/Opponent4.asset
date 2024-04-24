@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponentImage: {fileID: 21300000, guid: 3bacd2646b679954f949a44a03970c52, type: 3}
   opponentName: Patty
+  opponentLevel: 8

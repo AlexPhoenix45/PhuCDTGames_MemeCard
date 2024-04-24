@@ -8,11 +8,11 @@ public class CardData : ScriptableObject
 {
     public Material memeImage;
     public VideoClip memeGif;
-    public CardType cardType;
+    public RarityType rarityType;
     public EmotionalType playingCardEmotionalType;
 }
 
-public enum CardType
+public enum RarityType
 {
     Common,
     Rare,
@@ -23,7 +23,7 @@ public enum EmotionalType
 {
     Laugh,
     Cool,
-    Suprise,
+    Surprise,
     Angry,
     Cry,
     Sus,

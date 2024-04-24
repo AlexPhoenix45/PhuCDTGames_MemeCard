@@ -74,19 +74,19 @@ public class PlayingCard : MonoBehaviour
     public void SetCard (CardData cardData)
     {
         this.cardData = cardData;
-        if (cardData.cardType == CardType.Common)
+        if (cardData.rarityType == RarityType.Common)
         {
             memeBorder.material = commonMat;
             memeImage.material = cardData.memeImage;
             videoPlayer.enabled = false;
         }
-        else if (cardData.cardType == CardType.Rare)
+        else if (cardData.rarityType == RarityType.Rare)
         {
             memeBorder.material = rareMat;
             memeImage.material = cardData.memeImage;
             videoPlayer.enabled = false;
         }
-        else if (cardData.cardType == CardType.Epic)
+        else if (cardData.rarityType == RarityType.Epic)
         {
             memeBorder.material = epicMat;
             videoPlayer.clip = cardData.memeGif;

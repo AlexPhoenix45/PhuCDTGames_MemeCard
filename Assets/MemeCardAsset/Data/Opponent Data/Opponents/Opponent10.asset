@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponentImage: {fileID: 21300000, guid: 9874a529aa36a5740b60c92d5423fe74, type: 3}
   opponentName: Iva
+  opponentLevel: 17

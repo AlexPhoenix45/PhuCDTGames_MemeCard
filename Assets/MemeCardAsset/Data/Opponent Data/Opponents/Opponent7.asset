@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponentImage: {fileID: 21300000, guid: 4d03f70a5ff18264b8b263dc2a93482f, type: 3}
   opponentName: Allison
+  opponentLevel: 12

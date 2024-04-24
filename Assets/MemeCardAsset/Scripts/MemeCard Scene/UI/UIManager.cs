@@ -88,14 +88,17 @@ public class UIManager : MonoBehaviour
     public GameObject choosingOpponent_MidOpponent;
     public Image choosingOpponent_MidOpponent_Image;
     public TextMeshProUGUI choosingOpponent_MidOpponent_Text;
+    public TextMeshProUGUI choosingOpponent_MidOpponent_Level;
     //Left
     public GameObject choosingOpponent_LeftOpponent;
     public Image choosingOpponent_LeftOpponent_Image;
     public TextMeshProUGUI choosingOpponent_LeftOpponent_Text;
+    public TextMeshProUGUI choosingOpponent_LeftOpponent_Level;
     //Right
     public GameObject choosingOpponent_RightOpponent;
     public Image choosingOpponent_RightOpponent_Image;
     public TextMeshProUGUI choosingOpponent_RightOpponent_Text;
+    public TextMeshProUGUI choosingOpponent_RightOpponent_Level;
 
     public OpponentData[] opponentDatas;
     #endregion
@@ -512,11 +515,10 @@ public class UIManager : MonoBehaviour
     private void SetQuestion(QuestionData questData)
     {
         //questionText.GetComponent<I2.Loc.Localize>().SetTerm(questData.question);
-        string quest = questData.question;
-        quest.Replace(" ", "");
-        questionText.text = I2.Loc.LocalizationManager.GetTranslation(quest);
+        string quest = I2.Loc.LocalizationManager.GetTranslation(questData.question);
+        questionText.text = quest;
         print(questData.question);
-        print(I2.Loc.LocalizationManager.GetTranslation(questData.question));
+        print(quest);
     }
 
     #endregion
@@ -641,9 +643,19 @@ public class UIManager : MonoBehaviour
         choosingOpponent_Main.SetActive(true);
         choosingOpponent_Text.SetActive(true);
         choosingOpponent_MidOpponent.SetActive(true);
-        choosingOpponent_MidOpponent.SetActive(true);
         choosingOpponent_LeftOpponent.SetActive(true);
         choosingOpponent_RightOpponent.SetActive(true);
+
+        choosingOpponent_MidOpponent.GetComponent<CanvasGroup>().alpha = 0;
+        choosingOpponent_LeftOpponent.GetComponent<CanvasGroup>().alpha = 0;
+        choosingOpponent_RightOpponent.GetComponent<CanvasGroup>().alpha = 0;
+
+        LeanTween.value(0, 1f, 1f).setOnUpdate((float value) =>
+        {
+            choosingOpponent_MidOpponent.GetComponent<CanvasGroup>().alpha = value;
+            choosingOpponent_LeftOpponent.GetComponent<CanvasGroup>().alpha = value;
+            choosingOpponent_RightOpponent.GetComponent<CanvasGroup>().alpha = value;
+        });
 
         float time = 4;
         float timeElapsed = 0;
@@ -652,14 +664,18 @@ public class UIManager : MonoBehaviour
             OpponentData tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
             choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
             choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
+            choosingOpponent_MidOpponent_Level.text = tempOpponent.opponentLevel.ToString();
 
             tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
             choosingOpponent_MidOpponent_Image.sprite = tempOpponent.opponentImage;
             choosingOpponent_MidOpponent_Text.text = tempOpponent.opponentName;
+            choosingOpponent_MidOpponent_Level.text = tempOpponent.opponentLevel.ToString();
 
             tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
             choosingOpponent_LeftOpponent_Image.sprite = tempOpponent.opponentImage;
             choosingOpponent_LeftOpponent_Text.text = tempOpponent.opponentName;
+            choosingOpponent_MidOpponent_Level.text = tempOpponent.opponentLevel.ToString();
+            tempOpponent.opponentLevel.ToString();
 
             while (timeElapsed < time)
             {
@@ -667,13 +683,17 @@ public class UIManager : MonoBehaviour
                 {
                     choosingOpponent_LeftOpponent_Image.sprite = choosingOpponent_MidOpponent_Image.sprite;
                     choosingOpponent_LeftOpponent_Text.text = choosingOpponent_MidOpponent_Text.text;
+                    choosingOpponent_LeftOpponent_Level.text = choosingOpponent_MidOpponent_Level.text;
 
                     choosingOpponent_MidOpponent_Image.sprite = choosingOpponent_RightOpponent_Image.sprite;
                     choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
+                    choosingOpponent_MidOpponent_Level.text = choosingOpponent_RightOpponent_Level.text;
 
                     tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
+                    choosingOpponent_RightOpponent_Level.text = tempOpponent.opponentLevel.ToString();
+
                     yield return new WaitForSeconds(.1f);
                     timeElapsed += .1f;
                 }
@@ -681,13 +701,17 @@ public class UIManager : MonoBehaviour
                 {
                     choosingOpponent_LeftOpponent_Image.sprite = choosingOpponent_MidOpponent_Image.sprite;
                     choosingOpponent_LeftOpponent_Text.text = choosingOpponent_MidOpponent_Text.text;
+                    choosingOpponent_LeftOpponent_Level.text = choosingOpponent_MidOpponent_Level.text;
 
                     choosingOpponent_MidOpponent_Image.sprite = choosingOpponent_RightOpponent_Image.sprite;
                     choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
+                    choosingOpponent_MidOpponent_Level.text = choosingOpponent_RightOpponent_Level.text;
 
                     tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
+                    choosingOpponent_RightOpponent_Level.text = tempOpponent.opponentLevel.ToString();
+
                     yield return new WaitForSeconds(.2f);
                     timeElapsed += .2f;
                 }
@@ -695,13 +719,17 @@ public class UIManager : MonoBehaviour
                 {
                     choosingOpponent_LeftOpponent_Image.sprite = choosingOpponent_MidOpponent_Image.sprite;
                     choosingOpponent_LeftOpponent_Text.text = choosingOpponent_MidOpponent_Text.text;
+                    choosingOpponent_LeftOpponent_Level.text = choosingOpponent_MidOpponent_Level.text;
 
                     choosingOpponent_MidOpponent_Image.sprite = choosingOpponent_RightOpponent_Image.sprite;
                     choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
+                    choosingOpponent_MidOpponent_Level.text = choosingOpponent_RightOpponent_Level.text;
 
                     tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
+                    choosingOpponent_RightOpponent_Level.text = tempOpponent.opponentLevel.ToString();
+
                     yield return new WaitForSeconds(.3f);
                     timeElapsed += .3f;
                 }

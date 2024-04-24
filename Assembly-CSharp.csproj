@@ -984,6 +984,10 @@
       <Project>{7A018623-74EB-6F66-235A-34D2DD49AB07}</Project>
       <Name>RBG.Mulligan</Name>
     </ProjectReference>
+    <ProjectReference Include="MaxSdk.Scripts.Editor.csproj">
+      <Project>{1FD3CCBD-2130-C559-DE44-2FA4D2037588}</Project>
+      <Name>MaxSdk.Scripts.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Editor.csproj">
       <Project>{503F5766-08D1-4D2A-A02A-48E8E66352D5}</Project>
       <Name>NaughtyAttributes.Editor</Name>
@@ -996,6 +1000,14 @@
       <Project>{61537C6F-B2AF-0588-CF89-9C14BE55FC89}</Project>
       <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="MaxSdk.Scripts.csproj">
+      <Project>{0C0F4F19-FA00-0A72-CC7B-14E9B86A1D2D}</Project>
+      <Name>MaxSdk.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="MaxSdk.Scripts.IntegrationManager.Editor.csproj">
+      <Project>{424F274D-6991-CAAA-A3FC-9FC241A59810}</Project>
+      <Name>MaxSdk.Scripts.IntegrationManager.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
       <Project>{9D1A34C9-9176-11DA-8F6D-0408A1A6419E}</Project>
       <Name>Google.Android.AppBundle.Editor</Name>
@@ -1007,18 +1019,6 @@
     <ProjectReference Include="Nobi.UiRoundedCorners.csproj">
       <Project>{A2A4C780-2240-3E0B-5C12-A8F09F5C4824}</Project>
       <Name>Nobi.UiRoundedCorners</Name>
-    </ProjectReference>
-    <ProjectReference Include="MaxSdk.Scripts.Editor.csproj">
-      <Project>{1FD3CCBD-2130-C559-DE44-2FA4D2037588}</Project>
-      <Name>MaxSdk.Scripts.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="MaxSdk.Scripts.csproj">
-      <Project>{0C0F4F19-FA00-0A72-CC7B-14E9B86A1D2D}</Project>
-      <Name>MaxSdk.Scripts</Name>
-    </ProjectReference>
-    <ProjectReference Include="MaxSdk.Scripts.IntegrationManager.Editor.csproj">
-      <Project>{424F274D-6991-CAAA-A3FC-9FC241A59810}</Project>
-      <Name>MaxSdk.Scripts.IntegrationManager.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

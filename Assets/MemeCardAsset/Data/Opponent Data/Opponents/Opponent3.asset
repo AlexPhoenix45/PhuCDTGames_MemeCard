@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponentImage: {fileID: 21300000, guid: 53f69114f9843aa42901d22e1d64212c, type: 3}
   opponentName: Tia Tia
+  opponentLevel: 7

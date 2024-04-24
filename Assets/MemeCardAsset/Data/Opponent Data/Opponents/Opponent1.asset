@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opponentImage: {fileID: 21300000, guid: be326e4083f4c024dad401e344a582be, type: 3}
   opponentName: Hester
+  opponentLevel: 4

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   memeImage: {fileID: 0}
   memeGif: {fileID: 32900000, guid: 0b9b220e0bd681a48996a057eb254fd8, type: 3}
-  cardType: 2
+  rarityType: 2
   playingCardEmotionalType: 4
