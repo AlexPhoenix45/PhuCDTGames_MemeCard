@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
 
         EventController.DrawStartingCard += DrawCard; //Draw Starting card, called by ChoosingOpponent in UI Controller
 
+        EventController.HighlightCard += HighlightCard;
+
         //doi cardbattleturntwo thanh` turntwoafter drawing question
 
         //Spawn a Game (need a random after testing)
@@ -131,13 +133,11 @@ public class GameManager : MonoBehaviour
             opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardMid.GetComponent<PlayingCard>().isPlayerCard = false;
 
-            playerCardMid.transform.position = playerCardDeck.transform.position;
-            playerCardMid.transform.rotation = playerCardDeck.transform.rotation;
+            playerCardMid.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
             playerCardMid.transform.LeanMove(playerCardMidPos.position, .75f);
             playerCardMid.transform.LeanRotate(playerCardMidPos.transform.eulerAngles, .75f);
 
-            opponentCardMid.transform.position = opponentCardDeck.transform.position;
-            opponentCardMid.transform.rotation = opponentCardDeck.transform.rotation;
+            opponentCardMid.transform.SetPositionAndRotation(opponentCardDeck.transform.position, opponentCardDeck.transform.rotation);
             opponentCardMid.transform.LeanMove(opponentCardMidPos.position, .75f);
             opponentCardMid.transform.LeanRotate(opponentCardMidPos.transform.eulerAngles, 0f);
             yield return new WaitForSeconds(.75f);
@@ -150,13 +150,11 @@ public class GameManager : MonoBehaviour
             playerCardLeft.GetComponent<PlayingCard>().isPlayerCard = true;
             opponentCardLeft.GetComponent<PlayingCard>().isPlayerCard = false;
 
-            playerCardLeft.transform.position = playerCardDeck.transform.position;
-            playerCardLeft.transform.rotation = playerCardDeck.transform.rotation;
+            playerCardLeft.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
             playerCardLeft.transform.LeanMove(playerCardLeftPos.position, .75f);
             playerCardLeft.transform.LeanRotate(playerCardLeftPos.transform.eulerAngles, .75f);
 
-            opponentCardLeft.transform.position = opponentCardDeck.transform.position;
-            opponentCardLeft.transform.rotation = opponentCardDeck.transform.rotation;
+            opponentCardLeft.transform.SetPositionAndRotation(opponentCardDeck.transform.position, opponentCardDeck.transform.rotation);
             opponentCardLeft.transform.LeanMove(opponentCardLeftPos.position, .75f);
             opponentCardLeft.transform.LeanRotate(opponentCardLeftPos.transform.eulerAngles, 0f);
             yield return new WaitForSeconds(.75f);
@@ -169,13 +167,11 @@ public class GameManager : MonoBehaviour
             playerCardRight.GetComponent<PlayingCard>().isPlayerCard = true;
             opponentCardRight.GetComponent<PlayingCard>().isPlayerCard = false;
 
-            playerCardRight.transform.rotation = playerCardDeck.transform.rotation;
-            playerCardRight.transform.position = playerCardDeck.transform.position;
+            playerCardRight.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
             playerCardRight.transform.LeanMove(playerCardRightPos.position, .75f);
             playerCardRight.transform.LeanRotate(playerCardRightPos.transform.eulerAngles, .75f);
 
-            opponentCardRight.transform.rotation = opponentCardDeck.transform.rotation;
-            opponentCardRight.transform.position = opponentCardDeck.transform.position;
+            opponentCardRight.transform.SetPositionAndRotation(opponentCardDeck.transform.position, opponentCardDeck.transform.rotation);
             opponentCardRight.transform.LeanMove(opponentCardRightPos.position, .75f);
             opponentCardRight.transform.LeanRotate(opponentCardRightPos.transform.eulerAngles, 0f);
             yield return new WaitForSeconds(.75f);
@@ -208,8 +204,7 @@ public class GameManager : MonoBehaviour
             playerCardMid = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
             playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardMid.GetComponent<PlayingCard>().isPlayerCard = true; 
-            playerCardMid.transform.position = playerCardDeck.transform.position;
-            playerCardMid.transform.rotation = playerCardDeck.transform.rotation;
+            playerCardMid.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
             playerCardMid.transform.LeanMove(playerCardHidePos.position, .75f);
             playerCardMid.transform.LeanRotate(playerCardHidePos.transform.eulerAngles, .75f);
 
@@ -222,8 +217,7 @@ public class GameManager : MonoBehaviour
             playerCardLeft = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
             playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardLeft.GetComponent<PlayingCard>().isPlayerCard = true; 
-            playerCardLeft.transform.position = playerCardDeck.transform.position;
-            playerCardLeft.transform.rotation = playerCardDeck.transform.rotation;
+            playerCardLeft.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
             playerCardLeft.transform.LeanMove(playerCardHidePos.position, .75f);
             playerCardLeft.transform.LeanRotate(playerCardHidePos.transform.eulerAngles, .75f);
 
@@ -236,8 +230,7 @@ public class GameManager : MonoBehaviour
             playerCardRight = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
             playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             playerCardRight.GetComponent<PlayingCard>().isPlayerCard = true; 
-            playerCardRight.transform.position = playerCardDeck.transform.position;
-            playerCardRight.transform.rotation = playerCardDeck.transform.rotation;
+            playerCardRight.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
             playerCardRight.transform.LeanMove(playerCardHidePos.position, .75f);
             playerCardRight.transform.LeanRotate(playerCardHidePos.transform.eulerAngles, .75f);
 
@@ -250,8 +243,7 @@ public class GameManager : MonoBehaviour
             opponentCardMid = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
             opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardMid.GetComponent<PlayingCard>().isPlayerCard = false; 
-            opponentCardMid.transform.position = opponentCardDeck.transform.position;
-            opponentCardMid.transform.rotation = opponentCardDeck.transform.rotation;
+            opponentCardMid.transform.SetPositionAndRotation(opponentCardDeck.transform.position, opponentCardDeck.transform.rotation);
             opponentCardMid.transform.LeanMove(opponentCardMidPos.position, .75f);
             opponentCardMid.transform.LeanRotate(opponentCardMidPos.transform.eulerAngles, .75f);
         }
@@ -262,8 +254,7 @@ public class GameManager : MonoBehaviour
             opponentCardLeft = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
             opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardLeft.GetComponent<PlayingCard>().isPlayerCard = false; 
-            opponentCardLeft.transform.position = opponentCardDeck.transform.position;
-            opponentCardLeft.transform.rotation = opponentCardDeck.transform.rotation;
+            opponentCardLeft.transform.SetPositionAndRotation(opponentCardDeck.transform.position, opponentCardDeck.transform.rotation);
             opponentCardLeft.transform.LeanMove(opponentCardLeftPos.position, .75f);
             opponentCardLeft.transform.LeanRotate(opponentCardLeftPos.transform.eulerAngles, .75f);
         }
@@ -274,8 +265,7 @@ public class GameManager : MonoBehaviour
             opponentCardRight = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
             opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData());
             opponentCardRight.GetComponent<PlayingCard>().isPlayerCard = false; 
-            opponentCardRight.transform.position = opponentCardDeck.transform.position;
-            opponentCardRight.transform.rotation = opponentCardDeck.transform.rotation;
+            opponentCardRight.transform.SetPositionAndRotation(opponentCardDeck.transform.position, opponentCardDeck.transform.rotation);
             opponentCardRight.transform.LeanMove(opponentCardRightPos.position, .75f);
             opponentCardRight.transform.LeanRotate(opponentCardRightPos.transform.eulerAngles, .75f);
         }
@@ -350,6 +340,58 @@ public class GameManager : MonoBehaviour
     public CardData GenerateCardData()
     {
         return cardDatas[Random.Range(0, cardDatas.Length)];
+    }
+
+    public void HighlightCard(PlayingCard playingCard)
+    {
+        if (playingCard.gameObject == playerCardMid)
+        {
+            playerCardMid.GetComponent<PlayingCard>().isHighlighted = true;
+            playerCardMid.LeanMove(new Vector3(playerCardMid.transform.position.x, playerCardMid.transform.position.y + 2, playerCardMid.transform.position.z - 2), .25f);
+
+            if (playerCardLeft.GetComponent<PlayingCard>().isHighlighted)
+            {
+                playerCardLeft.LeanMove(playerCardLeftPos.transform.position, .25f);
+                playerCardLeft.GetComponent<PlayingCard>().isHighlighted = false;   
+            }
+            else if (playerCardRight.GetComponent<PlayingCard>().isHighlighted)
+            {
+                playerCardRight.LeanMove(playerCardRightPos.transform.position, .25f);
+                playerCardRight.GetComponent<PlayingCard>().isHighlighted = false;
+            }
+        }
+        else if (playingCard.gameObject == playerCardLeft)
+        {
+            playerCardLeft.GetComponent<PlayingCard>().isHighlighted = true;
+            playerCardLeft.LeanMove(new Vector3(playerCardLeft.transform.position.x, playerCardLeft.transform.position.y + 2, playerCardLeft.transform.position.z - 2), .25f);
+
+            if (playerCardMid.GetComponent<PlayingCard>().isHighlighted)
+            {
+                playerCardMid.LeanMove(playerCardMidPos.transform.position, .25f);
+                playerCardMid.GetComponent<PlayingCard>().isHighlighted = false;
+            }
+            else if (playerCardRight.GetComponent<PlayingCard>().isHighlighted)
+            {
+                playerCardRight.LeanMove(playerCardRightPos.transform.position, .25f);
+                playerCardRight.GetComponent<PlayingCard>().isHighlighted = false;
+            }
+        }
+        else if (playingCard.gameObject == playerCardRight)
+        {
+            playerCardRight.GetComponent<PlayingCard>().isHighlighted = true;
+            playerCardRight.LeanMove(new Vector3(playerCardRight.transform.position.x, playerCardRight.transform.position.y + 2, playerCardRight.transform.position.z - 2), .25f);
+
+            if (playerCardLeft.GetComponent<PlayingCard>().isHighlighted)
+            {
+                playerCardLeft.LeanMove(playerCardLeftPos.transform.position, .25f);
+                playerCardLeft.GetComponent<PlayingCard>().isHighlighted = false;
+            }
+            else if (playerCardMid.GetComponent<PlayingCard>().isHighlighted)
+            {
+                playerCardMid.LeanMove(playerCardMidPos.transform.position, .25f);
+                playerCardMid.GetComponent<PlayingCard>().isHighlighted = false;
+            }
+        }
     }
 
     //--------Card-----------

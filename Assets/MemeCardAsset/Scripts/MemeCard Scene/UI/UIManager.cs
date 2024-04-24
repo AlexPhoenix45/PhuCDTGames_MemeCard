@@ -6,6 +6,7 @@ using NaughtyAttributes;
 using TMPro;
 using System;
 using UnityEngine.Rendering;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,11 +17,11 @@ public class UIManager : MonoBehaviour
     public RectTransform navHidePos;
     public GameObject navigationButtons;
 
-    public Button shopBtn;
-    public Button collectionBtn;
-    public Button playBtn;
-    public Button missionBtn;
-    public Button settingBtn;
+    public UnityEngine.UI.Button shopBtn;
+    public UnityEngine.UI.Button collectionBtn;
+    public UnityEngine.UI.Button playBtn;
+    public UnityEngine.UI.Button missionBtn;
+    public UnityEngine.UI.Button settingBtn;
 
     public GameObject shopBtn_Selected_Background; 
     public GameObject collectionBtn_Selected_Background;
@@ -48,8 +49,14 @@ public class UIManager : MonoBehaviour
     public GameObject settingPnl;
     #endregion
 
+    #region Header
+    [Header("Header Attributes")]
+    public GameObject header;
+    public GameObject header_CoinContainer;
+    #endregion
+
     #region Question Attributes (Card Battle)
-    [Header("Question Attributes")]
+    [Header("Question (Card Battle) Attributes")]
     public GameObject questionHolder;
     public TextMeshProUGUI questionText;
     public RectTransform questionPos;
@@ -57,6 +64,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Point Slider Attributes (Card Battle)
+    [Header("Point Slider (Card Battle) Attributes")]
     public Slider pointSlider;
 
     public TextMeshProUGUI playerPointText;
@@ -70,6 +78,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Choosing Opponent (Card Battle)
+    [Header("Choosing Opponent (Card Battle) Attributes")]
     public GameObject choosingOpponent_Main;
 
     public GameObject choosingOpponent_Text;
@@ -92,10 +101,11 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region End Game Attributes (Card Battle)
+    [Header("End Game (Card Battle) Attributes")]
     public GameObject endGamePanel;
     public GameObject loseImage;
     public GameObject winImage;
-    public Button homeButton;
+    public UnityEngine.UI.Button homeButton;
     #endregion
 
     private void Start()
@@ -334,27 +344,32 @@ public class UIManager : MonoBehaviour
     public void ShowShopPanel()
     {
         SelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
+        ShowHeader();
     }
 
     public void ShowCollectionPanel()
     {
         SelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
+        ShowHeader();
     }
 
     public void ShowPlayPanel()
     {
         SelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
         EventController.OnSpawnOnTable();
+        ShowHeader();
     }
 
     public void ShowMissionPanel()
     {
         SelectedButton(missionBtn_Selected_Background, missionBtn_Selected_Icon, missionPnl);
+        ShowHeader();
     }
 
     public void ShowSettingPanel()
     {
         SelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
+        HideHeader();
     }
 
     //Other Methods
@@ -432,6 +447,36 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    #region Header
+    private void ShowHeader()
+    {
+        if (header.GetComponent<CanvasGroup>().alpha != 1)
+        {
+            LeanTween.value(0, 1, .5f).setOnUpdate((float value) =>
+            {
+                header.GetComponent<CanvasGroup>().alpha = value;
+            }).setOnComplete(() =>
+            {
+                header.GetComponent<CanvasGroup>().alpha = 1;
+            });
+        }
+    }
+
+    private void HideHeader()
+    {
+        if (header.GetComponent<CanvasGroup>().alpha != 0)
+        {
+            LeanTween.value(1, 0, .5f).setOnUpdate((float value) =>
+            {
+                header.GetComponent<CanvasGroup>().alpha = value;
+            }).setOnComplete(() =>
+            {
+                header.GetComponent<CanvasGroup>().alpha = 0;
+            });
+        }
+    }
+    #endregion
+
     #region Question (Card Battle)
     /// <summary>
     /// Show UI question card
@@ -466,8 +511,10 @@ public class UIManager : MonoBehaviour
     /// <param name="questData">Pass question data here</param>
     private void SetQuestion(QuestionData questData)
     {
-        questionText.GetComponent<I2.Loc.Localize>().SetTerm(questData.question);
-        //questionText.text = I2.Loc.LocalizationManager.GetTranslation(questData.question);
+        //questionText.GetComponent<I2.Loc.Localize>().SetTerm(questData.question);
+        string quest = questData.question;
+        quest.Replace(" ", "");
+        questionText.text = I2.Loc.LocalizationManager.GetTranslation(quest);
         print(questData.question);
         print(I2.Loc.LocalizationManager.GetTranslation(questData.question));
     }
@@ -492,8 +539,23 @@ public class UIManager : MonoBehaviour
             opponentFxs.SetActive(true);
         }
 
-        playerPointText.text = playerPoint.ToString();
-        opponentPointText.text = opponentPoint.ToString();
+        LeanTween.value(int.Parse(playerPointText.text), playerPoint, 1f).setEaseInOutCirc().setOnUpdate((float value) =>
+        {
+            int finalValue = (int)value;
+            playerPointText.text = finalValue.ToString();
+        }).setOnComplete(() =>
+        {
+            playerPointText.text = playerPoint.ToString();
+        });
+
+        LeanTween.value(int.Parse(opponentPointText.text), opponentPoint, 1f).setEaseInOutCirc().setOnUpdate((float value) =>
+        {
+            int finalValue = (int)value;
+            opponentPointText.text = finalValue.ToString();
+        }).setOnComplete(() =>
+        {
+            opponentPointText.text = opponentPoint.ToString();
+        });
 
         if (playerPoint == 0)
         {
@@ -577,7 +639,7 @@ public class UIManager : MonoBehaviour
     private void ChoosingOpponent()
     {
         choosingOpponent_Main.SetActive(true);
-        choosingOpponent_Text.gameObject.SetActive(true);
+        choosingOpponent_Text.SetActive(true);
         choosingOpponent_MidOpponent.SetActive(true);
         choosingOpponent_MidOpponent.SetActive(true);
         choosingOpponent_LeftOpponent.SetActive(true);
@@ -667,9 +729,21 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
             choosingOpponent_Main.SetActive(false);
             EventController.OnDrawStartingCard();
+            Restart();
         }
         StartCoroutine(chooseOpponent());
+
+        void Restart()
+        {
+            choosingOpponent_MidOpponent.transform.localScale = Vector3.one;
+            choosingOpponent_RightOpponent.transform.localScale = new Vector3(.8f, .8f, .8f);
+            choosingOpponent_LeftOpponent.transform.localScale = new Vector3(.8f, .8f, .8f);
+
+            choosingOpponent_RightOpponent.GetComponent<CanvasGroup>().alpha = 1.0f;
+            choosingOpponent_LeftOpponent.GetComponent<CanvasGroup>().alpha = 1.0f;
+        }
     }
+
     #endregion
 
     #region Game Over (Card Battle)
@@ -681,6 +755,7 @@ public class UIManager : MonoBehaviour
     {
         HideQuestion();
         HidePointSlider();
+        HideHeader();
         ShowGameOver_CardBattle(isPlayerWin);
 
         playerPointText.text = "0";

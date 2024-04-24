@@ -46,6 +46,15 @@ public class EventController
     public static event UnityAction <bool> CardBattleGameOver;
     public static void OnCardBattleGameOver(bool isPlayerWin) => CardBattleGameOver?.Invoke(isPlayerWin);
 
+    /// <summary>
+    /// Make the card appearance higher than the others
+    /// </summary>
+    public static event UnityAction <PlayingCard> HighlightCard;
+    public static void OnHighlightCard(PlayingCard playingCard) => HighlightCard?.Invoke(playingCard);
+
+    /// <summary>
+    /// Start Choose opponent animation
+    /// </summary>
     public static event UnityAction ChooseOpponent;
     public static void OnChooseOpponent() => ChooseOpponent?.Invoke();
     #endregion

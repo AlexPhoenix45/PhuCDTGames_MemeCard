@@ -26,12 +26,16 @@ public class PlayingCard : MonoBehaviour
 
     public bool isPlayed = false;
 
+    public bool isHighlighted;
+
     private bool readyToPlay = false;
 
     private void OnEnable()
     {
-        EventController.CardReadyToPlay += setCardReadyToPlay;
+        EventController.CardReadyToPlay += SetCardReadyToPlay;
         EventController.TurnTableCam += StartSecondTurn; //This is called for second turn
+
+        isHighlighted = false;
     }
 
     private void StartSecondTurn() //Turn two of playing card
@@ -52,7 +56,7 @@ public class PlayingCard : MonoBehaviour
         }
     }
 
-    private void setCardReadyToPlay()
+    private void SetCardReadyToPlay()
     {
         IEnumerator wait()
         {
@@ -97,8 +101,7 @@ public class PlayingCard : MonoBehaviour
     /// </summary>
     [Button]
     public void PlayThisCard()
-    {
-        if (readyToPlay)
+    { if (readyToPlay)
         {
             isPlayed = true;
             //this is when player select and play a card
@@ -112,11 +115,6 @@ public class PlayingCard : MonoBehaviour
                 EventController.OnTurnAudienceCam();
             }
             StartCoroutine(waitToChangeCam());
-
-            if (!isPlayerCard)
-            {
-
-            }
         }
 
     }
@@ -126,7 +124,12 @@ public class PlayingCard : MonoBehaviour
     /// </summary>
     private void OnMouseDown() 
     {
-        if (readyToPlay && isPlayerCard)
+
+        if (readyToPlay && !isHighlighted)
+        {
+            EventController.OnHighlightCard(this);
+        }
+        else if (readyToPlay && isPlayerCard)
         {
             isPlayed = true;
             //this is when player select and play a card
@@ -140,17 +143,12 @@ public class PlayingCard : MonoBehaviour
                 EventController.OnTurnAudienceCam();
             }
             StartCoroutine(waitToChangeCam());
-
-            if (!isPlayerCard)
-            {
-
-            }
         }
     }
 
     private void OnDisable()
     {
-        EventController.CardReadyToPlay -= setCardReadyToPlay;
+        EventController.CardReadyToPlay -= SetCardReadyToPlay;
         EventController.TurnTableCam -= StartSecondTurn; 
     }
 }
