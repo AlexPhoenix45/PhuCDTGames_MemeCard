@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     public UnityEngine.UI.Button missionBtn;
     public UnityEngine.UI.Button settingBtn;
 
-    public GameObject shopBtn_Selected_Background; 
+    public GameObject shopBtn_Selected_Background;
     public GameObject collectionBtn_Selected_Background;
     public GameObject playBtn_Selected_Background;
     public GameObject missionBtn_Selected_Background;
@@ -67,12 +67,12 @@ public class UIManager : MonoBehaviour
     [Header("Point Slider (Card Battle) Attributes")]
     public Slider pointSlider;
 
-    public TextMeshProUGUI playerPointText;
-    public TextMeshProUGUI opponentPointText;
-    public TextMeshProUGUI opponentNameText;
+    public TextMeshProUGUI pointSlider_playerPointText;
+    public TextMeshProUGUI pointSlider_opponentPointText;
+    public TextMeshProUGUI pointSlider_opponentNameText;
 
-    public GameObject playerFxs;
-    public GameObject opponentFxs;
+    public GameObject pointSlider_playerFxs;
+    public GameObject pointSlider_opponentFxs;
 
     public CanvasGroup pointSliderAlpha;
     #endregion
@@ -103,12 +103,21 @@ public class UIManager : MonoBehaviour
     public OpponentData[] opponentDatas;
     #endregion
 
-    #region End Game Attributes (Card Battle)
+    #region Game Over Attributes (Card Battle)
     [Header("End Game (Card Battle) Attributes")]
     public GameObject endGamePanel;
     public GameObject loseImage;
     public GameObject winImage;
     public UnityEngine.UI.Button homeButton;
+    #endregion
+
+    #region Multiplier Bar
+    [Header("Multiplier Bar")]
+    public GameObject multiplierBar_cursor;
+    private int multiplierBar_minBarPosY = -470;
+    private int multiplierBar_maxBarPosY = 470;
+    private bool multiplierBar_rtlMove;
+    private bool multiplierBar_isMoving;
     #endregion
 
     private void Start()
@@ -425,14 +434,14 @@ public class UIManager : MonoBehaviour
             r.color = c;
         });
 
-        unSelectedIcon.GetComponent<RectTransform>().LeanMoveY(60f, .25f).setEaseInOutCubic().setOnStart(() => 
-        { 
-            shopBtn.interactable = false; 
+        unSelectedIcon.GetComponent<RectTransform>().LeanMoveY(60f, .25f).setEaseInOutCubic().setOnStart(() =>
+        {
+            shopBtn.interactable = false;
             collectionBtn.interactable = false;
             playBtn.interactable = false;
             missionBtn.interactable = false;
             settingBtn.interactable = false;
-        }).setOnComplete(() => 
+        }).setOnComplete(() =>
         {
             IEnumerator wait()
             {
@@ -530,72 +539,93 @@ public class UIManager : MonoBehaviour
     /// <param name="arg0"></param>
     private void PointExecuterUI(int playerPoint, int opponentPoint)
     {
-        if (playerPointText.text != playerPoint.ToString())
+        //Enable Fxs
+        if (pointSlider_playerPointText.text != playerPoint.ToString())
         {
-            playerFxs.SetActive(true);
-            opponentFxs.SetActive(false);
+            pointSlider_playerFxs.SetActive(true);
+            pointSlider_opponentFxs.SetActive(false);
         }
-        else if (opponentPointText.text != opponentPoint.ToString()) 
+        else if (pointSlider_opponentPointText.text != opponentPoint.ToString())
         {
-            playerFxs.SetActive(false);
-            opponentFxs.SetActive(true);
+            pointSlider_playerFxs.SetActive(false);
+            pointSlider_opponentFxs.SetActive(true);
         }
 
-        LeanTween.value(int.Parse(playerPointText.text), playerPoint, 1f).setEaseInOutCirc().setOnUpdate((float value) =>
+        //Point Smooth Transition
         {
-            int finalValue = (int)value;
-            playerPointText.text = finalValue.ToString();
-        }).setOnComplete(() =>
-        {
-            playerPointText.text = playerPoint.ToString();
-        });
+            LeanTween.value(int.Parse(pointSlider_playerPointText.text), playerPoint, 1f).setEaseInOutCirc().setOnUpdate((float value) =>
+            {
+                int finalValue = (int)value;
+                pointSlider_playerPointText.text = finalValue.ToString();
+            }).setOnComplete(() =>
+            {
+                pointSlider_playerPointText.text = playerPoint.ToString();
+            });
 
-        LeanTween.value(int.Parse(opponentPointText.text), opponentPoint, 1f).setEaseInOutCirc().setOnUpdate((float value) =>
-        {
-            int finalValue = (int)value;
-            opponentPointText.text = finalValue.ToString();
-        }).setOnComplete(() =>
-        {
-            opponentPointText.text = opponentPoint.ToString();
-        });
+            LeanTween.value(int.Parse(pointSlider_opponentPointText.text), opponentPoint, 1f).setEaseInOutCirc().setOnUpdate((float value) =>
+            {
+                int finalValue = (int)value;
+                pointSlider_opponentPointText.text = finalValue.ToString();
+            }).setOnComplete(() =>
+            {
+                pointSlider_opponentPointText.text = opponentPoint.ToString();
+            });
+        }
 
         if (playerPoint == 0)
         {
             if (opponentPoint == 0)
             {
-                SliderPointUpdate(pointSlider.value, 50);
+                SliderPointUpdate();
             }
             else if (opponentPoint != 0)
             {
-                SliderPointUpdate(pointSlider.value, 20);
+                SliderPointUpdate();
             }
         }
         else if (playerPoint != 0)
         {
             if (opponentPoint == 0)
             {
-                SliderPointUpdate(pointSlider.value, 80);
+                SliderPointUpdate();
             }
             else if (opponentPoint != 0)
             {
                 if (playerPoint < opponentPoint)
                 {
-                    SliderPointUpdate(pointSlider.value, 35);
+                    SliderPointUpdate();
                 }
                 else if (playerPoint > opponentPoint)
                 {
-                    SliderPointUpdate(pointSlider.value, 65);
+                    SliderPointUpdate();
                 }
                 else
                 {
-                    SliderPointUpdate(pointSlider.value, 50);
+                    SliderPointUpdate();
                 }
             }
         }
 
-        void SliderPointUpdate(float valueStart, int valueEnd)
+        void SliderPointUpdate()
         {
             float duration = 1f;
+
+            float valueEnd;
+            float valueStart = pointSlider.value;
+
+            if (playerPoint > opponentPoint)
+            {
+                valueEnd = 50 + ((playerPoint - opponentPoint) / 2) > 80 ? valueEnd = 80 : valueEnd = 50 + ((playerPoint - opponentPoint) / 2);
+            }
+            else if (playerPoint < opponentPoint)
+            {
+                valueEnd = (opponentPoint - playerPoint) / 2 < 20 ? valueEnd = 20 : valueEnd = (opponentPoint - playerPoint) / 2;
+            }
+            else
+            {
+                valueEnd = 50;
+            }
+
             IEnumerator ChangeSpeed()
             {
                 float elapsed = 0.0f;
@@ -738,7 +768,7 @@ public class UIManager : MonoBehaviour
             LeanTween.value(1, 1.5f, 1f).setOnUpdate((float value) =>
             {
                 choosingOpponent_MidOpponent.transform.localScale = new Vector3(value, value, value);
-                opponentNameText.text = choosingOpponent_MidOpponent_Text.text;
+                pointSlider_opponentNameText.text = choosingOpponent_MidOpponent_Text.text;
             });
 
             LeanTween.value(1, 0, 1f).setOnUpdate((float value) =>
@@ -752,7 +782,7 @@ public class UIManager : MonoBehaviour
             {
                 choosingOpponent_LeftOpponent.SetActive(false);
                 choosingOpponent_RightOpponent.SetActive(false);
-            }); 
+            });
 
             yield return new WaitForSeconds(3f);
             choosingOpponent_Main.SetActive(false);
@@ -774,7 +804,7 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    #region Game Over (Card Battle)
+    #region Game Over - Reset Variables (Card Battle)
     /// <summary>
     /// Call this when game is over
     /// </summary>
@@ -786,8 +816,8 @@ public class UIManager : MonoBehaviour
         HideHeader();
         ShowGameOver_CardBattle(isPlayerWin);
 
-        playerPointText.text = "0";
-        opponentPointText.text = "0";
+        pointSlider_playerPointText.text = "0";
+        pointSlider_opponentPointText.text = "0";
 
         pointSlider.value = 50;
     }
@@ -856,6 +886,54 @@ public class UIManager : MonoBehaviour
             ShowNavigationButton();
         }
         StartCoroutine(wait());
+    }
+    #endregion
+
+    #region Multiplier Bar
+    [Button]
+    private void MultiplierBar_CursorMove()
+    {
+        multiplierBar_rtlMove = true;
+        int currentValue = 0;
+        StartCoroutine(move());
+        IEnumerator move()
+        {
+            float time = 0f;
+            do
+            {
+                if (multiplierBar_rtlMove && !multiplierBar_isMoving)
+                {
+                    LeanTween.value(multiplierBar_minBarPosY, multiplierBar_maxBarPosY, 1f).setOnUpdate((float value) =>
+                    {
+                        multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
+                        multiplierBar_isMoving = true;
+                        currentValue = (int)value;
+                    }).setOnComplete(() =>
+                    {
+                        multiplierBar_rtlMove = false;
+                        multiplierBar_isMoving = false;
+                    });
+                }
+                else if (!multiplierBar_rtlMove && !multiplierBar_isMoving)
+                {
+                    LeanTween.value(multiplierBar_maxBarPosY, multiplierBar_minBarPosY, 1f).setOnUpdate((float value) =>
+                    {
+                        multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
+                        multiplierBar_isMoving = true;
+                        currentValue = (int)value;
+                    }).setOnComplete(() => 
+                    {
+                        multiplierBar_rtlMove = true;
+                        multiplierBar_isMoving = false;
+                    });
+                }
+
+                print(currentValue);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            while (time < 10f);
+        }
     }
     #endregion
     private void OnDisable()

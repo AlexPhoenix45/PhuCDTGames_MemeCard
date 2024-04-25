@@ -43,8 +43,10 @@ public class GameManager : MonoBehaviour
     private GameObject playerPlacedCard;
     private GameObject opponentPlacedCard;
 
-    private int timeCardUnFitEmotion = 0;
-    public int timeAllowGetUnFitEmotion = 0;
+    public int timeCardUnFitEmotion_Player = 0;
+    public int timeCardUnFitEmotion_Opponent = 0;
+    public int timeAllowGetUnFitEmotion_Player = 0;
+    public int timeAllowGetUnFitEmotion_Opponent = 0;
     #endregion
 
     #region Question Attributes
@@ -61,16 +63,25 @@ public class GameManager : MonoBehaviour
 
     #region Players Attributes
     //[HideInInspector]
-    public int playerPoint;
+    private int playerPoint;
 
     //[HideInInspector]
-    public int opponentPoint;
+    private int opponentPoint;
     #endregion
 
     #region Game Attributes
 
-    public int CardBattle_RoundCount = 0;
+    private int CardBattle_RoundCount = 0;
 
+    #endregion
+
+    #region Point Attributes
+    private int commonCardPointMin = 10;
+    private int commonCardPointMax = 30;
+    private int rareCardPointMin = 30;
+    private int rareCardPointMax = 60;
+    private int epicCardPointMin = 60;
+    private int epicCardPointMax = 100;
     #endregion
 
     #endregion
@@ -114,7 +125,8 @@ public class GameManager : MonoBehaviour
     {
         EventController.OnChooseOpponent();
         GenerateQuestionData();
-        timeAllowGetUnFitEmotion = UnityEngine.Random.Range(1, 4);
+        timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4);
+        timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4);
         //Call choose opponent in UI Controller, then it will call DrawCard and RoundCount
         CardBattle_RoundCount++;
     }
@@ -188,6 +200,11 @@ public class GameManager : MonoBehaviour
             opponentCardMid.GetComponent<PlayingCard>().placePos = opponentPlacingPos;
             opponentCardLeft.GetComponent<PlayingCard>().placePos = opponentPlacingPos;
             opponentCardRight.GetComponent<PlayingCard>().placePos = opponentPlacingPos;
+
+            //Reset Generate Data
+            timeCardUnFitEmotion_Player = 0;
+            timeCardUnFitEmotion_Opponent = 0;
+
             yield return new WaitForSeconds(.75f);
             DrawQuestion();
             EventController.OnBotSetCard(opponentCardMid, opponentCardLeft, opponentCardRight);
@@ -282,6 +299,10 @@ public class GameManager : MonoBehaviour
         opponentCardMid.GetComponent<PlayingCard>().placePos = opponentPlacingPos;
         opponentCardLeft.GetComponent<PlayingCard>().placePos = opponentPlacingPos;
         opponentCardRight.GetComponent<PlayingCard>().placePos = opponentPlacingPos;
+
+        //Reset Generate Data
+        timeCardUnFitEmotion_Player = 0;
+        timeCardUnFitEmotion_Opponent = 0;
     }
     
     /// <summary>
@@ -325,6 +346,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Renew card data for second turn
     /// </summary>
+    [Button]
     public void RenewCard()
     {
         playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
@@ -333,6 +355,10 @@ public class GameManager : MonoBehaviour
         opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
         opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
         opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
+
+        //Reset Generate Data
+        timeCardUnFitEmotion_Player = 0;
+        timeCardUnFitEmotion_Opponent = 0;
 
         EventController.OnBotSetCard(opponentCardMid, opponentCardLeft, opponentCardRight);
     }
@@ -343,147 +369,162 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public CardData GenerateCardData(bool isForPlayer)
     {
-        //About rarity af the card
-        CardData CardSpawningMechanism()
+        //About rarity of the card
+        CardData CardSpawningMechanism(bool isForced)
         {
-            int percentage = UnityEngine.Random.Range(0, 100);
-
-            CardData tempCard; //create new empty card
-
-            if (percentage >= 0 && percentage < 50)
+            if (!isForced)
             {
-                do
-                {
-                    tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
-                }
-                while (tempCard.rarityType != RarityType.Common);
-            }
-            else if (percentage >= 50 && percentage < 85)
-            {
-                do
-                {
-                    tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
-                }
-                while (tempCard.rarityType != RarityType.Rare);
-            }
-            else
-            {
-                do
-                {
-                    tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
-                }
-                while (tempCard.rarityType != RarityType.Epic);
-            }
+                int percentage = UnityEngine.Random.Range(0, 100);
 
-            return tempCard;
-        }
+                CardData tempCard; //create new empty card
 
-        if (currentQuestionData != null && isForPlayer) //for player generating
-        {
-            CardData tempCardData = CardSpawningMechanism(); //first spawn a random card
-
-            //This part avoid card not to duplicate
-            {
-                if (playerCardMid != null && tempCardData == playerCardMid.GetComponent<PlayingCard>().cardData)
+                if (percentage >= 0 && percentage < 50)
                 {
-                    GenerateCardData(true);
-                }
-                else if (playerCardMid != null && tempCardData == playerCardMid.GetComponent<PlayingCard>().cardData)
-                {
-                    GenerateCardData(true);
-                }
-                else if (playerCardMid != null && tempCardData == playerCardMid.GetComponent<PlayingCard>().cardData)
-                {
-                    GenerateCardData(true);
-                }
-            }
-
-            //This part is to generate at least ONE correct amotional type Card
-            {
-                if (tempCardData.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType) //if not fit emotional type
-                {
-                    if (timeCardUnFitEmotion == timeAllowGetUnFitEmotion - 1) //this is when it reached enough time not get the correct emotion
+                    do
                     {
-                        do //generate until get the correct one
-                        {
-                            tempCardData = GenerateCardData(true);
-                        }
-                        while (tempCardData.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
-
-                        timeCardUnFitEmotion++;
-
-                        return tempCardData; 
+                        tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
                     }
-                    else
+                    while (tempCard.rarityType != RarityType.Common);
+                }
+                else if (percentage >= 50 && percentage < 85)
+                {
+                    do
                     {
-                        timeCardUnFitEmotion++;
-
-                        return tempCardData;
+                        tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
                     }
+                    while (tempCard.rarityType != RarityType.Rare);
                 }
                 else
                 {
-                    timeCardUnFitEmotion = 999; //No need to watch this parameter
+                    do
+                    {
+                        tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
+                    }
+                    while (tempCard.rarityType != RarityType.Epic);
+                }
 
-                    return tempCardData;
+                return tempCard;
+            }
+            else
+            {
+                int percentage = UnityEngine.Random.Range(0, 100);
+
+                CardData tempCard; //create new empty card
+
+                if (percentage >= 0 && percentage < 50)
+                {
+                    do
+                    {
+                        tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
+                    }
+                    while (tempCard.rarityType != RarityType.Common || tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
+                    print(tempCard.playingCardEmotionalType + " " + currentQuestionData.questionCardEmotionalType);
+                }
+                else if (percentage >= 50 && percentage < 85)
+                {
+                    do
+                    {
+                        tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
+                    }
+                    while (tempCard.rarityType != RarityType.Rare || tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
+                    print(tempCard.playingCardEmotionalType + " " + currentQuestionData.questionCardEmotionalType);
+                }
+                else
+                {
+                    do
+                    {
+                        tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
+                    }
+                    while (tempCard.rarityType != RarityType.Epic || tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
+                    print(tempCard.playingCardEmotionalType + " " + currentQuestionData.questionCardEmotionalType);
+                }
+
+                return tempCard;
+            }
+        } //Rarity spawn
+
+        bool DuplicateCheck(CardData tempCard, bool isforPlayer)
+        {
+            if (isForPlayer)
+            {
+                if (playerCardMid != null && tempCard == playerCardMid.GetComponent<PlayingCard>().cardData)
+                {
+                    return false;
+                }
+                else if (playerCardLeft != null && tempCard == playerCardLeft.GetComponent<PlayingCard>().cardData)
+                {
+                    return false;
+                }
+                else if (playerCardRight != null && tempCard == playerCardRight.GetComponent<PlayingCard>().cardData)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
-        }
-        else if (currentQuestionData != null && !isForPlayer) //for bot generating
+            else
+            {
+                if (opponentCardMid != null && tempCard == opponentCardMid.GetComponent<PlayingCard>().cardData)
+                {
+                    return false;
+                }
+                else if (opponentCardLeft != null && tempCard == opponentCardLeft.GetComponent<PlayingCard>().cardData)
+                {
+                    return false;
+                }
+                else if (opponentCardRight != null && tempCard == opponentCardRight.GetComponent<PlayingCard>().cardData)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        } //Duplicate check
+
+        CardData tempCard;
+
+        if (isForPlayer)
         {
+            do
+            {
+                tempCard = CardSpawningMechanism(false);
+            }
+            while (!DuplicateCheck(tempCard, true));
 
-            CardData tempCardData = CardSpawningMechanism(); //first spawn a random card
-            return tempCardData;
+            if (tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType)
+            {
+                timeCardUnFitEmotion_Player++;
+            }
 
-            ////This part avoid card not to duplicate
-            //{
-            //    if (opponentCardMid != null && tempCardData == opponentCardMid.GetComponent<PlayingCard>().cardData)
-            //    {
-            //        GenerateCardData(false);
-            //    }
-            //    else if (opponentCardMid != null && tempCardData == opponentCardMid.GetComponent<PlayingCard>().cardData)
-            //    {
-            //        GenerateCardData(false);
-            //    }
-            //    else if (opponentCardMid != null && tempCardData == opponentCardMid.GetComponent<PlayingCard>().cardData)
-            //    {
-            //        GenerateCardData(false);
-            //    }
-            //}
-
-            ////This part is to generate at least ONE correct amotional type Card
-            //{
-            //    if (tempCardData.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType) //if not fit emotional type
-            //    {
-            //        if (timeCardUnFitEmotion == timeAllowGetUnFitEmotion - 1) //this is when it reached enough time not get the correct emotion
-            //        {
-            //            do //generate until get the correct one
-            //            {
-            //                tempCardData = GenerateCardData(false);
-            //            }
-            //            while (tempCardData.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
-
-            //            timeCardUnFitEmotion++;
-
-            //            return tempCardData;
-            //        }
-            //        else
-            //        {
-            //            timeCardUnFitEmotion++;
-
-            //            return tempCardData;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        timeCardUnFitEmotion = 999; //No need to watch this parameter
-
-            //        return tempCardData;
-            //    }
-            //}
+            if (timeCardUnFitEmotion_Player == timeAllowGetUnFitEmotion_Player)
+            {
+                tempCard = CardSpawningMechanism(true);
+            }
+            return tempCard;
         }
         else
-            return null;
+        {
+            do
+            {
+                tempCard = CardSpawningMechanism(false);
+            }
+            while (!DuplicateCheck(tempCard, false));
+
+            if (tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType)
+            {
+                timeCardUnFitEmotion_Opponent++;
+            }
+
+            if (timeCardUnFitEmotion_Opponent == timeAllowGetUnFitEmotion_Opponent)
+            {
+                tempCard = CardSpawningMechanism(true);
+            }
+            return tempCard;
+        }
     }
 
     public void HighlightCard(PlayingCard playingCard)
@@ -588,8 +629,10 @@ public class GameManager : MonoBehaviour
             CardBattle_RoundCount++;
 
             //This part is or generating card
-            timeCardUnFitEmotion = 0;
-            timeAllowGetUnFitEmotion = UnityEngine.Random.Range(1, 4); //From 1 - 3
+            timeCardUnFitEmotion_Player = 0;
+            timeCardUnFitEmotion_Opponent = 0;
+            timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4); //From 1 - 3
+            timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4); //From 1 - 3
         }
         else
         {
@@ -599,14 +642,18 @@ public class GameManager : MonoBehaviour
                 CardBattle_RoundCount++;
 
                 //This part is or generating card
-                timeCardUnFitEmotion = 0;
-                timeAllowGetUnFitEmotion = UnityEngine.Random.Range(1, 4); //From 1 - 3
+                timeCardUnFitEmotion_Player = 0;
+                timeCardUnFitEmotion_Opponent = 0;
+                timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4); //From 1 - 3
+                timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4); //From 1 - 3
             }
             else
             {
-                timeCardUnFitEmotion = 0;
-                timeAllowGetUnFitEmotion = UnityEngine.Random.Range(1, 4); //From 1 - 3
-                
+                timeCardUnFitEmotion_Player = 0;
+                timeCardUnFitEmotion_Opponent = 0;
+                timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4); //From 1 - 3
+                timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4); //From 1 - 3
+
                 if (playerPoint > opponentPoint)
                 {
                     EventController.OnCardBattleGameOver(true);
@@ -631,37 +678,56 @@ public class GameManager : MonoBehaviour
     /// <param name="card"></param>
     public void ExecutingPoint(PlayingCard card)
     {
-        if (card.cardData.playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+        //Executign point based on rarity and emotional fitting
+        if (card.cardData.rarityType == RarityType.Common)
         {
-            if (card.cardData.rarityType == RarityType.Common)
+            if (card.cardData.playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
             {
-                AddPoint(20);
+                AddPoint(commonCardPointMin, commonCardPointMax);
             }
-            else if (card.cardData.rarityType == RarityType.Rare)
+            else
             {
-                AddPoint(30);
-            }
-            else if (card.cardData.rarityType == RarityType.Epic)
-            {
-                AddPoint(50);
+                AddPoint(commonCardPointMin / 2, commonCardPointMax / 2);
             }
         }
-        else
+        else if (card.cardData.rarityType == RarityType.Rare)
         {
-            AddPoint(5);
+            if (card.cardData.playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+            {
+                AddPoint(rareCardPointMin, rareCardPointMax);
+            }
+            else
+            {
+                AddPoint(rareCardPointMin / 2, rareCardPointMax / 2);
+            }
+        }
+        else if (card.cardData.rarityType == RarityType.Epic)
+        {
+            if (card.cardData.playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+            {
+                AddPoint(epicCardPointMin, epicCardPointMax);
+            }
+            else
+            {
+                AddPoint(epicCardPointMin / 2, epicCardPointMax / 2);
+            }
         }
 
         EventController.OnExecutingPointToUI(playerPoint, opponentPoint);
 
-        void AddPoint(int addedPoint)
+        void AddPoint(int min, int max)
         {
             if (card.isPlayerCard)
             {
-                playerPoint += addedPoint;
+                int tempPoint = UnityEngine.Random.Range(min, max + 1);
+                print(tempPoint);
+                playerPoint += tempPoint;
             }
             else
             {
-                opponentPoint += addedPoint;
+                int tempPoint = UnityEngine.Random.Range(min, max + 1);
+                print(tempPoint);
+                opponentPoint += tempPoint;
             }
         }
     }
