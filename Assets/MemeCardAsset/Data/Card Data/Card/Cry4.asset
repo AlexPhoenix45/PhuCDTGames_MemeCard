@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d91be7c0b93b014cb19fcc680b8239e, type: 3}
   m_Name: Cry4
   m_EditorClassIdentifier: 
-  memeImage: {fileID: 2100000, guid: e3aaf8099f196054ba655dfd484c662a, type: 2}
+  memeMaterial: {fileID: 2100000, guid: e3aaf8099f196054ba655dfd484c662a, type: 2}
+  memeImage: {fileID: 21300000, guid: 9c4769394cce35a4b9e10afa197a04ce, type: 3}
   memeGif: {fileID: 0}
-  cardType: 0
+  rarityType: 0
   playingCardEmotionalType: 4

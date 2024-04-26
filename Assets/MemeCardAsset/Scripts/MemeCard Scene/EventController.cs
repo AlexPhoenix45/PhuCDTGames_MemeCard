@@ -57,6 +57,9 @@ public class EventController
     /// </summary>
     public static event UnityAction ChooseOpponent;
     public static void OnChooseOpponent() => ChooseOpponent?.Invoke();
+
+    public static event UnityAction GetCardCollection;
+    public static void OnGetCardCollection() => GetCardCollection?.Invoke();
     #endregion
 
     #region Question

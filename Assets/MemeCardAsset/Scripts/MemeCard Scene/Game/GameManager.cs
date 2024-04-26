@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,10 +44,18 @@ public class GameManager : MonoBehaviour
     private GameObject playerPlacedCard;
     private GameObject opponentPlacedCard;
 
-    public int timeCardUnFitEmotion_Player = 0;
-    public int timeCardUnFitEmotion_Opponent = 0;
-    public int timeAllowGetUnFitEmotion_Player = 0;
-    public int timeAllowGetUnFitEmotion_Opponent = 0;
+    private int timeCardUnFitEmotion_Player = 0;
+    private int timeCardUnFitEmotion_Opponent = 0;
+    private int timeAllowGetUnFitEmotion_Player = 0;
+    private int timeAllowGetUnFitEmotion_Opponent = 0;
+
+    public static List<CardData> laughCardList = new List<CardData>();
+    public static List<CardData> angryCardList = new List<CardData>();
+    public static List<CardData> susCardList = new List<CardData>();
+    public static List<CardData> cryCardList = new List<CardData>();
+    public static List<CardData> surpriseCardList = new List<CardData>();
+    public static List<CardData> coolCardList = new List<CardData>();
+
     #endregion
 
     #region Question Attributes
@@ -76,12 +85,12 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Point Attributes
-    private int commonCardPointMin = 10;
-    private int commonCardPointMax = 30;
-    private int rareCardPointMin = 30;
-    private int rareCardPointMax = 60;
-    private int epicCardPointMin = 60;
-    private int epicCardPointMax = 100;
+    private readonly int commonCardPointMin = 10;
+    private readonly int commonCardPointMax = 30;
+    private readonly int rareCardPointMin = 30;
+    private readonly int rareCardPointMax = 60;
+    private readonly int epicCardPointMin = 60;
+    private readonly int epicCardPointMax = 100;
     #endregion
 
     #endregion
@@ -100,6 +109,8 @@ public class GameManager : MonoBehaviour
         EventController.DrawStartingCard += DrawCard; //Draw Starting card, called by ChoosingOpponent in UI Controller
 
         EventController.HighlightCard += HighlightCard;
+
+        EventController.GetCardCollection += GetCardCollection;
 
         //doi cardbattleturntwo thanh` turntwoafter drawing question
 
@@ -132,7 +143,6 @@ public class GameManager : MonoBehaviour
     }
 
     #region Card
-    //--------Card-----------
     /// <summary>
     /// First round card drawing
     /// </summary>
@@ -443,7 +453,7 @@ public class GameManager : MonoBehaviour
             }
         } //Rarity spawn
 
-        bool DuplicateCheck(CardData tempCard, bool isforPlayer)
+        bool DuplicateCheck(CardData tempCard)
         {
             if (isForPlayer)
             {
@@ -493,7 +503,7 @@ public class GameManager : MonoBehaviour
             {
                 tempCard = CardSpawningMechanism(false);
             }
-            while (!DuplicateCheck(tempCard, true));
+            while (!DuplicateCheck(tempCard));
 
             if (tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType)
             {
@@ -512,7 +522,7 @@ public class GameManager : MonoBehaviour
             {
                 tempCard = CardSpawningMechanism(false);
             }
-            while (!DuplicateCheck(tempCard, false));
+            while (!DuplicateCheck(tempCard));
 
             if (tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType)
             {
@@ -579,7 +589,107 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //--------Card-----------
+    private void GetCardCollection()
+    {
+        laughCardList = new List<CardData>();
+        angryCardList = new List<CardData>();
+        susCardList = new List<CardData>();
+        cryCardList = new List<CardData>();
+        surpriseCardList = new List<CardData>();
+        coolCardList = new List<CardData>();
+
+        //Common card Filter
+        foreach (CardData card in cardDatas)
+        {
+            if (card.playingCardEmotionalType == EmotionalType.Laugh && card.rarityType == RarityType.Common)
+            {
+                laughCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Angry && card.rarityType == RarityType.Common)
+            {
+                angryCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Sus && card.rarityType == RarityType.Common)
+            {
+                susCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Cry && card.rarityType == RarityType.Common)
+            {
+                cryCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Surprise && card.rarityType == RarityType.Common)
+            {
+                surpriseCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Cool && card.rarityType == RarityType.Common)
+            {
+                coolCardList.Add(card);
+            }
+        }
+
+        foreach (CardData card in cardDatas)
+        {
+            if (card.playingCardEmotionalType == EmotionalType.Laugh && card.rarityType == RarityType.Rare)
+            {
+                laughCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Angry && card.rarityType == RarityType.Rare)
+            {
+                angryCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Sus && card.rarityType == RarityType.Rare)
+            {
+                susCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Cry && card.rarityType == RarityType.Rare)
+            {
+                cryCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Surprise && card.rarityType == RarityType.Rare)
+            {
+                surpriseCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Cool && card.rarityType == RarityType.Rare)
+            {
+                coolCardList.Add(card);
+            }
+        }
+
+        foreach (CardData card in cardDatas)
+        {
+            if (card.playingCardEmotionalType == EmotionalType.Laugh && card.rarityType == RarityType.Epic)
+            {
+                laughCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Angry && card.rarityType == RarityType.Epic)
+            {
+                angryCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Sus && card.rarityType == RarityType.Epic)
+            {
+                susCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Cry && card.rarityType == RarityType.Epic)
+            {
+                cryCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Surprise && card.rarityType == RarityType.Epic)
+            {
+                surpriseCardList.Add(card);
+            }
+            else if (card.playingCardEmotionalType == EmotionalType.Cool && card.rarityType == RarityType.Epic)
+            {
+                coolCardList.Add(card);
+            }
+        }
+
+        print("laughCardList " + laughCardList.Count);
+        print("angryCardList " + angryCardList.Count);
+        print("susCardList " + susCardList.Count);
+        print("cryCardList " + cryCardList.Count);
+        print("coolCardList " + coolCardList.Count);
+    }
+
     #endregion
 
     #region Question

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d91be7c0b93b014cb19fcc680b8239e, type: 3}
   m_Name: Cool4
   m_EditorClassIdentifier: 
-  memeImage: {fileID: 2100000, guid: d5da5ea3bc1237e4b8dc8df6185806d0, type: 2}
+  memeMaterial: {fileID: 2100000, guid: d5da5ea3bc1237e4b8dc8df6185806d0, type: 2}
+  memeImage: {fileID: 21300000, guid: 3d126651727236a41b971ae3b1b4c8ed, type: 3}
   memeGif: {fileID: 0}
-  cardType: 0
+  rarityType: 0
   playingCardEmotionalType: 1

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d91be7c0b93b014cb19fcc680b8239e, type: 3}
   m_Name: Sus7
   m_EditorClassIdentifier: 
-  memeImage: {fileID: 2100000, guid: 28a602e1d838cb04683230f0decd65eb, type: 2}
+  memeMaterial: {fileID: 2100000, guid: 28a602e1d838cb04683230f0decd65eb, type: 2}
+  memeImage: {fileID: 21300000, guid: 2f9b42917947edb4a8960df5595b25a2, type: 3}
   memeGif: {fileID: 0}
   rarityType: 1
   playingCardEmotionalType: 5

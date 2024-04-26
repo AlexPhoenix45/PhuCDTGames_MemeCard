@@ -105,10 +105,10 @@ public class UIManager : MonoBehaviour
 
     #region Game Over Attributes (Card Battle)
     [Header("End Game (Card Battle) Attributes")]
-    public GameObject endGamePanel;
-    public GameObject loseImage;
-    public GameObject winImage;
-    public UnityEngine.UI.Button homeButton;
+    public GameObject losePanel;
+    public GameObject winPanel;
+
+
     #endregion
 
     #region Multiplier Bar
@@ -118,6 +118,8 @@ public class UIManager : MonoBehaviour
     private int multiplierBar_maxBarPosY = 470;
     private bool multiplierBar_rtlMove;
     private bool multiplierBar_isMoving;
+    private int multiplierBar_currentValue;
+    private bool multiplierBar_stop = false;
     #endregion
 
     private void Start()
@@ -822,50 +824,20 @@ public class UIManager : MonoBehaviour
         pointSlider.value = 50;
     }
 
+    //Game Over Panel
     private void ShowGameOver_CardBattle(bool isPlayerWin)
     {
-        endGamePanel.SetActive(true);
-        winImage.SetActive(false);
-        loseImage.SetActive(false);
-        homeButton.gameObject.SetActive(false);
-        homeButton.interactable = false;
-
-        LeanTween.value(0, 1, .5f).setOnUpdate((float value) =>
+        if (isPlayerWin)
         {
-            endGamePanel.GetComponent<Image>().color = new Vector4(1, 1, 1, value);
-        }).setOnComplete(() =>
+            losePanel.SetActive(false);
+            winPanel.SetActive(true);
+            MultiplierBar_Start();
+        }
+        else
         {
-            if (isPlayerWin)
-            {
-                loseImage.SetActive(false);
-                winImage.SetActive(true);
-                winImage.transform.localScale = Vector3.zero;
-                winImage.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic().setOnComplete(() =>
-                {
-                    homeButton.gameObject.SetActive(true);
-                    LeanTween.value(0, 1, .5f).setOnUpdate((float value) =>
-                    {
-                        homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, value);
-                        homeButton.interactable = true;
-                    });
-                });
-            }
-            else
-            {
-                loseImage.SetActive(true);
-                winImage.SetActive(false);
-                loseImage.transform.localScale = Vector3.zero;
-                loseImage.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic().setOnComplete(() =>
-                {
-                    homeButton.gameObject.SetActive(true);
-                    LeanTween.value(0, 1, .5f).setOnUpdate((float value) =>
-                    {
-                        homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, value);
-                        homeButton.interactable = true;
-                    });
-                }); ;
-            }
-        });
+            losePanel.SetActive(true);
+            winPanel.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -873,8 +845,10 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OnClick_HomeButton_CardBattle()
     {
-        endGamePanel.SetActive(false);
         EventController.OnTurnRoomCam();
+
+        losePanel.SetActive(false);
+        winPanel.SetActive(false);
 
         IEnumerator wait()
         {
@@ -887,18 +861,45 @@ public class UIManager : MonoBehaviour
         }
         StartCoroutine(wait());
     }
+
+    public void OnClick_ClaimButton_CardBattle()
+    {
+        if (multiplierBar_currentValue >= -470 && multiplierBar_currentValue < -290)
+        {
+            print("X2");
+        }
+        else if (multiplierBar_currentValue >= -290 && multiplierBar_currentValue < -85)
+        {
+            print("X4");
+        }
+        else if (multiplierBar_currentValue >= -85 && multiplierBar_currentValue < 105)
+        {
+            print("X8");
+        }
+        else if (multiplierBar_currentValue >= 105 && multiplierBar_currentValue < 305)
+        {
+            print("X4");
+        }
+        else if (multiplierBar_currentValue >= 305 && multiplierBar_currentValue < 470)
+        {
+            print("X2");
+        }
+
+        multiplierBar_stop = true;
+        OnClick_HomeButton_CardBattle(); //This is where to call ads
+    }
     #endregion
 
     #region Multiplier Bar
     [Button]
-    private void MultiplierBar_CursorMove()
+    private void MultiplierBar_Start()
     {
         multiplierBar_rtlMove = true;
-        int currentValue = 0;
+        multiplierBar_currentValue = 0;
+        multiplierBar_stop = false;
         StartCoroutine(move());
         IEnumerator move()
         {
-            float time = 0f;
             do
             {
                 if (multiplierBar_rtlMove && !multiplierBar_isMoving)
@@ -907,7 +908,7 @@ public class UIManager : MonoBehaviour
                     {
                         multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         multiplierBar_isMoving = true;
-                        currentValue = (int)value;
+                        multiplierBar_currentValue = (int)value;
                     }).setOnComplete(() =>
                     {
                         multiplierBar_rtlMove = false;
@@ -920,7 +921,7 @@ public class UIManager : MonoBehaviour
                     {
                         multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         multiplierBar_isMoving = true;
-                        currentValue = (int)value;
+                        multiplierBar_currentValue = (int)value;
                     }).setOnComplete(() => 
                     {
                         multiplierBar_rtlMove = true;
@@ -928,14 +929,13 @@ public class UIManager : MonoBehaviour
                     });
                 }
 
-                print(currentValue);
-                time += Time.deltaTime;
                 yield return null;
             }
-            while (time < 10f);
+            while (!multiplierBar_stop);
         }
     }
     #endregion
+
     private void OnDisable()
     {
         EventController.ShowQuestion -= ShowQuestion;

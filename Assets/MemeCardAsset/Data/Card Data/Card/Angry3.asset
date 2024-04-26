@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d91be7c0b93b014cb19fcc680b8239e, type: 3}
   m_Name: Angry3
   m_EditorClassIdentifier: 
-  memeImage: {fileID: 2100000, guid: b8faa0676dd4b73438c62aa3c10be5a9, type: 2}
+  memeMaterial: {fileID: 2100000, guid: b8faa0676dd4b73438c62aa3c10be5a9, type: 2}
+  memeImage: {fileID: 21300000, guid: c0c40855f1901b949a115d064d35e8a6, type: 3}
   memeGif: {fileID: 0}
-  cardType: 0
+  rarityType: 0
   playingCardEmotionalType: 3

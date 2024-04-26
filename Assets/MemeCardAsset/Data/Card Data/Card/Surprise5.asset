@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d91be7c0b93b014cb19fcc680b8239e, type: 3}
   m_Name: Surprise5
   m_EditorClassIdentifier: 
-  memeImage: {fileID: 2100000, guid: dc21fbf1622dd1641a4aec13a4135fb4, type: 2}
+  memeMaterial: {fileID: 2100000, guid: dc21fbf1622dd1641a4aec13a4135fb4, type: 2}
+  memeImage: {fileID: 21300000, guid: 914ff96618dd5e4489f9b820c5745ace, type: 3}
   memeGif: {fileID: 0}
-  cardType: 0
+  rarityType: 0
   playingCardEmotionalType: 2

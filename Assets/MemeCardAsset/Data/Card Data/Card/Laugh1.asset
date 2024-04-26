@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d91be7c0b93b014cb19fcc680b8239e, type: 3}
   m_Name: Laugh1
   m_EditorClassIdentifier: 
-  memeImage: {fileID: 2100000, guid: 96e607f673efbb34a85da62c71a65660, type: 2}
+  memeMaterial: {fileID: 2100000, guid: 96e607f673efbb34a85da62c71a65660, type: 2}
+  memeImage: {fileID: 21300000, guid: 61f33ef86fd98c24b9df6e2f6cd65631, type: 3}
   memeGif: {fileID: 0}
-  cardType: 0
+  rarityType: 0
   playingCardEmotionalType: 0

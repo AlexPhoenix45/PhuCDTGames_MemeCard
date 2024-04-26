@@ -847,6 +847,112 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1415362050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1415362051}
+  - component: {fileID: 1415362054}
+  - component: {fileID: 1415362053}
+  - component: {fileID: 1415362052}
+  m_Layer: 5
+  m_Name: Meme Gif
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1415362051
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415362050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6861520467675408912}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1415362054
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415362050}
+  m_CullTransparentMesh: 1
+--- !u!114 &1415362053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415362050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: 7b6a303d54a20fd4ab363ba89075cfca, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!328 &1415362052
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415362050}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: e82026129ae100d41b885f92a317788e, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 7b6a303d54a20fd4ab363ba89075cfca, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 2
+  m_AspectRatio: 5
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
+  m_Url: 
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1 &1937321058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,12 +1313,12 @@ GameObject:
   - component: {fileID: 6482495824359802895}
   - component: {fileID: 6969022512871147769}
   m_Layer: 5
-  m_Name: Emotion 2
+  m_Name: Angry Emotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9222088182689492588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1620,7 +1726,7 @@ GameObject:
   - component: {fileID: 4225647925451519453}
   - component: {fileID: 1289116788503017031}
   m_Layer: 5
-  m_Name: Emotion 3
+  m_Name: Surprise Emotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1695,7 +1801,7 @@ GameObject:
   - component: {fileID: 5681817980393240692}
   - component: {fileID: 7187089965849616324}
   m_Layer: 5
-  m_Name: Emotion 1
+  m_Name: Cry Emotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1845,7 +1951,7 @@ GameObject:
   - component: {fileID: 4530708590552042327}
   - component: {fileID: 6974691473051601591}
   m_Layer: 5
-  m_Name: Emotion 5
+  m_Name: Laugh Emotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1920,7 +2026,7 @@ GameObject:
   - component: {fileID: 5359737014297281051}
   - component: {fileID: 2927442020007407547}
   m_Layer: 5
-  m_Name: Emotion 4
+  m_Name: Cool Emotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2145,6 +2251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6861520467377192511}
+  - component: {fileID: 1764213241}
   m_Layer: 5
   m_Name: Collection Card
   m_TagString: Untagged
@@ -2176,6 +2283,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 189, y: 290}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1764213241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6861520467377192504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfc9cf5890bc5945b5910eccbbd2b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonCard: {fileID: 2236146069854115406}
+  rareCard: {fileID: 1902236802029683577}
+  epicCard: {fileID: 426154946729440478}
+  commonEmotion: {fileID: 4070613539262892399}
+  rareEmotion: {fileID: 2466603937158620298}
+  epicEmotion: {fileID: 7617596296287323449}
+  susEmotion: {fileID: 8088272142081217264}
+  cryEmotion: {fileID: 3960806932477473444}
+  angryEmotion: {fileID: 141325972862722202}
+  surpriseEmotion: {fileID: 3191041878441257398}
+  coolEmotion: {fileID: 4656235973836494120}
+  laughEmotion: {fileID: 4173745464510949329}
+  memeImage: {fileID: 6861520466905961346}
+  pieceUpgradePanel: {fileID: 1312818886}
+  pieceLeft: {fileID: 230065500}
+  pieceText: {fileID: 1138020609}
+  moneyText: {fileID: 206394114}
+  adsUpgradePanel: {fileID: 423418659}
 --- !u!1 &6861520467675408913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2207,6 +2344,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6861520466905961347}
+  - {fileID: 1415362051}
   m_Father: {fileID: 6861520467377192511}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2353,12 +2491,12 @@ GameObject:
   - component: {fileID: 8097391378484010407}
   - component: {fileID: 5709868711604334976}
   m_Layer: 5
-  m_Name: Emotion 0
+  m_Name: Sus Emotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1542899011670705003
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2426,7 +2564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4504903308016546551}
   m_Layer: 5
-  m_Name: Card Rank Container
+  m_Name: Card Rarity Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

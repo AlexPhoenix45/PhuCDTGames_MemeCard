@@ -77,13 +77,13 @@ public class PlayingCard : MonoBehaviour
         if (cardData.rarityType == RarityType.Common)
         {
             memeBorder.material = commonMat;
-            memeImage.material = cardData.memeImage;
+            memeImage.material = cardData.memeMaterial;
             videoPlayer.enabled = false;
         }
         else if (cardData.rarityType == RarityType.Rare)
         {
             memeBorder.material = rareMat;
-            memeImage.material = cardData.memeImage;
+            memeImage.material = cardData.memeMaterial;
             videoPlayer.enabled = false;
         }
         else if (cardData.rarityType == RarityType.Epic)
