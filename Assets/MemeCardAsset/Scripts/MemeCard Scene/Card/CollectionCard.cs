@@ -23,8 +23,10 @@ public class CollectionCard : MonoBehaviour
     public GameObject surpriseEmotion;
     public GameObject coolEmotion;
     public GameObject laughEmotion;
-    [Header("Image")]
+    [Header("Image/Gif")]
+    public GameObject memeImageContainer;
     public Image memeImage;
+    public VideoPlayer memeGifVideoPlayer;
 
     [Header("Upgrade")]
     //Piece Upgrade
@@ -34,6 +36,7 @@ public class CollectionCard : MonoBehaviour
     public TextMeshProUGUI moneyText;
     //Ads Upgrade
     public GameObject adsUpgradePanel;
+    public RenderTexture renderTexture;
 
     public void SetCollectionCard(CardData cardData)
     {
@@ -47,9 +50,9 @@ public class CollectionCard : MonoBehaviour
                 commonEmotion.SetActive(true);
                 rareEmotion.SetActive(false);
                 epicEmotion.SetActive(false);
+                memeImageContainer.SetActive(true);
                 memeImage.sprite = cardData.memeImage;
-                memeImage.GetComponent<Image>().enabled = true;
-                memeImage.GetComponent<VideoPlayer>().enabled = false;
+                memeGifVideoPlayer.gameObject.SetActive(false);
             }
             else if (cardData.rarityType == RarityType.Rare)
             {
@@ -59,9 +62,9 @@ public class CollectionCard : MonoBehaviour
                 commonEmotion.SetActive(false);
                 rareEmotion.SetActive(true);
                 epicEmotion.SetActive(false);
+                memeImageContainer.SetActive(true);
                 memeImage.sprite = cardData.memeImage;
-                memeImage.GetComponent<Image>().enabled = true;
-                memeImage.GetComponent<VideoPlayer>().enabled = false;
+                memeGifVideoPlayer.gameObject.SetActive(false);
             }
             else if (cardData.rarityType == RarityType.Epic)
             {
@@ -71,9 +74,12 @@ public class CollectionCard : MonoBehaviour
                 commonEmotion.SetActive(false);
                 rareEmotion.SetActive(false);
                 epicEmotion.SetActive(true);
-                memeImage.GetComponent<Image>().enabled = false;
-                memeImage.GetComponent<VideoPlayer>().enabled = true;
-                memeImage.GetComponent<VideoPlayer>().clip = cardData.memeGif;
+                memeImageContainer.SetActive(false);
+                memeGifVideoPlayer.gameObject.SetActive(true);
+                memeGifVideoPlayer.clip = cardData.memeGif;
+                RenderTexture rt = Instantiate(renderTexture, memeGifVideoPlayer.transform);
+                memeGifVideoPlayer.GetComponent<RawImage>().texture = rt;
+                memeGifVideoPlayer.targetTexture = rt;
             }
         }
 

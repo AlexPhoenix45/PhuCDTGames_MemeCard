@@ -865,7 +865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1415362051
 RectTransform:
   m_ObjectHideFlags: 0
@@ -928,7 +928,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415362050}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: e82026129ae100d41b885f92a317788e, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -2184,7 +2184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6861520466905961347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2307,12 +2307,15 @@ MonoBehaviour:
   surpriseEmotion: {fileID: 3191041878441257398}
   coolEmotion: {fileID: 4656235973836494120}
   laughEmotion: {fileID: 4173745464510949329}
+  memeImageContainer: {fileID: 6861520466905961356}
   memeImage: {fileID: 6861520466905961346}
+  memeGifVideoPlayer: {fileID: 1415362052}
   pieceUpgradePanel: {fileID: 1312818886}
   pieceLeft: {fileID: 230065500}
   pieceText: {fileID: 1138020609}
   moneyText: {fileID: 206394114}
   adsUpgradePanel: {fileID: 423418659}
+  renderTexture: {fileID: 8400000, guid: 7b6a303d54a20fd4ab363ba89075cfca, type: 2}
 --- !u!1 &6861520467675408913
 GameObject:
   m_ObjectHideFlags: 0

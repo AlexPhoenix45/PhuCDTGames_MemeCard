@@ -43,6 +43,10 @@ public class CollectionPanel : MonoBehaviour
     public GameObject bookPage;
     public Transform bookTransform;
 
+    private GameObject currentPage;
+    private GameObject prevPage;
+    private GameObject nextPage;
+
     private void Start()
     {
         gameObject.transform.localScale = Vector3.zero;
@@ -84,14 +88,14 @@ public class CollectionPanel : MonoBehaviour
         //Set default variable for book display
         currentItemIndex = 0;
 
-        GameObject tempBookPage = Instantiate(bookPage, bookTransform);
+        currentPage = Instantiate(bookPage, bookTransform);
         EventController.OnGetCardCollection();
 
         if (activeBookmark == ActiveBookmark.Laugh)
         {
             for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
             {
-                GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
                 tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.laughCardList[i]);
             }
             currentItemIndex += 9;
@@ -100,7 +104,7 @@ public class CollectionPanel : MonoBehaviour
         {
             for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
             {
-                GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
                 tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.angryCardList[i]);
             }
             currentItemIndex += 9;
@@ -110,7 +114,7 @@ public class CollectionPanel : MonoBehaviour
 
             for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
             {
-                GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
                 tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.susCardList[i]);
             }
             currentItemIndex += 9;
@@ -119,7 +123,7 @@ public class CollectionPanel : MonoBehaviour
         {
             for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
             {
-                GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
                 tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.cryCardList[i]);
             }
             currentItemIndex += 9;
@@ -128,7 +132,7 @@ public class CollectionPanel : MonoBehaviour
         {
             for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
             {
-                GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
                 tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.surpriseCardList[i]);
             }
             currentItemIndex += 9;
@@ -137,7 +141,7 @@ public class CollectionPanel : MonoBehaviour
         {
             for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
             {
-                GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
                 tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.coolCardList[i]);
             }
             currentItemIndex += 9;
