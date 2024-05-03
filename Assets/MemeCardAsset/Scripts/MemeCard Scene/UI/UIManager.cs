@@ -114,8 +114,8 @@ public class UIManager : MonoBehaviour
     #region Multiplier Bar
     [Header("Multiplier Bar")]
     public GameObject multiplierBar_cursor;
-    private int multiplierBar_minBarPosY = -470;
-    private int multiplierBar_maxBarPosY = 470;
+    private readonly int multiplierBar_minBarPosY = -470;
+    private readonly int multiplierBar_maxBarPosY = 470;
     private bool multiplierBar_rtlMove;
     private bool multiplierBar_isMoving;
     private int multiplierBar_currentValue;
@@ -370,7 +370,7 @@ public class UIManager : MonoBehaviour
     public void ShowPlayPanel()
     {
         SelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
-        EventController.OnSpawnOnTable();
+        EventController.OnSpawnGameOnTable();
         ShowHeader();
     }
 

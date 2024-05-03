@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d91be7c0b93b014cb19fcc680b8239e, type: 3}
   m_Name: CoolGif1
   m_EditorClassIdentifier: 
+  memeMaterial: {fileID: 0}
   memeImage: {fileID: 0}
   memeGif: {fileID: 32900000, guid: b1ce77fc052c0ae47b205e0d6a3ee15f, type: 3}
   rarityType: 2

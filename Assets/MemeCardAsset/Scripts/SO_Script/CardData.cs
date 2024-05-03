@@ -7,6 +7,7 @@ using UnityEngine.Video;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card Data")]
 public class CardData : ScriptableObject
 {
+    public string cardID;
     public Material memeMaterial;
     public Sprite memeImage;
     public VideoClip memeGif;

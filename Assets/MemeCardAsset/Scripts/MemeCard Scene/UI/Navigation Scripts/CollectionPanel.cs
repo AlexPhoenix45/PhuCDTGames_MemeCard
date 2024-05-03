@@ -1,8 +1,10 @@
+using JetBrains.Annotations;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CollectionPanel : MonoBehaviour
 {
@@ -44,12 +46,19 @@ public class CollectionPanel : MonoBehaviour
     public Transform bookTransform;
 
     private GameObject currentPage;
-    private GameObject prevPage;
-    private GameObject nextPage;
+    private int currentLayer = 9999;
 
-    private void Start()
+    public bool isFirstTime = true;
+
+    #region Drag Controller Variables
+    private Vector2 startTouchPos;
+    private Vector2 endTouchPos;
+    #endregion
+
+    private void Awake()
     {
-        gameObject.transform.localScale = Vector3.zero;
+        gameObject.transform.localScale = Vector3.zero; //Need to change this after complete book pages
+        currentLayer = 9999;
     }
     private void OnEnable()
     {
@@ -69,7 +78,7 @@ public class CollectionPanel : MonoBehaviour
                     r.color = c;
                 }).setOnComplete(() =>
                 {
-                    gameObject.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic();
+                    gameObject.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic(); //Need to change this after complete book pages
                 });
             }
         }
@@ -78,8 +87,31 @@ public class CollectionPanel : MonoBehaviour
         //Set default variable for book display
         activeBookmark = ActiveBookmark.Laugh;
         currentItemIndex = 0;
+        isFirstTime = true;
 
         DisplayFirstPage();
+    }
+
+    private void Update()
+    {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            startTouchPos = Input.GetTouch(0).position;
+        }
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            endTouchPos = Input.GetTouch(0).position;
+
+            if (endTouchPos.x < startTouchPos.x)
+            {
+                DisplayNextPage();
+            }
+            else if (endTouchPos.x > startTouchPos.x)
+            {
+                DisplayPrevPage();
+            }
+        }
     }
 
     [Button]
@@ -87,57 +119,64 @@ public class CollectionPanel : MonoBehaviour
     {
         //Set default variable for book display
         currentItemIndex = 0;
-
-        currentPage = Instantiate(bookPage, bookTransform);
         EventController.OnGetCardCollection();
 
-        if (activeBookmark == ActiveBookmark.Laugh)
+        if (isFirstTime)
         {
-            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
-            {
-                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
-                tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.laughCardList[i]);
-            }
-            currentItemIndex += 9;
-        }
-        else if (activeBookmark == ActiveBookmark.Angry)
-        {
-            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
-            {
-                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
-                tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.angryCardList[i]);
-            }
-            currentItemIndex += 9;
-        }
-        else if (activeBookmark == ActiveBookmark.Sus)
-        {
+            currentPage = Instantiate(bookPage, bookTransform);
+            currentPage.GetComponent<Canvas>().sortingOrder = currentLayer;
+            currentLayer--;
+            print("a");
+            isFirstTime = false;
 
-            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+
+            if (activeBookmark == ActiveBookmark.Laugh)
             {
-                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
-                tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.susCardList[i]);
+                for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.laughCardList[i]);
+                }
+                currentItemIndex += 9;
             }
-            currentItemIndex += 9;
-        }
-        else if (activeBookmark == ActiveBookmark.Cry)
-        {
-            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+            else if (activeBookmark == ActiveBookmark.Angry)
             {
-                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
-                tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.cryCardList[i]);
+                for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.angryCardList[i]);
+                }
+                currentItemIndex += 9;
             }
-            currentItemIndex += 9;
-        }
-        else if (activeBookmark == ActiveBookmark.Surprise)
-        {
-            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+            else if (activeBookmark == ActiveBookmark.Sus)
             {
-                GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
-                tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.surpriseCardList[i]);
+
+                for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.susCardList[i]);
+                }
+                currentItemIndex += 9;
             }
-            currentItemIndex += 9;
-        }
-        else if (activeBookmark == ActiveBookmark.Cool)
+            else if (activeBookmark == ActiveBookmark.Cry)
+            {
+                for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.cryCardList[i]);
+                }
+                currentItemIndex += 9;
+            }
+            else if (activeBookmark == ActiveBookmark.Surprise)
+            {
+                for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, currentPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.surpriseCardList[i]);
+                }
+                currentItemIndex += 9;
+            }
+            else if (activeBookmark == ActiveBookmark.Cool)
         {
             for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
             {
@@ -146,12 +185,181 @@ public class CollectionPanel : MonoBehaviour
             }
             currentItemIndex += 9;
         }
+
+        }
+        else
+        {
+            GameObject tempBookPage = Instantiate(bookPage, bookTransform);
+            PageFlip(false, tempBookPage);
+
+
+            if (activeBookmark == ActiveBookmark.Laugh)
+            {
+                if (currentItemIndex <= GameManager.laughCardList.Count)
+                {
+                    for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                    {
+                        if (i < GameManager.laughCardList.Count)
+                        {
+                            print("print");
+                            GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                            tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.laughCardList[i]);
+                        }
+                        else
+                        {
+                            Instantiate(blankCard, tempBookPage.transform);
+                        }
+                    }
+                    currentItemIndex += 9;
+                }
+            }
+            else if (activeBookmark == ActiveBookmark.Angry)
+            {
+                if (currentItemIndex <= GameManager.angryCardList.Count)
+                {
+                    for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                    {
+                        if (i < GameManager.angryCardList.Count)
+                        {
+                            GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                            tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.angryCardList[i]);
+                        }
+                        else
+                        {
+                            Instantiate(blankCard, tempBookPage.transform);
+                        }
+                    }
+                    currentItemIndex += 9;
+                }
+            }
+            else if (activeBookmark == ActiveBookmark.Sus)
+            {
+                if (currentItemIndex <= GameManager.susCardList.Count)
+                {
+                    for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                    {
+                        if (i < GameManager.susCardList.Count)
+                        {
+                            GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                            tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.susCardList[i]);
+                        }
+                        else
+                        {
+                            Instantiate(blankCard, tempBookPage.transform);
+                        }
+                    }
+                    currentItemIndex += 9;
+                }
+            }
+            else if (activeBookmark == ActiveBookmark.Cry)
+            {
+                if (currentItemIndex <= GameManager.cryCardList.Count)
+                {
+                    for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                    {
+                        if (i < GameManager.cryCardList.Count)
+                        {
+                            GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                            tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.cryCardList[i]);
+                        }
+                        else
+                        {
+                            Instantiate(blankCard, tempBookPage.transform);
+                        }
+                    }
+                    currentItemIndex += 9;
+                }
+            }
+            else if (activeBookmark == ActiveBookmark.Surprise)
+            {
+                if (currentItemIndex <= GameManager.surpriseCardList.Count)
+                {
+                    for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                    {
+                        if (i < GameManager.surpriseCardList.Count)
+                        {
+                            GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                            tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.surpriseCardList[i]);
+                        }
+                        else
+                        {
+                            Instantiate(blankCard, tempBookPage.transform);
+                        }
+                    }
+                    currentItemIndex += 9;
+                }
+            }
+            else if (activeBookmark == ActiveBookmark.Cool)
+            {
+                if (currentItemIndex <= GameManager.coolCardList.Count)
+                {
+                    for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+                    {
+                        if (i < GameManager.coolCardList.Count)
+                        {
+                            GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                            tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.coolCardList[i]);
+                        }
+                        else
+                        {
+                            Instantiate(blankCard, tempBookPage.transform);
+                        }
+                    }
+                    currentItemIndex += 9;
+                }
+            }
+        }
     }
 
     [Button]
     public void DisplayNextPage()
     {
+        if (activeBookmark == ActiveBookmark.Laugh)
+        {
+            if (currentItemIndex > GameManager.laughCardList.Count)
+            {
+                return;
+            }
+        }
+        else if (activeBookmark == ActiveBookmark.Angry)
+        {
+            if (currentItemIndex > GameManager.laughCardList.Count)
+            {
+                return;
+            }
+        }
+        else if (activeBookmark == ActiveBookmark.Sus)
+        {
+            if (currentItemIndex > GameManager.laughCardList.Count)
+            {
+                return;
+            }
+        }
+        else if (activeBookmark == ActiveBookmark.Cry)
+        {
+            if (currentItemIndex > GameManager.cryCardList.Count)
+            {
+                return;
+            }
+        }
+        else if (activeBookmark == ActiveBookmark.Surprise)
+        {
+            if (currentItemIndex > GameManager.surpriseCardList.Count)
+            {
+                return;
+            }
+        }
+        else if (activeBookmark == ActiveBookmark.Cool)
+        {
+            if (currentItemIndex > GameManager.coolCardList.Count)
+            {
+                return;
+            }
+        }
+
         GameObject tempBookPage = Instantiate(bookPage, bookTransform);
+        PageFlip(true, tempBookPage);
+
         if (activeBookmark == ActiveBookmark.Laugh)
         {
             if (currentItemIndex <= GameManager.laughCardList.Count)
@@ -269,6 +477,152 @@ public class CollectionPanel : MonoBehaviour
         }
     }
 
+    [Button]
+    public void DisplayPrevPage()
+    {
+        if (currentItemIndex == 9)
+        {
+            return;
+        }
+        
+        GameObject tempBookPage = Instantiate(bookPage, bookTransform);
+        PageFlip(false, tempBookPage);
+
+        currentItemIndex -= 18;
+        if (activeBookmark == ActiveBookmark.Laugh)
+        {
+            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+            {
+                if (i < GameManager.laughCardList.Count)
+                {
+                    print("print");
+                    GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.laughCardList[i]);
+                }
+                else
+                {
+                    Instantiate(blankCard, tempBookPage.transform);
+                }
+            }
+            currentItemIndex += 9;
+        }
+        else if (activeBookmark == ActiveBookmark.Angry)
+        {
+            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+            {
+                if (i < GameManager.angryCardList.Count)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.angryCardList[i]);
+                }
+                else
+                {
+                    Instantiate(blankCard, tempBookPage.transform);
+                }
+            }
+            currentItemIndex += 9;
+        }
+        else if (activeBookmark == ActiveBookmark.Sus)
+        {
+            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+            {
+                if (i < GameManager.susCardList.Count)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.susCardList[i]);
+                }
+                else
+                {
+                    Instantiate(blankCard, tempBookPage.transform);
+                }
+            }
+            currentItemIndex += 9;
+            
+        }
+        else if (activeBookmark == ActiveBookmark.Cry)
+        {
+            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+            {
+                if (i < GameManager.cryCardList.Count)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.cryCardList[i]);
+                }
+                else
+                {
+                    Instantiate(blankCard, tempBookPage.transform);
+                }
+            }
+            currentItemIndex += 9;
+        }
+        else if (activeBookmark == ActiveBookmark.Surprise)
+        {
+            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+            {
+                if (i < GameManager.surpriseCardList.Count)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.surpriseCardList[i]);
+                }
+                else
+                {
+                    Instantiate(blankCard, tempBookPage.transform);
+                }
+            }
+            currentItemIndex += 9;
+        }
+        else if (activeBookmark == ActiveBookmark.Cool)
+        {
+            for (int i = currentItemIndex; i < currentItemIndex + 9; i++)
+            {
+                if (i < GameManager.coolCardList.Count)
+                {
+                    GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
+                    tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.coolCardList[i]);
+                }
+                else
+                {
+                    Instantiate(blankCard, tempBookPage.transform);
+                }
+            }
+            currentItemIndex += 9;
+        }
+    }
+
+    public void PageFlip(bool toNextPage, GameObject tempPage)
+    {
+        if (toNextPage)
+        {
+            tempPage.GetComponent<Canvas>().sortingOrder = currentLayer;
+            currentLayer--;
+            currentPage.transform.rotation = Quaternion.Euler(currentPage.transform.rotation.x, 0, currentPage.transform.rotation.z);
+            LeanTween.value(0, -90, 1f).setOnUpdate((float value) =>
+            {
+                currentPage.transform.rotation = Quaternion.Euler(currentPage.transform.rotation.x, value, currentPage.transform.rotation.z);
+            }).setOnComplete(() =>
+            {
+                Destroy(currentPage);
+                currentPage = tempPage;
+            });
+        }
+        else
+        {
+            currentLayer += 2;
+            tempPage.GetComponent<Canvas>().sortingOrder = currentLayer;
+            currentLayer--;
+            tempPage.transform.rotation = Quaternion.Euler(tempPage.transform.rotation.x, 90, tempPage.transform.rotation.z);
+            LeanTween.value(90, 0, 1f).setOnUpdate((float value) =>
+            {
+                tempPage.transform.rotation = Quaternion.Euler(tempPage.transform.rotation.x, value, tempPage.transform.rotation.z);
+            }).setOnComplete(() =>
+            {
+                Destroy(currentPage);
+                currentPage = tempPage;
+            });
+        }
+    }
+
+    #region Bookmarks OnClick
     public void OnClick_LaughEmotion()
     {
         laughBookmarkActive.SetActive(true);
@@ -383,4 +737,6 @@ public class CollectionPanel : MonoBehaviour
         activeBookmark = ActiveBookmark.Cool;
         DisplayFirstPage();
     }
+
+    #endregion
 }

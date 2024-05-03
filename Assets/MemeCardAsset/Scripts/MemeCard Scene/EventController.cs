@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class EventController
 {
@@ -163,6 +165,9 @@ public class EventController
 
     #region Spawn Game on Table
     public static event UnityAction SpawnGameOnTable;
-    public static void OnSpawnOnTable() => SpawnGameOnTable?.Invoke();
+    public static void OnSpawnGameOnTable() => SpawnGameOnTable?.Invoke();
+    #endregion
+
+    #region Player
     #endregion
 }
