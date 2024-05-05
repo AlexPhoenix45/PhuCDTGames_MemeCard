@@ -286,7 +286,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 253, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &596210733
 GameObject:
@@ -723,7 +723,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 253, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1381909107
 GameObject:
@@ -795,13 +795,13 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: a5c569819be17e64e99e99986d71bc52, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!114 &1381909109
 MonoBehaviour:
@@ -846,7 +846,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1381909110}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1764213241}
+        m_TargetAssemblyTypeName: CollectionCard, Assembly-CSharp
+        m_MethodName: OnClick_UpgradeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1415362050
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,6 +2264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6861520467377192511}
   - component: {fileID: 1764213241}
+  - component: {fileID: 6341038176468107270}
   m_Layer: 5
   m_Name: Collection Card
   m_TagString: Untagged
@@ -2316,6 +2329,18 @@ MonoBehaviour:
   moneyText: {fileID: 206394114}
   adsUpgradePanel: {fileID: 423418659}
   renderTexture: {fileID: 8400000, guid: 7b6a303d54a20fd4ab363ba89075cfca, type: 2}
+--- !u!225 &6341038176468107270
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6861520467377192504}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6861520467675408913
 GameObject:
   m_ObjectHideFlags: 0

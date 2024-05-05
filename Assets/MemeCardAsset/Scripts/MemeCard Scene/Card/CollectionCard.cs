@@ -37,9 +37,11 @@ public class CollectionCard : MonoBehaviour
     //Ads Upgrade
     public GameObject adsUpgradePanel;
     public RenderTexture renderTexture;
+    public CardData cardData;
 
     public void SetCollectionCard(CardData cardData)
     {
+        this.cardData = cardData;
         //Rarity Filter
         {
             if (cardData.rarityType == RarityType.Common)
@@ -74,12 +76,22 @@ public class CollectionCard : MonoBehaviour
                 commonEmotion.SetActive(false);
                 rareEmotion.SetActive(false);
                 epicEmotion.SetActive(true);
-                memeImageContainer.SetActive(false);
-                memeGifVideoPlayer.gameObject.SetActive(true);
-                memeGifVideoPlayer.clip = cardData.memeGif;
-                RenderTexture rt = Instantiate(renderTexture, memeGifVideoPlayer.transform);
-                memeGifVideoPlayer.GetComponent<RawImage>().texture = rt;
-                memeGifVideoPlayer.targetTexture = rt;
+
+                if (cardData.memeGif != null)
+                {
+                    memeImageContainer.SetActive(false);
+                    memeGifVideoPlayer.gameObject.SetActive(true);
+                    memeGifVideoPlayer.clip = cardData.memeGif;
+                    RenderTexture rt = Instantiate(renderTexture, memeGifVideoPlayer.transform);
+                    memeGifVideoPlayer.GetComponent<RawImage>().texture = rt;
+                    memeGifVideoPlayer.targetTexture = rt;
+                }
+                else
+                {
+                    memeImageContainer.SetActive(true);
+                    memeImage.sprite = cardData.memeImage;
+                    memeGifVideoPlayer.gameObject.SetActive(false);
+                }
             }
         }
 
@@ -141,5 +153,10 @@ public class CollectionCard : MonoBehaviour
             }
         }
 
+    }
+
+    public void OnClick_UpgradeButton()
+    {
+        print("UPGRADE CLICKED");
     }
 }

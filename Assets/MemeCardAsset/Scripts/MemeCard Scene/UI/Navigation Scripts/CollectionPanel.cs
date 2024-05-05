@@ -67,6 +67,7 @@ public class CollectionPanel : MonoBehaviour
 
         IEnumerator wait()
         {
+            gameObject.transform.localScale = Vector3.one;
             yield return new WaitForSeconds(.5f);
             Image r = background.GetComponent<Image>();
             if (r.color.a <= 0)
@@ -78,7 +79,6 @@ public class CollectionPanel : MonoBehaviour
                     r.color = c;
                 }).setOnComplete(() =>
                 {
-                    gameObject.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic(); //Need to change this after complete book pages
                 });
             }
         }
@@ -90,6 +90,12 @@ public class CollectionPanel : MonoBehaviour
         isFirstTime = true;
 
         DisplayFirstPage();
+    }
+
+    private void OnDisable()
+    {
+        Destroy(currentPage);
+        EventController.OnTurnRoomCam();
     }
 
     private void Update()
@@ -495,7 +501,6 @@ public class CollectionPanel : MonoBehaviour
             {
                 if (i < GameManager.laughCardList.Count)
                 {
-                    print("print");
                     GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
                     tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.laughCardList[i]);
                 }
@@ -622,7 +627,7 @@ public class CollectionPanel : MonoBehaviour
         }
     }
 
-    #region Bookmarks OnClick
+    #region Bookmarks OnClick 
     public void OnClick_LaughEmotion()
     {
         laughBookmarkActive.SetActive(true);
@@ -737,6 +742,5 @@ public class CollectionPanel : MonoBehaviour
         activeBookmark = ActiveBookmark.Cool;
         DisplayFirstPage();
     }
-
     #endregion
 }

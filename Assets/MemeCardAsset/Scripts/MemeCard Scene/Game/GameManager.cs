@@ -78,7 +78,9 @@ public class GameManager : MonoBehaviour
     //[HideInInspector]
     private int opponentPoint;
 
-    public List<CardData> playerOwnedCardData = new List<CardData>();
+    public List<CardData> temp_playerOwnedCardData = new List<CardData>();
+
+    private int currentPlayerLevel;
     #endregion
 
     #region Game Attributes
@@ -115,8 +117,6 @@ public class GameManager : MonoBehaviour
 
         EventController.GetCardCollection += GetCardCollection;
 
-        //doi cardbattleturntwo thanh` turntwoafter drawing question
-
         //Spawn a Game (need a random after testing)
         StartSpawn_CardBattle();
 
@@ -125,6 +125,13 @@ public class GameManager : MonoBehaviour
         {
             card.cardID = card.name;
         }
+
+        IEnumerator LoadData()
+        {
+            yield return new WaitForSeconds(.1f);
+            EventController.OnLoadPlayerData();
+        }
+        StartCoroutine(LoadData());
     }
 
     private void StartGame()
@@ -143,6 +150,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame_CardBattle()
     {
+        //ImportPlayerOwnedCardData();
+
         EventController.OnChooseOpponent();
         GenerateQuestionData();
         timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4);
@@ -150,6 +159,10 @@ public class GameManager : MonoBehaviour
         //Call choose opponent in UI Controller, then it will call DrawCard and RoundCount
         CardBattle_RoundCount++;
     }
+
+    #region Level
+
+    #endregion
 
     #region Card
     /// <summary>
@@ -159,13 +172,18 @@ public class GameManager : MonoBehaviour
     {
         IEnumerator MoveCardToHand()
         {
+            ImportPlayerOwnedCardData();
+            //Reset Generate Data
+            timeCardUnFitEmotion_Player = 0;
+            timeCardUnFitEmotion_Opponent = 0;
+
             //Mid Card
             playerCardMid = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
-            playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
+            playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(true, false));
             playerCardMid.GetComponent<PlayingCard>().isPlayerCard = true;
 
             opponentCardMid = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
-            opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
+            opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(false, false));
             opponentCardMid.GetComponent<PlayingCard>().isPlayerCard = false;
 
             playerCardMid.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
@@ -180,8 +198,8 @@ public class GameManager : MonoBehaviour
             //Left Card
             playerCardLeft = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
             opponentCardLeft = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
-            playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
-            opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
+            playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(true, false));
+            opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(false, false));
             playerCardLeft.GetComponent<PlayingCard>().isPlayerCard = true;
             opponentCardLeft.GetComponent<PlayingCard>().isPlayerCard = false;
 
@@ -197,8 +215,8 @@ public class GameManager : MonoBehaviour
             //Right Card
             playerCardRight = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
             opponentCardRight = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
-            playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
-            opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
+            playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(true, false));
+            opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(false, false));
             playerCardRight.GetComponent<PlayingCard>().isPlayerCard = true;
             opponentCardRight.GetComponent<PlayingCard>().isPlayerCard = false;
 
@@ -237,12 +255,16 @@ public class GameManager : MonoBehaviour
     /// <param name="cardObj">This is the card that has played</param>
     public void DrawMissingCard(GameObject cardObj)
     {
+        //Reset Generate Data
+        timeCardUnFitEmotion_Player = 0;
+        timeCardUnFitEmotion_Opponent = 0;
+
         if (cardObj == playerCardMid)
         {
             playerPlacedCard = playerCardMid;
 
             playerCardMid = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
-            playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
+            playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(true, true));
             playerCardMid.GetComponent<PlayingCard>().isPlayerCard = true; 
             playerCardMid.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
             playerCardMid.transform.LeanMove(playerCardHidePos.position, .75f);
@@ -255,7 +277,7 @@ public class GameManager : MonoBehaviour
             playerPlacedCard = playerCardLeft;
 
             playerCardLeft = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
-            playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
+            playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(true, true));
             playerCardLeft.GetComponent<PlayingCard>().isPlayerCard = true; 
             playerCardLeft.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
             playerCardLeft.transform.LeanMove(playerCardHidePos.position, .75f);
@@ -268,7 +290,7 @@ public class GameManager : MonoBehaviour
             playerPlacedCard = playerCardRight;
 
             playerCardRight = Instantiate(playingCardPrefabs, playerCardHolder, playerCardDeck.transform);
-            playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
+            playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(true, true));
             playerCardRight.GetComponent<PlayingCard>().isPlayerCard = true; 
             playerCardRight.transform.SetPositionAndRotation(playerCardDeck.transform.position, playerCardDeck.transform.rotation);
             playerCardRight.transform.LeanMove(playerCardHidePos.position, .75f);
@@ -281,7 +303,7 @@ public class GameManager : MonoBehaviour
             opponentPlacedCard = opponentCardMid;
 
             opponentCardMid = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
-            opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
+            opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(false, true));
             opponentCardMid.GetComponent<PlayingCard>().isPlayerCard = false; 
             opponentCardMid.transform.SetPositionAndRotation(opponentCardDeck.transform.position, opponentCardDeck.transform.rotation);
             opponentCardMid.transform.LeanMove(opponentCardMidPos.position, .75f);
@@ -292,7 +314,7 @@ public class GameManager : MonoBehaviour
             opponentPlacedCard = opponentCardLeft;
 
             opponentCardLeft = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
-            opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
+            opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(false, true));
             opponentCardLeft.GetComponent<PlayingCard>().isPlayerCard = false; 
             opponentCardLeft.transform.SetPositionAndRotation(opponentCardDeck.transform.position, opponentCardDeck.transform.rotation);
             opponentCardLeft.transform.LeanMove(opponentCardLeftPos.position, .75f);
@@ -303,7 +325,7 @@ public class GameManager : MonoBehaviour
             opponentPlacedCard = opponentCardRight;
 
             opponentCardRight = Instantiate(playingCardPrefabs, opponentCardHolder, opponentCardDeck.transform);
-            opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
+            opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(false, true));
             opponentCardRight.GetComponent<PlayingCard>().isPlayerCard = false; 
             opponentCardRight.transform.SetPositionAndRotation(opponentCardDeck.transform.position, opponentCardDeck.transform.rotation);
             opponentCardRight.transform.LeanMove(opponentCardRightPos.position, .75f);
@@ -368,12 +390,17 @@ public class GameManager : MonoBehaviour
     [Button]
     public void RenewCard()
     {
-        playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
-        playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
-        playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(true));
-        opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
-        opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
-        opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(false));
+        ImportPlayerOwnedCardData();
+        //Reset Generate Data
+        timeCardUnFitEmotion_Player = 0;
+        timeCardUnFitEmotion_Opponent = 0;
+
+        playerCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(true, false));
+        playerCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(true, false));
+        playerCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(true, false));
+        opponentCardMid.GetComponent<PlayingCard>().SetCard(GenerateCardData(false, false));
+        opponentCardLeft.GetComponent<PlayingCard>().SetCard(GenerateCardData(false, false));
+        opponentCardRight.GetComponent<PlayingCard>().SetCard(GenerateCardData(false, false));
 
         //Reset Generate Data
         timeCardUnFitEmotion_Player = 0;
@@ -386,155 +413,100 @@ public class GameManager : MonoBehaviour
     /// Generate Card Data
     /// </summary>
     /// <returns></returns>
-    public CardData GenerateCardData(bool isForPlayer)
+    public CardData GenerateCardData(bool isForPlayer, bool isDrawMissing)
     {
-        ImportPlayerOwnedCardData();
-
         //About rarity of the card
         CardData CardSpawningMechanism(bool isForced)
         {
-            if (playerOwnedCardData.Count > 6) //Not the first time, if that was the first time player play game, generate 6 card for player to play
+            if (!isForced)
             {
-                if (!isForced)
+                int percentage = UnityEngine.Random.Range(0, 100);
+
+                if (percentage >= 0 && percentage < 50)
                 {
-                    int percentage = UnityEngine.Random.Range(0, 100);
-
-                    CardData tempCard; //create new empty card
-
-                    if (percentage >= 0 && percentage < 50)
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
                     {
-                        do
+                        if (cardDatas[i].rarityType == RarityType.Common)
                         {
-                            tempCard = playerOwnedCardData[Random.Range(0, playerOwnedCardData.Count)];
+                            cardIndex.Add(i);
                         }
-                        while (tempCard.rarityType != RarityType.Common);
-                    }
-                    else if (percentage >= 50 && percentage < 85)
-                    {
-                        do
-                        {
-                            tempCard = playerOwnedCardData[Random.Range(0, playerOwnedCardData.Count)];
-                        }
-                        while (tempCard.rarityType != RarityType.Rare);
-                    }
-                    else
-                    {
-                        do
-                        {
-                            tempCard = playerOwnedCardData[Random.Range(0, playerOwnedCardData.Count)];
-                        }
-                        while (tempCard.rarityType != RarityType.Epic);
                     }
 
-                    return tempCard;
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else if (percentage >= 50 && percentage < 85)
+                {
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Rare)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
                 }
                 else
                 {
-                    int percentage = UnityEngine.Random.Range(0, 100);
-
-                    CardData tempCard; //create new empty card
-
-                    if (percentage >= 0 && percentage < 50)
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
                     {
-                        do
+                        if (cardDatas[i].rarityType == RarityType.Epic)
                         {
-                            tempCard = playerOwnedCardData[Random.Range(0, playerOwnedCardData.Count)];
+                            cardIndex.Add(i);
                         }
-                        while (tempCard.rarityType != RarityType.Common || tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
-                        //print(tempCard.playingCardEmotionalType + " " + currentQuestionData.questionCardEmotionalType);
-                    }
-                    else if (percentage >= 50 && percentage < 85)
-                    {
-                        do
-                        {
-                            tempCard = playerOwnedCardData[Random.Range(0, playerOwnedCardData.Count)];
-                        }
-                        while (tempCard.rarityType != RarityType.Rare || tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
-                        //print(tempCard.playingCardEmotionalType + " " + currentQuestionData.questionCardEmotionalType);
-                    }
-                    else
-                    {
-                        do
-                        {
-                            tempCard = playerOwnedCardData[Random.Range(0, playerOwnedCardData.Count)];
-                        }
-                        while (tempCard.rarityType != RarityType.Epic || tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
-                        //print(tempCard.playingCardEmotionalType + " " + currentQuestionData.questionCardEmotionalType);
                     }
 
-                    return tempCard;
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
                 }
             }
             else
             {
-                if (!isForced)
+                int percentage = UnityEngine.Random.Range(0, 100);
+
+                if (percentage >= 0 && percentage < 50)
                 {
-                    int percentage = UnityEngine.Random.Range(0, 100);
-
-                    CardData tempCard; //create new empty card
-
-                    if (percentage >= 0 && percentage < 50)
+                    print(currentQuestionData.questionCardEmotionalType);
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
                     {
-                        do
+                        if (cardDatas[i].rarityType == RarityType.Common && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
                         {
-                            tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
+                            cardIndex.Add(i);
                         }
-                        while (tempCard.rarityType != RarityType.Common);
-                    }
-                    else if (percentage >= 50 && percentage < 85)
-                    {
-                        do
-                        {
-                            tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
-                        }
-                        while (tempCard.rarityType != RarityType.Rare);
-                    }
-                    else
-                    {
-                        do
-                        {
-                            tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
-                        }
-                        while (tempCard.rarityType != RarityType.Epic);
                     }
 
-                    return tempCard;
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else if (percentage >= 50 && percentage < 85)
+                {
+                    print(currentQuestionData.questionCardEmotionalType);
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Rare && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
                 }
                 else
                 {
-                    int percentage = UnityEngine.Random.Range(0, 100);
-
-                    CardData tempCard; //create new empty card
-
-                    if (percentage >= 0 && percentage < 50)
+                    print(currentQuestionData.questionCardEmotionalType);
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
                     {
-                        do
+                        if (cardDatas[i].rarityType == RarityType.Epic && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
                         {
-                            tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
+                            cardIndex.Add(i);
                         }
-                        while (tempCard.rarityType != RarityType.Common || tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
-                        //print(tempCard.playingCardEmotionalType + " " + currentQuestionData.questionCardEmotionalType);
-                    }
-                    else if (percentage >= 50 && percentage < 85)
-                    {
-                        do
-                        {
-                            tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
-                        }
-                        while (tempCard.rarityType != RarityType.Rare || tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
-                        //print(tempCard.playingCardEmotionalType + " " + currentQuestionData.questionCardEmotionalType);
-                    }
-                    else
-                    {
-                        do
-                        {
-                            tempCard = cardDatas[Random.Range(0, cardDatas.Length)];
-                        }
-                        while (tempCard.rarityType != RarityType.Epic || tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType);
-                        //print(tempCard.playingCardEmotionalType + " " + currentQuestionData.questionCardEmotionalType);
                     }
 
-                    return tempCard;
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
                 }
             }
         } //Rarity spawn
@@ -585,24 +557,32 @@ public class GameManager : MonoBehaviour
 
         if (isForPlayer)
         {
-            do
+            if (!isDrawMissing)
+            {
+                do
+                {
+                    tempCard = CardSpawningMechanism(false);
+                }
+                while (!DuplicateCheck(tempCard));
+
+                if (tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType)
+                {
+                    timeCardUnFitEmotion_Player++;
+                }
+
+                if (timeCardUnFitEmotion_Player == timeAllowGetUnFitEmotion_Player)
+                {
+                    tempCard = CardSpawningMechanism(true);
+                }
+
+                ExportCard();
+                return tempCard;
+            }
+            else
             {
                 tempCard = CardSpawningMechanism(false);
+                return tempCard;
             }
-            while (!DuplicateCheck(tempCard));
-
-            if (tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType)
-            {
-                timeCardUnFitEmotion_Player++;
-            }
-
-            if (timeCardUnFitEmotion_Player == timeAllowGetUnFitEmotion_Player)
-            {
-                tempCard = CardSpawningMechanism(true);
-            }
-
-            ExportCard();
-            return tempCard;
         }
         else
         {
@@ -627,9 +607,10 @@ public class GameManager : MonoBehaviour
 
         void ExportCard()
         {
-            print(tempCard.name);
-            playerOwnedCardData.Add(tempCard);
-            //ExportPlayerOwnedCardData();
+            //print(tempCard);
+            temp_playerOwnedCardData.Add(tempCard);
+            ExportPlayerOwnedCardData();
+            temp_playerOwnedCardData.Clear();
         }
     }
 
@@ -661,7 +642,6 @@ public class GameManager : MonoBehaviour
                 card.memeGif = tempCard.memeGif;
             }
             //print(card.name);
-            playerOwnedCardData.Add(card);
         }
     }
 
@@ -670,7 +650,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerDataStorage playerData = FindObjectOfType<PlayerDataStorage>();
 
-        foreach (CardData cardData in playerOwnedCardData)
+        foreach (CardData cardData in temp_playerOwnedCardData)
         {
             CardOwned playerCardOwned = new CardOwned
             {
@@ -693,7 +673,7 @@ public class GameManager : MonoBehaviour
             playerData.data.cardOwned.Add(playerCardOwned);
         }
 
-        playerOwnedCardData.Clear();
+        temp_playerOwnedCardData.Clear();
     }
 
     public void HighlightCard(PlayingCard playingCard)
@@ -1035,5 +1015,13 @@ public class GameManager : MonoBehaviour
         EventController.StartGame -= StartGame;
         EventController.ExecutingPoint -= ExecutingPoint;
 
+    }
+
+    /// <summary>
+    /// On application quit, save player data
+    /// </summary>
+    private void OnApplicationQuit()
+    {
+        EventController.OnSavePlayerData();
     }
 }

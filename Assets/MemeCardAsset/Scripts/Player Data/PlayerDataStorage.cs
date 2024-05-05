@@ -7,12 +7,19 @@ using UnityEngine;
 public class PlayerDataStorage : MonoBehaviour
 {
     public PlayerData data = new PlayerData();
+    public string fileName;
+
+    private void Start()
+    {
+        EventController.SavePlayerData += SaveToJson;
+        EventController.LoadPlayerData += LoadFromJson;
+    }
 
     [Button]
     public void SaveToJson()
     {
         string playerData = JsonUtility.ToJson(data);
-        string filePath = Application.persistentDataPath + "/" + "PlayerData" + ".json";
+        string filePath = Application.persistentDataPath + "/" + fileName;
         print(filePath);
         System.IO.File.WriteAllText(filePath, playerData);
         print("Saving Complete!");
@@ -21,11 +28,18 @@ public class PlayerDataStorage : MonoBehaviour
     [Button]
     public void LoadFromJson()
     {
-        string filePath = Application.persistentDataPath + "/" + "PlayerData" + ".json";
+        string filePath = Application.persistentDataPath + "/" + fileName;
         string playerData = System.IO.File.ReadAllText(filePath);
 
         data = JsonUtility.FromJson<PlayerData>(playerData);
         print("Load Complete!");
+        EventController.OnLoadLevelSlider(data);
+    }
+
+    private void OnApplicationQuit()
+    {
+        EventController.SavePlayerData -= SaveToJson;
+        EventController.LoadPlayerData -= LoadFromJson;
     }
 }
 

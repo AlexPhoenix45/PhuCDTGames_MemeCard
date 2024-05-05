@@ -169,5 +169,16 @@ public class EventController
     #endregion
 
     #region Player
+    public static event UnityAction SavePlayerData;
+    public static void OnSavePlayerData() => SavePlayerData?.Invoke();
+
+    public static event UnityAction LoadPlayerData;
+    public static void OnLoadPlayerData() => LoadPlayerData?.Invoke();
+
+    public static event UnityAction <PlayerData> LoadLevelSlider;
+    public static void OnLoadLevelSlider(PlayerData playerData) => LoadLevelSlider?.Invoke(playerData);
+
+    public static event UnityAction <PlayerData> LoadCoin;
+    public static void OnLoadCoin(PlayerData playerData) => LoadCoin?.Invoke(playerData);
     #endregion
 }

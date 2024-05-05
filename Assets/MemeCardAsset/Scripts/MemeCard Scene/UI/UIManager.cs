@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
     [Header("Header Attributes")]
     public GameObject header;
     public GameObject header_CoinContainer;
+    public TextMeshProUGUI header_CoinText;
     #endregion
 
     #region Question Attributes (Card Battle)
@@ -144,6 +145,8 @@ public class UIManager : MonoBehaviour
         EventController.CardBattleGameOver += CardBattle_GameOver;
 
         EventController.ChooseOpponent += ChoosingOpponent;
+
+        EventController.LoadCoin += UpdateHeaderCoin;
     }
 
     #region Navigation
@@ -466,6 +469,7 @@ public class UIManager : MonoBehaviour
     {
         if (header.GetComponent<CanvasGroup>().alpha != 1)
         {
+            header.GetComponent<CanvasGroup>().alpha = 0;
             LeanTween.value(0, 1, .5f).setOnUpdate((float value) =>
             {
                 header.GetComponent<CanvasGroup>().alpha = value;
@@ -476,10 +480,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
+
     private void HideHeader()
     {
         if (header.GetComponent<CanvasGroup>().alpha != 0)
         {
+            header.GetComponent<CanvasGroup>().alpha = 1;
             LeanTween.value(1, 0, .5f).setOnUpdate((float value) =>
             {
                 header.GetComponent<CanvasGroup>().alpha = value;
@@ -488,6 +494,10 @@ public class UIManager : MonoBehaviour
                 header.GetComponent<CanvasGroup>().alpha = 0;
             });
         }
+    }
+    private void UpdateHeaderCoin(PlayerData playerData)
+    {
+        LeanTween.value(int.Parse(header_CoinText.text), playerData.currentMoney, 1f);
     }
     #endregion
 
@@ -529,7 +539,7 @@ public class UIManager : MonoBehaviour
         string quest = I2.Loc.LocalizationManager.GetTranslation(questData.question);
         questionText.text = quest;
         print(questData.question);
-        print(quest);
+        //print(quest);
     }
 
     #endregion
@@ -562,6 +572,17 @@ public class UIManager : MonoBehaviour
             }).setOnComplete(() =>
             {
                 pointSlider_playerPointText.text = playerPoint.ToString();
+                //SetActive Fxs after point transition
+                if (playerPoint < opponentPoint)
+                {
+                    pointSlider_playerFxs.SetActive(false);
+                    pointSlider_opponentFxs.SetActive(true);
+                }
+                else if (playerPoint == opponentPoint)
+                {
+                    pointSlider_playerFxs.SetActive(true);
+                    pointSlider_opponentFxs.SetActive(true);
+                }
             });
 
             LeanTween.value(int.Parse(pointSlider_opponentPointText.text), opponentPoint, 1f).setEaseInOutCirc().setOnUpdate((float value) =>
@@ -571,6 +592,17 @@ public class UIManager : MonoBehaviour
             }).setOnComplete(() =>
             {
                 pointSlider_opponentPointText.text = opponentPoint.ToString();
+                //SetActive Fxs after point transition
+                if (opponentPoint < playerPoint)
+                {
+                    pointSlider_playerFxs.SetActive(true);
+                    pointSlider_opponentFxs.SetActive(true);
+                }
+                else if (playerPoint == opponentPoint)
+                {
+                    pointSlider_playerFxs.SetActive(true);
+                    pointSlider_opponentFxs.SetActive(true);
+                }
             });
         }
 
@@ -621,7 +653,7 @@ public class UIManager : MonoBehaviour
             }
             else if (playerPoint < opponentPoint)
             {
-                valueEnd = (opponentPoint - playerPoint) / 2 < 20 ? valueEnd = 20 : valueEnd = (opponentPoint - playerPoint) / 2;
+                valueEnd = (opponentPoint - playerPoint) > 30 ? valueEnd = 30 : valueEnd = 50 - (opponentPoint - playerPoint);
             }
             else
             {
