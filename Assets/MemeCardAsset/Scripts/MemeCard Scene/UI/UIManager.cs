@@ -146,7 +146,7 @@ public class UIManager : MonoBehaviour
 
         EventController.ChooseOpponent += ChoosingOpponent;
 
-        EventController.LoadCoin += UpdateHeaderCoin;
+        EventController.SetPlayerCoin += UpdateHeaderCoin;
     }
 
     #region Navigation
@@ -497,7 +497,10 @@ public class UIManager : MonoBehaviour
     }
     private void UpdateHeaderCoin(PlayerData playerData)
     {
-        LeanTween.value(int.Parse(header_CoinText.text), playerData.currentMoney, 1f);
+        LeanTween.value(int.Parse(header_CoinText.text), playerData.currentCoin, 1f).setOnUpdate((float value) =>
+        {
+            header_CoinText.text = ((int)value).ToString();
+        });
     }
     #endregion
 
@@ -723,24 +726,27 @@ public class UIManager : MonoBehaviour
 
         float time = 4;
         float timeElapsed = 0;
+        float playerLvlRange = (float)PlayerDataStorage.Instance.data.currentLvl / 10;
+
+        int selectedOpponentLvl = 0;
+
         IEnumerator chooseOpponent()
         {
             OpponentData tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
             choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
             choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
-            choosingOpponent_MidOpponent_Level.text = tempOpponent.opponentLevel.ToString();
-
+            choosingOpponent_RightOpponent_Level.text = RandomOpponentLevel().ToString();
+           
             tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
             choosingOpponent_MidOpponent_Image.sprite = tempOpponent.opponentImage;
             choosingOpponent_MidOpponent_Text.text = tempOpponent.opponentName;
-            choosingOpponent_MidOpponent_Level.text = tempOpponent.opponentLevel.ToString();
-
+            choosingOpponent_MidOpponent_Level.text = RandomOpponentLevel().ToString();
+           
             tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
             choosingOpponent_LeftOpponent_Image.sprite = tempOpponent.opponentImage;
             choosingOpponent_LeftOpponent_Text.text = tempOpponent.opponentName;
-            choosingOpponent_MidOpponent_Level.text = tempOpponent.opponentLevel.ToString();
-            tempOpponent.opponentLevel.ToString();
-
+            choosingOpponent_LeftOpponent_Level.text = RandomOpponentLevel().ToString();
+           
             while (timeElapsed < time)
             {
                 if (timeElapsed < 1.8f)
@@ -756,8 +762,8 @@ public class UIManager : MonoBehaviour
                     tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
-                    choosingOpponent_RightOpponent_Level.text = tempOpponent.opponentLevel.ToString();
-
+                    choosingOpponent_RightOpponent_Level.text = RandomOpponentLevel().ToString();
+                   
                     yield return new WaitForSeconds(.1f);
                     timeElapsed += .1f;
                 }
@@ -774,8 +780,8 @@ public class UIManager : MonoBehaviour
                     tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
-                    choosingOpponent_RightOpponent_Level.text = tempOpponent.opponentLevel.ToString();
-
+                    choosingOpponent_RightOpponent_Level.text = RandomOpponentLevel().ToString();
+                   
                     yield return new WaitForSeconds(.2f);
                     timeElapsed += .2f;
                 }
@@ -788,12 +794,13 @@ public class UIManager : MonoBehaviour
                     choosingOpponent_MidOpponent_Image.sprite = choosingOpponent_RightOpponent_Image.sprite;
                     choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
                     choosingOpponent_MidOpponent_Level.text = choosingOpponent_RightOpponent_Level.text;
+                    selectedOpponentLvl = int.Parse(choosingOpponent_RightOpponent_Level.text);
 
                     tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
-                    choosingOpponent_RightOpponent_Level.text = tempOpponent.opponentLevel.ToString();
-
+                    choosingOpponent_RightOpponent_Level.text = RandomOpponentLevel().ToString();
+                   
                     yield return new WaitForSeconds(.3f);
                     timeElapsed += .3f;
                 }
@@ -820,7 +827,8 @@ public class UIManager : MonoBehaviour
 
             yield return new WaitForSeconds(3f);
             choosingOpponent_Main.SetActive(false);
-            EventController.OnDrawStartingCard();
+            EventController.OnDrawStartingCard(selectedOpponentLvl);
+            //print(selectedOpponentLvl);
             Restart();
         }
         StartCoroutine(chooseOpponent());
@@ -833,6 +841,25 @@ public class UIManager : MonoBehaviour
 
             choosingOpponent_RightOpponent.GetComponent<CanvasGroup>().alpha = 1.0f;
             choosingOpponent_LeftOpponent.GetComponent<CanvasGroup>().alpha = 1.0f;
+        }
+
+        int RandomOpponentLevel()
+        {
+            if ((float)PlayerDataStorage.Instance.data.currentLvl % 5 != 0)
+            {
+                int lvlReturn = ((int)UnityEngine.Random.Range(10 * Mathf.Floor(playerLvlRange), 10 * Mathf.Ceil(playerLvlRange)));
+                do
+                {
+                    lvlReturn = ((int)UnityEngine.Random.Range(10 * Mathf.Floor(playerLvlRange), 10 * Mathf.Ceil(playerLvlRange)));
+                }
+                while (lvlReturn % 5 == 0);
+
+                return lvlReturn;
+            }
+            else
+            {
+                return PlayerDataStorage.Instance.data.currentLvl;
+            }
         }
     }
 
@@ -864,6 +891,7 @@ public class UIManager : MonoBehaviour
             losePanel.SetActive(false);
             winPanel.SetActive(true);
             MultiplierBar_Start();
+            EventController.OnAddPlayerLevel(1);
         }
         else
         {
@@ -898,23 +926,23 @@ public class UIManager : MonoBehaviour
     {
         if (multiplierBar_currentValue >= -470 && multiplierBar_currentValue < -290)
         {
-            print("X2");
+            EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
         else if (multiplierBar_currentValue >= -290 && multiplierBar_currentValue < -85)
         {
-            print("X4");
+            EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
         else if (multiplierBar_currentValue >= -85 && multiplierBar_currentValue < 105)
         {
-            print("X8");
+            EventController.OnAddPlayerCoin(8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
         else if (multiplierBar_currentValue >= 105 && multiplierBar_currentValue < 305)
         {
-            print("X4");
+            EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
         else if (multiplierBar_currentValue >= 305 && multiplierBar_currentValue < 470)
         {
-            print("X2");
+            EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
 
         multiplierBar_stop = true;
@@ -936,7 +964,7 @@ public class UIManager : MonoBehaviour
             {
                 if (multiplierBar_rtlMove && !multiplierBar_isMoving)
                 {
-                    LeanTween.value(multiplierBar_minBarPosY, multiplierBar_maxBarPosY, 1f).setOnUpdate((float value) =>
+                    LeanTween.value(multiplierBar_minBarPosY, multiplierBar_maxBarPosY, .7f).setOnUpdate((float value) =>
                     {
                         multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         multiplierBar_isMoving = true;
@@ -949,7 +977,7 @@ public class UIManager : MonoBehaviour
                 }
                 else if (!multiplierBar_rtlMove && !multiplierBar_isMoving)
                 {
-                    LeanTween.value(multiplierBar_maxBarPosY, multiplierBar_minBarPosY, 1f).setOnUpdate((float value) =>
+                    LeanTween.value(multiplierBar_maxBarPosY, multiplierBar_minBarPosY, .7f).setOnUpdate((float value) =>
                     {
                         multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         multiplierBar_isMoving = true;

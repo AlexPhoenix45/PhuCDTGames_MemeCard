@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,9 +25,11 @@ public class PlayPanel : MonoBehaviour
     public GameObject level5_active;
     public GameObject level5_inActive;
 
+    private int oldPlayerLevel = -1;
+
     private void OnEnable()
     {
-        EventController.LoadLevelSlider += LevelSliderExecuter;
+        EventController.SetLevelSlider += LevelSliderExecuter;
 
         playButton.SetActive(true);
         gameObject.transform.localScale = Vector3.one;
@@ -43,6 +46,11 @@ public class PlayPanel : MonoBehaviour
         }
 
         playButton.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic();
+
+        if (oldPlayerLevel != -1 && oldPlayerLevel != PlayerDataStorage.Instance.data.currentLvl)
+        {
+            EventController.OnLoadPlayerData();
+        }
     }
 
     public void OnClick_Play()
@@ -80,10 +88,20 @@ public class PlayPanel : MonoBehaviour
     public void LevelSliderExecuter(PlayerData playerData)
     {
         float currentLevelRange = playerData.currentLvl / 5;
-        level1_text.text = (5 * Mathf.Floor(currentLevelRange)).ToString();
-        level2_text.text = (5 * Mathf.Floor(currentLevelRange) + 1).ToString();
-        level3_text.text = (5 * Mathf.Floor(currentLevelRange) + 2).ToString();
-        level4_text.text = (5 * Mathf.Floor(currentLevelRange) + 3).ToString();
+        if (playerData.currentLvl % 5 != 0)
+        {
+            level1_text.text = (5 * Mathf.Floor(currentLevelRange) + 1).ToString();
+            level2_text.text = (5 * Mathf.Floor(currentLevelRange) + 2).ToString();
+            level3_text.text = (5 * Mathf.Floor(currentLevelRange) + 3).ToString();
+            level4_text.text = (5 * Mathf.Floor(currentLevelRange) + 4).ToString();
+        }
+        else
+        {
+            level1_text.text = (5 * Mathf.Floor(currentLevelRange - 1) + 1).ToString();
+            level2_text.text = (5 * Mathf.Floor(currentLevelRange - 1) + 2).ToString();
+            level3_text.text = (5 * Mathf.Floor(currentLevelRange - 1) + 3).ToString();
+            level4_text.text = (5 * Mathf.Floor(currentLevelRange - 1) + 4).ToString();
+        }
 
         if (playerData.currentLvl == int.Parse(level1_text.text))
         {
@@ -242,10 +260,12 @@ public class PlayPanel : MonoBehaviour
                 levelSlider.value = 100;
             });
         }
+        
+        oldPlayerLevel = playerData.currentLvl;
     }
 
     private void OnDisable()
     {
-        EventController.LoadLevelSlider -= LevelSliderExecuter;
+        EventController.SetLevelSlider -= LevelSliderExecuter;
     }
 }

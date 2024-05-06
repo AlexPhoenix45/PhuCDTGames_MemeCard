@@ -15,8 +15,8 @@ public class EventController
     /// <summary>
     /// Draw Starting Card for Card Battle Game, call by choosing opponent in UI controller
     /// </summary>
-    public static event UnityAction DrawStartingCard;
-    public static void OnDrawStartingCard() => DrawStartingCard?.Invoke();
+    public static event UnityAction <int> DrawStartingCard;
+    public static void OnDrawStartingCard(int opponentData) => DrawStartingCard?.Invoke(opponentData);
 
     /// <summary>
     /// Start Game - Card Battle
@@ -175,10 +175,20 @@ public class EventController
     public static event UnityAction LoadPlayerData;
     public static void OnLoadPlayerData() => LoadPlayerData?.Invoke();
 
-    public static event UnityAction <PlayerData> LoadLevelSlider;
-    public static void OnLoadLevelSlider(PlayerData playerData) => LoadLevelSlider?.Invoke(playerData);
+    public static event UnityAction <PlayerData> SetLevelSlider;
+    public static void OnSetLevelSlider(PlayerData playerData) => SetLevelSlider?.Invoke(playerData);
 
-    public static event UnityAction <PlayerData> LoadCoin;
-    public static void OnLoadCoin(PlayerData playerData) => LoadCoin?.Invoke(playerData);
+    public static event UnityAction <PlayerData> SetPlayerCoin;
+    public static void OnSetPlayerCoin(PlayerData playerData) => SetPlayerCoin?.Invoke(playerData);
+
+    public static event UnityAction<int> AddPlayerCoin;
+    public static void OnAddPlayerCoin(int amount) => AddPlayerCoin?.Invoke(amount);
+
+    public static event UnityAction<int> AddPlayerLevel;
+    public static void OnAddPlayerLevel(int amount) => AddPlayerLevel?.Invoke(amount);
+
+    public static event UnityAction LoadPlayerOwnedCard;
+    public static void OnLoadPlayerOwnedCard() => LoadPlayerOwnedCard?.Invoke();
+
     #endregion
 }

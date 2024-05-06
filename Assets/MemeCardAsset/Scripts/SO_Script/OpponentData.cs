@@ -8,5 +8,5 @@ public class OpponentData : ScriptableObject
 {
     public Sprite opponentImage;
     public string opponentName;
-    public int opponentLevel;
+    //public int opponentLevel;
 }

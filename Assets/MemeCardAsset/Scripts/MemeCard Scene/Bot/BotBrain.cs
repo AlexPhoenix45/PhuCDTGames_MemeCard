@@ -12,10 +12,42 @@ public class BotBrain : MonoBehaviour
     [HideInInspector]
     public GameObject opponentCardRight;
 
+    public bool isOpponent = false;
+    public ParticleSystem explosion;
+
+    #region Body Part
+    [Header("Hair")]
+    public GameObject maleHair1;
+    public GameObject maleHair2;
+    public GameObject femaleHair1;
+    public GameObject femaleHair2;
+    public GameObject femaleHair3;
+    [Header("Glasses")]
+    public GameObject glasses1;
+    public GameObject glasses2;
+    public GameObject glasses3;
+    [Header("Shirt")]
+    public GameObject shirt1;
+    public GameObject shirt2;
+    [Header("Pants")]
+    public GameObject malePants1;
+    public GameObject femalePants1;
+    public GameObject femalePants2;
+    #endregion
     private void OnEnable()
     {
         EventController.BotSetCard += BotSetCard;
         EventController.BotPlay += BotPlay;
+
+        if (isOpponent)
+        {
+            explosion.Play();
+        }
+    }
+
+    private void GenerateApperance()
+    {
+
     }
 
     private void BotPlay()

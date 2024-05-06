@@ -1,18 +1,31 @@
 using NaughtyAttributes;
 using NaughtyAttributes.Test;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerDataStorage : MonoBehaviour
 {
     public PlayerData data = new PlayerData();
     public string fileName;
+    public static PlayerDataStorage Instance;
+    public List<CardData> playerOwnedCard = new List<CardData>();
 
     private void Start()
     {
         EventController.SavePlayerData += SaveToJson;
         EventController.LoadPlayerData += LoadFromJson;
+
+        //Player Coins
+        EventController.AddPlayerCoin += AddPlayerCoin;
+        EventController.AddPlayerLevel += AddPlayerLevel;
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     [Button]
@@ -33,20 +46,38 @@ public class PlayerDataStorage : MonoBehaviour
 
         data = JsonUtility.FromJson<PlayerData>(playerData);
         print("Load Complete!");
-        EventController.OnLoadLevelSlider(data);
+        EventController.OnSetLevelSlider(data);
+        EventController.OnSetPlayerCoin(data);
+        EventController.OnLoadPlayerOwnedCard();
+    }
+
+    public void AddPlayerCoin(int amount)
+    {
+        data.currentCoin += amount;
+        SaveToJson();
+    }
+
+    public void AddPlayerLevel (int amount)
+    {
+        data.currentLvl += amount;
+        SaveToJson();
     }
 
     private void OnApplicationQuit()
     {
         EventController.SavePlayerData -= SaveToJson;
         EventController.LoadPlayerData -= LoadFromJson;
+
+        //Player Coins
+        EventController.AddPlayerCoin -= AddPlayerCoin;
+        EventController.AddPlayerLevel -= AddPlayerLevel;
     }
 }
 
 [System.Serializable]
 public class PlayerData
 {
-    public int currentMoney;
+    public int currentCoin;
     public int currentLvl;
     public List<CardOwned> cardOwned = new List<CardOwned>();
 }

@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
     private QuestionData currentQuestionData;
     #endregion
 
-    #region Players Attributes
+    #region Players Attributes && Opponent Lvl
     //[HideInInspector]
     private int playerPoint;
 
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     public List<CardData> temp_playerOwnedCardData = new List<CardData>();
 
-    private int currentPlayerLevel;
+    private int opponentLvl;
     #endregion
 
     #region Game Attributes
@@ -116,6 +116,9 @@ public class GameManager : MonoBehaviour
         EventController.HighlightCard += HighlightCard;
 
         EventController.GetCardCollection += GetCardCollection;
+
+        EventController.LoadPlayerOwnedCard += ImportPlayerOwnedCardData;
+
 
         //Spawn a Game (need a random after testing)
         StartSpawn_CardBattle();
@@ -161,18 +164,18 @@ public class GameManager : MonoBehaviour
     }
 
     #region Level
-
     #endregion
 
     #region Card
     /// <summary>
     /// First round card drawing
     /// </summary>
-    public void DrawCard()
+    public void DrawCard(int lvl)
     {
+        opponentLvl = lvl;
+
         IEnumerator MoveCardToHand()
         {
-            ImportPlayerOwnedCardData();
             //Reset Generate Data
             timeCardUnFitEmotion_Player = 0;
             timeCardUnFitEmotion_Opponent = 0;
@@ -390,7 +393,6 @@ public class GameManager : MonoBehaviour
     [Button]
     public void RenewCard()
     {
-        ImportPlayerOwnedCardData();
         //Reset Generate Data
         timeCardUnFitEmotion_Player = 0;
         timeCardUnFitEmotion_Opponent = 0;
@@ -416,97 +418,270 @@ public class GameManager : MonoBehaviour
     public CardData GenerateCardData(bool isForPlayer, bool isDrawMissing)
     {
         //About rarity of the card
-        CardData CardSpawningMechanism(bool isForced)
+        CardData CardSpawningMechanism(bool isForced, bool isForOpponent)
         {
-            if (!isForced)
+            if (!isForOpponent)
             {
-                int percentage = UnityEngine.Random.Range(0, 100);
-
-                if (percentage >= 0 && percentage < 50)
+                if (!isForced)
                 {
-                    List<int> cardIndex = new List<int>();
-                    for (int i = 0; i < cardDatas.Length; i++)
-                    {
-                        if (cardDatas[i].rarityType == RarityType.Common)
-                        {
-                            cardIndex.Add(i);
-                        }
-                    }
+                    int percentage = UnityEngine.Random.Range(0, 100);
 
-                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
-                }
-                else if (percentage >= 50 && percentage < 85)
-                {
-                    List<int> cardIndex = new List<int>();
-                    for (int i = 0; i < cardDatas.Length; i++)
+                    if (percentage >= 0 && percentage < 50)
                     {
-                        if (cardDatas[i].rarityType == RarityType.Rare)
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
                         {
-                            cardIndex.Add(i);
+                            if (cardDatas[i].rarityType == RarityType.Common)
+                            {
+                                cardIndex.Add(i);
+                            }
                         }
-                    }
 
-                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
+                    else if (percentage >= 50 && percentage < 85)
+                    {
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
+                        {
+                            if (cardDatas[i].rarityType == RarityType.Rare)
+                            {
+                                cardIndex.Add(i);
+                            }
+                        }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
+                    else
+                    {
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
+                        {
+                            if (cardDatas[i].rarityType == RarityType.Epic)
+                            {
+                                cardIndex.Add(i);
+                            }
+                        }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
                 }
                 else
                 {
-                    List<int> cardIndex = new List<int>();
-                    for (int i = 0; i < cardDatas.Length; i++)
-                    {
-                        if (cardDatas[i].rarityType == RarityType.Epic)
-                        {
-                            cardIndex.Add(i);
-                        }
-                    }
+                    int percentage = UnityEngine.Random.Range(0, 100);
 
-                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    if (percentage >= 0 && percentage < 50)
+                    {
+                        print(currentQuestionData.questionCardEmotionalType);
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
+                        {
+                            if (cardDatas[i].rarityType == RarityType.Common && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                            {
+                                cardIndex.Add(i);
+                            }
+                        }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
+                    else if (percentage >= 50 && percentage < 85)
+                    {
+                        print(currentQuestionData.questionCardEmotionalType);
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
+                        {
+                            if (cardDatas[i].rarityType == RarityType.Rare && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                            {
+                                cardIndex.Add(i);
+                            }
+                        }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
+                    else
+                    {
+                        print(currentQuestionData.questionCardEmotionalType);
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
+                        {
+                            if (cardDatas[i].rarityType == RarityType.Epic && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                            {
+                                cardIndex.Add(i);
+                            }
+                        }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
                 }
             }
             else
             {
-                int percentage = UnityEngine.Random.Range(0, 100);
-
-                if (percentage >= 0 && percentage < 50)
+                if (!isForced)
                 {
-                    print(currentQuestionData.questionCardEmotionalType);
-                    List<int> cardIndex = new List<int>();
-                    for (int i = 0; i < cardDatas.Length; i++)
-                    {
-                        if (cardDatas[i].rarityType == RarityType.Common && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
-                        {
-                            cardIndex.Add(i);
-                        }
-                    }
+                    int percentage = UnityEngine.Random.Range(0, 100);
 
-                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
-                }
-                else if (percentage >= 50 && percentage < 85)
-                {
-                    print(currentQuestionData.questionCardEmotionalType);
-                    List<int> cardIndex = new List<int>();
-                    for (int i = 0; i < cardDatas.Length; i++)
+                    if (percentage >= 0 && percentage < cardRarityLvlExecuter(0))
                     {
-                        if (cardDatas[i].rarityType == RarityType.Rare && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
                         {
-                            cardIndex.Add(i);
+                            if (cardDatas[i].rarityType == RarityType.Common)
+                            {
+                                cardIndex.Add(i);
+                            }
                         }
-                    }
 
-                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
+                    else if (percentage >= cardRarityLvlExecuter(0) && percentage < cardRarityLvlExecuter(1))
+                    {
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
+                        {
+                            if (cardDatas[i].rarityType == RarityType.Rare)
+                            {
+                                cardIndex.Add(i);
+                            }
+                        }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
+                    else
+                    {
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
+                        {
+                            if (cardDatas[i].rarityType == RarityType.Epic)
+                            {
+                                cardIndex.Add(i);
+                            }
+                        }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
                 }
                 else
                 {
-                    print(currentQuestionData.questionCardEmotionalType);
-                    List<int> cardIndex = new List<int>();
-                    for (int i = 0; i < cardDatas.Length; i++)
+                    int percentage = UnityEngine.Random.Range(0, 100);
+
+                    if (percentage >= 0 && percentage < cardRarityLvlExecuter(0))
                     {
-                        if (cardDatas[i].rarityType == RarityType.Epic && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                        //print(currentQuestionData.questionCardEmotionalType);
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
                         {
-                            cardIndex.Add(i);
+                            if (cardDatas[i].rarityType == RarityType.Common && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                            {
+                                cardIndex.Add(i);
+                            }
                         }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
+                    else if (percentage >= cardRarityLvlExecuter(0) && percentage < cardRarityLvlExecuter(1))
+                    {
+                        print(currentQuestionData.questionCardEmotionalType);
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
+                        {
+                            if (cardDatas[i].rarityType == RarityType.Rare && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                            {
+                                cardIndex.Add(i);
+                            }
+                        }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
+                    else
+                    {
+                        print(currentQuestionData.questionCardEmotionalType);
+                        List<int> cardIndex = new List<int>();
+                        for (int i = 0; i < cardDatas.Length; i++)
+                        {
+                            if (cardDatas[i].rarityType == RarityType.Epic && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                            {
+                                cardIndex.Add(i);
+                            }
+                        }
+
+                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    }
+                }
+
+                int cardRarityLvlExecuter(int rarityType)
+                {
+                    int commonPercentage = 0, rarePercentage = 0;
+                    if (opponentLvl == 5)
+                    {
+                        commonPercentage = 50;
+                        rarePercentage = 35;
+                    }
+                    else if (opponentLvl == 10)
+                    {
+                        commonPercentage = 45;
+                        rarePercentage = 40;
+                    }
+                    else if (opponentLvl == 15 || opponentLvl == 20)
+                    {
+                        commonPercentage = 40;
+                        rarePercentage = 40;
+                    }
+                    else if (opponentLvl == 25 || opponentLvl == 30)
+                    {
+                        commonPercentage = 35;
+                        rarePercentage = 40;
+                    }
+                    else if (opponentLvl == 35 || opponentLvl == 40)
+                    {
+                        commonPercentage = 30;
+                        rarePercentage = 40;
+                    }
+                    else if (opponentLvl == 45 || opponentLvl == 50)
+                    {
+                        commonPercentage = 25;
+                        rarePercentage = 40;
+                    }
+                    else if (opponentLvl == 55 || opponentLvl == 60)
+                    {
+                        commonPercentage = 10;
+                        rarePercentage = 50;
+                    }
+                    else if (opponentLvl > 0 && opponentLvl < 15)
+                    {
+                        commonPercentage = 70;
+                        rarePercentage = 20;
+                    }
+                    else if (opponentLvl > 15 && opponentLvl < 30)
+                    {
+                        commonPercentage = 60;
+                        rarePercentage = 25;
+                    }
+                    else if (opponentLvl > 30 && opponentLvl < 45)
+                    {
+                        commonPercentage = 50;
+                        rarePercentage = 30;
+                    }
+                    else if (opponentLvl > 45 && opponentLvl < 60)
+                    {
+                        commonPercentage = 35;
+                        rarePercentage = 40;
                     }
 
-                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                    //Return part
+                    if (rarityType == 0)
+                    {
+                        print(commonPercentage);
+                        return commonPercentage;
+                    }
+                    else if (rarityType == 1)
+                    {
+                        print(commonPercentage + rarePercentage);
+                        return commonPercentage + rarePercentage;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
             }
         } //Rarity spawn
@@ -561,7 +736,7 @@ public class GameManager : MonoBehaviour
             {
                 do
                 {
-                    tempCard = CardSpawningMechanism(false);
+                    tempCard = CardSpawningMechanism(false, false);
                 }
                 while (!DuplicateCheck(tempCard));
 
@@ -572,7 +747,7 @@ public class GameManager : MonoBehaviour
 
                 if (timeCardUnFitEmotion_Player == timeAllowGetUnFitEmotion_Player)
                 {
-                    tempCard = CardSpawningMechanism(true);
+                    tempCard = CardSpawningMechanism(true, false);
                 }
 
                 ExportCard();
@@ -580,7 +755,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                tempCard = CardSpawningMechanism(false);
+                tempCard = CardSpawningMechanism(false, false);
                 return tempCard;
             }
         }
@@ -588,7 +763,7 @@ public class GameManager : MonoBehaviour
         {
             do
             {
-                tempCard = CardSpawningMechanism(false);
+                tempCard = CardSpawningMechanism(false, true);
             }
             while (!DuplicateCheck(tempCard));
 
@@ -599,7 +774,7 @@ public class GameManager : MonoBehaviour
 
             if (timeCardUnFitEmotion_Opponent == timeAllowGetUnFitEmotion_Opponent)
             {
-                tempCard = CardSpawningMechanism(true);
+                tempCard = CardSpawningMechanism(true, true);
             }
 
             return tempCard;
@@ -617,11 +792,9 @@ public class GameManager : MonoBehaviour
     [Button]
     public void ImportPlayerOwnedCardData()
     {
-        PlayerDataStorage playerData = FindObjectOfType<PlayerDataStorage>();
-
         List<CardData> allCards = cardDatas.ToList();
 
-        foreach (CardOwned playerCardOwned in playerData.data.cardOwned)
+        foreach (CardOwned playerCardOwned in PlayerDataStorage.Instance.data.cardOwned)
         {
             CardData tempCard = allCards.Where(obj => obj.cardID == playerCardOwned.cardName).SingleOrDefault();
             CardData card = Instantiate(tempCard);
@@ -641,7 +814,7 @@ public class GameManager : MonoBehaviour
                 card.rarityType = RarityType.Epic;
                 card.memeGif = tempCard.memeGif;
             }
-            //print(card.name);
+            PlayerDataStorage.Instance.playerOwnedCard.Add(card);
         }
     }
 
@@ -872,20 +1045,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void CardBattleTurnTwo()
     {
-        if (playerPoint == opponentPoint)
+        if (opponentLvl % 5 != 0)
         {
-            DrawQuestion();
-            CardBattle_RoundCount++;
-
-            //This part is or generating card
-            timeCardUnFitEmotion_Player = 0;
-            timeCardUnFitEmotion_Opponent = 0;
-            timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4); //From 1 - 3
-            timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4); //From 1 - 3
-        }
-        else
-        {
-            if (CardBattle_RoundCount <= 1)
+            if (playerPoint == opponentPoint)
             {
                 DrawQuestion();
                 CardBattle_RoundCount++;
@@ -898,20 +1060,79 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                if (CardBattle_RoundCount <= 1)
+                {
+                    DrawQuestion();
+                    CardBattle_RoundCount++;
+
+                    //This part is or generating card
+                    timeCardUnFitEmotion_Player = 0;
+                    timeCardUnFitEmotion_Opponent = 0;
+                    timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4); //From 1 - 3
+                    timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4); //From 1 - 3
+                }
+                else
+                {
+                    timeCardUnFitEmotion_Player = 0;
+                    timeCardUnFitEmotion_Opponent = 0;
+                    timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4); //From 1 - 3
+                    timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4); //From 1 - 3
+
+                    if (playerPoint > opponentPoint)
+                    {
+                        EventController.OnCardBattleGameOver(true);
+                    }
+                    else
+                    {
+                        EventController.OnCardBattleGameOver(false);
+                    }
+                    CardBattle_GameOver();
+                }
+            }
+        }
+        else
+        {
+            if (playerPoint == opponentPoint)
+            {
+                DrawQuestion();
+                CardBattle_RoundCount++;
+
+                //This part is or generating card
                 timeCardUnFitEmotion_Player = 0;
                 timeCardUnFitEmotion_Opponent = 0;
                 timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4); //From 1 - 3
                 timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4); //From 1 - 3
-
-                if (playerPoint > opponentPoint)
+            }
+            else
+            {
+                if (CardBattle_RoundCount <= 3)
                 {
-                    EventController.OnCardBattleGameOver(true);
+                    DrawQuestion();
+                    CardBattle_RoundCount++;
+
+                    //This part is or generating card
+                    timeCardUnFitEmotion_Player = 0;
+                    timeCardUnFitEmotion_Opponent = 0;
+                    timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4); //From 1 - 3
+                    timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4); //From 1 - 3
                 }
                 else
                 {
-                    EventController.OnCardBattleGameOver(false);
+                    timeCardUnFitEmotion_Player = 0;
+                    timeCardUnFitEmotion_Opponent = 0;
+                    timeAllowGetUnFitEmotion_Player = UnityEngine.Random.Range(1, 4); //From 1 - 3
+                    timeAllowGetUnFitEmotion_Opponent = UnityEngine.Random.Range(1, 4); //From 1 - 3
+
+                    if (playerPoint > opponentPoint)
+                    {
+                        EventController.OnCardBattleGameOver(true);
+                    }
+                    else
+                    {
+                        EventController.OnCardBattleGameOver(false);
+                    }
+                    CardBattle_GameOver();
                 }
-                CardBattle_GameOver();
             }
         }
     }
