@@ -89,10 +89,20 @@ public class PlayingCard : MonoBehaviour
         else if (cardData.rarityType == RarityType.Epic)
         {
             memeBorder.material = epicMat;
-            videoPlayer.clip = cardData.memeGif;
-            videoPlayer.enabled = true;
-            videoPlayer.isLooping = true;
-            videoPlayer.Play();
+
+            if (cardData.memeGif != null)
+            {
+                videoPlayer.clip = cardData.memeGif;
+                videoPlayer.enabled = true;
+                videoPlayer.isLooping = true;
+                videoPlayer.Play();
+            }
+            else
+            {
+                memeBorder.material = rareMat;
+                memeImage.material = cardData.memeMaterial;
+                videoPlayer.enabled = false;
+            }
         }
     }
 

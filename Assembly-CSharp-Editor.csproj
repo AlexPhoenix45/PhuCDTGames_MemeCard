@@ -879,6 +879,22 @@
       <Project>{A05B9B1D-F3BF-8893-E085-AD6AD3F724CA}</Project>
       <Name>Google.Play.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj">
+      <Project>{64910438-BF84-4439-1B74-2A3549B78881}</Project>
+      <Name>ToonyColorsPro.Demo.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="KinoBloom.Runtime.csproj">
+      <Project>{1B4A6BB8-DB11-1BFC-C109-3C42D8A59CDE}</Project>
+      <Name>KinoBloom.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXREditor.csproj">
+      <Project>{65D97AB8-DC02-754E-9E53-208D7E2E28EC}</Project>
+      <Name>CFXREditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXRDemo.csproj">
+      <Project>{917DD4B3-D5BB-011A-99C6-567F39F0459A}</Project>
+      <Name>CFXRDemo</Name>
+    </ProjectReference>
     <ProjectReference Include="Google.Play.Review.csproj">
       <Project>{E0F86F93-D082-6133-BFC7-5E82EE864309}</Project>
       <Name>Google.Play.Review</Name>
@@ -903,6 +919,10 @@
       <Project>{61537C6F-B2AF-0588-CF89-9C14BE55FC89}</Project>
       <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="CFXR.WelcomeScreen.csproj">
+      <Project>{401DCF7F-63CC-BFF7-60D0-074BDBAA4202}</Project>
+      <Name>CFXR.WelcomeScreen</Name>
+    </ProjectReference>
     <ProjectReference Include="MaxSdk.Scripts.csproj">
       <Project>{0C0F4F19-FA00-0A72-CC7B-14E9B86A1D2D}</Project>
       <Name>MaxSdk.Scripts</Name>
@@ -914,6 +934,10 @@
     <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
       <Project>{9D1A34C9-9176-11DA-8F6D-0408A1A6419E}</Project>
       <Name>Google.Android.AppBundle.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXRRuntime.csproj">
+      <Project>{B9F8B009-1415-EFAD-E391-5AA33325424A}</Project>
+      <Name>CFXRRuntime</Name>
     </ProjectReference>
     <ProjectReference Include="Google.Play.Common.csproj">
       <Project>{8A75D708-45EA-47B9-6065-0C8FF93A6291}</Project>

@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540996208702935274}
-  m_Mesh: {fileID: -5462921076034416388, guid: a33bdf8c306546740b36bb30718ee817, type: 3}
+  m_Mesh: {fileID: -5462921076034416388, guid: 9c12ede58c5fe6242ba21ca468f8c5a7, type: 3}
 --- !u!23 &82062073240676906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6792038603351490175, guid: a33bdf8c306546740b36bb30718ee817, type: 3}
+  - {fileID: 6792038603351490175, guid: 9c12ede58c5fe6242ba21ca468f8c5a7, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,7 +120,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5918128069515742663}
-  m_Mesh: {fileID: 3821347517768448164, guid: a33bdf8c306546740b36bb30718ee817, type: 3}
+  m_Mesh: {fileID: 3821347517768448164, guid: 9c12ede58c5fe6242ba21ca468f8c5a7, type: 3}
 --- !u!23 &945516985415278995
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -216,6 +216,10 @@ MonoBehaviour:
   commonMat: {fileID: 2100000, guid: 246a1872a656a804392f7fe36cc3a847, type: 2}
   rareMat: {fileID: 2100000, guid: 29733d0ea80dc184689c88d5acfa1051, type: 2}
   epicMat: {fileID: 2100000, guid: 1b14559b9c7c61c4f9adbfd5737d006e, type: 2}
+  cardData: {fileID: 0}
+  isPlayerCard: 0
+  isPlayed: 0
+  isHighlighted: 0
 --- !u!328 &3674134827010747459
 VideoPlayer:
   m_ObjectHideFlags: 0

@@ -9,15 +9,15 @@ public class GameManager : MonoBehaviour
 {
     #region Card Battle Attributes
     #region Card Attributes
-    [Header("Card Prefabs")]
-    [Header("Attribute for Meme Card Battle")]
+    [Header("Card Attributes")]
+    //[Header("Attribute for Meme Card Battle")]
     public GameObject playingCardPrefabs;
 
-    [Header("Card Stack (Drawing Card Position)")]
+    //[Header("Card Stack (Drawing Card Position)")]
     public Transform playerCardDeck;
     public Transform opponentCardDeck;
 
-    [Header("On-hand Card Position")]
+    //[Header("On-hand Card Position")]
     public Transform playerCardMidPos;
     public Transform playerCardLeftPos;
     public Transform playerCardRightPos;
@@ -25,18 +25,18 @@ public class GameManager : MonoBehaviour
     public Transform opponentCardLeftPos;
     public Transform opponentCardRightPos;
 
-    [Header("Card Holder In Hierarchy")]
+    //[Header("Card Holder In Hierarchy")]
     public Transform playerCardHolder;
     public Transform opponentCardHolder;
 
-    [Header("Card Placed Position")]
+    //[Header("Card Placed Position")]
     public Transform playerPlacingPos;
     public Transform opponentPlacingPos;
 
-    [Header("Card Hide Pos")]
+    //[Header("Card Hide Pos")]
     public Transform playerCardHidePos;
 
-    [Header("Card Data")]
+    //[Header("Card Data")]
     public CardData[] cardDatas;
 
     //Private Attributes
@@ -71,21 +71,27 @@ public class GameManager : MonoBehaviour
     private QuestionData currentQuestionData;
     #endregion
 
-    #region Players Attributes && Opponent Lvl
-    //[HideInInspector]
-    private int playerPoint;
-
-    //[HideInInspector]
-    private int opponentPoint;
-
+    #region Players Attributes & Opponent
+    [Header("Players Attributes & Opponent")]
+    //Player
     public List<CardData> temp_playerOwnedCardData = new List<CardData>();
 
+    private int playerPoint;
+
+    //Opponent
+    private int opponentPoint;
+
     private int opponentLvl;
+
+    public List<BotBrain> audience = new List<BotBrain>();
     #endregion
 
     #region Game Attributes
 
     private int CardBattle_RoundCount = 0;
+
+    public ParticleSystem smokeExplosionOpponent;
+    public ParticleSystem smokeExplosionAudience;
 
     #endregion
 
@@ -119,6 +125,9 @@ public class GameManager : MonoBehaviour
 
         EventController.LoadPlayerOwnedCard += ImportPlayerOwnedCardData;
 
+        EventController.ShowBot += ShowBot;
+        EventController.ChangeAudienceApperance += ChangeAudienceApperance;
+
 
         //Spawn a Game (need a random after testing)
         StartSpawn_CardBattle();
@@ -135,6 +144,8 @@ public class GameManager : MonoBehaviour
             EventController.OnLoadPlayerData();
         }
         StartCoroutine(LoadData());
+
+        ChangeAudienceApperance();
     }
 
     private void StartGame()
@@ -1192,16 +1203,63 @@ public class GameManager : MonoBehaviour
                 int tempPoint = UnityEngine.Random.Range(min, max + 1);
                 print(tempPoint);
                 playerPoint += tempPoint;
+                EventController.OnBotPlayEmotionAnim(tempPoint);
             }
             else
             {
                 int tempPoint = UnityEngine.Random.Range(min, max + 1);
                 print(tempPoint);
                 opponentPoint += tempPoint;
+                EventController.OnBotPlayEmotionAnim(tempPoint);
             }
         }
     }
     //----------Point Executer------------------
+    #endregion
+
+    #region Fxs
+    private void PlayExplosionOpponent()
+    {
+        smokeExplosionOpponent.Play();
+    }
+
+    private void PlayExplosionAudience()
+    {
+        smokeExplosionAudience.Play();
+    }
+    #endregion
+
+    #region Bot
+    private void ShowBot()
+    {
+        foreach (BotBrain bot in audience)
+        {
+            if (bot.isOpponent)
+            {
+                PlayExplosionOpponent();
+                bot.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    private void ChangeAudienceApperance()
+    {
+        //Set up bot position & apperance
+        PlayExplosionOpponent();
+        PlayExplosionAudience();
+
+        foreach (BotBrain bot in audience)
+        {
+            if (!bot.isOpponent)
+            {
+                bot.GenerateApperance();
+            }
+            else
+            {
+                bot.gameObject.SetActive(false);
+            }
+        }
+    }
     #endregion
 
     /// <summary>
@@ -1228,6 +1286,9 @@ public class GameManager : MonoBehaviour
         CardBattle_RoundCount = 0;
     }
 
+    #endregion
+
+    #region Pack Opening
     #endregion
 
     private void OnDisable()

@@ -109,7 +109,7 @@ public class UIManager : MonoBehaviour
     public GameObject losePanel;
     public GameObject winPanel;
 
-
+    public TextMeshProUGUI winPanel_CoinText;
     #endregion
 
     #region Multiplier Bar
@@ -827,6 +827,8 @@ public class UIManager : MonoBehaviour
 
             yield return new WaitForSeconds(3f);
             choosingOpponent_Main.SetActive(false);
+            EventController.OnShowBot();
+            yield return new WaitForSeconds(1.5f);
             EventController.OnDrawStartingCard(selectedOpponentLvl);
             //print(selectedOpponentLvl);
             Restart();
@@ -897,6 +899,7 @@ public class UIManager : MonoBehaviour
         {
             losePanel.SetActive(true);
             winPanel.SetActive(false);
+            EventController.OnChangeAudienceApperance();
         }
     }
 
@@ -947,6 +950,7 @@ public class UIManager : MonoBehaviour
 
         multiplierBar_stop = true;
         OnClick_HomeButton_CardBattle(); //This is where to call ads
+        EventController.OnChangeAudienceApperance();
     }
     #endregion
 
@@ -969,6 +973,28 @@ public class UIManager : MonoBehaviour
                         multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         multiplierBar_isMoving = true;
                         multiplierBar_currentValue = (int)value;
+
+                        //Update Text on Slider is Playing
+                        if (multiplierBar_currentValue >= -470 && multiplierBar_currentValue < -290)
+                        {
+                            winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+                        else if (multiplierBar_currentValue >= -290 && multiplierBar_currentValue < -85)
+                        {
+                            winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+                        else if (multiplierBar_currentValue >= -85 && multiplierBar_currentValue < 105)
+                        {
+                            winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+                        else if (multiplierBar_currentValue >= 105 && multiplierBar_currentValue < 305)
+                        {
+                            winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+                        else if (multiplierBar_currentValue >= 305 && multiplierBar_currentValue < 470)
+                        {
+                            winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
                     }).setOnComplete(() =>
                     {
                         multiplierBar_rtlMove = false;
@@ -982,6 +1008,28 @@ public class UIManager : MonoBehaviour
                         multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         multiplierBar_isMoving = true;
                         multiplierBar_currentValue = (int)value;
+
+                        //Update Text on Slider is Playing
+                        if (multiplierBar_currentValue >= -470 && multiplierBar_currentValue < -290)
+                        {
+                            winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+                        else if (multiplierBar_currentValue >= -290 && multiplierBar_currentValue < -85)
+                        {
+                            winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+                        else if (multiplierBar_currentValue >= -85 && multiplierBar_currentValue < 105)
+                        {
+                            winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+                        else if (multiplierBar_currentValue >= 105 && multiplierBar_currentValue < 305)
+                        {
+                            winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+                        else if (multiplierBar_currentValue >= 305 && multiplierBar_currentValue < 470)
+                        {
+                            winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
                     }).setOnComplete(() => 
                     {
                         multiplierBar_rtlMove = true;

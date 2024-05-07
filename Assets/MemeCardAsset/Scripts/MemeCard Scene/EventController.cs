@@ -161,6 +161,17 @@ public class EventController
 
     public static event UnityAction BotPlay;
     public static void OnBotPlay() => BotPlay?.Invoke();
+
+    public static event UnityAction ShowBot;
+    public static void OnShowBot() => ShowBot?.Invoke();
+
+    public static event UnityAction ChangeAudienceApperance;
+    public static void OnChangeAudienceApperance() => ChangeAudienceApperance?.Invoke();
+
+    //Play Animation
+
+    public static event UnityAction <int> BotPlayEmotionAnim;
+    public static void OnBotPlayEmotionAnim(int point) => BotPlayEmotionAnim?.Invoke(point);
     #endregion
 
     #region Spawn Game on Table
