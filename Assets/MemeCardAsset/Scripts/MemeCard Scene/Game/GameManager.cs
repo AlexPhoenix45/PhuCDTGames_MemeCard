@@ -121,12 +121,15 @@ public class GameManager : MonoBehaviour
 
         EventController.HighlightCard += HighlightCard;
 
-        EventController.GetCardCollection += GetCardCollection;
+        EventController.GenerateCardDataPackage += GetCardCollection;
 
         EventController.LoadPlayerOwnedCard += ImportPlayerOwnedCardData;
 
         EventController.ShowBot += ShowBot;
         EventController.ChangeAudienceApperance += ChangeAudienceApperance;
+
+        //Get Card data to generate card pack data
+        EventController.GetCardData += PassCardData;
 
 
         //Spawn a Game (need a random after testing)
@@ -1289,6 +1292,11 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Pack Opening
+    [Button]
+    public void PassCardData()
+    {
+        EventController.OnGeneratePackCards(cardDatas);
+    }
     #endregion
 
     private void OnDisable()

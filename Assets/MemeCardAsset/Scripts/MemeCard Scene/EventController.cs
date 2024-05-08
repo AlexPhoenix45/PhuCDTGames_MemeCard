@@ -60,8 +60,8 @@ public class EventController
     public static event UnityAction ChooseOpponent;
     public static void OnChooseOpponent() => ChooseOpponent?.Invoke();
 
-    public static event UnityAction GetCardCollection;
-    public static void OnGetCardCollection() => GetCardCollection?.Invoke();
+
+
     #endregion
 
     #region Question
@@ -201,5 +201,23 @@ public class EventController
     public static event UnityAction LoadPlayerOwnedCard;
     public static void OnLoadPlayerOwnedCard() => LoadPlayerOwnedCard?.Invoke();
 
+    #endregion
+
+    #region Card Pack
+
+    public static event UnityAction<CardData[]> GeneratePackCards;
+    public static void OnGeneratePackCards(CardData[] cardDatas) => GeneratePackCards?.Invoke(cardDatas);
+
+    /// <summary>
+    /// Get Card Collection Data from GameManager
+    /// </summary>
+    public static event UnityAction GenerateCardDataPackage;
+    public static void OnGenerateCardDataPackage() => GenerateCardDataPackage?.Invoke();
+
+    public static event UnityAction GetCardData;
+    public static void OnGetCardData() => GetCardData?.Invoke();
+
+    public static event UnityAction GetLastCardEvent;
+    public static void OnGetLastCardEvent() => GetLastCardEvent?.Invoke();
     #endregion
 }

@@ -39,120 +39,180 @@ public class CollectionCard : MonoBehaviour
     public RenderTexture renderTexture;
     public CardData cardData;
 
+
+    public bool isForPackage = false;
     public void SetCollectionCard(CardData cardData)
     {
         this.cardData = cardData;
-        //Rarity Filter
+        if (!isForPackage)
         {
-            if (cardData.rarityType == RarityType.Common)
+            //Rarity Filter
             {
-                commonCard.SetActive(true);
-                rareCard.SetActive(false);
-                epicCard.SetActive(false);
-                commonEmotion.SetActive(true);
-                rareEmotion.SetActive(false);
-                epicEmotion.SetActive(false);
-                memeImageContainer.SetActive(true);
-                memeImage.sprite = cardData.memeImage;
-                memeGifVideoPlayer.gameObject.SetActive(false);
-            }
-            else if (cardData.rarityType == RarityType.Rare)
-            {
-                commonCard.SetActive(false);
-                rareCard.SetActive(true);
-                epicCard.SetActive(false);
-                commonEmotion.SetActive(false);
-                rareEmotion.SetActive(true);
-                epicEmotion.SetActive(false);
-                memeImageContainer.SetActive(true);
-                memeImage.sprite = cardData.memeImage;
-                memeGifVideoPlayer.gameObject.SetActive(false);
-            }
-            else if (cardData.rarityType == RarityType.Epic)
-            {
-                commonCard.SetActive(false);
-                rareCard.SetActive(false);
-                epicCard.SetActive(true);
-                commonEmotion.SetActive(false);
-                rareEmotion.SetActive(false);
-                epicEmotion.SetActive(true);
-
-                if (cardData.memeGif != null)
+                if (cardData.rarityType == RarityType.Common)
                 {
-                    memeImageContainer.SetActive(false);
-                    memeGifVideoPlayer.gameObject.SetActive(true);
-                    memeGifVideoPlayer.clip = cardData.memeGif;
-                    RenderTexture rt = Instantiate(renderTexture, memeGifVideoPlayer.transform);
-                    memeGifVideoPlayer.GetComponent<RawImage>().texture = rt;
-                    memeGifVideoPlayer.targetTexture = rt;
-                }
-                else
-                {
+                    commonCard.SetActive(true);
+                    rareCard.SetActive(false);
+                    epicCard.SetActive(false);
+                    commonEmotion.SetActive(true);
+                    rareEmotion.SetActive(false);
+                    epicEmotion.SetActive(false);
                     memeImageContainer.SetActive(true);
                     memeImage.sprite = cardData.memeImage;
                     memeGifVideoPlayer.gameObject.SetActive(false);
                 }
+                else if (cardData.rarityType == RarityType.Rare)
+                {
+                    commonCard.SetActive(false);
+                    rareCard.SetActive(true);
+                    epicCard.SetActive(false);
+                    commonEmotion.SetActive(false);
+                    rareEmotion.SetActive(true);
+                    epicEmotion.SetActive(false);
+                    memeImageContainer.SetActive(true);
+                    memeImage.sprite = cardData.memeImage;
+                    memeGifVideoPlayer.gameObject.SetActive(false);
+                }
+                else if (cardData.rarityType == RarityType.Epic)
+                {
+                    commonCard.SetActive(false);
+                    rareCard.SetActive(false);
+                    epicCard.SetActive(true);
+                    commonEmotion.SetActive(false);
+                    rareEmotion.SetActive(false);
+                    epicEmotion.SetActive(true);
+
+                    if (cardData.memeGif != null)
+                    {
+                        memeImageContainer.SetActive(false);
+                        memeGifVideoPlayer.gameObject.SetActive(true);
+                        memeGifVideoPlayer.clip = cardData.memeGif;
+                        RenderTexture rt = Instantiate(renderTexture, memeGifVideoPlayer.transform);
+                        memeGifVideoPlayer.GetComponent<RawImage>().texture = rt;
+                        memeGifVideoPlayer.targetTexture = rt;
+                    }
+                    else
+                    {
+                        memeImageContainer.SetActive(true);
+                        memeImage.sprite = cardData.memeImage;
+                        memeGifVideoPlayer.gameObject.SetActive(false);
+                    }
+                }
+            }
+
+            //Emotion Filter
+            {
+                if (cardData.playingCardEmotionalType == EmotionalType.Laugh)
+                {
+                    susEmotion.SetActive(false);
+                    cryEmotion.SetActive(false);
+                    angryEmotion.SetActive(false);
+                    surpriseEmotion.SetActive(false);
+                    coolEmotion.SetActive(false);
+                    laughEmotion.SetActive(true);
+                }
+                else if (cardData.playingCardEmotionalType == EmotionalType.Sus)
+                {
+                    susEmotion.SetActive(true);
+                    cryEmotion.SetActive(false);
+                    angryEmotion.SetActive(false);
+                    surpriseEmotion.SetActive(false);
+                    coolEmotion.SetActive(false);
+                    laughEmotion.SetActive(false);
+                }
+                else if (cardData.playingCardEmotionalType == EmotionalType.Cry)
+                {
+                    susEmotion.SetActive(false);
+                    cryEmotion.SetActive(true);
+                    angryEmotion.SetActive(false);
+                    surpriseEmotion.SetActive(false);
+                    coolEmotion.SetActive(false);
+                    laughEmotion.SetActive(false);
+                }
+                else if (cardData.playingCardEmotionalType == EmotionalType.Angry)
+                {
+                    susEmotion.SetActive(false);
+                    cryEmotion.SetActive(false);
+                    angryEmotion.SetActive(true);
+                    surpriseEmotion.SetActive(false);
+                    coolEmotion.SetActive(false);
+                    laughEmotion.SetActive(false);
+                }
+                else if (cardData.playingCardEmotionalType == EmotionalType.Surprise)
+                {
+                    susEmotion.SetActive(false);
+                    cryEmotion.SetActive(false);
+                    angryEmotion.SetActive(false);
+                    surpriseEmotion.SetActive(true);
+                    coolEmotion.SetActive(false);
+                    laughEmotion.SetActive(false);
+                }
+                else if (cardData.playingCardEmotionalType == EmotionalType.Cool)
+                {
+                    susEmotion.SetActive(false);
+                    cryEmotion.SetActive(false);
+                    angryEmotion.SetActive(false);
+                    surpriseEmotion.SetActive(false);
+                    coolEmotion.SetActive(true);
+                    laughEmotion.SetActive(false);
+                }
             }
         }
-
-        //Emotion Filter
+        else
         {
-            if (cardData.playingCardEmotionalType == EmotionalType.Laugh)
+            //Rarity Filter
             {
-                susEmotion.SetActive(false);
-                cryEmotion.SetActive(false);
-                angryEmotion.SetActive(false);
-                surpriseEmotion.SetActive(false);
-                coolEmotion.SetActive(false);
-                laughEmotion.SetActive(true);
-            }
-            else if (cardData.playingCardEmotionalType == EmotionalType.Sus)
-            {
-                susEmotion.SetActive(true);
-                cryEmotion.SetActive(false);
-                angryEmotion.SetActive(false);
-                surpriseEmotion.SetActive(false);
-                coolEmotion.SetActive(false);
-                laughEmotion.SetActive(false);
-            }
-            else if (cardData.playingCardEmotionalType == EmotionalType.Cry)
-            {
-                susEmotion.SetActive(false);
-                cryEmotion.SetActive(true);
-                angryEmotion.SetActive(false);
-                surpriseEmotion.SetActive(false);
-                coolEmotion.SetActive(false);
-                laughEmotion.SetActive(false);
-            }
-            else if (cardData.playingCardEmotionalType == EmotionalType.Angry)
-            {
-                susEmotion.SetActive(false);
-                cryEmotion.SetActive(false);
-                angryEmotion.SetActive(true);
-                surpriseEmotion.SetActive(false);
-                coolEmotion.SetActive(false);
-                laughEmotion.SetActive(false);
-            }
-            else if (cardData.playingCardEmotionalType == EmotionalType.Surprise)
-            {
-                susEmotion.SetActive(false);
-                cryEmotion.SetActive(false);
-                angryEmotion.SetActive(false);
-                surpriseEmotion.SetActive(true);
-                coolEmotion.SetActive(false);
-                laughEmotion.SetActive(false);
-            }
-            else if (cardData.playingCardEmotionalType == EmotionalType.Cool)
-            {
-                susEmotion.SetActive(false);
-                cryEmotion.SetActive(false);
-                angryEmotion.SetActive(false);
-                surpriseEmotion.SetActive(false);
-                coolEmotion.SetActive(true);
-                laughEmotion.SetActive(false);
-            }
-        }
+                if (cardData.rarityType == RarityType.Common)
+                {
+                    commonCard.SetActive(true);
+                    rareCard.SetActive(false);
+                    epicCard.SetActive(false);
+                    commonEmotion.SetActive(true);
+                    rareEmotion.SetActive(false);
+                    epicEmotion.SetActive(false);
+                    memeImageContainer.SetActive(true);
+                    memeImage.sprite = cardData.memeImage;
+                    memeGifVideoPlayer.gameObject.SetActive(false);
+                }
+                else if (cardData.rarityType == RarityType.Rare)
+                {
+                    commonCard.SetActive(false);
+                    rareCard.SetActive(true);
+                    epicCard.SetActive(false);
+                    commonEmotion.SetActive(false);
+                    rareEmotion.SetActive(true);
+                    epicEmotion.SetActive(false);
+                    memeImageContainer.SetActive(true);
+                    memeImage.sprite = cardData.memeImage;
+                    memeGifVideoPlayer.gameObject.SetActive(false);
+                }
+                else if (cardData.rarityType == RarityType.Epic)
+                {
+                    commonCard.SetActive(false);
+                    rareCard.SetActive(false);
+                    epicCard.SetActive(true);
+                    commonEmotion.SetActive(false);
+                    rareEmotion.SetActive(false);
+                    epicEmotion.SetActive(true);
 
+                    if (cardData.memeGif != null)
+                    {
+                        memeImageContainer.SetActive(false);
+                        memeGifVideoPlayer.gameObject.SetActive(true);
+                        memeGifVideoPlayer.clip = cardData.memeGif;
+                        RenderTexture rt = Instantiate(renderTexture, memeGifVideoPlayer.transform);
+                        memeGifVideoPlayer.GetComponent<RawImage>().texture = rt;
+                        memeGifVideoPlayer.targetTexture = rt;
+                    }
+                    else
+                    {
+                        memeImageContainer.SetActive(true);
+                        memeImage.sprite = cardData.memeImage;
+                        memeGifVideoPlayer.gameObject.SetActive(false);
+                    }
+                }
+            }
+
+        }
     }
 
     public void OnClick_UpgradeButton()

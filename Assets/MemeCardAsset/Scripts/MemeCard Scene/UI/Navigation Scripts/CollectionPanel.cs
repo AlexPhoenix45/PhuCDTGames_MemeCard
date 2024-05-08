@@ -125,7 +125,7 @@ public class CollectionPanel : MonoBehaviour
     {
         //Set default variable for book display
         currentItemIndex = 0;
-        EventController.OnGetCardCollection();
+        EventController.OnGenerateCardDataPackage();
 
         if (isFirstTime)
         {

@@ -30,12 +30,19 @@ public class PlayingCard : MonoBehaviour
 
     private bool readyToPlay = false;
 
+    //Package Parameters
+    public bool isForPackage;
+    private bool hasClick = false;
+    [HideInInspector]
+    public bool isLastItem = false;
+
     private void OnEnable()
     {
         EventController.CardReadyToPlay += SetCardReadyToPlay;
         EventController.TurnTableCam += StartSecondTurn; //This is called for second turn
 
         isHighlighted = false;
+        hasClick = false;
     }
 
     private void StartSecondTurn() //Turn two of playing card
@@ -134,25 +141,53 @@ public class PlayingCard : MonoBehaviour
     /// </summary>
     private void OnMouseDown() 
     {
-
-        if (readyToPlay && !isHighlighted)
+        //Is not use for package
+        if (!isForPackage)
         {
-            EventController.OnHighlightCard(this);
-        }
-        else if (readyToPlay && isPlayerCard)
-        {
-            isPlayed = true;
-            //this is when player select and play a card
-            EventController.OnExecutingPoint(this);
-            transform.LeanMove(placePos.position, .5f);
-            transform.LeanRotate(placePos.transform.eulerAngles, .5f);
-            EventController.OnHideAndDrawCard(this.gameObject);
-            IEnumerator waitToChangeCam()
+            if (readyToPlay && !isHighlighted)
             {
-                yield return new WaitForSeconds(.5f);
-                EventController.OnTurnAudienceCam();
+                EventController.OnHighlightCard(this);
             }
-            StartCoroutine(waitToChangeCam());
+            else if (readyToPlay && isPlayerCard)
+            {
+                isPlayed = true;
+                //this is when player select and play a card
+                EventController.OnExecutingPoint(this);
+                transform.LeanMove(placePos.position, .5f);
+                transform.LeanRotate(placePos.transform.eulerAngles, .5f);
+                EventController.OnHideAndDrawCard(this.gameObject);
+                IEnumerator waitToChangeCam()
+                {
+                    yield return new WaitForSeconds(.5f);
+                    EventController.OnTurnAudienceCam();
+                }
+                StartCoroutine(waitToChangeCam());
+            }
+        }
+        else //Use for package
+        {
+            if (!hasClick)
+            {
+                Vector3 tempPos = transform.position;
+                LeanTween.value(transform.position.y, transform.position.y + 2f, .5f).setEaseOutBack().setOnStart(() =>
+                {
+                    hasClick = true;
+                }).setOnUpdate((float value) =>
+                {
+                    transform.position = new Vector3(transform.position.x, value, transform.position.z);
+                }).setOnComplete(() =>
+                {
+                    LeanTween.value(transform.position.x, transform.position.x + 10, 1f).setOnUpdate((float value) =>
+                    {
+                        transform.position = new Vector3(value, transform.position.y, transform.position.z);
+                    }).setOnComplete(() =>
+                    {
+                        gameObject.SetActive(false);
+                        gameObject.transform.position = tempPos;
+                        EventController.OnGetLastCardEvent();
+                    }).setEaseInBack();
+                });
+            }
         }
     }
 
