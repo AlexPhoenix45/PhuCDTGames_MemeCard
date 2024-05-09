@@ -166,9 +166,6 @@ public class CollectionCard : MonoBehaviour
                     commonCard.SetActive(true);
                     rareCard.SetActive(false);
                     epicCard.SetActive(false);
-                    commonEmotion.SetActive(true);
-                    rareEmotion.SetActive(false);
-                    epicEmotion.SetActive(false);
                     memeImageContainer.SetActive(true);
                     memeImage.sprite = cardData.memeImage;
                     memeGifVideoPlayer.gameObject.SetActive(false);
@@ -178,9 +175,6 @@ public class CollectionCard : MonoBehaviour
                     commonCard.SetActive(false);
                     rareCard.SetActive(true);
                     epicCard.SetActive(false);
-                    commonEmotion.SetActive(false);
-                    rareEmotion.SetActive(true);
-                    epicEmotion.SetActive(false);
                     memeImageContainer.SetActive(true);
                     memeImage.sprite = cardData.memeImage;
                     memeGifVideoPlayer.gameObject.SetActive(false);
@@ -190,9 +184,6 @@ public class CollectionCard : MonoBehaviour
                     commonCard.SetActive(false);
                     rareCard.SetActive(false);
                     epicCard.SetActive(true);
-                    commonEmotion.SetActive(false);
-                    rareEmotion.SetActive(false);
-                    epicEmotion.SetActive(true);
 
                     if (cardData.memeGif != null)
                     {

@@ -40,6 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3101700758941239319}
   - component: {fileID: 3207069901165579855}
+  - component: {fileID: 1227382615912001492}
+  - component: {fileID: 3454352009453357768}
   m_Layer: 0
   m_Name: Card Pack
   m_TagString: Untagged
@@ -83,6 +85,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1227382615912001492
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324038572580065965}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1884332, y: 0.5025062, z: 3.4040167}
+  m_Center: {x: -0.029350817, y: 0.063557416, z: 0.072629094}
+--- !u!114 &3454352009453357768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2324038572580065965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973111fa63fc2994e9a507d7f1de0217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3608144478644702164
 GameObject:
   m_ObjectHideFlags: 0

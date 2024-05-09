@@ -32,7 +32,8 @@ public class PlayingCard : MonoBehaviour
 
     //Package Parameters
     public bool isForPackage;
-    private bool hasClick = false;
+    [HideInInspector]
+    public bool hasClick = false;
     [HideInInspector]
     public bool isLastItem = false;
 
@@ -177,14 +178,17 @@ public class PlayingCard : MonoBehaviour
                     transform.position = new Vector3(transform.position.x, value, transform.position.z);
                 }).setOnComplete(() =>
                 {
-                    LeanTween.value(transform.position.x, transform.position.x + 10, 1f).setOnUpdate((float value) =>
+                    LeanTween.value(transform.position.x, transform.position.x + 10, .5f).setOnUpdate((float value) =>
                     {
                         transform.position = new Vector3(value, transform.position.y, transform.position.z);
                     }).setOnComplete(() =>
                     {
                         gameObject.SetActive(false);
                         gameObject.transform.position = tempPos;
-                        EventController.OnGetLastCardEvent();
+                        if (isLastItem)
+                        {
+                            EventController.OnGetLastCardEvent();
+                        }
                     }).setEaseInBack();
                 });
             }

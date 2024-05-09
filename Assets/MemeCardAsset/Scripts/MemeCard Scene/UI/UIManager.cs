@@ -115,12 +115,20 @@ public class UIManager : MonoBehaviour
     #region Multiplier Bar
     [Header("Multiplier Bar")]
     public GameObject multiplierBar_cursor;
-    private readonly int multiplierBar_minBarPosY = -470;
-    private readonly int multiplierBar_maxBarPosY = 470;
+    private readonly int multiplierBar_minBarPosY = -405;
+    private readonly int multiplierBar_maxBarPosY = 405;
     private bool multiplierBar_rtlMove;
     private bool multiplierBar_isMoving;
     private int multiplierBar_currentValue;
     private bool multiplierBar_stop = false;
+    #endregion
+
+    #region Package Reward
+    [Header("Package Reward")]
+    public GameObject winPanel_Inactive;
+    public GameObject packageReward;
+    public GameObject packageReward_progressionMask;
+    public GameObject[] packageReward_progressMaskPos;
     #endregion
 
     private void Start()
@@ -886,10 +894,14 @@ public class UIManager : MonoBehaviour
     }
 
     //Game Over Panel
+    private bool isPlayerWin;
     private void ShowGameOver_CardBattle(bool isPlayerWin)
     {
+        this.isPlayerWin = isPlayerWin;
         if (isPlayerWin)
         {
+            winPanel_Inactive.SetActive(true);
+            packageReward.SetActive(false);
             losePanel.SetActive(false);
             winPanel.SetActive(true);
             MultiplierBar_Start();
@@ -906,53 +918,50 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Method for home button in End Game panel
     /// </summary>
-    public void OnClick_HomeButton_CardBattle()
+    public void OnClick_HomeButton_WinPanel_CardBattle()
     {
-        EventController.OnTurnRoomCam();
-
-        losePanel.SetActive(false);
-        winPanel.SetActive(false);
-
-        IEnumerator wait()
+        if (isPlayerWin)
         {
-            yield return new WaitForSeconds(.5f);
-            while (FindObjectOfType<CameraMovement>().isBlending)
-            {
-                yield return null;
-            }
-            ShowNavigationButton();
+            ShowPackageReward();
         }
-        StartCoroutine(wait());
+        else
+        {
+            ChangeCamToRoomCam_AfterEndGame();
+        }
     }
 
-    public void OnClick_ClaimButton_CardBattle()
+    public void OnClick_ClaimButton_WinPanel_CardBattle()
     {
-        if (multiplierBar_currentValue >= -470 && multiplierBar_currentValue < -290)
+        if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
         {
             EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
-        else if (multiplierBar_currentValue >= -290 && multiplierBar_currentValue < -85)
+        else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
         {
             EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
-        else if (multiplierBar_currentValue >= -85 && multiplierBar_currentValue < 105)
+        else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
         {
             EventController.OnAddPlayerCoin(8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
-        else if (multiplierBar_currentValue >= 105 && multiplierBar_currentValue < 305)
+        else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
         {
             EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
-        else if (multiplierBar_currentValue >= 305 && multiplierBar_currentValue < 470)
+        else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
         {
             EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
         }
 
         multiplierBar_stop = true;
-        OnClick_HomeButton_CardBattle(); //This is where to call ads
-        EventController.OnChangeAudienceApperance();
+
+        StartCoroutine(wait());
+        IEnumerator wait()
+        {
+            yield return new WaitForSeconds(1);
+            ShowPackageReward();
+        }
     }
-    #endregion
 
     #region Multiplier Bar
     [Button]
@@ -960,6 +969,7 @@ public class UIManager : MonoBehaviour
     {
         multiplierBar_rtlMove = true;
         multiplierBar_currentValue = 0;
+        float tempValue = 0;
         multiplierBar_stop = false;
         StartCoroutine(move());
         IEnumerator move()
@@ -973,27 +983,33 @@ public class UIManager : MonoBehaviour
                         multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         multiplierBar_isMoving = true;
                         multiplierBar_currentValue = (int)value;
+                        tempValue = value;
 
                         //Update Text on Slider is Playing
-                        if (multiplierBar_currentValue >= -470 && multiplierBar_currentValue < -290)
+                        if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
                         {
                             winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
                         }
-                        else if (multiplierBar_currentValue >= -290 && multiplierBar_currentValue < -85)
+                        else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
                         {
                             winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
                         }
-                        else if (multiplierBar_currentValue >= -85 && multiplierBar_currentValue < 105)
+                        else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
                         {
                             winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
                         }
-                        else if (multiplierBar_currentValue >= 105 && multiplierBar_currentValue < 305)
+                        else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
                         {
                             winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
                         }
-                        else if (multiplierBar_currentValue >= 305 && multiplierBar_currentValue < 470)
+                        else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
                         {
                             winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+
+                        if (multiplierBar_stop)
+                        {
+                            multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(tempValue, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         }
                     }).setOnComplete(() =>
                     {
@@ -1010,25 +1026,30 @@ public class UIManager : MonoBehaviour
                         multiplierBar_currentValue = (int)value;
 
                         //Update Text on Slider is Playing
-                        if (multiplierBar_currentValue >= -470 && multiplierBar_currentValue < -290)
+                        if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
                         {
                             winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
                         }
-                        else if (multiplierBar_currentValue >= -290 && multiplierBar_currentValue < -85)
+                        else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
                         {
                             winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
                         }
-                        else if (multiplierBar_currentValue >= -85 && multiplierBar_currentValue < 105)
+                        else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
                         {
                             winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
                         }
-                        else if (multiplierBar_currentValue >= 105 && multiplierBar_currentValue < 305)
+                        else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
                         {
                             winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
                         }
-                        else if (multiplierBar_currentValue >= 305 && multiplierBar_currentValue < 470)
+                        else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
                         {
                             winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                        }
+
+                        if (multiplierBar_stop)
+                        {
+                            multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(tempValue, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         }
                     }).setOnComplete(() => 
                     {
@@ -1042,6 +1063,102 @@ public class UIManager : MonoBehaviour
             while (!multiplierBar_stop);
         }
     }
+    #endregion
+
+    #region Package Reward
+    public void ShowPackageReward()
+    {
+        LeanTween.value(1, 0, 1f).setOnStart(() =>
+        {
+            winPanel_Inactive.SetActive(true);
+            winPanel_Inactive.GetComponent<CanvasGroup>().alpha = 1f;
+        }).setOnUpdate((float value) =>
+        {
+            winPanel_Inactive.GetComponent<CanvasGroup>().alpha = value;
+        }).setOnComplete(() =>
+        {
+            winPanel_Inactive.SetActive(false);
+            winPanel_Inactive.GetComponent<CanvasGroup>().alpha = 0f;
+
+            packageReward.SetActive(true);
+            PackageProgressionExecution();
+        });
+    }
+
+    public void PackageProgressionExecution()
+    {
+        if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 1)
+        {
+            LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[0].GetComponent<RectTransform>().localPosition, 1f);
+            ChangeCamToRoomCam_AfterEndGame();
+        }
+        else if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 2)
+        {
+            LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[1].GetComponent<RectTransform>().localPosition, 1f);
+            ChangeCamToRoomCam_AfterEndGame();
+        }
+        else if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 3)
+        {
+            LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[2].GetComponent<RectTransform>().localPosition, 1f);
+            ChangeCamToRoomCam_AfterEndGame();
+        }
+        else if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 4)
+        {
+            LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[3].GetComponent<RectTransform>().localPosition, 1f);
+            ChangeCamToRoomCam_AfterEndGame();
+        }
+        else if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 0)
+        {
+            LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[4].GetComponent<RectTransform>().localPosition, 1f);
+            ChangeCamToRoomCam_AfterEndGame();
+        }
+    }
+
+        public void ChangeCamToRoomCam_AfterEndGame()
+        {
+            IEnumerator wait()
+            {
+                if (isPlayerWin)
+                {
+                    yield return new WaitForSeconds(3f);
+                }
+
+                EventController.OnTurnRoomCam();
+
+                if (packageReward.activeSelf)
+                {
+                    LeanTween.value(1, 0, 1f).setOnStart(() =>
+                    {
+                        packageReward.GetComponent<CanvasGroup>().alpha = 1f;
+                    }).setOnUpdate((float value) =>
+                    {
+                        packageReward.GetComponent<CanvasGroup>().alpha = value;
+                    }).setOnComplete(() =>
+                    {
+                        packageReward.GetComponent<CanvasGroup>().alpha = 0f;
+                        packageReward.SetActive(false);
+                        losePanel.SetActive(false);
+                        winPanel.SetActive(false);
+                    });
+                }
+                else
+                {
+                    losePanel.SetActive(false);
+                    winPanel.SetActive(false);
+                }
+
+                yield return new WaitForSeconds(.5f);
+                while (FindObjectOfType<CameraMovement>().isBlending)
+                {
+                    yield return null;
+                }
+                ShowNavigationButton();
+            }
+            StartCoroutine(wait());
+            EventController.OnChangeAudienceApperance();
+        }
+    #endregion
+
     #endregion
 
     private void OnDisable()

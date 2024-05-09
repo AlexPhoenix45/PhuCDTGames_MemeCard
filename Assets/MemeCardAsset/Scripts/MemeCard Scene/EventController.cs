@@ -219,5 +219,8 @@ public class EventController
 
     public static event UnityAction GetLastCardEvent;
     public static void OnGetLastCardEvent() => GetLastCardEvent?.Invoke();
+
+    public static event UnityAction OpenPack;
+    public static void OnOpenPack() => OpenPack?.Invoke();
     #endregion
 }

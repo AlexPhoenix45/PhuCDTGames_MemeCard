@@ -4833,6 +4833,46 @@ MonoBehaviour:
       - vi_blackOutline
       Flags: 0000000000000000000000000000
       Languages_Touch: []
+    - Term: collect
+      TermType: 0
+      Description: 
+      Languages:
+      - Receive
+      - "Nh\u1EADn"
+      - "\u6536\u5230"
+      - "\uBC1B\uB2E4"
+      - "\u53D7\u3051\u53D6\u308B"
+      - Receber
+      - "\u041F\u043E\u043B\u0443\u0447\u0430\u0442\u044C"
+      - Erhalten
+      - Ricevere
+      - Recevoir
+      - "\u05DC\u05B0\u05E7\u05B7\u05D1\u05BC\u05B5\u05DC"
+      - "\u092A\u094D\u0930\u093E\u092A\u094D\u0924 \u0915\u0930\u0947\u0902"
+      - Almak
+      - Recibir
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: LiberationSans SDF
+      TermType: 9
+      Description: 
+      Languages:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 

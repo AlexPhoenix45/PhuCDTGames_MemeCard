@@ -1239,8 +1239,13 @@ public class GameManager : MonoBehaviour
         {
             if (bot.isOpponent)
             {
-                PlayExplosionOpponent();
-                bot.gameObject.SetActive(true);
+                StartCoroutine(wait());
+                IEnumerator wait()
+                {
+                    PlayExplosionOpponent();
+                    yield return new WaitForSeconds(.5f);
+                    bot.gameObject.SetActive(true);
+                }
             }
         }
     }
