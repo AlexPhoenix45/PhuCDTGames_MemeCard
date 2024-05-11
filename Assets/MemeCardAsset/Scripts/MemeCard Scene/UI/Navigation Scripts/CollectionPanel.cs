@@ -1,7 +1,5 @@
-using JetBrains.Annotations;
 using NaughtyAttributes;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
@@ -50,6 +48,7 @@ public class CollectionPanel : MonoBehaviour
 
     public bool isFirstTime = true;
 
+
     #region Drag Controller Variables
     private Vector2 startTouchPos;
     private Vector2 endTouchPos;
@@ -65,24 +64,32 @@ public class CollectionPanel : MonoBehaviour
         EventController.OnTurnCollectionCam();
         //gameObject.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic();
 
-        IEnumerator wait()
+        Image r = background.GetComponent<Image>();
+        gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        gameObject.GetComponent<RectTransform>().localScale = Vector3.one;
+        if (r.color.a <= 0)
         {
-            gameObject.transform.localScale = Vector3.one;
-            yield return new WaitForSeconds(.5f);
-            Image r = background.GetComponent<Image>();
-            if (r.color.a <= 0)
+            UIManager.tweeningID = LeanTween.value(background, 0, 1, 1f).setOnUpdate((float val) =>
             {
-                LeanTween.value(background, 0, 1, 1f).setOnUpdate((float val) =>
-                {
-                    Color c = r.color;
-                    c.a = val;
-                    r.color = c;
-                }).setOnComplete(() =>
-                {
-                });
-            }
+                Color c = r.color;
+                c.a = val;
+                r.color = c;
+                gameObject.GetComponent<CanvasGroup>().alpha = val;
+            }).setOnComplete(() =>
+            {
+                gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            }).id;
         }
-        StartCoroutine(wait());
+        else
+        {
+            UIManager.tweeningID = LeanTween.value(0, 1, 1f).setOnUpdate((float val) =>
+            {
+                gameObject.GetComponent<CanvasGroup>().alpha = val;
+            }).setOnComplete(() =>
+            {
+                gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            }).id;
+        }
 
         //Set default variable for book display
         activeBookmark = ActiveBookmark.Laugh;
@@ -132,7 +139,6 @@ public class CollectionPanel : MonoBehaviour
             currentPage = Instantiate(bookPage, bookTransform);
             currentPage.GetComponent<Canvas>().sortingOrder = currentLayer;
             currentLayer--;
-            print("a");
             isFirstTime = false;
 
 
@@ -374,7 +380,6 @@ public class CollectionPanel : MonoBehaviour
                 {
                     if (i < GameManager.laughCardList.Count)
                     {
-                        print("print");
                         GameObject tempCollectionCard = Instantiate(collectionCard, tempBookPage.transform);
                         tempCollectionCard.GetComponent<CollectionCard>().SetCollectionCard(GameManager.laughCardList[i]);
                     }
@@ -601,14 +606,14 @@ public class CollectionPanel : MonoBehaviour
             tempPage.GetComponent<Canvas>().sortingOrder = currentLayer;
             currentLayer--;
             currentPage.transform.rotation = Quaternion.Euler(currentPage.transform.rotation.x, 0, currentPage.transform.rotation.z);
-            LeanTween.value(0, -90, 1f).setOnUpdate((float value) =>
+            UIManager.tweeningID = LeanTween.value(0, -90, 1f).setOnUpdate((float value) =>
             {
                 currentPage.transform.rotation = Quaternion.Euler(currentPage.transform.rotation.x, value, currentPage.transform.rotation.z);
             }).setOnComplete(() =>
             {
                 Destroy(currentPage);
                 currentPage = tempPage;
-            });
+            }).id;
         }
         else
         {
@@ -616,131 +621,149 @@ public class CollectionPanel : MonoBehaviour
             tempPage.GetComponent<Canvas>().sortingOrder = currentLayer;
             currentLayer--;
             tempPage.transform.rotation = Quaternion.Euler(tempPage.transform.rotation.x, 90, tempPage.transform.rotation.z);
-            LeanTween.value(90, 0, 1f).setOnUpdate((float value) =>
+            UIManager.tweeningID = LeanTween.value(90, 0, 1f).setOnUpdate((float value) =>
             {
                 tempPage.transform.rotation = Quaternion.Euler(tempPage.transform.rotation.x, value, tempPage.transform.rotation.z);
             }).setOnComplete(() =>
             {
                 Destroy(currentPage);
                 currentPage = tempPage;
-            });
+            }).id;
         }
     }
 
     #region Bookmarks OnClick 
     public void OnClick_LaughEmotion()
     {
-        laughBookmarkActive.SetActive(true);
-        angryBookmarkActive.SetActive(false);
-        susBookmarkActive.SetActive(false);
-        cryBookmarkActive.SetActive(false);
-        surpriseBookmarkActive.SetActive(false);
-        coolBookmarkActive.SetActive(false);
+        if (activeBookmark != ActiveBookmark.Laugh)
+        {
+            laughBookmarkActive.SetActive(true);
+            angryBookmarkActive.SetActive(false);
+            susBookmarkActive.SetActive(false);
+            cryBookmarkActive.SetActive(false);
+            surpriseBookmarkActive.SetActive(false);
+            coolBookmarkActive.SetActive(false);
 
-        laughBookmarkInactive.SetActive(false);
-        angryBookmarkInactive.SetActive(true);
-        susBookmarkInactive.SetActive(true);
-        cryBookmarkInactive.SetActive(true);
-        surpriseBookmarkInactive.SetActive(true);
-        coolBookmarkInactive.SetActive(true);
+            laughBookmarkInactive.SetActive(false);
+            angryBookmarkInactive.SetActive(true);
+            susBookmarkInactive.SetActive(true);
+            cryBookmarkInactive.SetActive(true);
+            surpriseBookmarkInactive.SetActive(true);
+            coolBookmarkInactive.SetActive(true);
 
-        activeBookmark = ActiveBookmark.Laugh;
-        DisplayFirstPage();
+            activeBookmark = ActiveBookmark.Laugh;
+            DisplayFirstPage();
+        }
     }
     public void OnClick_AngryEmotion()
     {
-        laughBookmarkActive.SetActive(false);
-        angryBookmarkActive.SetActive(true);
-        susBookmarkActive.SetActive(false);
-        cryBookmarkActive.SetActive(false);
-        surpriseBookmarkActive.SetActive(false);
-        coolBookmarkActive.SetActive(false);
+        if (activeBookmark != ActiveBookmark.Angry)
+        {
+            laughBookmarkActive.SetActive(false);
+            angryBookmarkActive.SetActive(true);
+            susBookmarkActive.SetActive(false);
+            cryBookmarkActive.SetActive(false);
+            surpriseBookmarkActive.SetActive(false);
+            coolBookmarkActive.SetActive(false);
 
-        laughBookmarkInactive.SetActive(true);
-        angryBookmarkInactive.SetActive(false);
-        susBookmarkInactive.SetActive(true);
-        cryBookmarkInactive.SetActive(true);
-        surpriseBookmarkInactive.SetActive(true);
-        coolBookmarkInactive.SetActive(true);
+            laughBookmarkInactive.SetActive(true);
+            angryBookmarkInactive.SetActive(false);
+            susBookmarkInactive.SetActive(true);
+            cryBookmarkInactive.SetActive(true);
+            surpriseBookmarkInactive.SetActive(true);
+            coolBookmarkInactive.SetActive(true);
 
-        activeBookmark = ActiveBookmark.Angry;
-        DisplayFirstPage();
+            activeBookmark = ActiveBookmark.Angry;
+            DisplayFirstPage();
+        }
     }
     public void OnClick_SusEmotion()
     {
-        laughBookmarkActive.SetActive(false);
-        angryBookmarkActive.SetActive(false);
-        susBookmarkActive.SetActive(true);
-        cryBookmarkActive.SetActive(false);
-        surpriseBookmarkActive.SetActive(false);
-        coolBookmarkActive.SetActive(false);
+        if (activeBookmark != ActiveBookmark.Sus)
+        {
+            laughBookmarkActive.SetActive(false);
+            angryBookmarkActive.SetActive(false);
+            susBookmarkActive.SetActive(true);
+            cryBookmarkActive.SetActive(false);
+            surpriseBookmarkActive.SetActive(false);
+            coolBookmarkActive.SetActive(false);
 
-        laughBookmarkInactive.SetActive(true);
-        angryBookmarkInactive.SetActive(true);
-        susBookmarkInactive.SetActive(false);
-        cryBookmarkInactive.SetActive(true);
-        surpriseBookmarkInactive.SetActive(true);
-        coolBookmarkInactive.SetActive(true);
+            laughBookmarkInactive.SetActive(true);
+            angryBookmarkInactive.SetActive(true);
+            susBookmarkInactive.SetActive(false);
+            cryBookmarkInactive.SetActive(true);
+            surpriseBookmarkInactive.SetActive(true);
+            coolBookmarkInactive.SetActive(true);
 
-        activeBookmark = ActiveBookmark.Sus;
-        DisplayFirstPage();
+            activeBookmark = ActiveBookmark.Sus;
+            DisplayFirstPage();
+        }
     }
     public void OnClick_CryEmotion()
     {
-        laughBookmarkActive.SetActive(false);
-        angryBookmarkActive.SetActive(false);
-        susBookmarkActive.SetActive(false);
-        cryBookmarkActive.SetActive(true);
-        surpriseBookmarkActive.SetActive(false);
-        coolBookmarkActive.SetActive(false);
+        if (activeBookmark != ActiveBookmark.Cry)
+        {
+            laughBookmarkActive.SetActive(false);
+            angryBookmarkActive.SetActive(false);
+            susBookmarkActive.SetActive(false);
+            cryBookmarkActive.SetActive(true);
+            surpriseBookmarkActive.SetActive(false);
+            coolBookmarkActive.SetActive(false);
 
-        laughBookmarkInactive.SetActive(true);
-        angryBookmarkInactive.SetActive(true);
-        susBookmarkInactive.SetActive(true);
-        cryBookmarkInactive.SetActive(false);
-        surpriseBookmarkInactive.SetActive(true);
-        coolBookmarkInactive.SetActive(true);
+            laughBookmarkInactive.SetActive(true);
+            angryBookmarkInactive.SetActive(true);
+            susBookmarkInactive.SetActive(true);
+            cryBookmarkInactive.SetActive(false);
+            surpriseBookmarkInactive.SetActive(true);
+            coolBookmarkInactive.SetActive(true);
 
-        activeBookmark = ActiveBookmark.Cry;
-        DisplayFirstPage();
+            activeBookmark = ActiveBookmark.Cry;
+            DisplayFirstPage();
+        }
     }
     public void OnClick_SurpriseEmotion()
     {
-        laughBookmarkActive.SetActive(false);
-        angryBookmarkActive.SetActive(false);
-        susBookmarkActive.SetActive(false);
-        cryBookmarkActive.SetActive(false);
-        surpriseBookmarkActive.SetActive(true);
-        coolBookmarkActive.SetActive(false);
+        if (activeBookmark != ActiveBookmark.Surprise)
+        {
+            laughBookmarkActive.SetActive(false);
+            angryBookmarkActive.SetActive(false);
+            susBookmarkActive.SetActive(false);
+            cryBookmarkActive.SetActive(false);
+            surpriseBookmarkActive.SetActive(true);
+            coolBookmarkActive.SetActive(false);
 
-        laughBookmarkInactive.SetActive(true);
-        angryBookmarkInactive.SetActive(true);
-        susBookmarkInactive.SetActive(true);
-        cryBookmarkInactive.SetActive(true);
-        surpriseBookmarkInactive.SetActive(false);
-        coolBookmarkInactive.SetActive(true);
+            laughBookmarkInactive.SetActive(true);
+            angryBookmarkInactive.SetActive(true);
+            susBookmarkInactive.SetActive(true);
+            cryBookmarkInactive.SetActive(true);
+            surpriseBookmarkInactive.SetActive(false);
+            coolBookmarkInactive.SetActive(true);
 
-        activeBookmark = ActiveBookmark.Surprise;
-        DisplayFirstPage();
+            activeBookmark = ActiveBookmark.Surprise;
+            DisplayFirstPage();
+        }
     }
     public void OnClick_CoolEmotion()
     {
-        laughBookmarkActive.SetActive(false);
-        angryBookmarkActive.SetActive(false);
-        susBookmarkActive.SetActive(false);
-        cryBookmarkActive.SetActive(false);
-        surpriseBookmarkActive.SetActive(false);
-        coolBookmarkActive.SetActive(true);
+        if (activeBookmark != ActiveBookmark.Cool)
+        {
+            laughBookmarkActive.SetActive(false);
+            angryBookmarkActive.SetActive(false);
+            susBookmarkActive.SetActive(false);
+            cryBookmarkActive.SetActive(false);
+            surpriseBookmarkActive.SetActive(false);
+            coolBookmarkActive.SetActive(true);
 
-        laughBookmarkInactive.SetActive(true);
-        angryBookmarkInactive.SetActive(true);
-        susBookmarkInactive.SetActive(true);
-        cryBookmarkInactive.SetActive(true);
-        surpriseBookmarkInactive.SetActive(true);
-        coolBookmarkInactive.SetActive(false);
+            laughBookmarkInactive.SetActive(true);
+            angryBookmarkInactive.SetActive(true);
+            susBookmarkInactive.SetActive(true);
+            cryBookmarkInactive.SetActive(true);
+            surpriseBookmarkInactive.SetActive(true);
+            coolBookmarkInactive.SetActive(false);
 
-        activeBookmark = ActiveBookmark.Cool;
-        DisplayFirstPage();
+            activeBookmark = ActiveBookmark.Cool;
+            DisplayFirstPage();
+        }
     }
     #endregion
 }

@@ -4873,6 +4873,106 @@ MonoBehaviour:
       - 
       Flags: 0000000000000000000000000000
       Languages_Touch: []
+    - Term: bonus_pack
+      TermType: 0
+      Description: 
+      Languages:
+      - Bonus Pack
+      - "Th\u01B0\u1EDFng"
+      - "\u5956\u91D1"
+      - "\uBCF4\uB108\uC2A4"
+      - "\u30DC\u30FC\u30CA\u30B9"
+      - "B\xF4nus"
+      - "\u0411\u043E\u043D\u0443\u0441"
+      - Bonus
+      - Bonus
+      - Prime
+      - "\u05DE\u05B7\u05E2\u05B2\u05E0\u05B8\u05E7"
+      - "\u092C\u0915\u094D\u0936\u0940\u0936"
+      - Bonus
+      - Prima
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: card_pack
+      TermType: 0
+      Description: 
+      Languages:
+      - Card Packs
+      - "G\xF3i Th\u1EBB"
+      - "\u5361\u5305"
+      - "\uCE74\uB4DC \uD329"
+      - "\u30AB\u30FC\u30C9\u30D1\u30C3\u30AF"
+      - Pacotes De Cartas
+      - "\u041A\u043E\u043B\u043E\u0434\u044B \u041A\u0430\u0440\u0442"
+      - Kartenpakete
+      - Pacchetti Di Carte
+      - Paquets De Cartes
+      - "\u05D7\u05D1\u05D9\u05DC\u05D5\u05EA \u05DB\u05E8\u05D8\u05D9\u05E1\u05D9\u05DD"
+      - "\u0915\u093E\u0930\u094D\u0921 \u092A\u0948\u0915"
+      - Kart Paketleri
+      - Paquetes De Cartas
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: free
+      TermType: 0
+      Description: 
+      Languages:
+      - Free
+      - "Mi\u1EC5n Ph\xED"
+      - "\u81EA\u7531\u7684"
+      - "\uBB34\uB8CC"
+      - "\u7121\u6599"
+      - Livre
+      - "\u0411\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u043E"
+      - Frei
+      - Gratuito
+      - Gratuit
+      - "\u05D7\u05D9\u05E0\u05DD"
+      - "\u092E\u0941\u0915\u094D\u0924"
+      - "\xD6zg\xFCr"
+      - Gratis
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: deals
+      TermType: 0
+      Description: 
+      Languages:
+      - Deals
+      - "Giao D\u1ECBch"
+      - "\u4EA4\u6613"
+      - "\uAC70\uB798"
+      - "\u304A\u5F97\u60C5\u5831"
+      - Ofertas
+      - "\u0421\u0434\u0435\u043B\u043A\u0438"
+      - Angebote
+      - Offerte
+      - Offres
+      - "\u05E2\u05E1\u05E7\u05D0\u05D5\u05EA"
+      - "\u0938\u094C\u0926\u093E"
+      - "F\u0131rsatlar"
+      - Ofertas
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
+    - Term: coins
+      TermType: 0
+      Description: 
+      Languages:
+      - Coins
+      - "\u0110\u1ED3ng Xu"
+      - "\u786C\u5E01"
+      - "\uB3D9\uC804"
+      - "\u30B3\u30A4\u30F3"
+      - Moedas
+      - "\u041C\u043E\u043D\u0435\u0442\u044B"
+      - "M\xFCnzen"
+      - Monete
+      - "Pi\xE8ces De Monnaie"
+      - "\u05DE\u05D8\u05D1\u05E2\u05D5\u05EA"
+      - "\u0938\u093F\u0915\u094D\u0915\u0947"
+      - Paralar
+      - Monedas
+      Flags: 0000000000000000000000000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 

@@ -41,8 +41,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXREditor", "CFXREditor.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.litefeel.BitmapFontImporter.Editor", "com.litefeel.BitmapFontImporter.Editor.csproj", "{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxSdk.Scripts.Editor", "MaxSdk.Scripts.Editor.csproj", "{1FD3CCBD-2130-C559-DE44-2FA4D2037588}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXR.WelcomeScreen", "CFXR.WelcomeScreen.csproj", "{401DCF7F-63CC-BFF7-60D0-074BDBAA4202}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToonyColorsPro.Demo.Editor", "ToonyColorsPro.Demo.Editor.csproj", "{64910438-BF84-4439-1B74-2A3549B78881}"
@@ -138,10 +136,6 @@ Global
 		{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1FD3CCBD-2130-C559-DE44-2FA4D2037588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FD3CCBD-2130-C559-DE44-2FA4D2037588}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FD3CCBD-2130-C559-DE44-2FA4D2037588}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FD3CCBD-2130-C559-DE44-2FA4D2037588}.Release|Any CPU.Build.0 = Release|Any CPU
 		{401DCF7F-63CC-BFF7-60D0-074BDBAA4202}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{401DCF7F-63CC-BFF7-60D0-074BDBAA4202}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{401DCF7F-63CC-BFF7-60D0-074BDBAA4202}.Release|Any CPU.ActiveCfg = Release|Any CPU

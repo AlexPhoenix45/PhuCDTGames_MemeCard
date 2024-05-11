@@ -16,12 +16,14 @@ MonoBehaviour:
   sdkKey: k_mtuwdinJw2fDiQ4iCF6Nh8buCSERDJSLmHhd-LTH7f5TR9UAlu-w0kHC1_CKN16ZWEHPs4pbVMtrh6EepoE3
   setAttributionReportEndpoint: 0
   addApsSkAdNetworkIds: 0
+  customGradleVersionUrl: 
+  customGradleToolsVersion: 
   consentFlowEnabled: 0
   consentFlowPlatform: 0
   consentFlowPrivacyPolicyUrl: 
   consentFlowTermsOfServiceUrl: 
   userTrackingUsageDescriptionEn: 
-  userTrackingUsageLocalizationEnabled: 0
+  userTrackingUsageLocalizationEnabled: 1
   userTrackingUsageDescriptionDe: 
   userTrackingUsageDescriptionEs: 
   userTrackingUsageDescriptionFr: 
@@ -29,6 +31,6 @@ MonoBehaviour:
   userTrackingUsageDescriptionKo: 
   userTrackingUsageDescriptionZhHans: 
   userTrackingUsageDescriptionZhHant: default_localization
-  adMobAndroidAppId: 
-  adMobIosAppId: 
+  adMobAndroidAppId: ca-app-pub-1061613090902017~1807573864
+  adMobIosAppId: ca-app-pub-1061613090902017~5327182328
   showInternalSettingsInIntegrationManager: 0

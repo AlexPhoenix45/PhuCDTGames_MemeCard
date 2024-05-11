@@ -36,17 +36,18 @@ public class SettingPanel : MonoBehaviour
     }
     private void OnEnable()
     {
-        gameObject.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic();
+        gameObject.GetComponent<RectTransform>().localScale = Vector3.zero;
+        UIManager.tweeningID = gameObject.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic().id;
 
         Image r = background.GetComponent<Image>();
         if (r.color.a <= 0)
         {
-            LeanTween.value(background, 0, 1, .25f).setOnUpdate((float val) =>
+            UIManager.tweeningID = LeanTween.value(background, 0, 1, .25f).setOnUpdate((float val) =>
             {
                 Color c = r.color;
                 c.a = val;
                 r.color = c;
-            });
+            }).id;
         }
     }
 

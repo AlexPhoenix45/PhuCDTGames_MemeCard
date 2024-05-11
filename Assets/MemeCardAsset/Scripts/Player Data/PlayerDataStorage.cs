@@ -55,6 +55,7 @@ public class PlayerDataStorage : MonoBehaviour
     {
         data.currentCoin += amount;
         SaveToJson();
+        EventController.OnSetPlayerCoin(data);
     }
 
     public void AddPlayerLevel (int amount)

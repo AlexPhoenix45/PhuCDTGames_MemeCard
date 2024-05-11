@@ -30,19 +30,19 @@ public class PlayPanel : MonoBehaviour
     private void OnEnable()
     {
         EventController.SetLevelSlider += LevelSliderExecuter;
-
+        UIManager.tweeningID = 1;
         playButton.SetActive(true);
         gameObject.transform.localScale = Vector3.one;
         playButton.transform.localScale = Vector3.zero;
         Image r = background.GetComponent<Image>();
         if (r.color.a != 0)
         {
-            LeanTween.value(gameObject, 1, 0, .25f).setOnUpdate((float val) =>
+            UIManager.tweeningID = LeanTween.value(gameObject, 1, 0, .25f).setOnUpdate((float val) =>
             {
                 Color c = r.color;
                 c.a = val;
                 r.color = c;
-            });
+            }).id;
         }
 
         playButton.transform.LeanScale(Vector3.one, 1f).setEaseOutElastic();
@@ -76,13 +76,13 @@ public class PlayPanel : MonoBehaviour
     public void ShowLevelSlider()
     {
         levelSlider.GetComponent<CanvasGroup>().alpha = 0;
-        LeanTween.value(0, 1, 1f).setOnUpdate((float value) =>
+        UIManager.tweeningID = LeanTween.value(0, 1, 1f).setOnUpdate((float value) =>
         {
             levelSlider.GetComponent<CanvasGroup>().alpha = value;
         }).setOnComplete(() =>
         {
             levelSlider.GetComponent<CanvasGroup>().alpha = 1;
-        });
+        }).id;
     }
 
     public void LevelSliderExecuter(PlayerData playerData)

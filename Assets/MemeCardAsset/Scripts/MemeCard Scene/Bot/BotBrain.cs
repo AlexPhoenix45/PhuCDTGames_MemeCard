@@ -1,8 +1,5 @@
-using JetBrains.Annotations;
 using NaughtyAttributes;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class BotBrain : MonoBehaviour
@@ -35,8 +32,8 @@ public class BotBrain : MonoBehaviour
     #endregion
 
     #region Animations
-    public AnimatorController audienceAnim;
-    public AnimatorController opponentAnim;
+    public RuntimeAnimatorController audienceAnim;
+    public RuntimeAnimatorController opponentAnim;
     #endregion
 
     private void OnEnable()

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "770111590981",
+    "project_id": "meme-battle-1e4a3",
+    "storage_bucket": "meme-battle-1e4a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770111590981:android:2a473eb1163b0adf41092c",
+        "android_client_info": {
+          "package_name": "com.cdt.meme.battle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaJwzvCZ7aEDt6t0ze4M_uNJ00g9IpnPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

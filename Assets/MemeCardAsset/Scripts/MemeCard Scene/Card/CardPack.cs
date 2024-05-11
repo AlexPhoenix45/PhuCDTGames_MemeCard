@@ -1,3 +1,4 @@
+using Assets.Core.Scripts.Core.Managers;
 using I2.Loc;
 using NaughtyAttributes;
 using System.Collections;
@@ -30,7 +31,8 @@ public class CardPack : MonoBehaviour
     public GameObject glowingFxs;
     public GameObject newCardText;
     public CollectionCard[] uiCard;
-    public Button collectButton;
+    public Button receiveButton;
+    public Button morePackButton;
     public GameObject transition;
     //Turn off others panel
     public GameObject navPanel;
@@ -39,6 +41,8 @@ public class CardPack : MonoBehaviour
     private int packRariry;
     private GameObject tempPack;
     private List<CardData> collectedCardDatas = new List<CardData>();
+    public bool moreEpic;
+    public bool bonused;
 
     private void OnEnable()
     {
@@ -49,93 +53,175 @@ public class CardPack : MonoBehaviour
         EventController.GeneratePackCards += GenerateCardDataPackage;
         EventController.GetLastCardEvent += ShowNewCard;
         EventController.OpenPack += OpenPack;
+        EventController.SpawnPack += ShowPack;
     }
 
     public int rarity;
     [Button]
     public void Show()
     {
-        ShowPack(rarity);
+        ShowPack(rarity, moreEpic, bonused);
     }
 
-    private void ShowPack(int rarity)
+    private void ShowPack(int rarity, bool moreEpic, bool bonused)
     {
         EventController.OnTurnDirectTableCam();
-        StartCoroutine(waitToTransition());
-        IEnumerator waitToTransition()
+        if (!bonused)
         {
-            transition.SetActive(true);
-            yield return new WaitForSeconds(3f);
-
-            foreach (PlayingCard card in collectedCards)
+            StartCoroutine(waitToTransition());
+            IEnumerator waitToTransition()
             {
-                card.gameObject.SetActive(true);
-                card.hasClick = true;
+                transition.SetActive(true);
+                yield return new WaitForSeconds(3f);
+
+                foreach (PlayingCard card in collectedCards)
+                {
+                    card.gameObject.SetActive(true);
+                    card.hasClick = true;
+                }
+
+                EventController.OnGetCardData();
+
+                transition.SetActive(false);
+            }
+            //Reset card data pack
+            collectedCardDatas = new List<CardData>();
+            this.moreEpic = moreEpic;
+            this.bonused = bonused;
+
+            packRariry = rarity;
+            if (rarity == 0)
+            {
+                packTearPart.material = commonMat;
+                packBodyPart.material = commonMat;
+                tempPack = Instantiate(packPrefabs, cardPackSpawnPos, Quaternion.identity, packTransform);
+            }
+            else if (rarity == 1)
+            {
+                packTearPart.material = rareMat;
+                packBodyPart.material = rareMat;
+                tempPack = Instantiate(packPrefabs, cardPackSpawnPos, Quaternion.identity, packTransform);
+            }
+            else if (rarity == 2)
+            {
+                packTearPart.material = epicMat;
+                packBodyPart.material = epicMat;
+                tempPack = Instantiate(packPrefabs, cardPackSpawnPos, Quaternion.identity, packTransform);
             }
 
-            EventController.OnGetCardData();
+            shiningParticles.gameObject.SetActive(true);
 
-            transition.SetActive(false);
+            if (navPanel.activeSelf && headerPanel.activeSelf)
+            {
+                LeanTween.value(1, 0, 1f).setOnStart(() =>
+                {
+                    navPanel.gameObject.SetActive(true);
+                    headerPanel.gameObject.SetActive(true);
+
+                    navPanel.GetComponent<CanvasGroup>().alpha = 1;
+                    headerPanel.GetComponent<CanvasGroup>().alpha = 1;
+                }).setOnUpdate((float value) =>
+                {
+                    navPanel.GetComponent<CanvasGroup>().alpha = value;
+                    headerPanel.GetComponent<CanvasGroup>().alpha = value;
+                }).setOnComplete(() =>
+                {
+                    navPanel.GetComponent<CanvasGroup>().alpha = 0;
+                    headerPanel.GetComponent<CanvasGroup>().alpha = 0;
+
+                    navPanel.gameObject.SetActive(false);
+                    headerPanel.gameObject.SetActive(true);
+                });
+            }
         }
-        //Reset card data pack
-        collectedCardDatas = new List<CardData>();
-
-        packRariry = rarity;
-        if (rarity == 0)
+        else
         {
-            packTearPart.material = commonMat;
-            packBodyPart.material = commonMat;
-            tempPack = Instantiate(packPrefabs, cardPackSpawnPos, Quaternion.identity, packTransform);
+            StartCoroutine(waitToTransition());
+            IEnumerator waitToTransition()
+            {
+                transition.SetActive(true);
+
+                yield return new WaitForSeconds(2);
+                foreach (PlayingCard card in collectedCards)
+                {
+                    card.gameObject.SetActive(true);
+                    card.hasClick = true;
+                }
+                //Reset card data pack
+                collectedCardDatas = new List<CardData>();
+                this.moreEpic = moreEpic;
+                this.bonused = bonused;
+
+                packRariry = rarity;
+                if (rarity == 0)
+                {
+                    packTearPart.material = commonMat;
+                    packBodyPart.material = commonMat;
+                    tempPack = Instantiate(packPrefabs, cardPackSpawnPos, Quaternion.identity, packTransform);
+                }
+                else if (rarity == 1)
+                {
+                    packTearPart.material = rareMat;
+                    packBodyPart.material = rareMat;
+                    tempPack = Instantiate(packPrefabs, cardPackSpawnPos, Quaternion.identity, packTransform);
+                }
+                else if (rarity == 2)
+                {
+                    packTearPart.material = epicMat;
+                    packBodyPart.material = epicMat;
+                    tempPack = Instantiate(packPrefabs, cardPackSpawnPos, Quaternion.identity, packTransform);
+                }
+
+                shiningParticles.gameObject.SetActive(true);
+
+                if (navPanel.activeSelf && headerPanel.activeSelf)
+                {
+                    LeanTween.value(1, 0, 1f).setOnStart(() =>
+                    {
+                        navPanel.gameObject.SetActive(true);
+                        headerPanel.gameObject.SetActive(true);
+
+                        navPanel.GetComponent<CanvasGroup>().alpha = 1;
+                        headerPanel.GetComponent<CanvasGroup>().alpha = 1;
+                    }).setOnUpdate((float value) =>
+                    {
+                        navPanel.GetComponent<CanvasGroup>().alpha = value;
+                        headerPanel.GetComponent<CanvasGroup>().alpha = value;
+                    }).setOnComplete(() =>
+                    {
+                        navPanel.GetComponent<CanvasGroup>().alpha = 0;
+                        headerPanel.GetComponent<CanvasGroup>().alpha = 0;
+
+                        navPanel.gameObject.SetActive(false);
+                        headerPanel.gameObject.SetActive(true);
+                    });
+                }
+
+                EventController.OnGetCardData();
+
+                yield return new WaitForSeconds(1f);
+                transition.SetActive(false);
+            }
         }
-        else if (rarity == 1)
-        {
-            packTearPart.material = rareMat;
-            packBodyPart.material = rareMat;
-            tempPack = Instantiate(packPrefabs, cardPackSpawnPos, Quaternion.identity, packTransform);
-        }
-        else if (rarity == 2)
-        {
-            packTearPart.material = epicMat;
-            packBodyPart.material = epicMat;
-            tempPack = Instantiate(packPrefabs, cardPackSpawnPos, Quaternion.identity, packTransform);
-        }
-
-        shiningParticles.gameObject.SetActive(true);
-
-        LeanTween.value(1, 0, 1f).setOnStart(() =>
-        {
-            navPanel.gameObject.SetActive(true);
-            headerPanel.gameObject.SetActive(true);
-
-            navPanel.GetComponent<CanvasGroup>().alpha = 1;
-            headerPanel.GetComponent<CanvasGroup>().alpha = 1;
-        }).setOnUpdate((float value) =>
-        {
-            navPanel.GetComponent<CanvasGroup>().alpha = value;
-            headerPanel.GetComponent<CanvasGroup>().alpha = value;
-        }).setOnComplete(() =>
-        {
-            navPanel.GetComponent<CanvasGroup>().alpha = 0;
-            headerPanel.GetComponent<CanvasGroup>().alpha = 0;
-
-            navPanel.gameObject.SetActive(false);
-            headerPanel.gameObject.SetActive(true);
-        });
     }
-    
+
     [Button]
     public void OpenPack()
     {
         tempPack.GetComponent<Animator>().SetTrigger("OpenPack");
+
+        tempPack.GetComponent<Collider>().enabled = false;
+
         //Destroy pack after a while
         StartCoroutine(waitToDestroy());
         IEnumerator waitToDestroy()
         {
+            yield return new WaitForSeconds(1);
             foreach (PlayingCard card in collectedCards)
             {
                 card.hasClick = false;
             }
-            yield return new WaitForSeconds(3.5f);
+            yield return new WaitForSeconds(2.5f);
             Destroy(tempPack);
         }
     }
@@ -347,7 +433,6 @@ public class CardPack : MonoBehaviour
                 }).setOnUpdate((float value) =>
                 {
                     uiCard[i].gameObject.transform.localScale = new Vector3(value, value, value);
-                    print(i);
                 }).setOnComplete(() =>
                 {
                     uiCard[i].gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -361,17 +446,42 @@ public class CardPack : MonoBehaviour
         {
             yield return new WaitForSeconds(1.5f);
 
+            bool morePack = false;
+
+            if (bonused)
+            {
+                morePack = false;
+            }
+            else
+            {
+                morePack = true;
+            }
+
             //Collect Button Animation (alpha 0 - 1)
             LeanTween.value(0, 1, 1f).setOnStart(() =>
             {
-                collectButton.gameObject.SetActive(true);
-                collectButton.GetComponent<CanvasGroup>().alpha = 0f;
+                receiveButton.gameObject.SetActive(true);
+                receiveButton.GetComponent<CanvasGroup>().alpha = 0f;
+                if (morePack || moreEpic)
+                {
+                    morePackButton.gameObject.SetActive(true);
+                    morePackButton.GetComponent<CanvasGroup>().alpha = 0f;
+                }
             }).setOnUpdate((float value) =>
             {
-                collectButton.GetComponent<CanvasGroup>().alpha = value;
+                receiveButton.GetComponent<CanvasGroup>().alpha = value;
+                if (morePack || moreEpic)
+                {
+                    morePackButton.GetComponent<CanvasGroup>().alpha = value;
+                }
             }).setOnComplete(() =>
             {
-                collectButton.GetComponent<CanvasGroup>().alpha = 1f;
+                receiveButton.GetComponent<CanvasGroup>().alpha = 1f;
+
+                if (morePack || moreEpic)
+                {
+                    morePackButton.GetComponent<CanvasGroup>().alpha = 1f;
+                }
             });
         }
     }
@@ -385,12 +495,13 @@ public class CardPack : MonoBehaviour
         {
             uiCard[i].gameObject.SetActive(false);
         }
-        collectButton.gameObject.SetActive(false);
+        receiveButton.gameObject.SetActive(false);
+        morePackButton.gameObject.SetActive(false);
 
-        LeanTween.value(0, 1, 1f).setOnStart(() =>
+        LeanTween.value(0, 1, .25f).setOnStart(() =>
         {
-            navPanel.gameObject.SetActive(false);
-            headerPanel.gameObject.SetActive(false);
+            navPanel.gameObject.SetActive(true);
+            headerPanel.gameObject.SetActive(true);
 
             navPanel.GetComponent<CanvasGroup>().alpha = 0;
             headerPanel.GetComponent<CanvasGroup>().alpha = 0;
@@ -402,11 +513,40 @@ public class CardPack : MonoBehaviour
         {
             navPanel.GetComponent<CanvasGroup>().alpha = 1;
             headerPanel.GetComponent<CanvasGroup>().alpha = 1;
-
-            navPanel.gameObject.SetActive(true);
-            headerPanel.gameObject.SetActive(true);
         });
 
         EventController.OnTurnRoomCam();
+        EventController.OnShowNavButtons();
+    }
+
+    public void OnClick_BonusPack()
+    {
+        ServiceManager.ShowReward((bool watched) =>
+        {
+            if (watched)
+            {
+                glowingFxs.gameObject.SetActive(false);
+                background.gameObject.SetActive(false);
+                newCardText.gameObject.SetActive(false);
+                for (int i = 0; i < 6; i++)
+                {
+                    uiCard[i].gameObject.SetActive(false);
+                }
+                receiveButton.gameObject.SetActive(false);
+                morePackButton.gameObject.SetActive(false);
+                if (moreEpic)
+                {
+                    ShowPack(2, false, true);
+                }
+                else
+                {
+                    ShowPack(packRariry, false, true);
+                }
+            }
+            else
+            {
+                return;
+            }
+        });
     }
 }

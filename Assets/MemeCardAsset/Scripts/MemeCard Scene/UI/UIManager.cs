@@ -41,6 +41,7 @@ public class UIManager : MonoBehaviour
     private bool missionBtnSelected_Toggle = false;
     private bool settingBtnSelected_Toggle = false;
 
+    public static int tweeningID;
     [Header("Panel")]
     public GameObject shopPnl;
     public GameObject collectionPnl;
@@ -114,19 +115,26 @@ public class UIManager : MonoBehaviour
 
     #region Multiplier Bar
     [Header("Multiplier Bar")]
+    public GameObject multiplierBar_main;
     public GameObject multiplierBar_cursor;
     private readonly int multiplierBar_minBarPosY = -405;
     private readonly int multiplierBar_maxBarPosY = 405;
     private bool multiplierBar_rtlMove;
     private bool multiplierBar_isMoving;
     private int multiplierBar_currentValue;
+
+    public GameObject multiplierBar_result;
+    public GameObject multiplierBar_resultCursor;
+
+    private bool multiplierBar_hasClicked = false;
     private bool multiplierBar_stop = false;
     #endregion
 
     #region Package Reward
     [Header("Package Reward")]
     public GameObject winPanel_Inactive;
-    public GameObject packageReward;
+    public GameObject packageReward_main;
+    public GameObject packageReward_packImage;
     public GameObject packageReward_progressionMask;
     public GameObject[] packageReward_progressMaskPos;
     #endregion
@@ -209,159 +217,173 @@ public class UIManager : MonoBehaviour
     //
     public void OnClick_ShopNav()
     {
-        print("aaa");
-        if (shopBtnSelected_Toggle)
+        if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
         {
-            return;
-        }
-        shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
+            if (shopBtnSelected_Toggle)
+            {
+                return;
+            }
+            shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
 
-        if (collectionBtnSelected_Toggle)
-        {
-            collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
-            UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
+            if (collectionBtnSelected_Toggle)
+            {
+                collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
+                UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
+            }
+            else if (playBtnSelected_Toggle)
+            {
+                playBtnSelected_Toggle = !playBtnSelected_Toggle;
+                UnSelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
+            }
+            else if (missionBtnSelected_Toggle)
+            {
+                missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
+                UnSelectedButton(missionBtn_Selected_Background, missionBtn_Selected_Icon, missionPnl);
+            }
+            else if (settingBtnSelected_Toggle)
+            {
+                settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
+                UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
+            }
+            ShowNavigationItemPanel();
         }
-        else if (playBtnSelected_Toggle)
-        {
-            playBtnSelected_Toggle = !playBtnSelected_Toggle;
-            UnSelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
-        }
-        else if (missionBtnSelected_Toggle)
-        {
-            missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
-            UnSelectedButton(missionBtn_Selected_Background, missionBtn_Selected_Icon, missionPnl);
-        }
-        else if (settingBtnSelected_Toggle)
-        {
-            settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
-            UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
-        }
-        ShowNavigationItemPanel();
     }
 
     public void OnClick_CollectionNav()
     {
-        if (collectionBtnSelected_Toggle)
-        {
-            return;
-        }
-        collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
+        if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
+        { 
+            if (collectionBtnSelected_Toggle)
+            {
+                return;
+            }
+            collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
 
-        if (shopBtnSelected_Toggle)
-        {
-            shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
-            UnSelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
+            if (shopBtnSelected_Toggle)
+            {
+                shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
+                UnSelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
+            }
+            else if (playBtnSelected_Toggle)
+            {
+                playBtnSelected_Toggle = !playBtnSelected_Toggle;
+                UnSelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
+            }
+            else if (missionBtnSelected_Toggle)
+            {
+                missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
+                UnSelectedButton(missionBtn_Selected_Background, missionBtn_Selected_Icon, missionPnl);
+            }
+            else if (settingBtnSelected_Toggle)
+            {
+                settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
+                UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
+            }
+            ShowNavigationItemPanel();
         }
-        else if (playBtnSelected_Toggle)
-        {
-            playBtnSelected_Toggle = !playBtnSelected_Toggle;
-            UnSelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
-        }
-        else if (missionBtnSelected_Toggle)
-        {
-            missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
-            UnSelectedButton(missionBtn_Selected_Background, missionBtn_Selected_Icon, missionPnl);
-        }
-        else if (settingBtnSelected_Toggle)
-        {
-            settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
-            UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
-        }
-        ShowNavigationItemPanel();
     }
 
     public void OnClick_PlayNav()
     {
-        //Navigationing
-        if (playBtnSelected_Toggle)
+        if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
         {
-            return;
-        }
-        playBtnSelected_Toggle = !playBtnSelected_Toggle;
+            //Navigationing
+            if (playBtnSelected_Toggle)
+            {
+                return;
+            }
+            playBtnSelected_Toggle = !playBtnSelected_Toggle;
 
-        if (collectionBtnSelected_Toggle)
-        {
-            collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
-            UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
+            if (collectionBtnSelected_Toggle)
+            {
+                collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
+                UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
+            }
+            else if (shopBtnSelected_Toggle)
+            {
+                shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
+                UnSelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
+            }
+            else if (missionBtnSelected_Toggle)
+            {
+                missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
+                UnSelectedButton(missionBtn_Selected_Background, missionBtn_Selected_Icon, missionPnl);
+            }
+            else if (settingBtnSelected_Toggle)
+            {
+                settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
+                UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
+            }
+            ShowNavigationItemPanel();
         }
-        else if (shopBtnSelected_Toggle)
-        {
-            shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
-            UnSelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
-        }
-        else if (missionBtnSelected_Toggle)
-        {
-            missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
-            UnSelectedButton(missionBtn_Selected_Background, missionBtn_Selected_Icon, missionPnl);
-        }
-        else if (settingBtnSelected_Toggle)
-        {
-            settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
-            UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
-        }
-        ShowNavigationItemPanel();
     }
 
     public void OnClick_MissionNav()
     {
-        if (missionBtnSelected_Toggle)
+        if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
         {
-            return;
-        }
-        missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
+            if (missionBtnSelected_Toggle)
+            {
+                return;
+            }
+            missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
 
-        if (collectionBtnSelected_Toggle)
-        {
-            collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
-            UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
+            if (collectionBtnSelected_Toggle)
+            {
+                collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
+                UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
+            }
+            else if (playBtnSelected_Toggle)
+            {
+                playBtnSelected_Toggle = !playBtnSelected_Toggle;
+                UnSelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
+            }
+            else if (shopBtnSelected_Toggle)
+            {
+                shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
+                UnSelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
+            }
+            else if (settingBtnSelected_Toggle)
+            {
+                settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
+                UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
+            }
+            ShowNavigationItemPanel();
         }
-        else if (playBtnSelected_Toggle)
-        {
-            playBtnSelected_Toggle = !playBtnSelected_Toggle;
-            UnSelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
-        }
-        else if (shopBtnSelected_Toggle)
-        {
-            shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
-            UnSelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
-        }
-        else if (settingBtnSelected_Toggle)
-        {
-            settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
-            UnSelectedButton(settingBtn_Selected_Background, settingBtn_Selected_Icon, settingPnl);
-        }
-        ShowNavigationItemPanel();
     }
 
     public void OnClick_SettingNav()
     {
-        if (settingBtnSelected_Toggle)
+        if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
         {
-            return;
-        }
-        settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
+            if (settingBtnSelected_Toggle)
+            {
+                return;
+            }
+            settingBtnSelected_Toggle = !settingBtnSelected_Toggle;
 
-        if (collectionBtnSelected_Toggle)
-        {
-            collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
-            UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
+            if (collectionBtnSelected_Toggle)
+            {
+                collectionBtnSelected_Toggle = !collectionBtnSelected_Toggle;
+                UnSelectedButton(collectionBtn_Selected_Background, collectionBtn_Selected_Icon, collectionPnl);
+            }
+            else if (playBtnSelected_Toggle)
+            {
+                playBtnSelected_Toggle = !playBtnSelected_Toggle;
+                UnSelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
+            }
+            else if (missionBtnSelected_Toggle)
+            {
+                missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
+                UnSelectedButton(missionBtn_Selected_Background, missionBtn_Selected_Icon, missionPnl);
+            }
+            else if (shopBtnSelected_Toggle)
+            {
+                shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
+                UnSelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
+            }
+            ShowNavigationItemPanel();
         }
-        else if (playBtnSelected_Toggle)
-        {
-            playBtnSelected_Toggle = !playBtnSelected_Toggle;
-            UnSelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
-        }
-        else if (missionBtnSelected_Toggle)
-        {
-            missionBtnSelected_Toggle = !missionBtnSelected_Toggle;
-            UnSelectedButton(missionBtn_Selected_Background, missionBtn_Selected_Icon, missionPnl);
-        }
-        else if (shopBtnSelected_Toggle)
-        {
-            shopBtnSelected_Toggle = !shopBtnSelected_Toggle;
-            UnSelectedButton(shopBtn_Selected_Background, shopBtn_Selected_Icon, shopPnl);
-        }
-        ShowNavigationItemPanel();
     }
 
     //Show UI Panel of Nav Button
@@ -420,13 +442,7 @@ public class UIManager : MonoBehaviour
             });
         });
 
-        IEnumerator panelWait()
-        {
-            selectedPanel.transform.LeanScale(Vector3.zero, .25f).setEaseOutElastic();
-            yield return new WaitForSeconds(.25f);
-            selectedPanel.SetActive(false);
-        }
-        StartCoroutine(panelWait());
+        selectedPanel.SetActive(false);
     }
 
     /// <summary>
@@ -458,7 +474,7 @@ public class UIManager : MonoBehaviour
         {
             IEnumerator wait()
             {
-                yield return new WaitForSeconds(.5f); //0.75 second delay, avoid spamming buttons
+                yield return new WaitForSeconds(0.5f); //0.75 second delay, avoid spamming buttons
                 shopBtn.interactable = true;
                 collectionBtn.interactable = true;
                 playBtn.interactable = true;
@@ -901,7 +917,9 @@ public class UIManager : MonoBehaviour
         if (isPlayerWin)
         {
             winPanel_Inactive.SetActive(true);
-            packageReward.SetActive(false);
+            winPanel_Inactive.GetComponent<CanvasGroup>().alpha = 1;
+            packageReward_main.SetActive(false);
+            packageReward_packImage.SetActive(false);
             losePanel.SetActive(false);
             winPanel.SetActive(true);
             MultiplierBar_Start();
@@ -932,34 +950,47 @@ public class UIManager : MonoBehaviour
 
     public void OnClick_ClaimButton_WinPanel_CardBattle()
     {
-        if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
+        if (!multiplierBar_hasClicked)
         {
-            EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-        }
-        else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
-        {
-            EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-        }
-        else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
-        {
-            EventController.OnAddPlayerCoin(8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-        }
-        else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
-        {
-            EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-        }
-        else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
-        {
-            EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-        }
+            if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
+            {
+                EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+            }
+            else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
+            {
+                EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+            }
+            else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
+            {
+                EventController.OnAddPlayerCoin(8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+            }
+            else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
+            {
+                EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+            }
+            else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
+            {
+                EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+            }
 
-        multiplierBar_stop = true;
+            //Hide main bar to jsut show result bar
+            multiplierBar_main.SetActive(false);
+            multiplierBar_result.SetActive(true);
 
-        StartCoroutine(wait());
-        IEnumerator wait()
-        {
-            yield return new WaitForSeconds(1);
-            ShowPackageReward();
+            multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition = new Vector3(multiplierBar_currentValue, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
+            multiplierBar_stop = true;
+
+            StartCoroutine(wait());
+            IEnumerator wait()
+            {
+                yield return new WaitForSeconds(1);
+                ShowPackageReward();
+            }
         }
     }
 
@@ -967,11 +998,17 @@ public class UIManager : MonoBehaviour
     [Button]
     private void MultiplierBar_Start()
     {
+        //Hide the result, show the moving cursor one
+        multiplierBar_main.SetActive(true);
+        multiplierBar_result.SetActive(false);
+
         multiplierBar_rtlMove = true;
         multiplierBar_currentValue = 0;
-        float tempValue = 0;
         multiplierBar_stop = false;
+        multiplierBar_hasClicked = false;
+
         StartCoroutine(move());
+
         IEnumerator move()
         {
             do
@@ -983,33 +1020,30 @@ public class UIManager : MonoBehaviour
                         multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(value, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         multiplierBar_isMoving = true;
                         multiplierBar_currentValue = (int)value;
-                        tempValue = value;
 
-                        //Update Text on Slider is Playing
-                        if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
+                        if (!multiplierBar_stop)
+                        {
+                            //Update Text on Slider is Playing
+                            if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
+                            {
+                                winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                            }
+                            else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
+                            {
+                                winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                            }
+                            else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
+                            {
+                                winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                            }
+                            else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
+                            {
+                                winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                            }
+                            else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
                         {
                             winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
                         }
-                        else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
-                        {
-                            winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-                        }
-                        else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
-                        {
-                            winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-                        }
-                        else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
-                        {
-                            winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-                        }
-                        else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
-                        {
-                            winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-                        }
-
-                        if (multiplierBar_stop)
-                        {
-                            multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(tempValue, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
                         }
                     }).setOnComplete(() =>
                     {
@@ -1025,31 +1059,29 @@ public class UIManager : MonoBehaviour
                         multiplierBar_isMoving = true;
                         multiplierBar_currentValue = (int)value;
 
-                        //Update Text on Slider is Playing
-                        if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
+                        if (!multiplierBar_stop)
                         {
-                            winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-                        }
-                        else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
-                        {
-                            winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-                        }
-                        else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
-                        {
-                            winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-                        }
-                        else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
-                        {
-                            winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-                        }
-                        else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
-                        {
-                            winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-                        }
-
-                        if (multiplierBar_stop)
-                        {
-                            multiplierBar_cursor.GetComponent<RectTransform>().localPosition = new Vector3(tempValue, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
+                            //Update Text on Slider is Playing
+                            if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
+                            {
+                                winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                            }
+                            else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
+                            {
+                                winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                            }
+                            else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
+                            {
+                                winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                            }
+                            else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
+                            {
+                                winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                            }
+                            else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
+                            {
+                                winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                            }
                         }
                     }).setOnComplete(() => 
                     {
@@ -1080,83 +1112,110 @@ public class UIManager : MonoBehaviour
             winPanel_Inactive.SetActive(false);
             winPanel_Inactive.GetComponent<CanvasGroup>().alpha = 0f;
 
-            packageReward.SetActive(true);
+            packageReward_main.SetActive(true);
+            packageReward_packImage.SetActive(true);
             PackageProgressionExecution();
         });
     }
 
     public void PackageProgressionExecution()
     {
-        if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 1)
+        packageReward_progressionMask.GetComponent<RectTransform>().localScale = Vector3.one;
+        LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[5].GetComponent<RectTransform>().localPosition, 0f);
+        if ((PlayerDataStorage.Instance.data.currentLvl - 1) % 5 == 1)
         {
             LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[0].GetComponent<RectTransform>().localPosition, 1f);
             ChangeCamToRoomCam_AfterEndGame();
         }
-        else if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 2)
+        else if ((PlayerDataStorage.Instance.data.currentLvl - 1) % 5 == 2)
         {
             LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[1].GetComponent<RectTransform>().localPosition, 1f);
             ChangeCamToRoomCam_AfterEndGame();
         }
-        else if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 3)
+        else if ((PlayerDataStorage.Instance.data.currentLvl - 1) % 5 == 3)
         {
             LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[2].GetComponent<RectTransform>().localPosition, 1f);
             ChangeCamToRoomCam_AfterEndGame();
         }
-        else if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 4)
+        else if ((PlayerDataStorage.Instance.data.currentLvl - 1) % 5 == 4)
         {
             LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[3].GetComponent<RectTransform>().localPosition, 1f);
             ChangeCamToRoomCam_AfterEndGame();
         }
-        else if (PlayerDataStorage.Instance.data.currentLvl - 1 % 5 == 0)
+        else if ((PlayerDataStorage.Instance.data.currentLvl - 1) % 5 == 0)
         {
             LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[4].GetComponent<RectTransform>().localPosition, 1f);
-            ChangeCamToRoomCam_AfterEndGame();
+
+            LeanTween.value(1, 0, 1f).setOnStart(() =>
+            {
+                //packageReward.GetComponent<CanvasGroup>().alpha = 1f;
+                packageReward_packImage.GetComponent<RectTransform>().localScale = Vector3.one;
+            }).setOnUpdate((float value) =>
+            {
+                //packageReward.GetComponent<CanvasGroup>().alpha = value;
+                packageReward_packImage.GetComponent<RectTransform>().localScale = new Vector3(value, value, value);
+            }).setOnComplete(() =>
+            {
+                //packageReward.GetComponent<CanvasGroup>().alpha = 0f;
+                packageReward_packImage.GetComponent<RectTransform>().localScale = Vector3.zero;
+                packageReward_main.SetActive(false);
+                packageReward_packImage.SetActive(false);
+                losePanel.SetActive(false);
+                winPanel.SetActive(false);
+            }).setEaseInBack();
+
+            EventController.OnSpawnPack(0, true, false);
+            //ChangeCamToRoomCam_AfterEndGame();
         }
     }
 
-        public void ChangeCamToRoomCam_AfterEndGame()
+    public void ChangeCamToRoomCam_AfterEndGame()
+    {
+        IEnumerator wait()
         {
-            IEnumerator wait()
+            if (isPlayerWin)
             {
-                if (isPlayerWin)
-                {
-                    yield return new WaitForSeconds(3f);
-                }
+                yield return new WaitForSeconds(3f);
+            }
 
-                EventController.OnTurnRoomCam();
+            EventController.OnTurnRoomCam();
 
-                if (packageReward.activeSelf)
+            if (packageReward_packImage.activeSelf)
+            {
+                LeanTween.value(1, 0, 1f).setOnStart(() =>
                 {
-                    LeanTween.value(1, 0, 1f).setOnStart(() =>
-                    {
-                        packageReward.GetComponent<CanvasGroup>().alpha = 1f;
-                    }).setOnUpdate((float value) =>
-                    {
-                        packageReward.GetComponent<CanvasGroup>().alpha = value;
-                    }).setOnComplete(() =>
-                    {
-                        packageReward.GetComponent<CanvasGroup>().alpha = 0f;
-                        packageReward.SetActive(false);
-                        losePanel.SetActive(false);
-                        winPanel.SetActive(false);
-                    });
-                }
-                else
+                    //packageReward.GetComponent<CanvasGroup>().alpha = 1f;
+                    packageReward_packImage.GetComponent<RectTransform>().localScale = Vector3.one;
+                }).setOnUpdate((float value) =>
                 {
+                    //packageReward.GetComponent<CanvasGroup>().alpha = value;
+                    packageReward_packImage.GetComponent<RectTransform>().localScale = new Vector3(value, value, value);
+                }).setOnComplete(() =>
+                {
+                    //packageReward.GetComponent<CanvasGroup>().alpha = 0f;
+                    packageReward_packImage.GetComponent<RectTransform>().localScale = Vector3.zero;
+                    packageReward_main.SetActive(false);
+                    packageReward_packImage.SetActive(false);
                     losePanel.SetActive(false);
                     winPanel.SetActive(false);
-                }
-
-                yield return new WaitForSeconds(.5f);
-                while (FindObjectOfType<CameraMovement>().isBlending)
-                {
-                    yield return null;
-                }
-                ShowNavigationButton();
+                }).setEaseInBack();
             }
-            StartCoroutine(wait());
-            EventController.OnChangeAudienceApperance();
+            else
+            {
+                losePanel.SetActive(false);
+                winPanel.SetActive(false);
+            }
+
+            yield return new WaitForSeconds(.5f);
+            while (FindObjectOfType<CameraMovement>().isBlending)
+            {
+                yield return null;
+            }
+            ShowNavigationButton();
         }
+        StartCoroutine(wait());
+        EventController.OnChangeAudienceApperance();
+    }
     #endregion
 
     #endregion

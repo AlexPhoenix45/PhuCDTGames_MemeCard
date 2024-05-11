@@ -222,5 +222,18 @@ public class EventController
 
     public static event UnityAction OpenPack;
     public static void OnOpenPack() => OpenPack?.Invoke();
+
+    public static event UnityAction <int, bool, bool> SpawnPack;
+    /// <summary>
+    /// Spawn a new Pack
+    /// </summary>
+    /// <param name="packRarity">0 = Common Pack; 1 = Rare Pack; 2 = Epic Pack</param>
+    /// <param name="moreEpic">false => bonus pack = old pack; true => bonus pack = epic pack</param>
+    /// <param name="bonused">false => hasn't got bonus pack; true => has got bonus pack</param>
+    public static void OnSpawnPack(int packRarity, bool moreEpic, bool bonused) => SpawnPack?.Invoke(packRarity, moreEpic, bonused);
+    #endregion
+
+    #region Shop Panel
+
     #endregion
 }

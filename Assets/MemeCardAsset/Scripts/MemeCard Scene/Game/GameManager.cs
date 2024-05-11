@@ -486,7 +486,7 @@ public class GameManager : MonoBehaviour
 
                     if (percentage >= 0 && percentage < 50)
                     {
-                        print(currentQuestionData.questionCardEmotionalType);
+                        //print(currentQuestionData.questionCardEmotionalType);
                         List<int> cardIndex = new List<int>();
                         for (int i = 0; i < cardDatas.Length; i++)
                         {
@@ -500,7 +500,7 @@ public class GameManager : MonoBehaviour
                     }
                     else if (percentage >= 50 && percentage < 85)
                     {
-                        print(currentQuestionData.questionCardEmotionalType);
+                        //print(currentQuestionData.questionCardEmotionalType);
                         List<int> cardIndex = new List<int>();
                         for (int i = 0; i < cardDatas.Length; i++)
                         {
@@ -514,7 +514,7 @@ public class GameManager : MonoBehaviour
                     }
                     else
                     {
-                        print(currentQuestionData.questionCardEmotionalType);
+                        //print(currentQuestionData.questionCardEmotionalType);
                         List<int> cardIndex = new List<int>();
                         for (int i = 0; i < cardDatas.Length; i++)
                         {
@@ -594,7 +594,7 @@ public class GameManager : MonoBehaviour
                     }
                     else if (percentage >= cardRarityLvlExecuter(0) && percentage < cardRarityLvlExecuter(1))
                     {
-                        print(currentQuestionData.questionCardEmotionalType);
+                        //print(currentQuestionData.questionCardEmotionalType);
                         List<int> cardIndex = new List<int>();
                         for (int i = 0; i < cardDatas.Length; i++)
                         {
@@ -608,7 +608,7 @@ public class GameManager : MonoBehaviour
                     }
                     else
                     {
-                        print(currentQuestionData.questionCardEmotionalType);
+                        //print(currentQuestionData.questionCardEmotionalType);
                         List<int> cardIndex = new List<int>();
                         for (int i = 0; i < cardDatas.Length; i++)
                         {
@@ -684,12 +684,12 @@ public class GameManager : MonoBehaviour
                     //Return part
                     if (rarityType == 0)
                     {
-                        print(commonPercentage);
+                        //print(commonPercentage);
                         return commonPercentage;
                     }
                     else if (rarityType == 1)
                     {
-                        print(commonPercentage + rarePercentage);
+                        //print(commonPercentage + rarePercentage);
                         return commonPercentage + rarePercentage;
                     }
                     else
@@ -702,44 +702,39 @@ public class GameManager : MonoBehaviour
 
         bool DuplicateCheck(CardData tempCard)
         {
+            bool returnedValue = true;
             if (isForPlayer)
             {
                 if (playerCardMid != null && tempCard == playerCardMid.GetComponent<PlayingCard>().cardData)
                 {
-                    return false;
+                    returnedValue = false;
                 }
-                else if (playerCardLeft != null && tempCard == playerCardLeft.GetComponent<PlayingCard>().cardData)
+                if (playerCardLeft != null && tempCard == playerCardLeft.GetComponent<PlayingCard>().cardData)
                 {
-                    return false;
+                    returnedValue = false;
                 }
-                else if (playerCardRight != null && tempCard == playerCardRight.GetComponent<PlayingCard>().cardData)
+                if (playerCardRight != null && tempCard == playerCardRight.GetComponent<PlayingCard>().cardData)
                 {
-                    return false;
-                }
-                else
-                {
-                    return true;
+                    returnedValue = false;
                 }
             }
             else
             {
                 if (opponentCardMid != null && tempCard == opponentCardMid.GetComponent<PlayingCard>().cardData)
                 {
-                    return false;
+                    returnedValue = false;
                 }
-                else if (opponentCardLeft != null && tempCard == opponentCardLeft.GetComponent<PlayingCard>().cardData)
+                if (opponentCardLeft != null && tempCard == opponentCardLeft.GetComponent<PlayingCard>().cardData)
                 {
-                    return false;
+                    returnedValue = false;
                 }
-                else if (opponentCardRight != null && tempCard == opponentCardRight.GetComponent<PlayingCard>().cardData)
+                if (opponentCardRight != null && tempCard == opponentCardRight.GetComponent<PlayingCard>().cardData)
                 {
-                    return false;
-                }
-                else
-                {
-                    return true;
+                    returnedValue = false;
                 }
             }
+
+            return returnedValue;
         } //Duplicate check
 
         CardData tempCard;
@@ -1204,14 +1199,12 @@ public class GameManager : MonoBehaviour
             if (card.isPlayerCard)
             {
                 int tempPoint = UnityEngine.Random.Range(min, max + 1);
-                print(tempPoint);
                 playerPoint += tempPoint;
                 EventController.OnBotPlayEmotionAnim(tempPoint);
             }
             else
             {
                 int tempPoint = UnityEngine.Random.Range(min, max + 1);
-                print(tempPoint);
                 opponentPoint += tempPoint;
                 EventController.OnBotPlayEmotionAnim(tempPoint);
             }

@@ -11,9 +11,10 @@ public class CardPackOpen : MonoBehaviour
         StartCoroutine(wait());
         IEnumerator wait()
         {
-            GetComponent<BoxCollider>().enabled = false;
-            yield return new WaitForSeconds(1f);
             GetComponent<BoxCollider>().enabled = true;
+            hasClick = true;
+            yield return new WaitForSeconds(2.5f);
+            hasClick = false;
         }
     }
 

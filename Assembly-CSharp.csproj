@@ -129,6 +129,7 @@
     <Compile Include="Assets\I2\Localization\Scripts\Targets\LocalizeTarget_2DToolKit_Sprite.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Targets\LocalizeTarget_UnityUI_Text.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\PathBezier2d.cs" />
+    <Compile Include="Assets\Common\AdConfig.cs" />
     <Compile Include="Assets\Adjust\Unity\AdjustConfig.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\TermData.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\LanguageSource\LanguageSource.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Assets\Package\LeanTween\Framework\LTDescrOptional.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
     <Compile Include="Assets\I2\Localization\Examples\Common\Scripts\RealTimeTranslation.cs" />
+    <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\Card\CardPackOpen.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\GeneralSequencer.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Google\GoogleLanguages.cs" />
     <Compile Include="Assets\Adjust\Unity\AdjustAppStoreSubscription.cs" />
@@ -154,11 +156,13 @@
     <Compile Include="Assets\I2\Localization\Scripts\LanguageSource\LanguageSourceData_Terms.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Google\TranslationJob_WEB.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Targets\ILocalizeTargetDesc.cs" />
+    <Compile Include="Assets\Common\ServiceManager.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Archived\TestingPunch.cs" />
     <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\UI\Navigation Scripts\SettingPanel.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Targets\LocalizeTarget_UnityUI_Image.cs" />
     <Compile Include="Assets\Adjust\Unity\AdjustEvent.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Utils\RTLFixer.cs" />
+    <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\UI\Navigation Scripts\Shop Panel\ShopPanel.cs" />
     <Compile Include="Assets\I2\Localization\Examples\Common\Scripts\GlobalParametersExample.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\LanguageSource\LanguageSourceData_Import_CSV.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Utils\ResourceManager.cs" />
@@ -169,6 +173,7 @@
     <Compile Include="Assets\I2\Localization\Examples\Common\Scripts\RegisterBundlesManager.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Utils\CoroutineManager.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\EventCallback.cs" />
+    <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\UI\Navigation Scripts\Shop Panel\BuyButton.cs" />
     <Compile Include="Assets\Adjust\iOS\AdjustiOS.cs" />
     <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\UI\Navigation Scripts\CollectionPanel.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\PathSpline.cs" />
@@ -176,10 +181,12 @@
     <Compile Include="Assets\I2\Localization\Scripts\Utils\CustomLocalizeCallback.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Utils\AutoChangeCultureInfo.cs" />
     <Compile Include="Assets\I2\Localization\Examples\Common\Scripts\Example_ChangeLanguage.cs" />
+    <Compile Include="Assets\MemeCardAsset\Scripts\ServiceHolder.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Google\GoogleTranslation_Queries.cs" />
     <Compile Include="Assets\MemeCardAsset\Scripts\SO_Script\CardData.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\GeneralAdvancedTechniques.cs" />
     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs" />
+    <Compile Include="Assets\Common\ApplovinAds.cs" />
     <Compile Include="Assets\Package\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\GeneralBasics2d.cs" />
     <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\Card\CardPack.cs" />
@@ -223,7 +230,7 @@
     <Compile Include="Assets\Package\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\Following.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Configurables\PersistentStorage.cs" />
-    <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\Card\CardPackOpen.cs" />
+    <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\UI\Navigation Scripts\Shop Panel\Shop_CardPack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -254,6 +261,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Adjust\Windows\WS\AdjustWS.dll" />
     <None Include="Assets\Adjust\Windows\WU10\Win10Interface.dll" />
+    <None Include="Assets\Firebase\Plugins\x86_64\FirebaseCppAnalytics.dll" />
     <None Include="Assets\Package\BitmapFont\Sample\Font3\font3.fnt" />
     <None Include="Assets\Firebase\Plugins\iOS\Firebase.RemoteConfig.dll" />
     <None Include="Assets\Adjust\Windows\WS\WinWsInterface.dll" />
@@ -279,6 +287,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\JMO Assets\Cartoon FX Remaster\CFXR Prefabs\Texts\_Make your own text effect.txt" />
     <None Include="Assets\JMO Assets\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR_PASSES.cginc" />
+    <None Include="Assets\Firebase\Plugins\Firebase.Crashlytics.dll" />
     <None Include="Assets\Adjust\Windows\Stubs\Win81Interface.dll" />
     <None Include="Assets\MaxSdk\Mediation\MediationAdapters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
@@ -286,15 +295,18 @@
     <None Include="Assets\Adjust\Windows\WU10\AdjustUAP10.dll" />
     <None Include="Assets\Package\LeanTween\Examples\Archived\2dUnlitWithFade.shader" />
     <None Include="Assets\Package\BitmapFont\Unity-BitmapFontImporter-3.3.0\Shaders\Font4.shader" />
+    <None Include="Assets\Firebase\Plugins\iOS\Firebase.Crashlytics.dll" />
     <None Include="Assets\GooglePlayPlugins\com.google.play.core\Proguard\common.txt" />
     <None Include="Assets\JMO Assets\Cartoon FX (legacy)\Shaders\CFXM_MobileParticleAdd_Alpha8.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Firebase\Plugins\x86_64\FirebaseCppApp-12_0_0.dll" />
     <None Include="Assets\JMO Assets\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR Particle Procedural Ring.shader" />
     <None Include="Assets\Firebase\Plugins\Firebase.Platform.dll" />
     <None Include="Assets\Firebase\Plugins\Firebase.RemoteConfig.dll" />
     <None Include="Assets\Adjust\Windows\Newtonsoft.Json.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\unity3d.txt" />
+    <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-crashlytics-unity\maven-metadata.xml" />
     <None Include="Assets\Package\BitmapFont\Unity-BitmapFontImporter-3.3.0\Shaders\Font3.shader" />
     <None Include="Assets\Adjust\Windows\W81\AdjustWP81.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -527,8 +539,20 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.41f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="Win10Interface">
+      <HintPath>Assets\Adjust\Windows\Stubs\Win10Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Crashlytics">
+      <HintPath>Assets\Firebase\Plugins\Firebase.Crashlytics.dll</HintPath>
+    </Reference>
     <Reference Include="Firebase.App">
       <HintPath>Assets\Firebase\Plugins\Firebase.App.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.TaskExtension">
+      <HintPath>Assets\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="WinWsInterface">
+      <HintPath>Assets\Adjust\Windows\Stubs\WinWsInterface.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.RemoteConfig">
       <HintPath>Assets\Firebase\Plugins\Firebase.RemoteConfig.dll</HintPath>
@@ -539,20 +563,11 @@
     <Reference Include="Win81Interface">
       <HintPath>Assets\Adjust\Windows\Stubs\Win81Interface.dll</HintPath>
     </Reference>
-    <Reference Include="Firebase.TaskExtension">
-      <HintPath>Assets\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
-    </Reference>
     <Reference Include="Google.MiniJson">
       <HintPath>Assets\Firebase\Plugins\Google.MiniJson.dll</HintPath>
     </Reference>
-    <Reference Include="WinWsInterface">
-      <HintPath>Assets\Adjust\Windows\Stubs\WinWsInterface.dll</HintPath>
-    </Reference>
     <Reference Include="Firebase.Platform">
       <HintPath>Assets\Firebase\Plugins\Firebase.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Win10Interface">
-      <HintPath>Assets\Adjust\Windows\Stubs\Win10Interface.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.41f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -1023,10 +1038,6 @@
     <ProjectReference Include="RBG.Mulligan.csproj">
       <Project>{7A018623-74EB-6F66-235A-34D2DD49AB07}</Project>
       <Name>RBG.Mulligan</Name>
-    </ProjectReference>
-    <ProjectReference Include="MaxSdk.Scripts.Editor.csproj">
-      <Project>{1FD3CCBD-2130-C559-DE44-2FA4D2037588}</Project>
-      <Name>MaxSdk.Scripts.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Editor.csproj">
       <Project>{503F5766-08D1-4D2A-A02A-48E8E66352D5}</Project>

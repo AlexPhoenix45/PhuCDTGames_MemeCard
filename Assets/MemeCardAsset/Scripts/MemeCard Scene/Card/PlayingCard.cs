@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Video;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayingCard : MonoBehaviour
 {
@@ -36,6 +37,12 @@ public class PlayingCard : MonoBehaviour
     public bool hasClick = false;
     [HideInInspector]
     public bool isLastItem = false;
+
+    public Sprite common2dSprite;
+    public Sprite rare2dSprite;
+    public Sprite epic2dSprite;
+
+    public SpriteRenderer rarityRenderer;
 
     private void OnEnable()
     {
@@ -107,7 +114,7 @@ public class PlayingCard : MonoBehaviour
             }
             else
             {
-                memeBorder.material = rareMat;
+                memeBorder.material = epicMat;
                 memeImage.material = cardData.memeMaterial;
                 videoPlayer.enabled = false;
             }
@@ -173,6 +180,30 @@ public class PlayingCard : MonoBehaviour
                 LeanTween.value(transform.position.y, transform.position.y + 2f, .5f).setEaseOutBack().setOnStart(() =>
                 {
                     hasClick = true;
+                    LeanTween.value(0, 1, .25f).setOnStart(() =>
+                    {
+                        rarityRenderer.color = Vector4.zero;
+                        rarityRenderer.gameObject.SetActive(true);
+
+                        if (cardData.rarityType == RarityType.Common)
+                        {
+                            rarityRenderer.sprite = common2dSprite;
+                        }
+                        else if (cardData.rarityType == RarityType.Rare)
+                        {
+                            rarityRenderer.sprite = rare2dSprite;
+                        }
+                        else if (cardData.rarityType == RarityType.Epic)
+                        {
+                            rarityRenderer.sprite = epic2dSprite;
+                        }
+                    }).setOnUpdate((float value) =>
+                    {
+                        rarityRenderer.color = new Vector4(1, 1, 1, value);
+                    }).setOnComplete(() =>
+                    {
+                        rarityRenderer.color = new Vector4(1, 1, 1, 1);
+                    });
                 }).setOnUpdate((float value) =>
                 {
                     transform.position = new Vector3(transform.position.x, value, transform.position.z);
@@ -199,5 +230,6 @@ public class PlayingCard : MonoBehaviour
     {
         EventController.CardReadyToPlay -= SetCardReadyToPlay;
         EventController.TurnTableCam -= StartSecondTurn; 
+        rarityRenderer.gameObject.SetActive(false);
     }
 }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd64f69790a7a4f4a8eb996ea0175fee, type: 3}
+  m_Name: AdConfig
+  m_EditorClassIdentifier: 
+  AdTimeDelay: 75
+  MaxSDKKey: k_mtuwdinJw2fDiQ4iCF6Nh8buCSERDJSLmHhd-LTH7f5TR9UAlu-w0kHC1_CKN16ZWEHPs4pbVMtrh6EepoE3
+  AdmobSDKKey_Android: ca-app-pub-1061613090902017~1807573864
+  AdmobSDKKey_IOS: ca-app-pub-1061613090902017~5327182328
+  Android_Banner: 9b61d0f84b12d763
+  Android_Inter: ca8e703f184f5f00
+  Android_Reward: d3efea13b8bb728e
+  Android_AppOpenAds: 5980c3ee7d204912
+  IOS_Banner: 0d1d966a70885758
+  IOS_Inter: 9eeabe173c912d9d
+  IOS_Reward: 7e22770b201704cc
+  IOS_AppOpenAds: bf60ff927d257444
