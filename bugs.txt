@@ -1,0 +1,111 @@
+bug daily bị spam, chưa tính ngày (done)
+bug hiển thị pack bài (done)
+bug nhân vật lỗi anim (*)
+update avatar nhân vật
+update thêm thẻ epic (done)
+update nút home
+update logic ads
+
+
+opponent1
+toc1 - hair color 3
+body - skin color 4
+
+opponent2
+toc4 - hair color 11
+body - skin color 1
+
+opponent3
+toc5 - hair color 4
+body - skin color 4
+
+opponent4
+toc3 - hair color 5
+body - skin color 2
+
+opponent5
+toc5 - hair color 9
+body - skin color 1
+
+opponent6
+toc3 - hair color 3
+body -skin color 1
+
+opponent7
+toc3 - hair color 11
+body - skin color 2
+
+opponent8
+toc2 - color 7
+skin color 4
+
+opponent9
+toc4 - color 11
+skin color 4
+
+opponent10
+toc1 - color 6
+skin color 3
+
+boss1
+toc4 - hair color 4
+body - skin color 1
+glasses3
+
+boss2
+hat1
+body - skin color 3
+brow color 4
+
+boss3
+hat2
+body - skin color 3
+brow color 3
+
+boss4
+glasses1
+hair1 - color 3
+skin color 2
+
+boss5
+glasses2
+hat3
+skin color 2
+
+boss6
+glassese2
+hat1
+skin color 1
+
+boss7
+glasses3
+hat3
+skin color 1
+
+boss8
+glasses1
+hat3 - color 5
+
+boss9
+toc3 - hair color 11
+glasses2
+skin color 2
+
+boss10
+hat1
+glass2
+skin color 2
+hair 5 - color 9
+
+boss11
+hat3
+glass1
+hair 5 - color 7
+skin color 3
+
+boss12
+
+hair 5 - color 6
+glass2
+skin color 4
+hat2

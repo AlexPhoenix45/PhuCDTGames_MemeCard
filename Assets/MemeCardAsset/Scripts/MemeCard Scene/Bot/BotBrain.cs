@@ -20,15 +20,18 @@ public class BotBrain : MonoBehaviour
     public GameObject[] glasses;
     public GameObject[] shirts;
     public GameObject[] pants;
+    public GameObject[] shoes;
+    public GameObject[] hats;
+    public GameObject[] eyeBrows;
     public SkinnedMeshRenderer skin;
     #endregion
 
     #region Colored Material
     [Header("Colored Material")]
-    public Material[] glassesMaterials;
     public Material[] clothesMaterials;
     public Material[] hairMaterials;
     public Material[] skinMaterials;
+    public Material[] shoesMaterials;
     #endregion
 
     #region Animations
@@ -50,16 +53,16 @@ public class BotBrain : MonoBehaviour
         {
             gameObject.GetComponent<Animator>().runtimeAnimatorController = audienceAnim;
         }
-        GenerateApperance();
+        GenerateAudienceApperance();
     }
 
     [Button]
-    public void GenerateApperance()
+    public void GenerateAudienceApperance()
     {
         int randomHair = Random.Range(0, hair.Length + 1);
-        int randomGlasses = Random.Range(0, glasses.Length + 1);
         int randomShirts = Random.Range(0, shirts.Length);  
         int randomPants = Random.Range(0, pants.Length);
+        int randomShoes = Random.Range(0, 2);
 
         //Hair
         if (randomHair == hair.Length)
@@ -76,35 +79,14 @@ public class BotBrain : MonoBehaviour
                 if (i == randomHair)
                 {
                     hair[i].SetActive(true);
-                    hair[i].GetComponent<MeshRenderer>().material = hairMaterials[Random.Range(0, hairMaterials.Length)];
+                    Material mat = hairMaterials[Random.Range(0, hairMaterials.Length)];
+                    hair[i].GetComponent<MeshRenderer>().material = mat;
+                    eyeBrows[0].GetComponent<SkinnedMeshRenderer>().material = mat;
+                    eyeBrows[1].GetComponent<SkinnedMeshRenderer>().material = mat;
                 }
                 else
                 {
                     hair[i].SetActive(false);
-                }
-            }
-        }
-
-        //Glasses
-        if (randomGlasses == glasses.Length)
-        {
-            for (int i = 0; i < glasses.Length; i++)
-            {
-                glasses[i].SetActive(false);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < glasses.Length; i++)
-            {
-                if (i == randomGlasses)
-                {
-                    glasses[i].SetActive(true);
-                    glasses[i].GetComponent<MeshRenderer>().material = glassesMaterials[Random.Range(0, glassesMaterials.Length)];
-                }
-                else
-                {
-                    glasses[i].SetActive(false);
                 }
             }
         }
@@ -137,7 +119,253 @@ public class BotBrain : MonoBehaviour
             }
         }
 
+        //Shoes
+        if (randomShoes == 0)
+        {
+            Material mat = shoesMaterials[Random.Range(0, shoesMaterials.Length)];
+            shoes[0].SetActive(true);
+            shoes[0].GetComponent<SkinnedMeshRenderer>().material = mat;
+            shoes[1].SetActive(true);
+            shoes[1].GetComponent<SkinnedMeshRenderer>().material = mat;
+            shoes[2].SetActive(false);
+            shoes[3].SetActive(false);
+        }
+        else
+        {
+            Material mat = shoesMaterials[Random.Range(0, shoesMaterials.Length)];
+            shoes[2].SetActive(true);
+            shoes[2].GetComponent<MeshRenderer>().material = mat;
+            shoes[3].SetActive(true);
+            shoes[3].GetComponent<MeshRenderer>().material = mat;
+            shoes[1].SetActive(false);
+            shoes[0].SetActive(false);
+        }
+
         skin.material = skinMaterials[Random.Range(0, skinMaterials.Length)];
+
+        foreach (GameObject item in glasses)
+        {
+            item.SetActive(false);
+        }
+
+        foreach (GameObject item in hats)
+        {
+            item.SetActive(false);
+        }
+    }
+
+    public void GenerateOpponentApperance(OpponentData opponent)
+    {
+        GenerateAudienceApperance();
+
+        print(opponent.name);
+
+        switch (opponent.name)
+        {
+            case "Opponent1":
+                {
+                    SetHair(0, 2);
+                    SetSkin(3);
+                    break;
+                }
+            case "Opponent2":
+                {
+                    SetHair(3, 10);
+                    SetSkin(0);
+                    break;
+                }
+            case "Opponent3":
+                {
+                    SetHair(4, 3);
+                    SetSkin(3);
+                    break;
+                }
+            case "Opponent4":
+                {
+                    SetHair(2, 4);
+                    SetSkin(1);
+                    break;
+                }
+            case "Opponent5":
+                {
+                    SetHair(4, 8);
+                    SetSkin(0);
+                    break;
+                }
+            case "Opponent6":
+                {
+                    SetHair(2, 2);
+                    SetSkin(0);
+                    break;
+                }
+            case "Opponent7":
+                {
+                    SetHair(2, 10);
+                    SetSkin(1);
+                    break;
+                }
+            case "Opponent8":
+                {
+                    SetHair(1, 6);
+                    SetSkin(3);
+                    break;
+                }
+            case "Opponent9":
+                {
+                    SetHair(3, 10);
+                    SetSkin(3);
+                    break;
+                }
+            case "Opponent10":
+                {
+                    SetHair(0, 5);
+                    SetSkin(2);
+                    break;
+                }
+            case "Boss1":
+                {
+                    SetHair(3, 3);
+                    SetSkin(0);
+                    SetGlasses(2);
+                    break;
+                }
+            case "Boss2":
+                {
+                    SetHair(3, 4);
+                    SetSkin(2);
+                    SetHat(0);
+                    break;
+                }
+            case "Boss3":
+                {
+                    SetHair(3, 3);
+                    SetSkin(2);
+                    SetHat(1);
+                    break;
+                }
+            case "Boss4":
+                {
+                    SetHair(1, 3);
+                    SetSkin(1);
+                    SetGlasses(0);
+                    break;
+                }
+            case "Boss5":
+                {
+                    SetSkin(1);
+                    SetGlasses(1);
+                    SetHat(2);
+                    break;
+                }
+            case "Boss6":
+                {
+                    SetSkin(2);
+                    SetHat(0);
+                    SetGlasses(1);
+                    break;
+                }
+            case "Boss7":
+                {
+                    SetSkin(0);
+                    SetHat(2);
+                    SetGlasses(2);
+                    break;
+                }
+            case "Boss8":
+                {
+                    SetSkin(2);
+                    SetGlasses(0);
+                    SetHair(2, 4);
+                    break;
+                }
+            case "Boss9":
+                {
+                    SetSkin(1);
+                    SetGlasses(1);
+                    SetHair(2, 10);
+                    break;
+                }
+            case "Boss10":
+                {
+                    SetHat(0);
+                    SetSkin(1);
+                    SetGlasses(1);
+                    SetHair(4, 8);
+                    break;
+                }
+            case "Boss11":
+                {
+                    SetHat(2);
+                    SetSkin(2);
+                    SetGlasses(0);
+                    SetHair(4, 6);
+                    break;
+                }
+            case "Boss12":
+                {
+                    SetSkin(3);
+                    SetGlasses(1);
+                    SetHair(4, 5);
+                    SetHat(1);
+                    break;
+                }
+        }
+
+        void SetHair(int hairIndex, int colorIndex)
+        {
+            for (int i = 0; i < hair.Length; i++)
+            {
+                if (i == hairIndex)
+                {
+                    hair[i].SetActive(true);
+                    
+                    Material mat = hairMaterials[colorIndex];
+                    hair[i].GetComponent<MeshRenderer>().material = mat;
+                    eyeBrows[0].GetComponent<SkinnedMeshRenderer>().material = mat;
+                    eyeBrows[1].GetComponent<SkinnedMeshRenderer>().material = mat;
+                }
+                else
+                {
+                    hair[i].SetActive(false);
+                }
+            }
+        }
+
+        void SetSkin(int skinColorIndex)
+        {
+            skin.material = skinMaterials[skinColorIndex];
+        }
+
+        void SetGlasses(int glassesIndex)
+        {
+            for (int i = 0; i < glasses.Length; i++)
+            {
+                if (i == glassesIndex)
+                {
+                    glasses[i].SetActive(true);    
+                }
+                else
+                {
+                    glasses[i].SetActive(false);
+                }
+            }
+        }
+
+        void SetHat(int hatIndex)
+        {
+            for (int i = 0; i < glasses.Length; i++)
+            {
+                if (i == hatIndex)
+                {
+                    hats[i].SetActive(true);
+                }
+                else
+                {
+                    hats[i].SetActive(false);
+                }
+            }
+        }
+
     }
 
     private void BotPlay()

@@ -1,3 +1,4 @@
+using Assets.Core.Scripts.Core.Managers;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -1226,7 +1227,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Bot
-    private void ShowBot()
+    private void ShowBot(OpponentData oppoData)
     {
         foreach (BotBrain bot in audience)
         {
@@ -1238,6 +1239,7 @@ public class GameManager : MonoBehaviour
                     PlayExplosionOpponent();
                     yield return new WaitForSeconds(.5f);
                     bot.gameObject.SetActive(true);
+                    bot.GenerateOpponentApperance(oppoData);
                 }
             }
         }
@@ -1253,7 +1255,7 @@ public class GameManager : MonoBehaviour
         {
             if (!bot.isOpponent)
             {
-                bot.GenerateApperance();
+                bot.GenerateAudienceApperance();
             }
             else
             {

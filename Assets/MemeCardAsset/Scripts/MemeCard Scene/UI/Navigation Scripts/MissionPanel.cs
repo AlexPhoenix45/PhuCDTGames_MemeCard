@@ -19,42 +19,49 @@ public class MissionPanel : MonoBehaviour
     public GameObject day1_Inactvive;
     public GameObject day1_Received;
     public GameObject day1_Fxs;
+    public Button day1_Btn;
     [Header("Day 2")]
     public int day2;
     public GameObject day2_Actvive;
     public GameObject day2_Inactvive;
     public GameObject day2_Received;
     public GameObject day2_Fxs;
+    public Button day2_Btn;
     [Header("Day 3")]
     public int day3;
     public GameObject day3_Actvive;
     public GameObject day3_Inactvive;
     public GameObject day3_Received;
     public GameObject day3_Fxs;
+    public Button day3_Btn;
     [Header("Day 4")]
     public int day4;
     public GameObject day4_Actvive;
     public GameObject day4_Inactvive;
     public GameObject day4_Received;
     public GameObject day4_Fxs;
+    public Button day4_Btn;
     [Header("Day 5")]
     public int day5;
     public GameObject day5_Actvive;
     public GameObject day5_Inactvive;
     public GameObject day5_Received;
     public GameObject day5_Fxs;
+    public Button day5_Btn;
     [Header("Day 6")]
     public int day6;
     public GameObject day6_Actvive;
     public GameObject day6_Inactvive;
     public GameObject day6_Received;
     public GameObject day6_Fxs;
+    public Button day6_Btn;
     [Header("Day 7")]
     public int day7;
     public GameObject day7_Actvive;
     public GameObject day7_Inactvive;
     public GameObject day7_Received;
     public GameObject day7_Fxs;
+    public Button day7_Btn;
 
     private void Start()
     {
@@ -62,6 +69,11 @@ public class MissionPanel : MonoBehaviour
 
         day1 = PlayerPrefs.GetInt("Day_1");
         day2 = PlayerPrefs.GetInt("Day_2");
+        day3 = PlayerPrefs.GetInt("Day_3");
+        day4 = PlayerPrefs.GetInt("Day_4");
+        day5 = PlayerPrefs.GetInt("Day_5");
+        day6 = PlayerPrefs.GetInt("Day_6");
+        day7 = PlayerPrefs.GetInt("Day_7");
         LastDate = PlayerPrefs.GetInt("LastDate");
 
         Reward_SetUI();
@@ -75,6 +87,26 @@ public class MissionPanel : MonoBehaviour
             else if (day2 == 0)
             {
                 day2 = 1;
+            }
+            else if (day3 == 0)
+            {
+                day3 = 1;
+            }
+            else if (day4 == 0)
+            {
+                day4 = 1;
+            }
+            else if (day5 == 0)
+            {
+                day5 = 1;
+            }
+            else if (day6 == 0)
+            {
+                day6 = 1;
+            }
+            else if (day7 == 0)
+            {
+                day7 = 1;
             }
 
             Reward_SetUI();
@@ -106,6 +138,7 @@ public class MissionPanel : MonoBehaviour
             day1_Actvive.SetActive(false);
             day1_Fxs.SetActive(false);
             day1_Inactvive.SetActive(true);
+            day1_Btn.interactable = false;
         }
         if (day1 == 1)
         {
@@ -113,6 +146,7 @@ public class MissionPanel : MonoBehaviour
             day1_Actvive.SetActive(true);
             day1_Fxs.SetActive(true);
             day1_Inactvive.SetActive(false);
+            day1_Btn.interactable = true;
         }
         if (day1 == 2)
         {
@@ -120,6 +154,7 @@ public class MissionPanel : MonoBehaviour
             day1_Actvive.SetActive(false);
             day1_Fxs.SetActive(false);
             day1_Inactvive.SetActive(false);
+            day1_Btn.interactable = false;
         }
 
         //Day 2
@@ -129,6 +164,7 @@ public class MissionPanel : MonoBehaviour
             day2_Actvive.SetActive(false);
             day2_Fxs.SetActive(false);
             day2_Inactvive.SetActive(true);
+            day2_Btn.interactable = false;
         }
         if (day2 == 1)
         {
@@ -136,6 +172,7 @@ public class MissionPanel : MonoBehaviour
             day2_Actvive.SetActive(true);
             day2_Fxs.SetActive(true);
             day2_Inactvive.SetActive(false);
+            day2_Btn.interactable = true;
         }
         if (day2 == 2)
         {
@@ -143,6 +180,7 @@ public class MissionPanel : MonoBehaviour
             day2_Actvive.SetActive(false);
             day2_Fxs.SetActive(false);
             day2_Inactvive.SetActive(false);
+            day2_Btn.interactable = false;
         }
 
         //Day 3
@@ -152,6 +190,7 @@ public class MissionPanel : MonoBehaviour
             day3_Actvive.SetActive(false);
             day3_Fxs.SetActive(false);
             day3_Inactvive.SetActive(true);
+            day3_Btn.interactable = false;
         }
         if (day3 == 1)
         {
@@ -159,6 +198,7 @@ public class MissionPanel : MonoBehaviour
             day3_Actvive.SetActive(true);
             day3_Fxs.SetActive(true);
             day3_Inactvive.SetActive(false);
+            day3_Btn.interactable = true;
         }
         if (day3 == 2)
         {
@@ -166,6 +206,7 @@ public class MissionPanel : MonoBehaviour
             day3_Actvive.SetActive(false);
             day3_Fxs.SetActive(false);
             day3_Inactvive.SetActive(false);
+            day3_Btn.interactable = false;
         }
 
         //Day 4
@@ -175,6 +216,7 @@ public class MissionPanel : MonoBehaviour
             day4_Actvive.SetActive(false);
             day4_Fxs.SetActive(false);
             day4_Inactvive.SetActive(true);
+            day4_Btn.interactable = false;
         }
         if (day4 == 1)
         {
@@ -182,6 +224,7 @@ public class MissionPanel : MonoBehaviour
             day4_Actvive.SetActive(true);
             day4_Fxs.SetActive(true);
             day4_Inactvive.SetActive(false);
+            day4_Btn.interactable = true;
         }
         if (day4 == 2)
         {
@@ -189,6 +232,7 @@ public class MissionPanel : MonoBehaviour
             day4_Actvive.SetActive(false);
             day4_Fxs.SetActive(false);
             day4_Inactvive.SetActive(false);
+            day4_Btn.interactable = false;
         }
 
         //Day 5
@@ -198,6 +242,7 @@ public class MissionPanel : MonoBehaviour
             day5_Actvive.SetActive(false);
             day5_Fxs.SetActive(false);
             day5_Inactvive.SetActive(true);
+            day5_Btn.interactable = false;
         }
         if (day5 == 1)
         {
@@ -205,6 +250,7 @@ public class MissionPanel : MonoBehaviour
             day5_Actvive.SetActive(true);
             day5_Fxs.SetActive(true);
             day5_Inactvive.SetActive(false);
+            day5_Btn.interactable = true;
         }
         if (day5 == 2)
         {
@@ -212,6 +258,7 @@ public class MissionPanel : MonoBehaviour
             day5_Actvive.SetActive(false);
             day5_Fxs.SetActive(false);
             day5_Inactvive.SetActive(false);
+            day5_Btn.interactable = false;
         }
 
         //Day 6
@@ -221,6 +268,7 @@ public class MissionPanel : MonoBehaviour
             day6_Actvive.SetActive(false);
             day6_Fxs.SetActive(false);
             day6_Inactvive.SetActive(true);
+            day6_Btn.interactable = false;
         }
         if (day6 == 1)
         {
@@ -228,6 +276,7 @@ public class MissionPanel : MonoBehaviour
             day6_Actvive.SetActive(true);
             day6_Fxs.SetActive(true);
             day6_Inactvive.SetActive(false);
+            day6_Btn.interactable = true;
         }
         if (day6 == 2)
         {
@@ -235,6 +284,7 @@ public class MissionPanel : MonoBehaviour
             day6_Actvive.SetActive(false);
             day6_Fxs.SetActive(false);
             day6_Inactvive.SetActive(false);
+            day6_Btn.interactable = false;
         }
 
         //Day 7
@@ -244,6 +294,7 @@ public class MissionPanel : MonoBehaviour
             day7_Actvive.SetActive(false);
             day7_Fxs.SetActive(false);
             day7_Inactvive.SetActive(true);
+            day7_Btn.interactable = false;
         }
         if (day7 == 1)
         {
@@ -251,6 +302,7 @@ public class MissionPanel : MonoBehaviour
             day7_Actvive.SetActive(true);
             day7_Fxs.SetActive(true);
             day7_Inactvive.SetActive(false);
+            day7_Btn.interactable = true;
         }
         if (day7 == 2)
         {
@@ -258,6 +310,7 @@ public class MissionPanel : MonoBehaviour
             day7_Actvive.SetActive(false);
             day7_Fxs.SetActive(false);
             day7_Inactvive.SetActive(false);
+            day7_Btn.interactable = false;
         }
     }
 
@@ -266,6 +319,7 @@ public class MissionPanel : MonoBehaviour
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
 
+        Console.BackgroundColor = ConsoleColor.Red;
         print("Daily Login Rewards<color=#f6e19c> 1 <color> / 7");
 
         day1 = 2;
@@ -282,6 +336,7 @@ public class MissionPanel : MonoBehaviour
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
 
+        Console.BackgroundColor = ConsoleColor.Red;
         print("Daily Login Rewards<color=#f6e19c> 2 <color> / 7");
 
         day2 = 2;
@@ -298,6 +353,7 @@ public class MissionPanel : MonoBehaviour
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
 
+        Console.BackgroundColor = ConsoleColor.Red;
         print("Daily Login Rewards<color=#f6e19c> 3 <color> / 7");
 
         day3 = 2;
@@ -314,6 +370,7 @@ public class MissionPanel : MonoBehaviour
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
 
+        Console.BackgroundColor = ConsoleColor.Red;
         print("Daily Login Rewards<color=#f6e19c> 4 <color> / 7");
 
         day4 = 2;
@@ -330,6 +387,7 @@ public class MissionPanel : MonoBehaviour
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
 
+        Console.BackgroundColor = ConsoleColor.Red;
         print("Daily Login Rewards<color=#f6e19c> 5 <color> / 7");
 
         day5 = 2;
@@ -346,6 +404,7 @@ public class MissionPanel : MonoBehaviour
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
 
+        Console.BackgroundColor = ConsoleColor.Red;
         print("Daily Login Rewards<color=#f6e19c> 6 <color> / 7");
 
         day6 = 2;
@@ -362,6 +421,7 @@ public class MissionPanel : MonoBehaviour
         LastDate = System.DateTime.Now.Day;
         PlayerPrefs.SetInt("LastDate", LastDate);
 
+        Console.BackgroundColor = ConsoleColor.Red;
         print("Daily Login Rewards<color=#f6e19c> 7 <color> / 7");
 
         day7 = 2;

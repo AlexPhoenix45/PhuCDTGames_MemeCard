@@ -753,6 +753,7 @@ public class UIManager : MonoBehaviour
         float playerLvlRange = (float)PlayerDataStorage.Instance.data.currentLvl / 10;
 
         int selectedOpponentLvl = 0;
+        OpponentData oppoData = new OpponentData();
 
         IEnumerator chooseOpponent()
         {
@@ -821,6 +822,7 @@ public class UIManager : MonoBehaviour
                     selectedOpponentLvl = int.Parse(choosingOpponent_RightOpponent_Level.text);
 
                     tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+                    oppoData = tempOpponent;
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
                     choosingOpponent_RightOpponent_Level.text = RandomOpponentLevel().ToString();
@@ -851,7 +853,7 @@ public class UIManager : MonoBehaviour
 
             yield return new WaitForSeconds(3f);
             choosingOpponent_Main.SetActive(false);
-            EventController.OnShowBot();
+            EventController.OnShowBot(oppoData);
             yield return new WaitForSeconds(1.5f);
             EventController.OnDrawStartingCard(selectedOpponentLvl);
             //print(selectedOpponentLvl);
@@ -1114,6 +1116,7 @@ public class UIManager : MonoBehaviour
 
             packageReward_main.SetActive(true);
             packageReward_packImage.SetActive(true);
+            packageReward_packImage.GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 0.75f);
             PackageProgressionExecution();
         });
     }
@@ -1146,10 +1149,10 @@ public class UIManager : MonoBehaviour
         {
             LeanTween.move(packageReward_progressionMask.GetComponent<RectTransform>(), packageReward_progressMaskPos[4].GetComponent<RectTransform>().localPosition, 1f);
 
-            LeanTween.value(1, 0, 1f).setOnStart(() =>
+            LeanTween.value(.75f, 0, 1f).setOnStart(() =>
             {
                 //packageReward.GetComponent<CanvasGroup>().alpha = 1f;
-                packageReward_packImage.GetComponent<RectTransform>().localScale = Vector3.one;
+                packageReward_packImage.GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 0.75f);
             }).setOnUpdate((float value) =>
             {
                 //packageReward.GetComponent<CanvasGroup>().alpha = value;
@@ -1182,10 +1185,10 @@ public class UIManager : MonoBehaviour
 
             if (packageReward_packImage.activeSelf)
             {
-                LeanTween.value(1, 0, 1f).setOnStart(() =>
+                LeanTween.value(.75f, 0, 1f).setOnStart(() =>
                 {
                     //packageReward.GetComponent<CanvasGroup>().alpha = 1f;
-                    packageReward_packImage.GetComponent<RectTransform>().localScale = Vector3.one;
+                    packageReward_packImage.GetComponent<RectTransform>().localScale = new Vector3(0.75f, 0.75f, 0.75f);
                 }).setOnUpdate((float value) =>
                 {
                     //packageReward.GetComponent<CanvasGroup>().alpha = value;

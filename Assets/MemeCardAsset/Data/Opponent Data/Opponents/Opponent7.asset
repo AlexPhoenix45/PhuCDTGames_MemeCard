@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce441a9e882c84b8682988373f5e25, type: 3}
   m_Name: Opponent7
   m_EditorClassIdentifier: 
-  opponentImage: {fileID: 21300000, guid: 4d03f70a5ff18264b8b263dc2a93482f, type: 3}
-  opponentName: Allison
-  opponentLevel: 12
+  opponentImage: {fileID: 21300000, guid: 71b529b48e09e7a4aabc1fdc9f1a9f97, type: 3}
+  opponentName: Isabella

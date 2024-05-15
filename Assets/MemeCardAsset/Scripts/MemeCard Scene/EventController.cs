@@ -162,8 +162,8 @@ public class EventController
     public static event UnityAction BotPlay;
     public static void OnBotPlay() => BotPlay?.Invoke();
 
-    public static event UnityAction ShowBot;
-    public static void OnShowBot() => ShowBot?.Invoke();
+    public static event UnityAction <OpponentData> ShowBot;
+    public static void OnShowBot(OpponentData oppoData) => ShowBot?.Invoke(oppoData);
 
     public static event UnityAction ChangeAudienceApperance;
     public static void OnChangeAudienceApperance() => ChangeAudienceApperance?.Invoke();
