@@ -11,12 +11,12 @@ public class SettingPanel : MonoBehaviour
     [Header("Sound")]
     public GameObject soundEnabled;
     public GameObject soundDisabled;
-    private bool soundToggle = true;
+    public static bool soundToggle = true;
 
     [Header("Vibration")]
     public GameObject vibrationEnabled;
     public GameObject vibrationDisabled;
-    private bool vibrationToggle = true;
+    public static bool vibrationToggle = true;
 
     [Header("Language")]
     public GameObject enEnabled;
@@ -52,24 +52,6 @@ public class SettingPanel : MonoBehaviour
     }
 
     #region Toggle Sound & Vibration
-    /// <summary>
-    /// Return if Sound is On or Off
-    /// </summary>
-    /// <returns>True is On, False is Off</returns>
-    public bool getSoundToggle()
-    {
-        return soundToggle;
-    }
-
-    /// <summary>
-    /// Return if Sound is On or Off
-    /// </summary>
-    /// <returns>True is On, False is Off</returns>
-    public bool getVibrationToggle()
-    {
-        return vibrationToggle;
-    }
-
     public void OnClick_Sound()
     {
         if (soundEnabled.activeSelf)

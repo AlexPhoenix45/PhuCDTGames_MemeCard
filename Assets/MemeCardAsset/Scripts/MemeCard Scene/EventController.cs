@@ -82,6 +82,9 @@ public class EventController
     /// </summary>
     public static event UnityAction <QuestionData> SetQuestion;
     public static void OnSetQuestion(QuestionData questData) => SetQuestion?.Invoke(questData);
+
+    public static event UnityAction ResetTable;
+    public static void OnResetTable() => ResetTable?.Invoke();
     #endregion
 
     #region Camera
@@ -153,6 +156,17 @@ public class EventController
     public static event UnityAction HidePointSlider;
     public static void OnHidePointSlider() => HidePointSlider?.Invoke();
 
+    /// <summary>
+    /// Show Home Button
+    /// </summary>
+    public static event UnityAction ShowHomeButton;
+    public static void OnShowHomeButton() => ShowHomeButton?.Invoke();
+
+    /// <summary>
+    /// Show Home Button
+    /// </summary>
+    public static event UnityAction HideHomeButton;
+    public static void OnHideHomeButton() => HideHomeButton?.Invoke();
     #endregion
 
     #region Bot
@@ -220,6 +234,9 @@ public class EventController
     public static event UnityAction GetLastCardEvent;
     public static void OnGetLastCardEvent() => GetLastCardEvent?.Invoke();
 
+    public static event UnityAction <CardData> NextCardCheck;
+    public static void OnNextCardCheck(CardData currentCardData) => NextCardCheck?.Invoke(currentCardData);
+
     public static event UnityAction OpenPack;
     public static void OnOpenPack() => OpenPack?.Invoke();
 
@@ -234,6 +251,27 @@ public class EventController
     #endregion
 
     #region Shop Panel
+
+    #endregion
+
+    #region SFX
+    public static event UnityAction SFXPlay_Laugh;
+    public static void OnSFXPlay_Laugh() => SFXPlay_Laugh.Invoke();
+
+    public static event UnityAction SFXPlay_Sad;
+    public static void OnSFXPlay_Sad() => SFXPlay_Sad.Invoke();
+
+    public static event UnityAction SFXPlay_ButtonClick;
+    public static void OnSFXPlay_ButtonClick() => SFXPlay_ButtonClick.Invoke();
+
+    public static event UnityAction SFXPlay_EpicPack;
+    public static void OnSFXPlay_EpicPack() => SFXPlay_EpicPack.Invoke();
+
+    public static event UnityAction SFXPlay_ChooseOpponent;
+    public static void OnSFXPlay_ChooseOpponent() => SFXPlay_ChooseOpponent.Invoke();
+
+    public static event UnityAction SFXPlay_MoneyReceive;
+    public static void OnSFXPlay_MoneyReceive() => SFXPlay_MoneyReceive.Invoke();
 
     #endregion
 }

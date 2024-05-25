@@ -1,10 +1,13 @@
 bug daily bị spam, chưa tính ngày (done)
 bug hiển thị pack bài (done)
-bug nhân vật lỗi anim (*)
-update avatar nhân vật
+bug nhân vật lỗi anim (lỗi anim do thẻ khi đánh xong k bị disable,
+dẫn đến bị spam thẻ và spam anim)
+update avatar nhân vật (done)
+	+ spawn boss và opponent vào những level nahát định
 update thêm thẻ epic (done)
 update nút home
 update logic ads
+skip ads
 
 
 opponent1

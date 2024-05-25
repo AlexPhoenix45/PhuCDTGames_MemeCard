@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4036f1675268143a9e36134a00effd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interDelayTime: 46
+  interDelayTime: 90
   minDelayApterReward: 30
   isStaging: 0
 --- !u!4 &857572263
@@ -840,6 +840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1179765633}
   - component: {fileID: 1179765632}
+  - component: {fileID: 1179765634}
   m_Layer: 0
   m_Name: Service Holder
   m_TagString: Untagged
@@ -875,6 +876,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1179765634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179765631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d7b2bf626657644977bb158fcb625f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bannerState: 1
+  AdPosition: 1
 --- !u!1 &1219876314
 GameObject:
   m_ObjectHideFlags: 0

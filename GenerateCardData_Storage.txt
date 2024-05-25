@@ -1,0 +1,368 @@
+public CardData GenerateCardData(bool isForPlayer, bool isDrawMissing)
+{
+    //About rarity of the card
+    CardData CardSpawningMechanism(bool isForced, bool isForOpponent)
+    {
+        if (!isForOpponent)
+        {
+            if (!isForced)
+            {
+                int percentage = UnityEngine.Random.Range(0, 100);
+
+                if (percentage >= 0 && percentage < 50)
+                {
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Common)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else if (percentage >= 50 && percentage < 85)
+                {
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Rare)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else
+                {
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Epic)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+            }
+            else
+            {
+                int percentage = UnityEngine.Random.Range(0, 100);
+
+                if (percentage >= 0 && percentage < 50)
+                {
+                    //print(currentQuestionData.questionCardEmotionalType);
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Common && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else if (percentage >= 50 && percentage < 85)
+                {
+                    //print(currentQuestionData.questionCardEmotionalType);
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Rare && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else
+                {
+                    //print(currentQuestionData.questionCardEmotionalType);
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Epic && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+            }
+        }
+        else
+        {
+            if (!isForced)
+            {
+                int percentage = UnityEngine.Random.Range(0, 100);
+
+                if (percentage >= 0 && percentage < cardRarityLvlExecuter(0))
+                {
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Common)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else if (percentage >= cardRarityLvlExecuter(0) && percentage < cardRarityLvlExecuter(1))
+                {
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Rare)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else
+                {
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Epic)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+            }
+            else
+            {
+                int percentage = UnityEngine.Random.Range(0, 100);
+
+                if (percentage >= 0 && percentage < cardRarityLvlExecuter(0))
+                {
+                    //print(currentQuestionData.questionCardEmotionalType);
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Common && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else if (percentage >= cardRarityLvlExecuter(0) && percentage < cardRarityLvlExecuter(1))
+                {
+                    //print(currentQuestionData.questionCardEmotionalType);
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Rare && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+                else
+                {
+                    //print(currentQuestionData.questionCardEmotionalType);
+                    List<int> cardIndex = new List<int>();
+                    for (int i = 0; i < cardDatas.Length; i++)
+                    {
+                        if (cardDatas[i].rarityType == RarityType.Epic && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                        {
+                            cardIndex.Add(i);
+                        }
+                    }
+
+                    return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                }
+            }
+
+            int cardRarityLvlExecuter(int rarityType)
+            {
+                int commonPercentage = 0, rarePercentage = 0;
+                if (opponentLvl == 5)
+                {
+                    commonPercentage = 50;
+                    rarePercentage = 35;
+                }
+                else if (opponentLvl == 10)
+                {
+                    commonPercentage = 45;
+                    rarePercentage = 40;
+                }
+                else if (opponentLvl == 15 || opponentLvl == 20)
+                {
+                    commonPercentage = 40;
+                    rarePercentage = 40;
+                }
+                else if (opponentLvl == 25 || opponentLvl == 30)
+                {
+                    commonPercentage = 35;
+                    rarePercentage = 40;
+                }
+                else if (opponentLvl == 35 || opponentLvl == 40)
+                {
+                    commonPercentage = 30;
+                    rarePercentage = 40;
+                }
+                else if (opponentLvl == 45 || opponentLvl == 50)
+                {
+                    commonPercentage = 25;
+                    rarePercentage = 40;
+                }
+                else if (opponentLvl == 55 || opponentLvl == 60)
+                {
+                    commonPercentage = 10;
+                    rarePercentage = 50;
+                }
+                else if (opponentLvl > 0 && opponentLvl < 15)
+                {
+                    commonPercentage = 70;
+                    rarePercentage = 20;
+                }
+                else if (opponentLvl > 15 && opponentLvl < 30)
+                {
+                    commonPercentage = 60;
+                    rarePercentage = 25;
+                }
+                else if (opponentLvl > 30 && opponentLvl < 45)
+                {
+                    commonPercentage = 50;
+                    rarePercentage = 30;
+                }
+                else if (opponentLvl > 45 && opponentLvl < 60)
+                {
+                    commonPercentage = 35;
+                    rarePercentage = 40;
+                }
+
+                //Return part
+                if (rarityType == 0)
+                {
+                    //print(commonPercentage);
+                    return commonPercentage;
+                }
+                else if (rarityType == 1)
+                {
+                    //print(commonPercentage + rarePercentage);
+                    return commonPercentage + rarePercentage;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+    } //Rarity spawn
+
+    bool DuplicateCheck(CardData tempCard)
+    {
+        bool returnedValue = true;
+        if (isForPlayer)
+        {
+            if (playerCardMid != null && tempCard == playerCardMid.GetComponent<PlayingCard>().cardData)
+            {
+                returnedValue = false;
+            }
+            if (playerCardLeft != null && tempCard == playerCardLeft.GetComponent<PlayingCard>().cardData)
+            {
+                returnedValue = false;
+            }
+            if (playerCardRight != null && tempCard == playerCardRight.GetComponent<PlayingCard>().cardData)
+            {
+                returnedValue = false;
+            }
+        }
+        else
+        {
+            if (opponentCardMid != null && tempCard == opponentCardMid.GetComponent<PlayingCard>().cardData)
+            {
+                returnedValue = false;
+            }
+            if (opponentCardLeft != null && tempCard == opponentCardLeft.GetComponent<PlayingCard>().cardData)
+            {
+                returnedValue = false;
+            }
+            if (opponentCardRight != null && tempCard == opponentCardRight.GetComponent<PlayingCard>().cardData)
+            {
+                returnedValue = false;
+            }
+        }
+
+        return returnedValue;
+    } //Duplicate check
+
+    CardData tempCard;
+
+    if (isForPlayer)
+    {
+        if (!isDrawMissing)
+        {
+            do
+            {
+                tempCard = CardSpawningMechanism(false, false);
+            }
+            while (!DuplicateCheck(tempCard));
+
+            if (tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType)
+            {
+                timeCardUnFitEmotion_Player++;
+            }
+
+            if (timeCardUnFitEmotion_Player == timeAllowGetUnFitEmotion_Player)
+            {
+                tempCard = CardSpawningMechanism(true, false);
+            }
+
+            ExportCard();
+            return tempCard;
+        }
+        else
+        {
+            tempCard = CardSpawningMechanism(false, false);
+            return tempCard;
+        }
+    }
+    else
+    {
+        do
+        {
+            tempCard = CardSpawningMechanism(false, true);
+        }
+        while (!DuplicateCheck(tempCard));
+
+        if (tempCard.playingCardEmotionalType != currentQuestionData.questionCardEmotionalType)
+        {
+            timeCardUnFitEmotion_Opponent++;
+        }
+
+        if (timeCardUnFitEmotion_Opponent == timeAllowGetUnFitEmotion_Opponent)
+        {
+            tempCard = CardSpawningMechanism(true, true);
+        }
+
+        return tempCard;
+    }
+
+    void ExportCard()
+    {
+        //print(tempCard);
+        temp_playerOwnedCardData.Add(tempCard);
+        ExportPlayerOwnedCardData();
+        temp_playerOwnedCardData.Clear();
+    }
+}

@@ -635,6 +635,8 @@ public class CollectionPanel : MonoBehaviour
     #region Bookmarks OnClick 
     public void OnClick_LaughEmotion()
     {
+        EventController.OnSFXPlay_ButtonClick();
+
         if (activeBookmark != ActiveBookmark.Laugh)
         {
             laughBookmarkActive.SetActive(true);
@@ -657,6 +659,8 @@ public class CollectionPanel : MonoBehaviour
     }
     public void OnClick_AngryEmotion()
     {
+        EventController.OnSFXPlay_ButtonClick();
+
         if (activeBookmark != ActiveBookmark.Angry)
         {
             laughBookmarkActive.SetActive(false);
@@ -679,6 +683,8 @@ public class CollectionPanel : MonoBehaviour
     }
     public void OnClick_SusEmotion()
     {
+        EventController.OnSFXPlay_ButtonClick();
+
         if (activeBookmark != ActiveBookmark.Sus)
         {
             laughBookmarkActive.SetActive(false);
@@ -701,6 +707,8 @@ public class CollectionPanel : MonoBehaviour
     }
     public void OnClick_CryEmotion()
     {
+        EventController.OnSFXPlay_ButtonClick();
+
         if (activeBookmark != ActiveBookmark.Cry)
         {
             laughBookmarkActive.SetActive(false);
@@ -723,6 +731,8 @@ public class CollectionPanel : MonoBehaviour
     }
     public void OnClick_SurpriseEmotion()
     {
+        EventController.OnSFXPlay_ButtonClick();
+
         if (activeBookmark != ActiveBookmark.Surprise)
         {
             laughBookmarkActive.SetActive(false);
@@ -745,6 +755,8 @@ public class CollectionPanel : MonoBehaviour
     }
     public void OnClick_CoolEmotion()
     {
+        EventController.OnSFXPlay_ButtonClick();
+
         if (activeBookmark != ActiveBookmark.Cool)
         {
             laughBookmarkActive.SetActive(false);

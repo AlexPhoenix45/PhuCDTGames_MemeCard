@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using NaughtyAttributes;
+using Assets.Core.Scripts.Core.Managers;
 using TMPro;
-using System;
-using UnityEngine.Rendering;
-using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.UI;
+using UnityEditor;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,11 +17,11 @@ public class UIManager : MonoBehaviour
     public RectTransform navHidePos;
     public GameObject navigationButtons;
 
-    public UnityEngine.UI.Button shopBtn;
-    public UnityEngine.UI.Button collectionBtn;
-    public UnityEngine.UI.Button playBtn;
-    public UnityEngine.UI.Button missionBtn;
-    public UnityEngine.UI.Button settingBtn;
+    public Button shopBtn;
+    public Button collectionBtn;
+    public Button playBtn;
+    public Button missionBtn;
+    public Button settingBtn;
 
     public GameObject shopBtn_Selected_Background;
     public GameObject collectionBtn_Selected_Background;
@@ -48,6 +48,9 @@ public class UIManager : MonoBehaviour
     public GameObject playPnl;
     public GameObject missionPnl;
     public GameObject settingPnl;
+
+    [Header("Coin VFX")]
+    public GameObject coinVFX;
     #endregion
 
     #region Header
@@ -55,6 +58,8 @@ public class UIManager : MonoBehaviour
     public GameObject header;
     public GameObject header_CoinContainer;
     public TextMeshProUGUI header_CoinText;
+
+    public GameObject homeButton;
     #endregion
 
     #region Question Attributes (Card Battle)
@@ -163,6 +168,9 @@ public class UIManager : MonoBehaviour
         EventController.ChooseOpponent += ChoosingOpponent;
 
         EventController.SetPlayerCoin += UpdateHeaderCoin;
+
+        EventController.ShowHomeButton += ShowHomeButton;
+        EventController.HideHomeButton += HideHomeButton;
     }
 
     #region Navigation
@@ -198,6 +206,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void ShowNavigationButton()
     {
+        navigationButtons.SetActive(true);
         navigationButtons.GetComponent<RectTransform>().position = navHidePos.position;
         navigationButtons.GetComponent<RectTransform>().transform.LeanMove(navShowPos.position, .75f);
         ShowNavigationItemPanel();
@@ -209,7 +218,10 @@ public class UIManager : MonoBehaviour
     public void HideNavigationButton()
     {
         navigationButtons.GetComponent<RectTransform>().position = navShowPos.position;
-        navigationButtons.GetComponent<RectTransform>().transform.LeanMove(navHidePos.position, .75f);
+        navigationButtons.GetComponent<RectTransform>().transform.LeanMove(navHidePos.position, .75f).setOnComplete(() =>
+        {
+            navigationButtons.SetActive(false);
+        });
         ShowNavigationItemPanel();
     }
 
@@ -217,6 +229,7 @@ public class UIManager : MonoBehaviour
     //
     public void OnClick_ShopNav()
     {
+        EventController.OnSFXPlay_ButtonClick();
         if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
         {
             if (shopBtnSelected_Toggle)
@@ -251,6 +264,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClick_CollectionNav()
     {
+        EventController.OnSFXPlay_ButtonClick();
         if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
         { 
             if (collectionBtnSelected_Toggle)
@@ -285,6 +299,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClick_PlayNav()
     {
+        EventController.OnSFXPlay_ButtonClick();
         if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
         {
             //Navigationing
@@ -320,6 +335,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClick_MissionNav()
     {
+        EventController.OnSFXPlay_ButtonClick();
         if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
         {
             if (missionBtnSelected_Toggle)
@@ -354,6 +370,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClick_SettingNav()
     {
+        EventController.OnSFXPlay_ButtonClick();
         if (UIManager.tweeningID != 0 && !LeanTween.isTweening(UIManager.tweeningID))
         {
             if (settingBtnSelected_Toggle)
@@ -405,6 +422,7 @@ public class UIManager : MonoBehaviour
         SelectedButton(playBtn_Selected_Background, playBtn_Selected_Icon, playPnl);
         EventController.OnSpawnGameOnTable();
         ShowHeader();
+        HideHomeButton();
     }
 
     public void ShowMissionPanel()
@@ -504,7 +522,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
     private void HideHeader()
     {
         if (header.GetComponent<CanvasGroup>().alpha != 0)
@@ -526,6 +543,80 @@ public class UIManager : MonoBehaviour
             header_CoinText.text = ((int)value).ToString();
         });
     }
+
+    private void ShowHomeButton()
+    {
+        if (homeButton.GetComponent<Image>().color.a != 1)
+        {
+            LeanTween.value(0, 1, 1f).setOnStart(() =>
+            {
+                homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, 0);
+                homeButton.SetActive(true);
+            }).setOnUpdate((float value) =>
+            {
+                homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, value);
+            }).setOnComplete(() =>
+            {
+                homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, 1);
+                homeButton.GetComponent<Button>().interactable = true;
+            });
+        }
+    }
+
+    private void HideHomeButton()
+    {
+        if (homeButton.GetComponent<Image>().color.a != 0)
+        {
+            LeanTween.value(1, 0, 1f).setOnStart(() =>
+            {
+                homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, 1);
+                homeButton.GetComponent<Button>().interactable = false;
+            }).setOnUpdate((float value) =>
+            {
+                homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, value);
+            }).setOnComplete(() =>
+            {
+                homeButton.GetComponent<Image>().color = new Vector4(1, 1, 1, 0);
+                homeButton.SetActive(false);
+            });
+        }
+    }
+
+    public void OnClick_HomeButton()
+    {
+        EventController.OnSFXPlay_ButtonClick();
+        ServiceManager.ShowInter(() =>
+        {
+            homeButton.GetComponent<Button>().interactable = false;
+            EventController.OnResetTable();
+
+            HideQuestion();
+            HidePointSlider();
+            HideHeader();
+
+            pointSlider_playerPointText.text = "0";
+            pointSlider_opponentPointText.text = "0";
+
+            pointSlider.value = 50;
+
+            IEnumerator wait()
+            {
+                EventController.OnTurnRoomCam();
+
+                losePanel.SetActive(false);
+                winPanel.SetActive(false);
+
+                yield return new WaitForSeconds(.5f);
+                while (FindObjectOfType<CameraMovement>().isBlending)
+                {
+                    yield return null;
+                }
+                ShowNavigationButton();
+            }
+            StartCoroutine(wait());
+            EventController.OnChangeAudienceApperance();
+        });
+    }
     #endregion
 
     #region Question (Card Battle)
@@ -538,7 +629,6 @@ public class UIManager : MonoBehaviour
         questionHolder.GetComponent<RectTransform>().position = questionHiddenPos.position;
         questionHolder.GetComponent<RectTransform>().transform.LeanMove(questionPos.position, .5f).setOnComplete(() =>
         {
-            EventController.OnCardReadyToPlay();
             if (roundCount >= 2)
             {
                 EventController.OnCardBattleNextTurn();
@@ -751,23 +841,35 @@ public class UIManager : MonoBehaviour
         float time = 4;
         float timeElapsed = 0;
         float playerLvlRange = (float)PlayerDataStorage.Instance.data.currentLvl / 10;
+        int oppoDataBoundLow, oppoDataBoundHigh;
 
         int selectedOpponentLvl = 0;
-        OpponentData oppoData = new OpponentData();
+        OpponentData midOpponentData = new OpponentData();
 
         IEnumerator chooseOpponent()
         {
-            OpponentData tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+            EventController.OnSFXPlay_ChooseOpponent();
+            if (PlayerDataStorage.Instance.data.currentLvl % 5 == 0)
+            {
+                oppoDataBoundLow = 0;
+                oppoDataBoundHigh = 12;
+            }
+            else
+            {
+                oppoDataBoundLow = 12;
+                oppoDataBoundHigh = 19;
+            }
+            OpponentData tempOpponent = opponentDatas[UnityEngine.Random.Range(oppoDataBoundLow, oppoDataBoundHigh)];
             choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
             choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
             choosingOpponent_RightOpponent_Level.text = RandomOpponentLevel().ToString();
            
-            tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+            tempOpponent = opponentDatas[UnityEngine.Random.Range(oppoDataBoundLow, oppoDataBoundHigh)];
             choosingOpponent_MidOpponent_Image.sprite = tempOpponent.opponentImage;
             choosingOpponent_MidOpponent_Text.text = tempOpponent.opponentName;
             choosingOpponent_MidOpponent_Level.text = RandomOpponentLevel().ToString();
            
-            tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+            tempOpponent = opponentDatas[UnityEngine.Random.Range(oppoDataBoundLow, oppoDataBoundHigh)];
             choosingOpponent_LeftOpponent_Image.sprite = tempOpponent.opponentImage;
             choosingOpponent_LeftOpponent_Text.text = tempOpponent.opponentName;
             choosingOpponent_LeftOpponent_Level.text = RandomOpponentLevel().ToString();
@@ -784,7 +886,7 @@ public class UIManager : MonoBehaviour
                     choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
                     choosingOpponent_MidOpponent_Level.text = choosingOpponent_RightOpponent_Level.text;
 
-                    tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+                    tempOpponent = opponentDatas[UnityEngine.Random.Range(oppoDataBoundLow, oppoDataBoundHigh)];
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
                     choosingOpponent_RightOpponent_Level.text = RandomOpponentLevel().ToString();
@@ -802,7 +904,7 @@ public class UIManager : MonoBehaviour
                     choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
                     choosingOpponent_MidOpponent_Level.text = choosingOpponent_RightOpponent_Level.text;
 
-                    tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
+                    tempOpponent = opponentDatas[UnityEngine.Random.Range(oppoDataBoundLow, oppoDataBoundHigh)];
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
                     choosingOpponent_RightOpponent_Level.text = RandomOpponentLevel().ToString();
@@ -820,9 +922,9 @@ public class UIManager : MonoBehaviour
                     choosingOpponent_MidOpponent_Text.text = choosingOpponent_RightOpponent_Text.text;
                     choosingOpponent_MidOpponent_Level.text = choosingOpponent_RightOpponent_Level.text;
                     selectedOpponentLvl = int.Parse(choosingOpponent_RightOpponent_Level.text);
+                    midOpponentData = tempOpponent;
 
-                    tempOpponent = opponentDatas[UnityEngine.Random.Range(0, opponentDatas.Length)];
-                    oppoData = tempOpponent;
+                    tempOpponent = opponentDatas[UnityEngine.Random.Range(oppoDataBoundLow, oppoDataBoundHigh)];
                     choosingOpponent_RightOpponent_Image.sprite = tempOpponent.opponentImage;
                     choosingOpponent_RightOpponent_Text.text = tempOpponent.opponentName;
                     choosingOpponent_RightOpponent_Level.text = RandomOpponentLevel().ToString();
@@ -853,7 +955,7 @@ public class UIManager : MonoBehaviour
 
             yield return new WaitForSeconds(3f);
             choosingOpponent_Main.SetActive(false);
-            EventController.OnShowBot(oppoData);
+            EventController.OnShowBot(midOpponentData);
             yield return new WaitForSeconds(1.5f);
             EventController.OnDrawStartingCard(selectedOpponentLvl);
             //print(selectedOpponentLvl);
@@ -940,60 +1042,86 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OnClick_HomeButton_WinPanel_CardBattle()
     {
-        if (isPlayerWin)
+        EventController.OnSFXPlay_ButtonClick();
+        ServiceManager.ShowInter(() =>
         {
-            ShowPackageReward();
-        }
-        else
+            if (isPlayerWin)
+            {
+                ShowPackageReward();
+            }
+            else
+            {
+                ChangeCamToRoomCam_AfterEndGame();
+            }
+        });
+    }
+
+    public void OnClick_SkipButton_WinPanel_CardBattle()
+    {
+        EventController.OnSFXPlay_ButtonClick();
+        ChangeCamToRoomCam_AfterEndGame();
+        ServiceManager.ShowReward((bool val) =>
         {
-            ChangeCamToRoomCam_AfterEndGame();
-        }
+            if (val)
+            {
+                EventController.OnAddPlayerLevel(1);
+            }
+        });
     }
 
     public void OnClick_ClaimButton_WinPanel_CardBattle()
     {
-        if (!multiplierBar_hasClicked)
+        EventController.OnSFXPlay_ButtonClick();
+
+        //Hide main bar to jsut show result bar
+        multiplierBar_main.SetActive(false);
+        multiplierBar_result.SetActive(true);
+
+        multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition = new Vector3(multiplierBar_currentValue, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
+        multiplierBar_stop = true;
+        
+
+        ServiceManager.ShowReward((bool val) =>
         {
-            if (multiplierBar_currentValue >= -405 && multiplierBar_currentValue < -235)
+            if (val)
             {
-                EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-                winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-            }
-            else if (multiplierBar_currentValue >= -235 && multiplierBar_currentValue < -65)
-            {
-                EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-                winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-            }
-            else if (multiplierBar_currentValue >= -65 && multiplierBar_currentValue < 90)
-            {
-                EventController.OnAddPlayerCoin(8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-                winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-            }
-            else if (multiplierBar_currentValue >= 90 && multiplierBar_currentValue < 260)
-            {
-                EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-                winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-            }
-            else if (multiplierBar_currentValue >= 260 && multiplierBar_currentValue < 405)
-            {
-                EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
-                winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
-            }
+                if (!multiplierBar_hasClicked)
+                {
+                    if (multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x >= -405 && multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x < -235)
+                    {
+                        EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                        winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                    }
+                    else if (multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x >= -235 && multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x < -65)
+                    {
+                        EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                        winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                    }
+                    else if (multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x >= -65 && multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x < 90)
+                    {
+                        EventController.OnAddPlayerCoin(8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                        winPanel_CoinText.text = (8 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                    }
+                    else if (multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x >= 90 && multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x < 260)
+                    {
+                        EventController.OnAddPlayerCoin(4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                        winPanel_CoinText.text = (4 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                    }
+                    else if (multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x >= 260 && multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x < 405)
+                    {
+                        EventController.OnAddPlayerCoin(2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                        winPanel_CoinText.text = (2 * (int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f))).ToString();
+                    }
+                }
 
-            //Hide main bar to jsut show result bar
-            multiplierBar_main.SetActive(false);
-            multiplierBar_result.SetActive(true);
-
-            multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition = new Vector3(multiplierBar_currentValue, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.y, multiplierBar_cursor.GetComponent<RectTransform>().localPosition.z);
-            multiplierBar_stop = true;
-
-            StartCoroutine(wait());
-            IEnumerator wait()
-            {
-                yield return new WaitForSeconds(1);
                 ShowPackageReward();
             }
-        }
+            else
+            {
+                EventController.OnAddPlayerCoin((int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
+                ShowPackageReward();
+            }
+        });
     }
 
     #region Multiplier Bar
@@ -1221,6 +1349,22 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    #endregion
+
+    #region Coin VFX
+    [Button]
+    public void SpawnCoinVFX()
+    {
+            for (int i = 0; i < 10; i++)
+            {
+                GameObject tempCoin = Instantiate(coinVFX, new Vector3(0 + UnityEngine.Random.Range(0f, 1f), 0 + UnityEngine.Random.Range(0f, 1f)), GetComponent<RectTransform>().localRotation);
+                tempCoin.GetComponent<RectTransform>().localPosition = new Vector3(0 + UnityEngine.Random.Range(0f, 1f), 0 + UnityEngine.Random.Range(0f, 1f));
+
+                LeanTween.move(tempCoin.GetComponent<RectTransform>(), header_CoinContainer.GetComponent<RectTransform>().localPosition, 2f).setOnComplete(() => {
+                    Destroy(tempCoin);
+                }).setEaseInOutBack();
+            }
+    }
     #endregion
 
     private void OnDisable()

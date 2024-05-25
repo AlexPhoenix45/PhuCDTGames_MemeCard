@@ -428,11 +428,13 @@ public class BotBrain : MonoBehaviour
             {
                 if (point <= 10)
                 {
+                    EventController.OnSFXPlay_Sad();
                     int random = UnityEngine.Random.Range(1, 3);
                     GetComponent<Animator>().SetTrigger("PlayOpponentSad" + random);
                 }
                 else
                 {
+                    EventController.OnSFXPlay_Laugh();
                     GetComponent<Animator>().SetTrigger("PlayOpponentLaugh");
                 }
                 yield return new WaitForSeconds(4.5f);
@@ -442,16 +444,19 @@ public class BotBrain : MonoBehaviour
             {
                 if (point <= 10)
                 {
+                    EventController.OnSFXPlay_Sad();
                     int random = UnityEngine.Random.Range(1, 4);
                     GetComponent<Animator>().SetTrigger("PlayAudienceSad" + random);
                 }
                 else if (point > 10 && point <= 60)
                 {
+                    EventController.OnSFXPlay_Laugh();
                     int random = UnityEngine.Random.Range(1, 6);
                     GetComponent<Animator>().SetTrigger("PlayAudienceLaugh" + random);
                 }
                 else
                 {
+                    EventController.OnSFXPlay_Laugh();
                     int random = UnityEngine.Random.Range(6, 10);
                     GetComponent<Animator>().SetTrigger("PlayAudienceLaugh" + random);
                 }

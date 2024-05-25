@@ -132,6 +132,9 @@ public class GameManager : MonoBehaviour
         //Get Card data to generate card pack data
         EventController.GetCardData += PassCardData;
 
+        //This method is for home button on-click reset
+        EventController.ResetTable += CardBattle_GameOver;
+
 
         //Spawn a Game (need a random after testing)
         StartSpawn_CardBattle();
@@ -191,6 +194,10 @@ public class GameManager : MonoBehaviour
 
         IEnumerator MoveCardToHand()
         {
+            DrawQuestion();
+
+            yield return new WaitForSeconds(2);
+
             //Reset Generate Data
             timeCardUnFitEmotion_Player = 0;
             timeCardUnFitEmotion_Opponent = 0;
@@ -261,8 +268,9 @@ public class GameManager : MonoBehaviour
             timeCardUnFitEmotion_Opponent = 0;
 
             yield return new WaitForSeconds(.75f);
-            DrawQuestion();
             EventController.OnBotSetCard(opponentCardMid, opponentCardLeft, opponentCardRight);
+            EventController.OnCardReadyToPlay();
+            EventController.OnShowHomeButton();
         }
         StartCoroutine(MoveCardToHand());
     }
@@ -385,6 +393,7 @@ public class GameManager : MonoBehaviour
             playerCardLeft.transform.LeanMove(playerCardHidePos.position, .5f);
         }
         DrawMissingCard(cardObj);
+        EventController.OnHideHomeButton();
     }
 
     /// <summary>
@@ -400,6 +409,8 @@ public class GameManager : MonoBehaviour
         playerCardLeft.transform.LeanRotate(playerCardLeftPos.transform.eulerAngles, .75f);
         playerCardRight.transform.LeanMove(playerCardRightPos.position, .75f);
         playerCardRight.transform.LeanRotate(playerCardRightPos.transform.eulerAngles, .75f);
+        EventController.OnShowHomeButton();
+        EventController.OnCardReadyToPlay();
     }
 
     /// <summary>
@@ -437,50 +448,129 @@ public class GameManager : MonoBehaviour
         {
             if (!isForOpponent)
             {
+                //Normal spawning
                 if (!isForced)
                 {
                     int percentage = UnityEngine.Random.Range(0, 100);
 
+                    //Spawn Common card
                     if (percentage >= 0 && percentage < 50)
                     {
                         List<int> cardIndex = new List<int>();
-                        for (int i = 0; i < cardDatas.Length; i++)
+                        for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
                         {
-                            if (cardDatas[i].rarityType == RarityType.Common)
+                            if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Common)
                             {
                                 cardIndex.Add(i);
                             }
                         }
 
-                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                     }
+                    //Spawn Rare card
                     else if (percentage >= 50 && percentage < 85)
                     {
                         List<int> cardIndex = new List<int>();
-                        for (int i = 0; i < cardDatas.Length; i++)
+
+                        //Check if there is any card is Rare
+                        bool isAnyRare = false;
+                        foreach (CardData item in PlayerDataStorage.Instance.playerOwnedCard)
                         {
-                            if (cardDatas[i].rarityType == RarityType.Rare)
+                            if (item.rarityType == RarityType.Rare)
                             {
-                                cardIndex.Add(i);
+                                isAnyRare = true;
                             }
                         }
 
-                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        //If there is a rare card
+                        if (isAnyRare)
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Rare)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
+                        //If not, spawn common card instead
+                        else
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Common)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
                     }
+                    //Spawn Epic card
                     else
                     {
                         List<int> cardIndex = new List<int>();
-                        for (int i = 0; i < cardDatas.Length; i++)
+
+                        //Check if there is any card is Rare or Epic
+                        bool isAnyRare = false;
+                        bool isAnyEpic = false;
+                        foreach (CardData item in PlayerDataStorage.Instance.playerOwnedCard)
                         {
-                            if (cardDatas[i].rarityType == RarityType.Epic)
+                            if (item.rarityType == RarityType.Rare)
                             {
-                                cardIndex.Add(i);
+                                isAnyRare = true;
+                            }
+                            else if (item.rarityType == RarityType.Epic)
+                            {
+                                isAnyEpic = true;
                             }
                         }
 
-                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        //If there is a Epic
+                        if (isAnyEpic)
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Epic)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
+                        //If there isn't an Epic, spawn Rare instead
+                        else if (isAnyRare)
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Rare)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
+                        //If there isn't an Epic or Rare, spawn Common instead
+                        else
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Common)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
                     }
                 }
+                //Forced spawning (must be right emotion)
                 else
                 {
                     int percentage = UnityEngine.Random.Range(0, 100);
@@ -489,43 +579,118 @@ public class GameManager : MonoBehaviour
                     {
                         //print(currentQuestionData.questionCardEmotionalType);
                         List<int> cardIndex = new List<int>();
-                        for (int i = 0; i < cardDatas.Length; i++)
+                        for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
                         {
-                            if (cardDatas[i].rarityType == RarityType.Common && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                            if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Common && PlayerDataStorage.Instance.playerOwnedCard[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
                             {
                                 cardIndex.Add(i);
                             }
                         }
 
-                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                     }
                     else if (percentage >= 50 && percentage < 85)
                     {
                         //print(currentQuestionData.questionCardEmotionalType);
                         List<int> cardIndex = new List<int>();
-                        for (int i = 0; i < cardDatas.Length; i++)
+
+                        //Check if there is any card is Rare
+                        bool isAnyRare = false;
+                        foreach (CardData item in PlayerDataStorage.Instance.playerOwnedCard)
                         {
-                            if (cardDatas[i].rarityType == RarityType.Rare && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                            if (item.rarityType == RarityType.Rare)
                             {
-                                cardIndex.Add(i);
+                                isAnyRare = true;
                             }
                         }
 
-                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        //If there is a rare card
+                        if (isAnyRare)
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Rare && PlayerDataStorage.Instance.playerOwnedCard[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
+                        //If not, spawn common card instead
+                        else
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Common && PlayerDataStorage.Instance.playerOwnedCard[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
+                        
                     }
                     else
                     {
                         //print(currentQuestionData.questionCardEmotionalType);
                         List<int> cardIndex = new List<int>();
-                        for (int i = 0; i < cardDatas.Length; i++)
+
+                        //Check if there is any card is Rare or Epic
+                        bool isAnyRare = false;
+                        bool isAnyEpic = false;
+                        foreach (CardData item in PlayerDataStorage.Instance.playerOwnedCard)
                         {
-                            if (cardDatas[i].rarityType == RarityType.Epic && cardDatas[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                            if (item.rarityType == RarityType.Rare)
                             {
-                                cardIndex.Add(i);
+                                isAnyRare = true;
+                            }
+                            else if (item.rarityType == RarityType.Epic)
+                            {
+                                isAnyEpic = true;
                             }
                         }
 
-                        return cardDatas[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        //If there is a Epic
+                        if (isAnyEpic)
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Epic && PlayerDataStorage.Instance.playerOwnedCard[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
+                        //If there isn't an Epic, spawn Rare instead
+                        else if (isAnyRare)
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Rare && PlayerDataStorage.Instance.playerOwnedCard[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
+                        //If there isn't an Epic or Rare, spawn Common instead
+                        else
+                        {
+                            for (int i = 0; i < PlayerDataStorage.Instance.playerOwnedCard.Count; i++)
+                            {
+                                if (PlayerDataStorage.Instance.playerOwnedCard[i].rarityType == RarityType.Common && PlayerDataStorage.Instance.playerOwnedCard[i].playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
+                                {
+                                    cardIndex.Add(i);
+                                }
+                            }
+
+                            return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
+                        }
                     }
                 }
             }
@@ -709,14 +874,17 @@ public class GameManager : MonoBehaviour
                 if (playerCardMid != null && tempCard == playerCardMid.GetComponent<PlayingCard>().cardData)
                 {
                     returnedValue = false;
+                    print("mid card duplicate");
                 }
                 if (playerCardLeft != null && tempCard == playerCardLeft.GetComponent<PlayingCard>().cardData)
                 {
                     returnedValue = false;
+                    print("left card duplicate");
                 }
                 if (playerCardRight != null && tempCard == playerCardRight.GetComponent<PlayingCard>().cardData)
                 {
                     returnedValue = false;
+                    print("right card duplicate");
                 }
             }
             else
@@ -760,7 +928,6 @@ public class GameManager : MonoBehaviour
                     tempCard = CardSpawningMechanism(true, false);
                 }
 
-                ExportCard();
                 return tempCard;
             }
             else
@@ -788,14 +955,6 @@ public class GameManager : MonoBehaviour
             }
 
             return tempCard;
-        }
-
-        void ExportCard()
-        {
-            //print(tempCard);
-            temp_playerOwnedCardData.Add(tempCard);
-            ExportPlayerOwnedCardData();
-            temp_playerOwnedCardData.Clear();
         }
     }
 

@@ -1,5 +1,6 @@
 <dependencies>
   <packages>
+    <package>androidx.constraintlayout:constraintlayout:2.1.4</package>
     <package>androidx.recyclerview:recyclerview:1.2.1</package>
     <package>com.android.support:customtabs:28.+</package>
     <package>com.android.support:recyclerview-v7:28.+</package>
@@ -14,8 +15,10 @@
     <package>com.applovin.mediation:vungle-adapter:7.3.2.0</package>
     <package>com.applovin.mediation:yandex-adapter:7.0.1.0</package>
     <package>com.applovin:applovin-sdk:12.4.2</package>
+    <package>com.google.android.gms:play-services-ads:23.0.0</package>
     <package>com.google.android.gms:play-services-base:18.4.0</package>
     <package>com.google.android.play:core:1.10.3</package>
+    <package>com.google.android.ump:user-messaging-platform:2.2.0</package>
     <package>com.google.firebase:firebase-analytics:21.2.0</package>
     <package>com.google.firebase:firebase-analytics:22.0.0</package>
     <package>com.google.firebase:firebase-analytics-unity:12.0.0</package>

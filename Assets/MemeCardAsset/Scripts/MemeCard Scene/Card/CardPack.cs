@@ -52,6 +52,7 @@ public class CardPack : MonoBehaviour
         //Call this method from GameManager
         EventController.GeneratePackCards += GenerateCardDataPackage;
         EventController.GetLastCardEvent += ShowNewCard;
+        EventController.NextCardCheck += NextCardCheck;
         EventController.OpenPack += OpenPack;
         EventController.SpawnPack += ShowPack;
     }
@@ -236,6 +237,7 @@ public class CardPack : MonoBehaviour
         {
             int random = UnityEngine.Random.Range(0, 100);
 
+            //Sorting card (common - rare - epic)
             if (packRariry == 0) //Common Pack
             {
                 if (random >= 0 && random < 80)
@@ -483,6 +485,22 @@ public class CardPack : MonoBehaviour
                     morePackButton.GetComponent<CanvasGroup>().alpha = 1f;
                 }
             });
+        }
+    }
+
+    private void NextCardCheck(CardData currentCardData)
+    {
+        int tempIndex = -1;
+        for (int i = 0; i < 6; i++)
+        {
+            if (collectedCards[i].cardData == currentCardData && i != 5)
+            {
+                tempIndex = i;
+                if (collectedCards[i + 1].cardData.rarityType == RarityType.Epic)
+                {
+                    EventController.OnSFXPlay_EpicPack();
+                }
+            }
         }
     }
 

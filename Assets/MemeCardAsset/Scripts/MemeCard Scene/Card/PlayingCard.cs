@@ -84,7 +84,7 @@ public class PlayingCard : MonoBehaviour
     [Button]
     public void ShowCard()
     {
-        SetCard(this.cardData);
+        SetCard(cardData);
     }
     public void SetCard (CardData cardData)
     {
@@ -152,11 +152,11 @@ public class PlayingCard : MonoBehaviour
         //Is not use for package
         if (!isForPackage)
         {
-            if (readyToPlay && !isHighlighted)
+            if (readyToPlay && !isHighlighted && !isPlayed)
             {
                 EventController.OnHighlightCard(this);
             }
-            else if (readyToPlay && isPlayerCard)
+            else if (readyToPlay && isPlayerCard && !isPlayed)
             {
                 isPlayed = true;
                 //this is when player select and play a card
@@ -209,6 +209,8 @@ public class PlayingCard : MonoBehaviour
                     transform.position = new Vector3(transform.position.x, value, transform.position.z);
                 }).setOnComplete(() =>
                 {
+                    EventController.OnNextCardCheck(cardData);
+
                     LeanTween.value(transform.position.x, transform.position.x + 10, .5f).setOnUpdate((float value) =>
                     {
                         transform.position = new Vector3(value, transform.position.y, transform.position.z);
