@@ -348,6 +348,7 @@ public class CardPack : MonoBehaviour
             if (cardDatas.rarityType == RarityType.Common)
             {
                 collectedCards[tempIndex].SetCard(cardDatas);
+                EventController.OnAddPlayerOwnedCard(collectedCards[tempIndex].cardData);
                 tempIndex++;
 
                 if (tempIndex == 5)
@@ -363,6 +364,7 @@ public class CardPack : MonoBehaviour
             if (cardDatas.rarityType == RarityType.Rare)
             {
                 collectedCards[tempIndex].SetCard(cardDatas);
+                EventController.OnAddPlayerOwnedCard(collectedCards[tempIndex].cardData);
                 tempIndex++;
 
                 if (tempIndex == 5)
@@ -378,6 +380,7 @@ public class CardPack : MonoBehaviour
             if (cardDatas.rarityType == RarityType.Epic)
             {
                 collectedCards[tempIndex].SetCard(cardDatas);
+                EventController.OnAddPlayerOwnedCard(collectedCards[tempIndex].cardData);
                 tempIndex++;
 
                 if (tempIndex == 5)

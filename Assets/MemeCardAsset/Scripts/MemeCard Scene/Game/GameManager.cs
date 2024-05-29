@@ -75,8 +75,6 @@ public class GameManager : MonoBehaviour
     #region Players Attributes & Opponent
     [Header("Players Attributes & Opponent")]
     //Player
-    public List<CardData> temp_playerOwnedCardData = new List<CardData>();
-
     private int playerPoint;
 
     //Opponent
@@ -125,6 +123,7 @@ public class GameManager : MonoBehaviour
         EventController.GenerateCardDataPackage += GetCardCollection;
 
         EventController.LoadPlayerOwnedCard += ImportPlayerOwnedCardData;
+        EventController.AddPlayerOwnedCard += AddPlayerOwnedCardData;
 
         EventController.ShowBot += ShowBot;
         EventController.ChangeAudienceApperance += ChangeAudienceApperance;
@@ -465,6 +464,7 @@ public class GameManager : MonoBehaviour
                             }
                         }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                         return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                     }
                     //Spawn Rare card
@@ -493,6 +493,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                         //If not, spawn common card instead
@@ -506,6 +507,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                     }
@@ -540,6 +542,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                         //If there isn't an Epic, spawn Rare instead
@@ -553,6 +556,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                         //If there isn't an Epic or Rare, spawn Common instead
@@ -566,6 +570,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                     }
@@ -587,6 +592,7 @@ public class GameManager : MonoBehaviour
                             }
                         }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                         return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                     }
                     else if (percentage >= 50 && percentage < 85)
@@ -615,6 +621,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                         //If not, spawn common card instead
@@ -628,6 +635,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                         
@@ -662,7 +670,7 @@ public class GameManager : MonoBehaviour
                                     cardIndex.Add(i);
                                 }
                             }
-
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                         //If there isn't an Epic, spawn Rare instead
@@ -676,6 +684,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                         //If there isn't an Epic or Rare, spawn Common instead
@@ -689,6 +698,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
+                            print(cardIndex[Random.Range(0, cardIndex.Count)]);
                             return PlayerDataStorage.Instance.playerOwnedCard[cardIndex[Random.Range(0, cardIndex.Count)]];
                         }
                     }
@@ -958,10 +968,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [Button]
     public void ImportPlayerOwnedCardData()
     {
+        //List<int> removedIndex = new List<int>();
+        //for (int i = 0; i < PlayerDataStorage.Instance.data.cardOwned.Count - 1; i++)
+        //{
+        //    for (int j = i + 1; j < PlayerDataStorage.Instance.data.cardOwned.Count; j++)
+        //    {
+        //        if (PlayerDataStorage.Instance.data.cardOwned[i].cardName == PlayerDataStorage.Instance.data.cardOwned[j].cardName && PlayerDataStorage.Instance.data.cardOwned[i].cardRarity == PlayerDataStorage.Instance.data.cardOwned[j].cardRarity)
+        //        {
+        //            removedIndex.Add(j);
+        //        }
+        //    }
+        //}
+
+        //int temp = 0;
+        //foreach (int index in removedIndex)
+        //{
+        //    PlayerDataStorage.Instance.data.cardOwned.Remove(PlayerDataStorage.Instance.data.cardOwned[index - temp]);
+        //    temp--;
+        //}
+
+        //Import player data .json file to CardData types
         List<CardData> allCards = cardDatas.ToList();
+
+        PlayerDataStorage.Instance.playerOwnedCard.Clear();
 
         foreach (CardOwned playerCardOwned in PlayerDataStorage.Instance.data.cardOwned)
         {
@@ -983,39 +1014,55 @@ public class GameManager : MonoBehaviour
                 card.rarityType = RarityType.Epic;
                 card.memeGif = tempCard.memeGif;
             }
-            PlayerDataStorage.Instance.playerOwnedCard.Add(card);
+
+            //This part is make playerOwnedCard<CardData> doesn't have any duplicated card
+            bool canBeAdded = true;
+            foreach (CardData cardData in PlayerDataStorage.Instance.playerOwnedCard) 
+            { 
+                if (card.rarityType == cardData.rarityType && card.cardID == cardData.cardID)
+                {
+                    canBeAdded = false;
+                }
+            }
+
+            if (canBeAdded)
+            {
+                PlayerDataStorage.Instance.playerOwnedCard.Add(card);
+            }
         }
     }
 
-    [Button]
-    public void ExportPlayerOwnedCardData()
+    public void AddPlayerOwnedCardData(CardData cardData)
     {
-        PlayerDataStorage playerData = FindObjectOfType<PlayerDataStorage>();
-
-        foreach (CardData cardData in temp_playerOwnedCardData)
+        //Check if is there any duplicate card, if that's true, break the operation
+        foreach (CardData card in PlayerDataStorage.Instance.playerOwnedCard)
         {
-            CardOwned playerCardOwned = new CardOwned
+            if (cardData == card)
             {
-                cardName = cardData.cardID
-            };
-
-            if (cardData.rarityType == RarityType.Common)
-            {
-                playerCardOwned.cardRarity = 0;
+                print("aaaaaaaaaaaaaaaaaaaaa");
+                return;
             }
-            else if (cardData.rarityType == RarityType.Rare)
-            {
-                playerCardOwned.cardRarity = 1;
-            }
-            else if (cardData.rarityType == RarityType.Epic)
-            {
-                playerCardOwned.cardRarity = 2;
-            }
-
-            playerData.data.cardOwned.Add(playerCardOwned);
         }
 
-        temp_playerOwnedCardData.Clear();
+        CardOwned tempCardOwned = new CardOwned();
+
+        tempCardOwned.cardName = cardData.cardID.ToString();
+
+        if (cardData.rarityType == RarityType.Common)
+        {
+            tempCardOwned.cardRarity = 0;
+        }
+        else if (cardData.rarityType == RarityType.Rare)
+        {
+            tempCardOwned.cardRarity = 1;
+        }
+        else if (cardData.rarityType == RarityType.Epic)
+        {
+            tempCardOwned.cardRarity = 2;
+        }
+
+        PlayerDataStorage.Instance.data.cardOwned.Add(tempCardOwned);
+        EventController.OnSavePlayerData();
     }
 
     public void HighlightCard(PlayingCard playingCard)
@@ -1072,6 +1119,7 @@ public class GameManager : MonoBehaviour
 
     private void GetCardCollection()
     {
+        EventController.OnLoadPlayerOwnedCard();
         laughCardList = new List<CardData>();
         angryCardList = new List<CardData>();
         susCardList = new List<CardData>();
@@ -1080,7 +1128,7 @@ public class GameManager : MonoBehaviour
         coolCardList = new List<CardData>();
 
         //Common card Filter
-        foreach (CardData card in cardDatas)
+        foreach (CardData card in PlayerDataStorage.Instance.playerOwnedCard)
         {
             if (card.playingCardEmotionalType == EmotionalType.Laugh && card.rarityType == RarityType.Common)
             {
@@ -1108,7 +1156,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        foreach (CardData card in cardDatas)
+        foreach (CardData card in PlayerDataStorage.Instance.playerOwnedCard)
         {
             if (card.playingCardEmotionalType == EmotionalType.Laugh && card.rarityType == RarityType.Rare)
             {
@@ -1136,7 +1184,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        foreach (CardData card in cardDatas)
+        foreach (CardData card in PlayerDataStorage.Instance.playerOwnedCard)
         {
             if (card.playingCardEmotionalType == EmotionalType.Laugh && card.rarityType == RarityType.Epic)
             {

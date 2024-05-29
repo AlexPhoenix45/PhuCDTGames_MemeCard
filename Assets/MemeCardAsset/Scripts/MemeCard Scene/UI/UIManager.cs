@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using Assets.Core.Scripts.Core.Managers;
 using TMPro;
 using UnityEngine.UI;
-using UnityEditor;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Collections.Generic;
+//using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
@@ -51,6 +50,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Coin VFX")]
     public GameObject coinVFX;
+    public Transform coinPos;
     #endregion
 
     #region Header
@@ -171,6 +171,8 @@ public class UIManager : MonoBehaviour
 
         EventController.ShowHomeButton += ShowHomeButton;
         EventController.HideHomeButton += HideHomeButton;
+
+        EventController.AddPlayerCoin += SpawnCoinVFX;
     }
 
     #region Navigation
@@ -492,7 +494,7 @@ public class UIManager : MonoBehaviour
         {
             IEnumerator wait()
             {
-                yield return new WaitForSeconds(0.5f); //0.75 second delay, avoid spamming buttons
+                yield return new WaitForSeconds(1f); //0.75 second delay, avoid spamming buttons
                 shopBtn.interactable = true;
                 collectionBtn.interactable = true;
                 playBtn.interactable = true;
@@ -1352,18 +1354,77 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Coin VFX
-    [Button]
-    public void SpawnCoinVFX()
+    public void SpawnCoinVFX(int amount)
     {
-            for (int i = 0; i < 10; i++)
+        EventController.OnSFXPlay_MoneyReceive();
+        if (amount > 0)
+        {
+            IEnumerator spawnCoin()
             {
-                GameObject tempCoin = Instantiate(coinVFX, new Vector3(0 + UnityEngine.Random.Range(0f, 1f), 0 + UnityEngine.Random.Range(0f, 1f)), GetComponent<RectTransform>().localRotation);
-                tempCoin.GetComponent<RectTransform>().localPosition = new Vector3(0 + UnityEngine.Random.Range(0f, 1f), 0 + UnityEngine.Random.Range(0f, 1f));
+                float tempX, tempY;
+                List<GameObject> coins = new List<GameObject>();
+                for (int i = 0; i < 10; i++)
+                {
+                    yield return new WaitForSeconds(.05f);
+                    tempX = UnityEngine.Random.Range(-150f, 150f);
+                    tempY = UnityEngine.Random.Range(-150f, 150f);
 
-                LeanTween.move(tempCoin.GetComponent<RectTransform>(), header_CoinContainer.GetComponent<RectTransform>().localPosition, 2f).setOnComplete(() => {
-                    Destroy(tempCoin);
-                }).setEaseInOutBack();
+                    GameObject tempCoin = Instantiate(coinVFX, new Vector3(transform.position.x + tempX, transform.position.y + tempY), GetComponent<RectTransform>().localRotation, gameObject.transform);
+
+                    tempCoin.SetActive(false);
+                    LeanTween.value(0, .6f, .25f).setOnStart(() =>
+                    {
+                        tempCoin.transform.localScale = new Vector3(0, 0, 0);
+                        tempCoin.SetActive(true);
+                    }).setOnUpdate((float val) =>
+                    {
+                        tempCoin.transform.localScale = new Vector3(val, val, val);
+                    }).setOnComplete(() =>
+                    {
+                        tempCoin.transform.localScale = new Vector3(.6f, .6f, .6f);
+                    });
+
+                    coins.Add(tempCoin);
+                    //tempCoin.LeanMove(header_CoinContainer.transform.position, 1f);
+                    //Instantiate(coinVFX, transform.position, Quaternion.identity, gameObject.transform);
+                }
+
+                foreach (GameObject coin in coins)
+                {
+                    yield return new WaitForSeconds(.1f);
+                    coin.LeanMove(coinPos.transform.position, 1.5f).setOnComplete(() =>
+                    {
+                        LeanTween.value(1f, 0, .25f).setOnStart(() =>
+                        {
+                            coin.GetComponent<Image>().color = new Vector4(1, 1, 1, 1);
+                            coin.SetActive(true);
+                            LeanTween.value(0f, 1f, .25f).setOnStart(() =>
+                            {
+                                header_CoinContainer.GetComponent<Image>().color = new Vector4(1, 1, 1, 0);
+                                header_CoinContainer.SetActive(true);
+                            }).setOnUpdate((float val) =>
+                            {
+                                header_CoinContainer.GetComponent<Image>().color = new Vector4(1, 1, 1, val);
+                            }).setOnComplete(() =>
+                            {
+                                header_CoinContainer.GetComponent<Image>().color = new Vector4(1, 1, 1, 1);
+                            });
+                        }).setOnUpdate((float val) =>
+                        {
+                            coin.GetComponent<Image>().color = new Vector4(1, 1, 1, val);
+                        }).setOnComplete(() =>
+                        {
+                            coin.GetComponent<Image>().color = new Vector4(1, 1, 1, 0);
+                            Destroy(coin);
+                        });
+
+                    }).setEaseInBack();
+                }
+
+                yield return new WaitForSeconds(.5f);
             }
+            StartCoroutine(spawnCoin());    
+        }
     }
     #endregion
 

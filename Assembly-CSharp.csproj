@@ -165,6 +165,7 @@
     <Compile Include="Assets\Adjust\iOS\AdjustiOS.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
     <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\UI\Navigation Scripts\Shop Panel\ShopPanel.cs" />
+    <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\Environment\Chairs.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\GeneralBasic.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Targets\ILocalizeTargetDesc.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Assets\AdjustOaid\Unity\AdjustOaid.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Targets\LocalizeTarget_SVGImporter_Image.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Utils\RegisterCallback_AllowSyncFromGoogle.cs" />
+    <Compile Include="Assets\MemeCardAsset\Scripts\MemeCard Scene\Environment\EnvironmentManager.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\LanguageSource\LanguageSourceData_Assets.cs" />
     <Compile Include="Assets\Package\LeanTween\Examples\Scripts\PathSpline2d.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Targets\LocalizeTarget_UnityStandard_Prefab.cs" />

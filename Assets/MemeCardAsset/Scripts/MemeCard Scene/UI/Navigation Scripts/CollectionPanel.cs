@@ -96,6 +96,21 @@ public class CollectionPanel : MonoBehaviour
         currentItemIndex = 0;
         isFirstTime = true;
 
+        laughBookmarkActive.SetActive(true);
+        angryBookmarkActive.SetActive(false);
+        susBookmarkActive.SetActive(false);
+        cryBookmarkActive.SetActive(false);
+        surpriseBookmarkActive.SetActive(false);
+        coolBookmarkActive.SetActive(false);
+
+        laughBookmarkInactive.SetActive(false);
+        angryBookmarkInactive.SetActive(true);
+        susBookmarkInactive.SetActive(true);
+        cryBookmarkInactive.SetActive(true);
+        surpriseBookmarkInactive.SetActive(true);
+        coolBookmarkInactive.SetActive(true);
+
+        activeBookmark = ActiveBookmark.Laugh;
         DisplayFirstPage();
     }
 
@@ -116,11 +131,11 @@ public class CollectionPanel : MonoBehaviour
         {
             endTouchPos = Input.GetTouch(0).position;
 
-            if (endTouchPos.x < startTouchPos.x)
+            if (endTouchPos.x < startTouchPos.x && !LeanTween.isTweening(UIManager.tweeningID))
             {
                 DisplayNextPage();
             }
-            else if (endTouchPos.x > startTouchPos.x)
+            else if (endTouchPos.x > startTouchPos.x && !LeanTween.isTweening(UIManager.tweeningID))
             {
                 DisplayPrevPage();
             }
@@ -133,6 +148,8 @@ public class CollectionPanel : MonoBehaviour
         //Set default variable for book display
         currentItemIndex = 0;
         EventController.OnGenerateCardDataPackage();
+        isFirstTime = false;
+
 
         if (isFirstTime)
         {
@@ -635,146 +652,163 @@ public class CollectionPanel : MonoBehaviour
     #region Bookmarks OnClick 
     public void OnClick_LaughEmotion()
     {
-        EventController.OnSFXPlay_ButtonClick();
-
-        if (activeBookmark != ActiveBookmark.Laugh)
+        if (!LeanTween.isTweening(UIManager.tweeningID))
         {
-            laughBookmarkActive.SetActive(true);
-            angryBookmarkActive.SetActive(false);
-            susBookmarkActive.SetActive(false);
-            cryBookmarkActive.SetActive(false);
-            surpriseBookmarkActive.SetActive(false);
-            coolBookmarkActive.SetActive(false);
+            EventController.OnSFXPlay_ButtonClick();
 
-            laughBookmarkInactive.SetActive(false);
-            angryBookmarkInactive.SetActive(true);
-            susBookmarkInactive.SetActive(true);
-            cryBookmarkInactive.SetActive(true);
-            surpriseBookmarkInactive.SetActive(true);
-            coolBookmarkInactive.SetActive(true);
+            if (activeBookmark != ActiveBookmark.Laugh)
+            {
+                laughBookmarkActive.SetActive(true);
+                angryBookmarkActive.SetActive(false);
+                susBookmarkActive.SetActive(false);
+                cryBookmarkActive.SetActive(false);
+                surpriseBookmarkActive.SetActive(false);
+                coolBookmarkActive.SetActive(false);
 
-            activeBookmark = ActiveBookmark.Laugh;
-            DisplayFirstPage();
+                laughBookmarkInactive.SetActive(false);
+                angryBookmarkInactive.SetActive(true);
+                susBookmarkInactive.SetActive(true);
+                cryBookmarkInactive.SetActive(true);
+                surpriseBookmarkInactive.SetActive(true);
+                coolBookmarkInactive.SetActive(true);
+
+                activeBookmark = ActiveBookmark.Laugh;
+                DisplayFirstPage();
+            }
         }
     }
     public void OnClick_AngryEmotion()
     {
         EventController.OnSFXPlay_ButtonClick();
-
-        if (activeBookmark != ActiveBookmark.Angry)
+        if (!LeanTween.isTweening(UIManager.tweeningID))
         {
-            laughBookmarkActive.SetActive(false);
-            angryBookmarkActive.SetActive(true);
-            susBookmarkActive.SetActive(false);
-            cryBookmarkActive.SetActive(false);
-            surpriseBookmarkActive.SetActive(false);
-            coolBookmarkActive.SetActive(false);
+            if (activeBookmark != ActiveBookmark.Angry)
+            {
+                laughBookmarkActive.SetActive(false);
+                angryBookmarkActive.SetActive(true);
+                susBookmarkActive.SetActive(false);
+                cryBookmarkActive.SetActive(false);
+                surpriseBookmarkActive.SetActive(false);
+                coolBookmarkActive.SetActive(false);
 
-            laughBookmarkInactive.SetActive(true);
-            angryBookmarkInactive.SetActive(false);
-            susBookmarkInactive.SetActive(true);
-            cryBookmarkInactive.SetActive(true);
-            surpriseBookmarkInactive.SetActive(true);
-            coolBookmarkInactive.SetActive(true);
+                laughBookmarkInactive.SetActive(true);
+                angryBookmarkInactive.SetActive(false);
+                susBookmarkInactive.SetActive(true);
+                cryBookmarkInactive.SetActive(true);
+                surpriseBookmarkInactive.SetActive(true);
+                coolBookmarkInactive.SetActive(true);
 
-            activeBookmark = ActiveBookmark.Angry;
-            DisplayFirstPage();
+                activeBookmark = ActiveBookmark.Angry;
+                DisplayFirstPage();
+            }
         }
     }
     public void OnClick_SusEmotion()
     {
         EventController.OnSFXPlay_ButtonClick();
 
-        if (activeBookmark != ActiveBookmark.Sus)
+        if (!LeanTween.isTweening(UIManager.tweeningID))
         {
-            laughBookmarkActive.SetActive(false);
-            angryBookmarkActive.SetActive(false);
-            susBookmarkActive.SetActive(true);
-            cryBookmarkActive.SetActive(false);
-            surpriseBookmarkActive.SetActive(false);
-            coolBookmarkActive.SetActive(false);
+            if (activeBookmark != ActiveBookmark.Sus)
+            {
+                laughBookmarkActive.SetActive(false);
+                angryBookmarkActive.SetActive(false);
+                susBookmarkActive.SetActive(true);
+                cryBookmarkActive.SetActive(false);
+                surpriseBookmarkActive.SetActive(false);
+                coolBookmarkActive.SetActive(false);
 
-            laughBookmarkInactive.SetActive(true);
-            angryBookmarkInactive.SetActive(true);
-            susBookmarkInactive.SetActive(false);
-            cryBookmarkInactive.SetActive(true);
-            surpriseBookmarkInactive.SetActive(true);
-            coolBookmarkInactive.SetActive(true);
+                laughBookmarkInactive.SetActive(true);
+                angryBookmarkInactive.SetActive(true);
+                susBookmarkInactive.SetActive(false);
+                cryBookmarkInactive.SetActive(true);
+                surpriseBookmarkInactive.SetActive(true);
+                coolBookmarkInactive.SetActive(true);
 
-            activeBookmark = ActiveBookmark.Sus;
-            DisplayFirstPage();
+                activeBookmark = ActiveBookmark.Sus;
+                DisplayFirstPage();
+            }
         }
     }
     public void OnClick_CryEmotion()
     {
         EventController.OnSFXPlay_ButtonClick();
 
-        if (activeBookmark != ActiveBookmark.Cry)
+        if (!LeanTween.isTweening(UIManager.tweeningID))
         {
-            laughBookmarkActive.SetActive(false);
-            angryBookmarkActive.SetActive(false);
-            susBookmarkActive.SetActive(false);
-            cryBookmarkActive.SetActive(true);
-            surpriseBookmarkActive.SetActive(false);
-            coolBookmarkActive.SetActive(false);
+            if (activeBookmark != ActiveBookmark.Cry)
+            {
+                laughBookmarkActive.SetActive(false);
+                angryBookmarkActive.SetActive(false);
+                susBookmarkActive.SetActive(false);
+                cryBookmarkActive.SetActive(true);
+                surpriseBookmarkActive.SetActive(false);
+                coolBookmarkActive.SetActive(false);
 
-            laughBookmarkInactive.SetActive(true);
-            angryBookmarkInactive.SetActive(true);
-            susBookmarkInactive.SetActive(true);
-            cryBookmarkInactive.SetActive(false);
-            surpriseBookmarkInactive.SetActive(true);
-            coolBookmarkInactive.SetActive(true);
+                laughBookmarkInactive.SetActive(true);
+                angryBookmarkInactive.SetActive(true);
+                susBookmarkInactive.SetActive(true);
+                cryBookmarkInactive.SetActive(false);
+                surpriseBookmarkInactive.SetActive(true);
+                coolBookmarkInactive.SetActive(true);
 
-            activeBookmark = ActiveBookmark.Cry;
-            DisplayFirstPage();
+                activeBookmark = ActiveBookmark.Cry;
+                DisplayFirstPage();
+            }
         }
     }
     public void OnClick_SurpriseEmotion()
     {
         EventController.OnSFXPlay_ButtonClick();
 
-        if (activeBookmark != ActiveBookmark.Surprise)
+        if (!LeanTween.isTweening(UIManager.tweeningID))
         {
-            laughBookmarkActive.SetActive(false);
-            angryBookmarkActive.SetActive(false);
-            susBookmarkActive.SetActive(false);
-            cryBookmarkActive.SetActive(false);
-            surpriseBookmarkActive.SetActive(true);
-            coolBookmarkActive.SetActive(false);
+            if (activeBookmark != ActiveBookmark.Surprise)
+            {
+                laughBookmarkActive.SetActive(false);
+                angryBookmarkActive.SetActive(false);
+                susBookmarkActive.SetActive(false);
+                cryBookmarkActive.SetActive(false);
+                surpriseBookmarkActive.SetActive(true);
+                coolBookmarkActive.SetActive(false);
 
-            laughBookmarkInactive.SetActive(true);
-            angryBookmarkInactive.SetActive(true);
-            susBookmarkInactive.SetActive(true);
-            cryBookmarkInactive.SetActive(true);
-            surpriseBookmarkInactive.SetActive(false);
-            coolBookmarkInactive.SetActive(true);
+                laughBookmarkInactive.SetActive(true);
+                angryBookmarkInactive.SetActive(true);
+                susBookmarkInactive.SetActive(true);
+                cryBookmarkInactive.SetActive(true);
+                surpriseBookmarkInactive.SetActive(false);
+                coolBookmarkInactive.SetActive(true);
 
-            activeBookmark = ActiveBookmark.Surprise;
-            DisplayFirstPage();
+                activeBookmark = ActiveBookmark.Surprise;
+                DisplayFirstPage();
+            }
         }
     }
     public void OnClick_CoolEmotion()
     {
         EventController.OnSFXPlay_ButtonClick();
 
-        if (activeBookmark != ActiveBookmark.Cool)
+        if (!LeanTween.isTweening(UIManager.tweeningID))
         {
-            laughBookmarkActive.SetActive(false);
-            angryBookmarkActive.SetActive(false);
-            susBookmarkActive.SetActive(false);
-            cryBookmarkActive.SetActive(false);
-            surpriseBookmarkActive.SetActive(false);
-            coolBookmarkActive.SetActive(true);
+            if (activeBookmark != ActiveBookmark.Cool)
+            {
+                laughBookmarkActive.SetActive(false);
+                angryBookmarkActive.SetActive(false);
+                susBookmarkActive.SetActive(false);
+                cryBookmarkActive.SetActive(false);
+                surpriseBookmarkActive.SetActive(false);
+                coolBookmarkActive.SetActive(true);
 
-            laughBookmarkInactive.SetActive(true);
-            angryBookmarkInactive.SetActive(true);
-            susBookmarkInactive.SetActive(true);
-            cryBookmarkInactive.SetActive(true);
-            surpriseBookmarkInactive.SetActive(true);
-            coolBookmarkInactive.SetActive(false);
+                laughBookmarkInactive.SetActive(true);
+                angryBookmarkInactive.SetActive(true);
+                susBookmarkInactive.SetActive(true);
+                cryBookmarkInactive.SetActive(true);
+                surpriseBookmarkInactive.SetActive(true);
+                coolBookmarkInactive.SetActive(false);
 
-            activeBookmark = ActiveBookmark.Cool;
-            DisplayFirstPage();
+                activeBookmark = ActiveBookmark.Cool;
+                DisplayFirstPage();
+            }
         }
     }
     #endregion

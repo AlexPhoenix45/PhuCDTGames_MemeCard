@@ -214,6 +214,9 @@ public class EventController
 
     public static event UnityAction LoadPlayerOwnedCard;
     public static void OnLoadPlayerOwnedCard() => LoadPlayerOwnedCard?.Invoke();
+    
+    public static event UnityAction <CardData> AddPlayerOwnedCard;
+    public static void OnAddPlayerOwnedCard(CardData cardData) => AddPlayerOwnedCard?.Invoke(cardData);
 
     #endregion
 
@@ -273,5 +276,10 @@ public class EventController
     public static event UnityAction SFXPlay_MoneyReceive;
     public static void OnSFXPlay_MoneyReceive() => SFXPlay_MoneyReceive.Invoke();
 
+    #endregion
+
+    #region Environment
+    public static event UnityAction <int> UpdateEnvironment;
+    public static void OnUpdateEnvironment(int playerLvl) => UpdateEnvironment.Invoke(playerLvl);
     #endregion
 }

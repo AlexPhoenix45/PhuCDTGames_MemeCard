@@ -86,14 +86,17 @@ public class SoundManager : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, 3);
             if (randomIndex == 0)
             {
+                print("called");
                 speaker.PlayOneShot(laugh1);
             }
             else if (randomIndex == 1)
             {
+                print("called");
                 speaker.PlayOneShot(laugh2);
             }
             else
             {
+                print("called");
                 speaker.PlayOneShot(laugh3);
             }
         }
