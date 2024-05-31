@@ -61,7 +61,6 @@ public class PlayerDataStorage : MonoBehaviour
     public void AddPlayerLevel (int amount)
     {
         data.currentLvl += amount;
-        EventController.OnUpdateEnvironment(data.currentLvl);
         SaveToJson();
     }
 

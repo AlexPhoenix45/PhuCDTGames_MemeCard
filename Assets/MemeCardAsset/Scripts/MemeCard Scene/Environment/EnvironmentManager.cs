@@ -22,31 +22,122 @@ public class EnvironmentManager : MonoBehaviour
         {
             case 6:
                 explosion.Play();
-                DisableFurniture(); 
-                roomBacks[2].SetActive(true);
+                DisableFurniture();
+                roomBacks[1].SetActive(true);
+                roomRights[0].SetActive(true);
+                bookStands[0].SetActive(true);
+                tables[0].SetActive(true);
+                roomWalls[0].SetActive(true);
+                foreach (GameObject chair in chairs)
+                {
+                    chair.GetComponent<Chairs>().ChairEnable(0);
+                }
                 break;
             case 11:
                 explosion.Play();
                 DisableFurniture();
-                roomBacks[2].SetActive(true);
-                roomRights[2].SetActive(true);
+                roomBacks[1].SetActive(true);
+                roomRights[1].SetActive(true);
+                bookStands[0].SetActive(true);
+                tables[0].SetActive(true);
+                roomWalls[0].SetActive(true);
+                foreach (GameObject chair in chairs)
+                {
+                    chair.GetComponent<Chairs>().ChairEnable(0);
+                }
                 break;
             case 16:
+                explosion.Play();
+                DisableFurniture();
+                roomBacks[1].SetActive(true);
+                roomRights[1].SetActive(true);
+                bookStands[1].SetActive(true);
+                tables[0].SetActive(true);
+                roomWalls[0].SetActive(true);
+                foreach (GameObject chair in chairs)
+                {
+                    chair.GetComponent<Chairs>().ChairEnable(0);
+                }
+                break;
+            case 21:
+                explosion.Play();
+                DisableFurniture();
+                roomBacks[1].SetActive(true);
+                roomRights[1].SetActive(true);
+                bookStands[1].SetActive(true);
+                tables[1].SetActive(true);
+                roomWalls[0].SetActive(true);
+                foreach (GameObject chair in chairs)
+                {
+                    chair.GetComponent<Chairs>().ChairEnable(0);
+                }
+                break;
+            case 26:
+                explosion.Play();
+                DisableFurniture();
+                roomBacks[1].SetActive(true);
+                roomRights[1].SetActive(true);
+                bookStands[1].SetActive(true);
+                tables[1].SetActive(true);
+                roomWalls[1].SetActive(true);
+                foreach (GameObject chair in chairs)
+                {
+                    chair.GetComponent<Chairs>().ChairEnable(1);
+                }
+                break;
+            case 6 + 25:
+                explosion.Play();
+                DisableFurniture(); 
+                roomBacks[2].SetActive(true);
+                roomRights[1].SetActive(true);
+                bookStands[1].SetActive(true);
+                tables[1].SetActive(true);
+                roomWalls[1].SetActive(true);
+                foreach (GameObject chair in chairs)
+                {
+                    chair.GetComponent<Chairs>().ChairEnable(1);
+                }
+                break;
+            case 11 + 25:
+                explosion.Play();
+                DisableFurniture();
+                roomBacks[2].SetActive(true);
+                roomRights[2].SetActive(true);
+                bookStands[1].SetActive(true);
+                tables[1].SetActive(true);
+                roomWalls[1].SetActive(true);
+                foreach (GameObject chair in chairs)
+                {
+                    chair.GetComponent<Chairs>().ChairEnable(1);
+                }
+                break;
+            case 16 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[2].SetActive(true);
                 roomRights[2].SetActive(true);
                 bookStands[2].SetActive(true);
+                tables[1].SetActive(true);
+                roomWalls[1].SetActive(true);
+                foreach (GameObject chair in chairs)
+                {
+                    chair.GetComponent<Chairs>().ChairEnable(1);
+                }
                 break;
-            case 21:
+            case 21 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[2].SetActive(true);
                 roomRights[2].SetActive(true);
                 bookStands[2].SetActive(true);
                 tables[2].SetActive(true);
+                roomWalls[1].SetActive(true);
+                foreach (GameObject chair in chairs)
+                {
+                    chair.GetComponent<Chairs>().ChairEnable(1);
+                }
                 break;
-            case 26:
+            case 26 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[2].SetActive(true);
@@ -59,7 +150,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(2);
                 }
                 break;
-            case 31:
+            case 31 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[3].SetActive(true);
@@ -72,7 +163,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(2);
                 }
                 break;
-            case 36:
+            case 36 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[3].SetActive(true);
@@ -85,7 +176,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(2);
                 }
                 break;
-            case 41:
+            case 41 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[3].SetActive(true);
@@ -98,7 +189,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(2);
                 }
                 break;
-            case 46:
+            case 46 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[3].SetActive(true);
@@ -111,7 +202,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(2);
                 }
                 break;
-            case 51:
+            case 51 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[3].SetActive(true);
@@ -124,7 +215,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(3);
                 }
                 break;
-            case 56:
+            case 56 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[4].SetActive(true);
@@ -137,7 +228,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(3);
                 }
                 break;
-            case 61:
+            case 61 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[4].SetActive(true);
@@ -150,7 +241,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(3);
                 }
                 break;
-            case 66:
+            case 66 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[4].SetActive(true);
@@ -163,7 +254,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(3);
                 }
                 break;
-            case 71:
+            case 71 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[4].SetActive(true);
@@ -176,7 +267,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(3);
                 }
                 break;
-            case 76:
+            case 76 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[4].SetActive(true);
@@ -189,7 +280,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(4);
                 }
                 break;
-            case 81:
+            case 81 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[5].SetActive(true);
@@ -202,7 +293,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(4);
                 }
                 break;
-            case 86:
+            case 86 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[5].SetActive(true);
@@ -215,7 +306,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(4);
                 }
                 break;
-            case 91:
+            case 91 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[5].SetActive(true);
@@ -228,7 +319,7 @@ public class EnvironmentManager : MonoBehaviour
                     chair.GetComponent<Chairs>().ChairEnable(4);
                 }
                 break;
-            case 96:
+            case 96 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[5].SetActive(true);
@@ -242,7 +333,7 @@ public class EnvironmentManager : MonoBehaviour
                 }
                 break;
 
-            case 101:
+            case 101 + 25:
                 explosion.Play();
                 DisableFurniture();
                 roomBacks[5].SetActive(true);

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: AdjustSettings
   m_EditorClassIdentifier: 
   _iOSFrameworkAdSupport: 1
-  _iOSFrameworkiAd: 0
   _iOSFrameworkAdServices: 0
   _iOSFrameworkAppTrackingTransparency: 0
   _iOSFrameworkStoreKit: 0

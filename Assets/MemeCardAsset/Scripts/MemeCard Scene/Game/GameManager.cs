@@ -148,16 +148,19 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(.1f);
             EventController.OnLoadPlayerData();
+            EventController.OnUpdateEnvironment(PlayerDataStorage.Instance.data.currentLvl);
         }
         StartCoroutine(LoadData());
 
         ChangeAudienceApperance();
+
     }
 
     private void StartGame()
     {
         //Start a Game (need a parameter for which game is running)
         StartGame_CardBattle();
+        ImportPlayerOwnedCardData();
     }
 
     #region Meme Card Battle
@@ -604,7 +607,7 @@ public class GameManager : MonoBehaviour
                         bool isAnyRare = false;
                         foreach (CardData item in PlayerDataStorage.Instance.playerOwnedCard)
                         {
-                            if (item.rarityType == RarityType.Rare)
+                            if (item.rarityType == RarityType.Rare && item.playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
                             {
                                 isAnyRare = true;
                             }
@@ -650,11 +653,11 @@ public class GameManager : MonoBehaviour
                         bool isAnyEpic = false;
                         foreach (CardData item in PlayerDataStorage.Instance.playerOwnedCard)
                         {
-                            if (item.rarityType == RarityType.Rare)
+                            if (item.rarityType == RarityType.Rare && item.playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
                             {
                                 isAnyRare = true;
                             }
-                            else if (item.rarityType == RarityType.Epic)
+                            else if (item.rarityType == RarityType.Epic && item.playingCardEmotionalType == currentQuestionData.questionCardEmotionalType)
                             {
                                 isAnyEpic = true;
                             }

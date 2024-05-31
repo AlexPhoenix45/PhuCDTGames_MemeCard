@@ -25,11 +25,18 @@ namespace com.adjust.sdk
         public static string KeyCostAmount = "costAmount";
         public static string KeyCostCurrency = "costCurrency";
         public static string KeyFbInstallReferrer = "fbInstallReferrer";
+        public static string KeySkadConversionValue = "fineValue";
+        public static string KeySkadCoarseValue = "coarseValue";
+        public static string KeySkadLockWindow = "lockWindow";
+        public static string KeyCode = "code";
+        public static string KeyVerificationStatus = "verificationStatus";
 
         // For testing purposes.
         public static string KeyTestOptionsBaseUrl = "baseUrl";
         public static string KeyTestOptionsGdprUrl = "gdprUrl";
         public static string KeyTestOptionsSubscriptionUrl = "subscriptionUrl";
+        public static string KeyTestOptionsPurchaseVerificationUrl = "purchaseVerificationUrl";
+        public static string KeyTestOptionsOverwriteUrl = "urlOverwrite";
         public static string KeyTestOptionsExtraPath = "extraPath";
         public static string KeyTestOptionsBasePath = "basePath";
         public static string KeyTestOptionsGdprPath = "gdprPath";
@@ -41,8 +48,9 @@ namespace com.adjust.sdk
         public static string KeyTestOptionsSubsessionIntervalInMilliseconds = "subsessionIntervalInMilliseconds";
         public static string KeyTestOptionsTeardown = "teardown";
         public static string KeyTestOptionsNoBackoffWait = "noBackoffWait";
-        public static string KeyTestOptionsiAdFrameworkEnabled = "iAdFrameworkEnabled";
         public static string KeyTestOptionsAdServicesFrameworkEnabled = "adServicesFrameworkEnabled";
+        public static string KeyTestOptionsAttStatus = "attStatus";
+        public static string KeyTestOptionsIdfa = "idfa";
 
         public static int ConvertLogLevel(AdjustLogLevel? logLevel)
         {
@@ -257,6 +265,48 @@ namespace com.adjust.sdk
             return null;
         }
 
+        public static int GetSkad4ConversionValue(string conversionValueUpdate)
+        {
+            var jsonNode = JSON.Parse(conversionValueUpdate);
+            if (jsonNode == null) 
+            {
+                return -1;
+            }
+
+            string strConversionValue = AdjustUtils.GetJsonString(jsonNode, AdjustUtils.KeySkadConversionValue);
+            int conversionValue = 0;
+            if (Int32.TryParse(strConversionValue, out conversionValue))
+            {
+                return conversionValue;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static string GetSkad4CoarseValue(string conversionValueUpdate)
+        {
+            var jsonNode = JSON.Parse(conversionValueUpdate);
+            if (jsonNode == null) 
+            {
+                return null;
+            }
+            string coarseValue = AdjustUtils.GetJsonString(jsonNode, AdjustUtils.KeySkadCoarseValue);
+            return coarseValue;
+        }
+
+        public static bool GetSkad4LockWindow(string conversionValueUpdate)
+        {
+            var jsonNode = JSON.Parse(conversionValueUpdate);
+            if (jsonNode == null) 
+            {
+                return false;
+            }
+            bool lockWindow = Convert.ToBoolean(AdjustUtils.GetJsonString(jsonNode, AdjustUtils.KeySkadLockWindow));
+            return lockWindow;
+        }
+
 #if UNITY_ANDROID
         public static AndroidJavaObject TestOptionsMap2AndroidJavaObject(Dictionary<string, string> testOptionsMap, AndroidJavaObject ajoCurrentActivity)
         {
@@ -264,12 +314,14 @@ namespace com.adjust.sdk
             ajoTestOptions.Set<String>("baseUrl", testOptionsMap[KeyTestOptionsBaseUrl]);
             ajoTestOptions.Set<String>("gdprUrl", testOptionsMap[KeyTestOptionsGdprUrl]);
             ajoTestOptions.Set<String>("subscriptionUrl", testOptionsMap[KeyTestOptionsSubscriptionUrl]);
+            ajoTestOptions.Set<String>("purchaseVerificationUrl", testOptionsMap[KeyTestOptionsPurchaseVerificationUrl]);
 
             if (testOptionsMap.ContainsKey(KeyTestOptionsExtraPath) && !string.IsNullOrEmpty(testOptionsMap[KeyTestOptionsExtraPath]))
             {
                 ajoTestOptions.Set<String>("basePath", testOptionsMap[KeyTestOptionsExtraPath]);
                 ajoTestOptions.Set<String>("gdprPath", testOptionsMap[KeyTestOptionsExtraPath]);
                 ajoTestOptions.Set<String>("subscriptionPath", testOptionsMap[KeyTestOptionsExtraPath]);
+                ajoTestOptions.Set<String>("purchaseVerificationPath", testOptionsMap[KeyTestOptionsExtraPath]);
             }
             if (testOptionsMap.ContainsKey(KeyTestOptionsDeleteState) && ajoCurrentActivity != null)
             {

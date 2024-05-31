@@ -39,6 +39,10 @@ public class CollectionCard : MonoBehaviour
     public RenderTexture renderTexture;
     public CardData cardData;
 
+    [Header("Unknown Card")]
+    public GameObject unknownCard;
+    public GameObject mask;
+
 
     public bool isForPackage = false;
     public void SetCollectionCard(CardData cardData)
@@ -50,6 +54,8 @@ public class CollectionCard : MonoBehaviour
             {
                 if (cardData.rarityType == RarityType.Common)
                 {
+                    unknownCard.SetActive(false);
+                    mask.SetActive(true);
                     commonCard.SetActive(true);
                     rareCard.SetActive(false);
                     epicCard.SetActive(false);
@@ -62,6 +68,8 @@ public class CollectionCard : MonoBehaviour
                 }
                 else if (cardData.rarityType == RarityType.Rare)
                 {
+                    unknownCard.SetActive(false);
+                    mask.SetActive(true);
                     commonCard.SetActive(false);
                     rareCard.SetActive(true);
                     epicCard.SetActive(false);
@@ -74,6 +82,8 @@ public class CollectionCard : MonoBehaviour
                 }
                 else if (cardData.rarityType == RarityType.Epic)
                 {
+                    unknownCard.SetActive(false);
+                    mask.SetActive(true);
                     commonCard.SetActive(false);
                     rareCard.SetActive(false);
                     epicCard.SetActive(true);
@@ -83,6 +93,8 @@ public class CollectionCard : MonoBehaviour
 
                     if (cardData.memeGif != null)
                     {
+                        unknownCard.SetActive(false);
+                        mask.SetActive(true);
                         memeImageContainer.SetActive(false);
                         memeGifVideoPlayer.gameObject.SetActive(true);
                         memeGifVideoPlayer.clip = cardData.memeGif;
@@ -92,6 +104,8 @@ public class CollectionCard : MonoBehaviour
                     }
                     else
                     {
+                        unknownCard.SetActive(false);
+                        mask.SetActive(true);
                         memeImageContainer.SetActive(true);
                         memeImage.sprite = cardData.memeImage;
                         memeGifVideoPlayer.gameObject.SetActive(false);

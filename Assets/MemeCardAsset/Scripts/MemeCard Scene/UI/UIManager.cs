@@ -116,6 +116,11 @@ public class UIManager : MonoBehaviour
     public GameObject winPanel;
 
     public TextMeshProUGUI winPanel_CoinText;
+
+    public Button gameOver_skipLevel;
+    public Button gameOver_retry;
+    public Button gameOver_noThanks;
+    public Button gameOver_claimButton;
     #endregion
 
     #region Multiplier Bar
@@ -1049,10 +1054,12 @@ public class UIManager : MonoBehaviour
         {
             if (isPlayerWin)
             {
+                ToggleGameOverButton(false);
                 ShowPackageReward();
             }
             else
             {
+                ToggleGameOverButton(false);
                 ChangeCamToRoomCam_AfterEndGame();
             }
         });
@@ -1066,6 +1073,7 @@ public class UIManager : MonoBehaviour
         {
             if (val)
             {
+                ToggleGameOverButton(false);
                 EventController.OnAddPlayerLevel(1);
             }
         });
@@ -1087,6 +1095,7 @@ public class UIManager : MonoBehaviour
         {
             if (val)
             {
+                ToggleGameOverButton(false);
                 if (!multiplierBar_hasClicked)
                 {
                     if (multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x >= -405 && multiplierBar_resultCursor.GetComponent<RectTransform>().localPosition.x < -235)
@@ -1120,10 +1129,19 @@ public class UIManager : MonoBehaviour
             }
             else
             {
+                ToggleGameOverButton(false);
                 EventController.OnAddPlayerCoin((int)(100 * Mathf.Ceil(PlayerDataStorage.Instance.data.currentLvl / 5.0f)));
                 ShowPackageReward();
             }
         });
+    }
+
+    public void ToggleGameOverButton(bool value)
+    {
+        gameOver_claimButton.interactable = value;
+        gameOver_noThanks.interactable = value;
+        gameOver_retry.interactable = value;
+        gameOver_skipLevel.interactable = value;
     }
 
     #region Multiplier Bar
@@ -1232,6 +1250,9 @@ public class UIManager : MonoBehaviour
     #region Package Reward
     public void ShowPackageReward()
     {
+        EventController.OnChangeAudienceApperance();
+        EventController.OnUpdateEnvironment(PlayerDataStorage.Instance.data.currentLvl);
+
         LeanTween.value(1, 0, 1f).setOnStart(() =>
         {
             winPanel_Inactive.SetActive(true);
@@ -1344,6 +1365,7 @@ public class UIManager : MonoBehaviour
             {
                 yield return null;
             }
+            ToggleGameOverButton(true);
             ShowNavigationButton();
         }
         StartCoroutine(wait());

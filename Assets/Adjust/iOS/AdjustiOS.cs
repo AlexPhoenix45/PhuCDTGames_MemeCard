@@ -8,7 +8,7 @@ namespace com.adjust.sdk
 #if UNITY_IOS
     public class AdjustiOS
     {
-        private const string sdkPrefix = "unity4.32.1";
+        private const string sdkPrefix = "unity4.38.1";
 
         [DllImport("__Internal")]
         private static extern void _AdjustLaunchApp(
@@ -25,19 +25,20 @@ namespace com.adjust.sdk
             int isDeviceKnown,
             int eventBuffering,
             int sendInBackground,
-            int allowiAdInfoReading,
             int allowAdServicesInfoReading,
             int allowIdfaReading,
             int deactivateSkAdNetworkHandling,
             int linkMeEnabled,
             int needsCost,
             int coppaCompliant,
+            int readDeviceInfoOnce,
             long secretId,
             long info1,
             long info2,
             long info3,
             long info4,
             double delayStart,
+            int attConsentWaitingInterval,
             int launchDeferredDeeplink,
             int isAttributionCallbackImplemented, 
             int isEventSuccessCallbackImplemented,
@@ -45,7 +46,8 @@ namespace com.adjust.sdk
             int isSessionSuccessCallbackImplemented,
             int isSessionFailureCallbackImplemented,
             int isDeferredDeeplinkCallbackImplemented,
-            int isConversionValueUpdatedCallbackImplemented);
+            int isConversionValueUpdatedCallbackImplemented,
+            int isSkad4ConversionValueUpdatedCallbackImplemented);
 
         [DllImport("__Internal")]
         private static extern void _AdjustTrackEvent(
@@ -53,6 +55,8 @@ namespace com.adjust.sdk
             double revenue,
             string currency,
             string receipt,
+            string receiptBase64,
+            string productId,
             string transactionId,
             string callbackId,
             int isReceiptSet,
@@ -76,6 +80,9 @@ namespace com.adjust.sdk
 
         [DllImport("__Internal")]
         private static extern string _AdjustGetIdfa();
+
+        [DllImport("__Internal")]
+        private static extern string _AdjustGetIdfv();
 
         [DllImport("__Internal")]
         private static extern string _AdjustGetAdid();
@@ -148,9 +155,7 @@ namespace com.adjust.sdk
 
         [DllImport("__Internal")]
         private static extern void _AdjustSetTestOptions(
-            string baseUrl,
-            string gdprUrl,
-            string subscriptionUrl,
+            string overwriteUrl,
             string extraPath,
             long timerIntervalInMilliseconds,
             long timerStartInMilliseconds,
@@ -159,14 +164,21 @@ namespace com.adjust.sdk
             int teardown,
             int deleteState,
             int noBackoffWait,
-            int iAdFrameworkEnabled,
-            int adServicesFrameworkEnabled);
+            int adServicesFrameworkEnabled,
+            int attStatus,
+            string idfa);
 
         [DllImport("__Internal")]
         private static extern void _AdjustRequestTrackingAuthorizationWithCompletionHandler(string sceneName);
 
         [DllImport("__Internal")]
         private static extern void _AdjustUpdateConversionValue(int conversionValue);
+
+        [DllImport("__Internal")]
+        private static extern void _AdjustUpdateConversionValueWithCallback(int conversionValue, string sceneName);
+
+        [DllImport("__Internal")]
+        private static extern void _AdjustUpdateConversionValueWithCallbackSkad4(int conversionValue, string coarseValue, int lockedWindow, string sceneName);
 
         [DllImport("__Internal")]
         private static extern void _AdjustCheckForNewAttStatus();
@@ -182,6 +194,16 @@ namespace com.adjust.sdk
 
         [DllImport("__Internal")]
         private static extern string _AdjustGetLastDeeplink();
+
+        [DllImport("__Internal")]
+        private static extern void _AdjustVerifyAppStorePurchase(
+            string transactionId,
+            string productId,
+            string receipt,
+            string sceneName);
+
+        [DllImport("__Internal")]
+        private static extern void _AdjustProcessDeeplink(string url, string sceneName);
 
         public AdjustiOS() {}
 
@@ -200,11 +222,11 @@ namespace com.adjust.sdk
             long info4 = AdjustUtils.ConvertLong(adjustConfig.info4);
             long secretId = AdjustUtils.ConvertLong(adjustConfig.secretId);
             double delayStart = AdjustUtils.ConvertDouble(adjustConfig.delayStart);
+            int attConsentWaitingInterval = AdjustUtils.ConvertInt(adjustConfig.attConsentWaitingInterval);
             int logLevel = AdjustUtils.ConvertLogLevel(adjustConfig.logLevel);
             int isDeviceKnown = AdjustUtils.ConvertBool(adjustConfig.isDeviceKnown);
             int sendInBackground = AdjustUtils.ConvertBool(adjustConfig.sendInBackground);
             int eventBufferingEnabled = AdjustUtils.ConvertBool(adjustConfig.eventBufferingEnabled);
-            int allowiAdInfoReading = AdjustUtils.ConvertBool(adjustConfig.allowiAdInfoReading);
             int allowAdServicesInfoReading = AdjustUtils.ConvertBool(adjustConfig.allowAdServicesInfoReading);
             int allowIdfaReading = AdjustUtils.ConvertBool(adjustConfig.allowIdfaReading);
             int allowSuppressLogLevel = AdjustUtils.ConvertBool(adjustConfig.allowSuppressLogLevel);
@@ -213,6 +235,7 @@ namespace com.adjust.sdk
             int linkMeEnabled = AdjustUtils.ConvertBool(adjustConfig.linkMeEnabled);
             int needsCost = AdjustUtils.ConvertBool(adjustConfig.needsCost);
             int coppaCompliant = AdjustUtils.ConvertBool(adjustConfig.coppaCompliantEnabled);
+            int readDeviceInfoOnce = AdjustUtils.ConvertBool(adjustConfig.readDeviceInfoOnceEnabled);
             int isAttributionCallbackImplemented = AdjustUtils.ConvertBool(adjustConfig.getAttributionChangedDelegate() != null);
             int isEventSuccessCallbackImplemented = AdjustUtils.ConvertBool(adjustConfig.getEventSuccessDelegate() != null);
             int isEventFailureCallbackImplemented = AdjustUtils.ConvertBool(adjustConfig.getEventFailureDelegate() != null);
@@ -220,6 +243,7 @@ namespace com.adjust.sdk
             int isSessionFailureCallbackImplemented = AdjustUtils.ConvertBool(adjustConfig.getSessionFailureDelegate() != null);
             int isDeferredDeeplinkCallbackImplemented = AdjustUtils.ConvertBool(adjustConfig.getDeferredDeeplinkDelegate() != null);
             int isConversionValueUpdatedCallbackImplemented = AdjustUtils.ConvertBool(adjustConfig.getConversionValueUpdatedDelegate() != null);
+            int isSkad4ConversionValueUpdatedCallbackImplemented = AdjustUtils.ConvertBool(adjustConfig.getSkad4ConversionValueUpdatedDelegate() != null);
 
             _AdjustLaunchApp(
                 appToken,
@@ -235,19 +259,20 @@ namespace com.adjust.sdk
                 isDeviceKnown,
                 eventBufferingEnabled,
                 sendInBackground,
-                allowiAdInfoReading,
                 allowAdServicesInfoReading,
                 allowIdfaReading,
                 deactivateSkAdNetworkHandling,
                 linkMeEnabled,
                 needsCost,
                 coppaCompliant,
+                readDeviceInfoOnce,
                 secretId,
                 info1,
                 info2,
                 info3,
                 info4,
                 delayStart,
+                attConsentWaitingInterval,
                 launchDeferredDeeplink,
                 isAttributionCallbackImplemented,
                 isEventSuccessCallbackImplemented,
@@ -255,7 +280,8 @@ namespace com.adjust.sdk
                 isSessionSuccessCallbackImplemented,
                 isSessionFailureCallbackImplemented,
                 isDeferredDeeplinkCallbackImplemented,
-                isConversionValueUpdatedCallbackImplemented);
+                isConversionValueUpdatedCallbackImplemented,
+                isSkad4ConversionValueUpdatedCallbackImplemented);
         }
 
         public static void TrackEvent(AdjustEvent adjustEvent)
@@ -265,12 +291,25 @@ namespace com.adjust.sdk
             string eventToken = adjustEvent.eventToken;
             string currency = adjustEvent.currency;
             string receipt = adjustEvent.receipt;
+            string receiptBase64 = adjustEvent.receiptBase64;
+            string productId = adjustEvent.productId;
             string transactionId = adjustEvent.transactionId;
             string callbackId = adjustEvent.callbackId;
             string stringJsonCallbackParameters = AdjustUtils.ConvertListToJson(adjustEvent.callbackList);
             string stringJsonPartnerParameters = AdjustUtils.ConvertListToJson(adjustEvent.partnerList);
 
-            _AdjustTrackEvent(eventToken, revenue, currency, receipt, transactionId, callbackId, isReceiptSet, stringJsonCallbackParameters, stringJsonPartnerParameters);
+            _AdjustTrackEvent(
+                eventToken,
+                revenue,
+                currency,
+                receipt,
+                receiptBase64,
+                productId,
+                transactionId,
+                callbackId,
+                isReceiptSet,
+                stringJsonCallbackParameters,
+                stringJsonPartnerParameters);
         }        
 
         public static void SetEnabled(bool enabled)
@@ -417,6 +456,18 @@ namespace com.adjust.sdk
             _AdjustUpdateConversionValue(conversionValue);
         }
 
+        public static void UpdateConversionValue(int conversionValue, string sceneName)
+        {
+            string cSceneName = sceneName != null ? sceneName : "ADJ_INVALID";
+            _AdjustUpdateConversionValueWithCallback(conversionValue, cSceneName);
+        }
+
+        public static void UpdateConversionValue(int conversionValue, string coarseValue, bool lockedWindow, string sceneName)
+        {
+            string cSceneName = sceneName != null ? sceneName : "ADJ_INVALID";
+            _AdjustUpdateConversionValueWithCallbackSkad4(conversionValue, coarseValue, AdjustUtils.ConvertBool(lockedWindow), cSceneName);
+        }
+
         public static void CheckForNewAttStatus()
         {
             _AdjustCheckForNewAttStatus();
@@ -435,6 +486,11 @@ namespace com.adjust.sdk
         public static string GetIdfa()
         {
             return _AdjustGetIdfa();
+        }
+
+        public static string GetIdfv()
+        {
+            return _AdjustGetIdfv();
         }
 
         public static string GetAdid()
@@ -474,13 +530,31 @@ namespace com.adjust.sdk
             return _AdjustGetLastDeeplink();
         }
 
+        public static void VerifyAppStorePurchase(AdjustAppStorePurchase purchase, string sceneName)
+        {
+            string transactionId = purchase.transactionId;
+            string productId = purchase.productId;
+            string receipt = purchase.receipt;
+            string cSceneName = sceneName != null ? sceneName : "ADJ_INVALID";
+            
+            _AdjustVerifyAppStorePurchase(
+                transactionId,
+                productId,
+                receipt,
+                cSceneName);
+        }
+
+        public static void ProcessDeeplink(string url, string sceneName)
+        {
+            _AdjustProcessDeeplink(url, sceneName);
+        }
+
         // Used for testing only.
         public static void SetTestOptions(Dictionary<string, string> testOptions)
         {
-            string baseUrl = testOptions[AdjustUtils.KeyTestOptionsBaseUrl];
-            string gdprUrl = testOptions[AdjustUtils.KeyTestOptionsGdprUrl];
-            string subscriptionUrl = testOptions[AdjustUtils.KeyTestOptionsSubscriptionUrl];
+            string overwriteUrl = testOptions[AdjustUtils.KeyTestOptionsOverwriteUrl];
             string extraPath = testOptions.ContainsKey(AdjustUtils.KeyTestOptionsExtraPath) ? testOptions[AdjustUtils.KeyTestOptionsExtraPath] : null;
+            string idfa = testOptions.ContainsKey(AdjustUtils.KeyTestOptionsIdfa) ? testOptions[AdjustUtils.KeyTestOptionsIdfa] : null;
             long timerIntervalMilis = -1;
             long timerStartMilis = -1;
             long sessionIntMilis = -1;
@@ -488,8 +562,8 @@ namespace com.adjust.sdk
             bool teardown = false;
             bool deleteState = false;
             bool noBackoffWait = false;
-            bool iAdFrameworkEnabled = false;
             bool adServicesFrameworkEnabled = false;
+            int attStatus = -1;
 
             if (testOptions.ContainsKey(AdjustUtils.KeyTestOptionsTimerIntervalInMilliseconds)) 
             {
@@ -519,29 +593,28 @@ namespace com.adjust.sdk
             {
                 noBackoffWait = testOptions[AdjustUtils.KeyTestOptionsNoBackoffWait].ToLower() == "true";
             }
-            if (testOptions.ContainsKey(AdjustUtils.KeyTestOptionsiAdFrameworkEnabled))
-            {
-                iAdFrameworkEnabled = testOptions[AdjustUtils.KeyTestOptionsiAdFrameworkEnabled].ToLower() == "true";
-            }
             if (testOptions.ContainsKey(AdjustUtils.KeyTestOptionsAdServicesFrameworkEnabled))
             {
                 adServicesFrameworkEnabled = testOptions[AdjustUtils.KeyTestOptionsAdServicesFrameworkEnabled].ToLower() == "true";
             }
+            if (testOptions.ContainsKey(AdjustUtils.KeyTestOptionsAttStatus)) 
+            {
+                attStatus = int.Parse(testOptions[AdjustUtils.KeyTestOptionsAttStatus]);
+            }
 
             _AdjustSetTestOptions(
-                baseUrl,
-                gdprUrl,
-                subscriptionUrl,
+                overwriteUrl,
                 extraPath,
                 timerIntervalMilis,
                 timerStartMilis,
                 sessionIntMilis,
-                subsessionIntMilis, 
+                subsessionIntMilis,
                 AdjustUtils.ConvertBool(teardown),
                 AdjustUtils.ConvertBool(deleteState),
                 AdjustUtils.ConvertBool(noBackoffWait),
-                AdjustUtils.ConvertBool(iAdFrameworkEnabled),
-                AdjustUtils.ConvertBool(adServicesFrameworkEnabled));
+                AdjustUtils.ConvertBool(adServicesFrameworkEnabled),
+                attStatus,
+                idfa);
         }
 
         public static void TrackSubsessionStart(string testingArgument = null)

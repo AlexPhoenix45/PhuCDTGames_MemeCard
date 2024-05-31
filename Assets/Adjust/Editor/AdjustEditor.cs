@@ -122,7 +122,6 @@ public class AdjustEditor : AssetPostprocessor
 
             // If enabled by the user, Adjust SDK will try to add following frameworks to your project:
             // - AdSupport.framework (needed for access to IDFA value)
-            // - iAd.framework (needed in case you are running ASA campaigns)
             // - AdServices.framework (needed in case you are running ASA campaigns)
             // - StoreKit.framework (needed for communication with SKAdNetwork framework)
             // - AppTrackingTransparency.framework (needed for information about user's consent to be tracked)
@@ -137,16 +136,6 @@ public class AdjustEditor : AssetPostprocessor
             else
             {
                 Debug.Log("[Adjust]: Skipping AdSupport.framework linking.");
-            }
-            if (AdjustSettings.iOSFrameworkiAd)
-            {
-                Debug.Log("[Adjust]: Adding iAd.framework to Xcode project.");
-                xcodeProject.AddFrameworkToProject(xcodeTarget, "iAd.framework", true);
-                Debug.Log("[Adjust]: iAd.framework added successfully.");
-            }
-            else
-            {
-                Debug.Log("[Adjust]: Skipping iAd.framework linking.");
             }
             if (AdjustSettings.iOSFrameworkAdServices)
             {
@@ -179,12 +168,6 @@ public class AdjustEditor : AssetPostprocessor
                 Debug.Log("[Adjust]: Skipping AppTrackingTransparency.framework linking.");
             }
 
-            // The Adjust SDK needs to have Obj-C exceptions enabled.
-            // GCC_ENABLE_OBJC_EXCEPTIONS=YES
-            Debug.Log("[Adjust]: Enabling Obj-C exceptions by setting GCC_ENABLE_OBJC_EXCEPTIONS value to YES.");
-            xcodeProject.AddBuildProperty(xcodeTarget, "GCC_ENABLE_OBJC_EXCEPTIONS", "YES");
-            Debug.Log("[Adjust]: Obj-C exceptions enabled successfully.");
-
             // The Adjust SDK needs to have -ObjC flag set in other linker flags section because of it's categories.
             // OTHER_LDFLAGS -ObjC
             //
@@ -192,7 +175,6 @@ public class AdjustEditor : AssetPostprocessor
             // Adding -ObjC to UnityFramework target however does make things work nicely again.
             // This happens because Unity is linking SDK's static library into UnityFramework target.
             // Check for presence of UnityFramework target and if there, include -ObjC flag inside of it.
-
             Debug.Log("[Adjust]: Adding -ObjC flag to other linker flags (OTHER_LDFLAGS) of Unity-iPhone target.");
             xcodeProject.AddBuildProperty(xcodeTarget, "OTHER_LDFLAGS", "-ObjC");
             Debug.Log("[Adjust]: -ObjC successfully added to other linker flags.");
@@ -202,6 +184,18 @@ public class AdjustEditor : AssetPostprocessor
                 Debug.Log("[Adjust]: Adding -ObjC flag to other linker flags (OTHER_LDFLAGS) of UnityFramework target.");
                 xcodeProject.AddBuildProperty(xcodeTargetUnityFramework, "OTHER_LDFLAGS", "-ObjC");
                 Debug.Log("[Adjust]: -ObjC successfully added to other linker flags.");
+            }
+
+            // The Adjust SDK needs to have Obj-C exceptions enabled.
+            // GCC_ENABLE_OBJC_EXCEPTIONS=YES
+            Debug.Log("[Adjust]: Enabling Obj-C exceptions by setting GCC_ENABLE_OBJC_EXCEPTIONS value to YES.");
+            xcodeProject.AddBuildProperty(xcodeTarget, "GCC_ENABLE_OBJC_EXCEPTIONS", "YES");
+            Debug.Log("[Adjust]: Obj-C exceptions enabled successfully.");
+            if (!string.IsNullOrEmpty(xcodeTargetUnityFramework))
+            {
+                Debug.Log("[Adjust]: Enabling Obj-C exceptions by setting GCC_ENABLE_OBJC_EXCEPTIONS value to YES.");
+                xcodeProject.AddBuildProperty(xcodeTargetUnityFramework, "GCC_ENABLE_OBJC_EXCEPTIONS", "YES");
+                Debug.Log("[Adjust]: Obj-C exceptions enabled successfully.");
             }
 
             if (xcodeProject.ContainsFileByProjectPath("Libraries/Adjust/iOS/AdjustSigSdk.a"))

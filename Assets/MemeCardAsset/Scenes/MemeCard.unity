@@ -4624,6 +4624,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8a9218374b8644dac16288d76df292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &183427911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1079763748635830241, guid: 88191482fafaa8240be2527aafe72e99, type: 3}
+  m_PrefabInstance: {fileID: 183427908}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &185523229
 GameObject:
   m_ObjectHideFlags: 0
@@ -5898,7 +5903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    currentCoin: 10000
+    currentCoin: 0
     currentLvl: 1
     cardOwned:
     - cardName: Angry1
@@ -6190,6 +6195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8a9218374b8644dac16288d76df292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &243123640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1079763748635830241, guid: 88191482fafaa8240be2527aafe72e99, type: 3}
+  m_PrefabInstance: {fileID: 243123637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &244865827
 GameObject:
   m_ObjectHideFlags: 0
@@ -21849,11 +21859,11 @@ MonoBehaviour:
   - {fileID: 1407207024}
   chairs:
   - {fileID: 1087118609}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1008350310}
+  - {fileID: 1554649649}
+  - {fileID: 183427911}
+  - {fileID: 1252028884}
+  - {fileID: 243123640}
   explosion: {fileID: 287960579}
 --- !u!1 &1000258577
 GameObject:
@@ -22137,6 +22147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8a9218374b8644dac16288d76df292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1008350310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1079763748635830241, guid: 88191482fafaa8240be2527aafe72e99, type: 3}
+  m_PrefabInstance: {fileID: 1008350307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1017790493
 GameObject:
   m_ObjectHideFlags: 0
@@ -27412,6 +27427,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8a9218374b8644dac16288d76df292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1252028884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1079763748635830241, guid: 88191482fafaa8240be2527aafe72e99, type: 3}
+  m_PrefabInstance: {fileID: 1252028881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261841318
 GameObject:
   m_ObjectHideFlags: 0
@@ -35576,6 +35596,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8a9218374b8644dac16288d76df292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1554649649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1079763748635830241, guid: 88191482fafaa8240be2527aafe72e99, type: 3}
+  m_PrefabInstance: {fileID: 1554649646}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1558370130
 GameObject:
   m_ObjectHideFlags: 0
@@ -44104,6 +44129,10 @@ MonoBehaviour:
   losePanel: {fileID: 1295812302}
   winPanel: {fileID: 1684449287}
   winPanel_CoinText: {fileID: 304522364}
+  gameOver_skipLevel: {fileID: 297928043}
+  gameOver_retry: {fileID: 101420583}
+  gameOver_noThanks: {fileID: 982042470}
+  gameOver_claimButton: {fileID: 1357864231}
   multiplierBar_main: {fileID: 1325850199}
   multiplierBar_cursor: {fileID: 169391171}
   multiplierBar_result: {fileID: 1487538015}

@@ -65,13 +65,11 @@
     <Compile Include="Assets\I2\Localization\Scripts\Editor\Inspectors\LanguageSourceInspector.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Editor\Localization\LocalizationEditor_Tools_Categorize.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Editor\EditorTools.cs" />
-    <Compile Include="Assets\AdjustOaid\Editor\AdjustOaidEditor.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Editor\UpgradeManager.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Editor\Localization\LocalizationEditor_Spreadsheet_Google.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Editor\Inspectors\LocalizationEditor.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Editor\Inspectors\LanguageSourceAssetInspector.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Editor\Localization\LocalizationEditor_Spreadsheet_Local.cs" />
-    <Compile Include="Assets\AdjustImei\Editor\AdjustImeiEditor.cs" />
     <Compile Include="Assets\Adjust\Editor\AdjustSettings.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Editor\Inspectors\LocalizeInspector.cs" />
     <Compile Include="Assets\I2\Localization\Scripts\Editor\Localization\LocalizationEditor_Tools.cs" />
@@ -99,28 +97,26 @@
     <Compile Include="Assets\Adjust\Editor\AdjustSettingsEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Firebase\Editor\RemoteConfigDependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\Mintegral\Editor\Dependencies.xml" />
     <None Include="Assets\ExternalDependencyManager\Editor\1.2.179\Google.PackageManagerResolver.dll" />
-    <None Include="Assets\Firebase\Editor\FirebaseRemoteConfig_version-10.4.0_manifest.txt" />
     <None Include="Assets\ExternalDependencyManager\Editor\external-dependency-manager_version-1.2.179_manifest.txt" />
     <None Include="Assets\MaxSdk\AppLovin\Editor\Dependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\Google\Editor\Dependencies.xml" />
     <None Include="Assets\ExternalDependencyManager\Editor\1.2.179\Google.IOSResolver.dll" />
     <None Include="Assets\GooglePlayPlugins\com.google.play.core\Editor\PlayCoreDependencies.xml" />
+    <None Include="Assets\Firebase\Editor\FirebaseCrashlytics_version-11.8.1_manifest.txt" />
     <None Include="Assets\ExternalDependencyManager\Editor\1.2.179\Google.VersionHandlerImpl.dll" />
     <None Include="Assets\Firebase\Editor\Firebase.Crashlytics.Editor.dll" />
     <None Include="Assets\MaxSdk\Mediation\Yandex\Editor\Dependencies.xml" />
-    <None Include="Assets\Firebase\Editor\FirebaseCrashlytics_version-12.0.0_manifest.txt" />
     <None Include="Assets\MaxSdk\Mediation\ByteDance\Editor\Dependencies.xml" />
     <None Include="Assets\ExternalDependencyManager\Editor\1.2.179\Google.JarResolver.dll" />
     <None Include="Assets\MaxSdk\Mediation\IronSource\Editor\Dependencies.xml" />
+    <None Include="Assets\Firebase\Editor\FirebaseAnalytics_version-11.8.1_manifest.txt" />
     <None Include="Assets\MaxSdk\Mediation\UnityAds\Editor\Dependencies.xml" />
     <None Include="Assets\I2\Localization\Scripts\Editor\Unity XCode\UnityEditor.iOS_I2Loc.Xcode.dll" />
     <None Include="Assets\Firebase\Editor\AppDependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\InMobi\Editor\Dependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\Vungle\Editor\Dependencies.xml" />
-    <None Include="Assets\Firebase\Editor\FirebaseAnalytics_version-12.0.0_manifest.txt" />
     <None Include="Assets\Firebase\Editor\AnalyticsDependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\Fyber\Editor\Dependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\GoogleAdManager\Editor\Dependencies.xml" />
@@ -494,10 +490,6 @@
       <HintPath>Assets\Adjust\Windows\Stubs\Win81Interface.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Google.PackageManagerResolver">
-      <HintPath>Assets\ExternalDependencyManager\Editor\1.2.179\Google.PackageManagerResolver.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="GoogleMobileAds">
       <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
       <Private>False</Private>
@@ -516,14 +508,6 @@
     </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.RemoteConfig">
-      <HintPath>Assets\Firebase\Plugins\Firebase.RemoteConfig.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Google.IOSResolver">
-      <HintPath>Assets\ExternalDependencyManager\Editor\1.2.179\Google.IOSResolver.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="WinWsInterface">
@@ -550,16 +534,8 @@
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Firebase.Crashlytics.Editor">
-      <HintPath>Assets\Firebase\Editor\Firebase.Crashlytics.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="GoogleMobileAds.Ump.Unity">
       <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Google.JarResolver">
-      <HintPath>Assets\ExternalDependencyManager\Editor\1.2.179\Google.JarResolver.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GoogleMobileAds.Ump">
@@ -584,10 +560,6 @@
     </Reference>
     <Reference Include="Google.MiniJson">
       <HintPath>Assets\Firebase\Plugins\Google.MiniJson.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.Editor">
-      <HintPath>Assets\Firebase\Editor\Firebase.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Google.VersionHandler">
@@ -1126,10 +1098,6 @@
       <HintPath>Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       <Private>False</Private>
@@ -1138,24 +1106,72 @@
       <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    <Reference Include="Unity.AI.Navigation">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Burst.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Burst">
-      <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+    <Reference Include="Unity.Rider.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PPv2URPConverters">
+      <HintPath>Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
+      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VSCode.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.AI.Navigation">
-      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
+    <Reference Include="Unity.Burst">
+      <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
@@ -1178,26 +1194,6 @@
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
       <Private>False</Private>
@@ -1214,24 +1210,20 @@
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.AI.Navigation.Updater">
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Updater.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="PPv2URPConverters">
-      <HintPath>Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
+    <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
@@ -1242,28 +1234,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.AI.Navigation.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
-      <HintPath>Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Cinemachine">
       <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -1280,10 +1256,6 @@
       <Project>{6BEB4DDF-5D7F-22F5-C47F-2896E3F6E7ED}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
-    <ProjectReference Include="CFXR.WelcomeScreen.csproj">
-      <Project>{401DCF7F-63CC-BFF7-60D0-074BDBAA4202}</Project>
-      <Name>CFXR.WelcomeScreen</Name>
-    </ProjectReference>
     <ProjectReference Include="Google.Play.Common.csproj">
       <Project>{8A75D708-45EA-47B9-6065-0C8FF93A6291}</Project>
       <Name>Google.Play.Common</Name>
@@ -1292,25 +1264,13 @@
       <Project>{A05B9B1D-F3BF-8893-E085-AD6AD3F724CA}</Project>
       <Name>Google.Play.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="KinoBloom.Runtime.csproj">
-      <Project>{1B4A6BB8-DB11-1BFC-C109-3C42D8A59CDE}</Project>
-      <Name>KinoBloom.Runtime</Name>
-    </ProjectReference>
     <ProjectReference Include="RBG.Mulligan.csproj">
       <Project>{7A018623-74EB-6F66-235A-34D2DD49AB07}</Project>
       <Name>RBG.Mulligan</Name>
     </ProjectReference>
-    <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
-      <Project>{9D1A34C9-9176-11DA-8F6D-0408A1A6419E}</Project>
-      <Name>Google.Android.AppBundle.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Editor.csproj">
       <Project>{503F5766-08D1-4D2A-A02A-48E8E66352D5}</Project>
       <Name>NaughtyAttributes.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="NaughtyAttributes.Test.csproj">
-      <Project>{0BB6924A-EA25-4160-647A-A277A03E3080}</Project>
-      <Name>NaughtyAttributes.Test</Name>
     </ProjectReference>
     <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj">
       <Project>{64910438-BF84-4439-1B74-2A3549B78881}</Project>
@@ -1320,17 +1280,9 @@
       <Project>{B9F8B009-1415-EFAD-E391-5AA33325424A}</Project>
       <Name>CFXRRuntime</Name>
     </ProjectReference>
-    <ProjectReference Include="MaxSdk.Scripts.IntegrationManager.Editor.csproj">
-      <Project>{424F274D-6991-CAAA-A3FC-9FC241A59810}</Project>
-      <Name>MaxSdk.Scripts.IntegrationManager.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Google.Play.Review.csproj">
       <Project>{E0F86F93-D082-6133-BFC7-5E82EE864309}</Project>
       <Name>Google.Play.Review</Name>
-    </ProjectReference>
-    <ProjectReference Include="CFXREditor.csproj">
-      <Project>{65D97AB8-DC02-754E-9E53-208D7E2E28EC}</Project>
-      <Name>CFXREditor</Name>
     </ProjectReference>
     <ProjectReference Include="MaxSdk.Scripts.csproj">
       <Project>{0C0F4F19-FA00-0A72-CC7B-14E9B86A1D2D}</Project>
@@ -1344,13 +1296,37 @@
       <Project>{61537C6F-B2AF-0588-CF89-9C14BE55FC89}</Project>
       <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="Nobi.UiRoundedCorners.csproj">
-      <Project>{A2A4C780-2240-3E0B-5C12-A8F09F5C4824}</Project>
-      <Name>Nobi.UiRoundedCorners</Name>
+    <ProjectReference Include="CFXR.WelcomeScreen.csproj">
+      <Project>{401DCF7F-63CC-BFF7-60D0-074BDBAA4202}</Project>
+      <Name>CFXR.WelcomeScreen</Name>
+    </ProjectReference>
+    <ProjectReference Include="KinoBloom.Runtime.csproj">
+      <Project>{1B4A6BB8-DB11-1BFC-C109-3C42D8A59CDE}</Project>
+      <Name>KinoBloom.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Google.Android.AppBundle.Editor.csproj">
+      <Project>{9D1A34C9-9176-11DA-8F6D-0408A1A6419E}</Project>
+      <Name>Google.Android.AppBundle.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Test.csproj">
+      <Project>{0BB6924A-EA25-4160-647A-A277A03E3080}</Project>
+      <Name>NaughtyAttributes.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="MaxSdk.Scripts.IntegrationManager.Editor.csproj">
+      <Project>{424F274D-6991-CAAA-A3FC-9FC241A59810}</Project>
+      <Name>MaxSdk.Scripts.IntegrationManager.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXREditor.csproj">
+      <Project>{65D97AB8-DC02-754E-9E53-208D7E2E28EC}</Project>
+      <Name>CFXREditor</Name>
     </ProjectReference>
     <ProjectReference Include="com.litefeel.BitmapFontImporter.Editor.csproj">
       <Project>{84949D5C-DC25-6F5A-4E4B-866BA2A004B2}</Project>
       <Name>com.litefeel.BitmapFontImporter.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Nobi.UiRoundedCorners.csproj">
+      <Project>{A2A4C780-2240-3E0B-5C12-A8F09F5C4824}</Project>
+      <Name>Nobi.UiRoundedCorners</Name>
     </ProjectReference>
     <ProjectReference Include="GoogleMobileAds.Editor.csproj">
       <Project>{972407FD-2F25-36DC-9982-A89E7D273D8A}</Project>

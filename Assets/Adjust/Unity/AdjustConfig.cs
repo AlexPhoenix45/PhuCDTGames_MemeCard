@@ -6,6 +6,8 @@ namespace com.adjust.sdk
     {
         public const string AdjustUrlStrategyChina = "china";
         public const string AdjustUrlStrategyIndia = "india";
+        public const string AdjustUrlStrategyCn = "cn";
+        public const string AdjustUrlStrategyCnOnly = "cn-only";
 
         public const string AdjustDataResidencyEU = "data-residency-eu";
         public const string AdjustDataResidencyTR = "data-residency-tr";
@@ -19,6 +21,9 @@ namespace com.adjust.sdk
         public const string AdjustAdRevenueSourceUnity = "unity_sdk";
         public const string AdjustAdRevenueSourceHeliumChartboost = "helium_chartboost_sdk";
         public const string AdjustAdRevenueSourcePublisher = "publisher_sdk";
+        public const string AdjustAdRevenueSourceTopOn = "topon_sdk";
+        public const string AdjustAdRevenueSourceAdx = "adx_sdk";
+        public const string AdjustAdRevenueTradPlus = "tradplus_sdk";
 
         internal string appToken;
         internal string sceneName;
@@ -39,6 +44,7 @@ namespace com.adjust.sdk
         internal bool? playStoreKidsAppEnabled;
         internal bool? allowSuppressLogLevel;
         internal bool? needsCost;
+        internal bool? readDeviceInfoOnceEnabled;
         internal bool launchDeferredDeeplink;
         internal AdjustLogLevel? logLevel;
         internal AdjustEnvironment environment;
@@ -49,18 +55,21 @@ namespace com.adjust.sdk
         internal Action<AdjustSessionFailure> sessionFailureDelegate;
         internal Action<AdjustAttribution> attributionChangedDelegate;
         internal Action<int> conversionValueUpdatedDelegate;
+        internal Action<int, string, bool> skad4ConversionValueUpdatedDelegate;
 
         // Android specific members
         internal string processName;
         internal bool? readImei;
         internal bool? preinstallTrackingEnabled;
         internal string preinstallFilePath;
+        internal bool? finalAndroidAttributionEnabled;
+        internal string fbAppId;
         // iOS specific members
-        internal bool? allowiAdInfoReading;
         internal bool? allowAdServicesInfoReading;
         internal bool? allowIdfaReading;
         internal bool? skAdNetworkHandling;
         internal bool? linkMeEnabled;
+        internal int? attConsentWaitingInterval;
         // Windows specific members
         internal Action<String> logDelegate;
 
@@ -116,11 +125,6 @@ namespace com.adjust.sdk
             this.coppaCompliantEnabled = coppaCompliantEnabled;
         }
 
-        public void setPlayStoreKidsAppEnabled(bool playStoreKidsAppEnabled)
-        {
-            this.playStoreKidsAppEnabled = playStoreKidsAppEnabled;
-        }
-
         public void setNeedsCost(bool needsCost)
         {
             this.needsCost = needsCost;
@@ -146,14 +150,13 @@ namespace com.adjust.sdk
             this.urlStrategy = urlStrategy;
         }
 
-        public void deactivateSKAdNetworkHandling()
+        public void setAppSecret(long secretId, long info1, long info2, long info3, long info4)
         {
-            this.skAdNetworkHandling = true;
-        }
-
-        public void setLinkMeEnabled(bool linkMeEnabled)
-        {
-            this.linkMeEnabled = linkMeEnabled;
+            this.secretId = secretId;
+            this.info1 = info1;
+            this.info2 = info2;
+            this.info3 = info3;
+            this.info4 = info4;
         }
 
         public void setDeferredDeeplinkDelegate(Action<string> deferredDeeplinkDelegate, string sceneName = "Adjust")
@@ -222,6 +225,32 @@ namespace com.adjust.sdk
             return this.sessionFailureDelegate;
         }
 
+        // iOS specific methods.
+        [Obsolete("This is an obsolete method. Apple Search Ads attribution with usage of iAd.framework has been sunset by Apple as of February 7th 2023.")]
+        public void setAllowiAdInfoReading(bool allowiAdInfoReading)
+        {
+        }
+
+        public void setAllowAdServicesInfoReading(bool allowAdServicesInfoReading)
+        {
+            this.allowAdServicesInfoReading = allowAdServicesInfoReading;
+        }
+
+        public void setAllowIdfaReading(bool allowIdfaReading)
+        {
+            this.allowIdfaReading = allowIdfaReading;
+        }
+
+        public void deactivateSKAdNetworkHandling()
+        {
+            this.skAdNetworkHandling = true;
+        }
+
+        public void setLinkMeEnabled(bool linkMeEnabled)
+        {
+            this.linkMeEnabled = linkMeEnabled;
+        }
+
         public void setConversionValueUpdatedDelegate(Action<int> conversionValueUpdatedDelegate, string sceneName = "Adjust")
         {
             this.conversionValueUpdatedDelegate = conversionValueUpdatedDelegate;
@@ -233,29 +262,20 @@ namespace com.adjust.sdk
             return this.conversionValueUpdatedDelegate;
         }
 
-        public void setAppSecret(long secretId, long info1, long info2, long info3, long info4)
+        public void setSkad4ConversionValueUpdatedDelegate(Action<int, string, bool> skad4ConversionValueUpdatedDelegate, string sceneName = "Adjust")
         {
-            this.secretId = secretId;
-            this.info1 = info1;
-            this.info2 = info2;
-            this.info3 = info3;
-            this.info4 = info4;
+            this.skad4ConversionValueUpdatedDelegate = skad4ConversionValueUpdatedDelegate;
+            this.sceneName = sceneName;
         }
 
-        // iOS specific methods.
-        public void setAllowiAdInfoReading(bool allowiAdInfoReading)
+        public Action<int, string, bool> getSkad4ConversionValueUpdatedDelegate()
         {
-            this.allowiAdInfoReading = allowiAdInfoReading;
+            return this.skad4ConversionValueUpdatedDelegate;
         }
 
-        public void setAllowAdServicesInfoReading(bool allowAdServicesInfoReading)
+        public void setAttConsentWaitingInterval(int numberOfSeconds)
         {
-            this.allowAdServicesInfoReading = allowAdServicesInfoReading;
-        }
-
-        public void setAllowIdfaReading(bool allowIdfaReading)
-        {
-            this.allowIdfaReading = allowIdfaReading;
+            this.attConsentWaitingInterval = numberOfSeconds;
         }
 
         // Android specific methods.
@@ -278,6 +298,26 @@ namespace com.adjust.sdk
         public void setPreinstallFilePath(string preinstallFilePath)
         {
             this.preinstallFilePath = preinstallFilePath;
+        }
+
+        public void setPlayStoreKidsAppEnabled(bool playStoreKidsAppEnabled)
+        {
+            this.playStoreKidsAppEnabled = playStoreKidsAppEnabled;
+        }
+
+        public void setFinalAndroidAttributionEnabled(bool finalAndroidAttributionEnabled)
+        {
+            this.finalAndroidAttributionEnabled = finalAndroidAttributionEnabled;
+        }
+
+        public void setFbAppId(string fbAppId)
+        {
+            this.fbAppId = fbAppId;
+        }
+
+        public void setReadDeviceInfoOnceEnabled(bool readDeviceInfoOnceEnabled)
+        {
+            this.readDeviceInfoOnceEnabled = readDeviceInfoOnceEnabled;
         }
 
         // Windows specific methods.
